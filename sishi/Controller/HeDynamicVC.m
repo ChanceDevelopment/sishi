@@ -10,6 +10,7 @@
 #import "HeLogTableVC.h"
 #import "HeRealTimeTrendVC.h"
 #import "NYSegmentedControl.h"
+#import "HeDistributeInviteVC.h"
 
 @interface HeDynamicVC ()
 {
@@ -101,9 +102,21 @@
         }
         [sectionHeaderView addSubview:button];
     }
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(sectionHeaderView.frame.size.width / 2.0, 10, 1, 20)];
-    line.backgroundColor = [UIColor grayColor];
-    [sectionHeaderView addSubview:line];
+    CGFloat centerLineW = 1;
+    CGFloat centerLineH = 20;
+    CGFloat centerLineX = (CGRectGetWidth(sectionHeaderView.frame) - centerLineW) / 2.0;
+    CGFloat centerLineY = (CGRectGetHeight(sectionHeaderView.frame) - centerLineH) / 2.0;
+    UIView *centerline = [[UIView alloc] initWithFrame:CGRectMake(centerLineX, centerLineY, centerLineW, centerLineH)];
+    centerline.backgroundColor = [UIColor grayColor];
+    [sectionHeaderView addSubview:centerline];
+    
+    CGFloat bottomX = 0;
+    CGFloat bottomH = 2;
+    CGFloat bottomW = CGRectGetWidth(sectionHeaderView.frame);
+    CGFloat bottomY = CGRectGetHeight(sectionHeaderView.frame) - bottomH;
+    UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(bottomX, bottomY, bottomW, bottomH)];
+    bottomLine.backgroundColor = [UIColor grayColor];
+    [sectionHeaderView addSubview:bottomLine];
     
     self.navigationItem.titleView = sectionHeaderView;
 //    [self.view addSubview:sectionHeaderView];
@@ -117,6 +130,13 @@
     realTimeVC.view.frame = CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGH);
     self.currentVC = logVC;
     [self.view addSubview:logVC.view];
+}
+
+- (IBAction)distributeButtonClick:(id)sender
+{
+    HeDistributeInviteVC *distributeVC = [[HeDistributeInviteVC alloc] init];
+    distributeVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:distributeVC animated:YES];
 }
 
 - (UIButton *)buttonWithTitle:(NSString *)buttonTitle frame:(CGRect)buttonFrame
