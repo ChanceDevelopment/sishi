@@ -6887,7 +6887,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.channce.sishi;
 				PRODUCT_NAME = "司事";
-				PROVISIONING_PROFILE = "128c2761-ee6b-4341-8817-6b7a559be5d7";
+				PROVISIONING_PROFILE = "f6104fa2-eed9-4e6f-9862-7b90bfef69f8";
 			};
 			name = Release;
 		};

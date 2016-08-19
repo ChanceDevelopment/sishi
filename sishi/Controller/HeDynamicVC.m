@@ -111,7 +111,7 @@
     [sectionHeaderView addSubview:centerline];
     
     CGFloat bottomX = 0;
-    CGFloat bottomH = 2;
+    CGFloat bottomH = 1;
     CGFloat bottomW = CGRectGetWidth(sectionHeaderView.frame);
     CGFloat bottomY = CGRectGetHeight(sectionHeaderView.frame) - bottomH;
     UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(bottomX, bottomY, bottomW, bottomH)];
