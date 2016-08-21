@@ -62,10 +62,10 @@
         label.textColor = APPDEFAULTTITLECOLOR;
         label.textAlignment = NSTextAlignmentCenter;
         self.navigationItem.titleView = label;
-        label.text = @"我的";
+        label.text = @"搜索";
         [label sizeToFit];
         
-        self.title = @"我的";
+        self.title = @"搜索";
     }
     return self;
 }

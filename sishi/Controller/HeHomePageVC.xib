@@ -22,7 +22,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="300" id="Vly-JR-Qf8">
-                            <variation key="heightClass=regular-widthClass=compact" constant="200"/>
+                            <variation key="heightClass=regular-widthClass=compact" constant="150"/>
                         </constraint>
                     </constraints>
                     <variation key="default">
