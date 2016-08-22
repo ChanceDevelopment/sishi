@@ -45,7 +45,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.preSelectIndex = -1;
     [self.view addSubview:[self contentView]];
     [self.view addSubview:[self tabBar]];
 }
@@ -105,6 +105,12 @@
         return;
     }
     
+    if (self.preSelectIndex == -1) {
+        self.preSelectIndex = selectedIndex;
+    }
+    else{
+        self.preSelectIndex = _selectedIndex;
+    }
     if ([self selectedViewController]) {
         [[self selectedViewController] willMoveToParentViewController:nil];
         [[[self selectedViewController] view] removeFromSuperview];

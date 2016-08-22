@@ -78,5 +78,5 @@
 
 + (NSData *)deleteErrorStringInData:(NSData *)inputData;
 + (NSString *)replaceUnicode:(NSString *)unicodeStr;
-
++ (UIImage *)snapshot:(UIView *)view;
 @end

@@ -58,6 +58,9 @@
  */
 @property (nonatomic, getter=isTabBarHidden) BOOL tabBarHidden;
 
+
+@property(assign,nonatomic)NSInteger preSelectIndex;
+
 /**
  * Changes the visibility of the tab bar.
  */
@@ -90,6 +93,8 @@
  * The nearest ancestor in the view controller hierarchy that is a tab bar controller. (read-only)
  */
 @property(nonatomic, readonly) RDVTabBarController *rdv_tabBarController;
+
+
 
 @end
 

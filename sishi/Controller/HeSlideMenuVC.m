@@ -21,7 +21,7 @@
 @property(strong,nonatomic)UILabel *phoneLabel;
 @property(strong,nonatomic)UILabel *markLabel;
 @property(strong,nonatomic)UIImageView *userImage;
-//@property(strong,nonatomic)IBOutlet UIView *footerView;
+@property(strong,nonatomic)IBOutlet UIView *footerView;
 
 @end
 
@@ -32,7 +32,9 @@
 @synthesize phoneLabel;
 @synthesize markLabel;
 @synthesize userImage;
-//@synthesize footerView;
+@synthesize footerView;
+@synthesize selectIndexDelegate;
+
 
 #pragma mark - View lifecycle
 
@@ -43,11 +45,16 @@
     [self loadDataFromLocal];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    [self.view addSubview:footerView];
+}
 - (void)initializaiton
 {
     [super initializaiton];
-    titledataSource = @[@"搜索",@"我的行程",@"设置",@"关于我们",@"向我们反馈",@"切换到用户模式"];
-    dataSource = @[@"icon_search",@"icon_trip",@"icon_set_black",@"icon_aboutus",@"icon_feedback",@"icon_change"];
+    titledataSource = @[@"搜索",@"我的行程",@"设置",@"关于我们",@"向我们反馈"];
+    dataSource = @[@"icon_search",@"icon_trip",@"icon_set_black",@"icon_aboutus",@"icon_feedback"];
     
     
 }
@@ -149,20 +156,20 @@
     sepLine.backgroundColor = [UIColor colorWithWhite:237.0 / 255.0 alpha:1.0];
     [userInfoView addSubview:sepLine];
     
-    
-//    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGH - 40)];
-//    UILabel *tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 40)];
-//    [tipLabel setBackgroundColor:[UIColor clearColor]];
-//    tipLabel.textAlignment = NSTextAlignmentCenter;
-//    tipLabel.font = [UIFont systemFontOfSize:18.0];
-//    tipLabel.text = @"切换到用户模式";
-//    tipLabel.textColor = [UIColor blackColor];
-//    [footerView addSubview:tipLabel];
-//    
-//    UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 20, 20)];
-//    icon.image = [UIImage imageNamed:@"icon_change"];
-//    [footerView addSubview:icon];
-//    [self.view addSubview:footerView];
+    CGFloat height = 44;
+//    footerView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREENHEIGH - height, SCREENWIDTH, height)];
+    UILabel *tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 0, SCREENWIDTH, height)];
+    [tipLabel setBackgroundColor:[UIColor clearColor]];
+    tipLabel.textAlignment = NSTextAlignmentLeft;
+    tipLabel.font = [UIFont systemFontOfSize:18.0];
+    tipLabel.text = @"切换到用户模式";
+    tipLabel.textColor = [UIColor blackColor];
+    [footerView addSubview:tipLabel];
+
+    UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake(10, (height - 25) / 2.0, 25, 25)];
+    icon.image = [UIImage imageNamed:@"icon_change"];
+    [footerView addSubview:icon];
+    [self.view addSubview:footerView];
 //    CGRect rectNav = self.hostVC.rootVC.navigationBar.frame;
 //    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
 //    rectNav.size.height = rectNav.size.height + rectStatus.size.height;
@@ -215,7 +222,7 @@
     HeBaseIconTitleTableCell *cell  = [tableView cellForRowAtIndexPath:indexPath];
     if (!cell) {
         cell = [[HeBaseIconTitleTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier cellSize:cellsize];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
         
     }
     NSString *title = titledataSource[row];
@@ -232,13 +239,25 @@
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     // set the root controller
+    NSLog(@"%@",self.navigationController);
     [_hostVC showRootController:YES];
     NSInteger row = indexPath.row;
     NSInteger section = indexPath.section;
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     switch (row) {
         case 0:
         {
+            if (self.selectIndexDelegate != nil) {
+                [self.selectIndexDelegate selectAtIndex:indexPath animation:YES];
+                return;
+            }
+            if (self.customnav != nil) {
+                HeSearchVC *searchVC = [[HeSearchVC alloc] init];
+                searchVC.hidesBottomBarWhenPushed = YES;
+                [self.customnav pushViewController:searchVC animated:YES];
+                return;
+            }
             HeSearchVC *searchVC = [[HeSearchVC alloc] init];
             searchVC.hidesBottomBarWhenPushed = YES;
             [_hostVC.rootVC pushViewController:searchVC animated:YES];

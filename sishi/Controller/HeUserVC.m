@@ -9,6 +9,7 @@
 #import "HeUserVC.h"
 #import "MLLabel+Size.h"
 #import "HeBaseTableViewCell.h"
+#import "AppDelegate.h"
 
 #define TextLineHeight 1.2f
 
@@ -107,6 +108,18 @@
     userBGImage.contentMode = UIViewContentModeScaleAspectFill;
     userBGImage.frame = CGRectMake(0, 0, SCREENWIDTH, headerH);
     [sectionHeaderView addSubview:userBGImage];
+    userBGImage.userInteractionEnabled = YES;
+    sectionHeaderView.userInteractionEnabled = YES;
+    
+    CGFloat buttonX = 20;
+    CGFloat buttonY = 50;
+    CGFloat buttonW = 25;
+    CGFloat buttonH = 25;
+    UIButton *backButton = [[UIButton alloc] init];
+    backButton.frame = CGRectMake(buttonX, buttonY, buttonW, buttonH);
+    [backButton setImage:[UIImage imageNamed:@"navigationBar_back_icon"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(backItemClick:) forControlEvents:UIControlEventTouchUpInside];
+    [userBGImage addSubview:backButton];
     
     [self initUserInfoView];
     [self initUserFavView];

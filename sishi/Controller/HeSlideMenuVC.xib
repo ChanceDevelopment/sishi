@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeSlideMenuVC">
             <connections>
+                <outlet property="footerView" destination="vfv-vi-lJJ" id="lcg-0t-WVb"/>
                 <outlet property="tableView" destination="jY7-3K-2dt" id="U1b-QS-3L3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,34 +25,54 @@
                         <outlet property="delegate" destination="-1" id="xos-HX-FpJ"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vfv-vi-lJJ">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="jY7-3K-2dt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="3Ht-ay-KLr"/>
+                <constraint firstItem="vfv-vi-lJJ" firstAttribute="top" secondItem="jY7-3K-2dt" secondAttribute="bottom" id="QHk-3r-8v8"/>
                 <constraint firstItem="jY7-3K-2dt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="a8q-4C-LTs"/>
-                <constraint firstAttribute="bottom" secondItem="jY7-3K-2dt" secondAttribute="bottom" id="hZO-zk-rB3"/>
+                <constraint firstAttribute="bottom" secondItem="vfv-vi-lJJ" secondAttribute="bottom" id="ayh-rb-0c9"/>
+                <constraint firstAttribute="bottom" secondItem="jY7-3K-2dt" secondAttribute="bottom" id="hZO-zk-rB3">
+                    <variation key="heightClass=regular-widthClass=compact" constant="50"/>
+                </constraint>
                 <constraint firstAttribute="trailing" secondItem="jY7-3K-2dt" secondAttribute="trailing" id="hjx-kB-GeB"/>
+                <constraint firstAttribute="trailing" secondItem="vfv-vi-lJJ" secondAttribute="trailing" id="jbd-RV-u4X"/>
+                <constraint firstItem="vfv-vi-lJJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="z3m-GN-6oR"/>
             </constraints>
             <variation key="default">
                 <mask key="subviews">
                     <exclude reference="jY7-3K-2dt"/>
+                    <exclude reference="vfv-vi-lJJ"/>
                 </mask>
                 <mask key="constraints">
                     <exclude reference="3Ht-ay-KLr"/>
                     <exclude reference="a8q-4C-LTs"/>
                     <exclude reference="hZO-zk-rB3"/>
                     <exclude reference="hjx-kB-GeB"/>
+                    <exclude reference="QHk-3r-8v8"/>
+                    <exclude reference="ayh-rb-0c9"/>
+                    <exclude reference="jbd-RV-u4X"/>
+                    <exclude reference="z3m-GN-6oR"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
                 <mask key="subviews">
                     <include reference="jY7-3K-2dt"/>
+                    <include reference="vfv-vi-lJJ"/>
                 </mask>
                 <mask key="constraints">
                     <include reference="3Ht-ay-KLr"/>
                     <include reference="a8q-4C-LTs"/>
                     <include reference="hZO-zk-rB3"/>
                     <include reference="hjx-kB-GeB"/>
+                    <include reference="QHk-3r-8v8"/>
+                    <include reference="ayh-rb-0c9"/>
+                    <include reference="jbd-RV-u4X"/>
+                    <include reference="z3m-GN-6oR"/>
                 </mask>
             </variation>
         </view>

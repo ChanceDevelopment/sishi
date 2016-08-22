@@ -1099,10 +1099,10 @@
 - (void)didSelectTableAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger row = indexPath.row;
-    ActivityLogModel *activityLogModel = [self.dataSource objectAtIndex:row];
-    if (activityLogModel.diaryOrActivity == ActivityType) {
-        
-    }
+//    ActivityLogModel *activityLogModel = [self.dataSource objectAtIndex:row];
+//    if (activityLogModel.diaryOrActivity == ActivityType) {
+//        
+//    }
     
 }
 

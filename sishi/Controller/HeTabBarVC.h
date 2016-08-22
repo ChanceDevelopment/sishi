@@ -14,13 +14,15 @@
 #import "HeInfoMenuVC.h"
 #import "HeDynamicVC.h"
 #import "HeLogTableVC.h"
+#import "HeUserCenterVC.h"
 
 @interface HeTabBarVC : RDVTabBarController<UIAlertViewDelegate>
-@property(strong,nonatomic)HeUserVC *userVC;
+@property(strong,nonatomic)HeUserCenterVC *userVC;
 @property(strong,nonatomic)HeHomePageVC *homePageVC;
 @property(strong,nonatomic)HeChatVC *chatVC;
 @property(strong,nonatomic)HeInfoMenuVC *menuVC;
 @property(strong,nonatomic)HeDynamicVC *dynamicVC;
 @property(strong,nonatomic)HeLogTableVC *logVC;
+@property(strong,nonatomic)UIImageView *currentSnapShot;
 
 @end

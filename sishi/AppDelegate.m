@@ -21,8 +21,14 @@
 #import "WeiboSDK.h"
 #import "BrowserView.h"
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
+#import "REFrostedViewController.h"
+#import "HeSlideMenuVC.h"
+#import "DEMONavigationController.h"
+#import "DEMOMenuViewController.h"
+#import "DEMOHomeViewController.h"
 
 @interface AppDelegate ()
+@property(strong,nonatomic)HeSlideMenuVC *menuController;
 
 @end
 
@@ -30,6 +36,7 @@ BMKMapManager* _mapManager;
 
 @implementation AppDelegate
 @synthesize queue;
+@synthesize menuController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -179,8 +186,13 @@ BMKMapManager* _mapManager;
          [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, [UIFont systemFontOfSize:20.0], NSFontAttributeName, nil]];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
         
-        HeTabBarVC *tabBarController = [[HeTabBarVC alloc] init];
-        self.viewController = tabBarController;
+        
+        HeTabBarVC *tabBarVC = [[HeTabBarVC alloc] init];
+        
+        
+        
+        self.viewController = tabBarVC;
+        
     }
     else{
         HeLoginVC *loginVC = [[HeLoginVC alloc] init];

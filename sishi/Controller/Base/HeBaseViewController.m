@@ -15,6 +15,7 @@
 #import "HeUserVC.h"
 #import "HeRealTimeTrendVC.h"
 #import "HeLogTableVC.h"
+#import "HeSlideMenuVC.h"
 
 @interface HeBaseViewController ()
 
@@ -34,7 +35,7 @@
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.delegate = nil;
     }
-    if ([self isMemberOfClass:[HeLoginVC class]] || [self isMemberOfClass:[HeUserVC class]] || [self isMemberOfClass:[HeRealTimeTrendVC class]] || [self isMemberOfClass:[HeLogTableVC class]]) {
+    if ([self isMemberOfClass:[HeLoginVC class]] || [self isMemberOfClass:[HeSlideMenuVC class]] || [self isMemberOfClass:[HeRealTimeTrendVC class]] || [self isMemberOfClass:[HeLogTableVC class]]) {
         
         return;
     }
@@ -54,7 +55,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    if ([self isMemberOfClass:[HeLoginVC class]] || [self isMemberOfClass:[HeUserVC class]] || [self isMemberOfClass:[HeRealTimeTrendVC class]] || [self isMemberOfClass:[HeLogTableVC class]]) {
+    if ([self isMemberOfClass:[HeLoginVC class]] || [self isMemberOfClass:[HeSlideMenuVC class]] || [self isMemberOfClass:[HeRealTimeTrendVC class]] || [self isMemberOfClass:[HeLogTableVC class]]) {
         
         return;
     }

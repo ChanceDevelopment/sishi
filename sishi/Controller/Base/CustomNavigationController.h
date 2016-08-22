@@ -13,4 +13,6 @@
     NSMutableSet *_viewControllersWithHiddenBottomBar;
 }
 
+- (void)showMenu;
+
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "CustomNavigationController.h"
+#import "UIViewController+REFrostedViewController.h"
+#import "DEMOMenuViewController.h"
 
 @interface CustomNavigationController ()
 
@@ -19,6 +21,23 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _viewControllersWithHiddenBottomBar = [[NSMutableSet alloc] initWithCapacity:0];
+    [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)]];
+}
+
+- (void)showMenu
+{
+    [self.frostedViewController presentMenuViewController];
+}
+
+#pragma mark -
+#pragma mark Gesture recognizer
+
+- (void)panGestureRecognized:(UIPanGestureRecognizer *)sender
+{
+    if ([self.viewControllers count] > 1) {
+        return;
+    }
+    [self.frostedViewController panGestureRecognized:sender];
 }
 
 - (void)didReceiveMemoryWarning

@@ -12,6 +12,11 @@
 #import "RDVTabBarController.h"
 #import "HeSlideMenuVC.h"
 #import "HeSysbsModel.h"
+#import "REFrostedViewController.h"
+#import "HeSlideMenuVC.h"
+#import "DEMONavigationController.h"
+#import "DEMOMenuViewController.h"
+#import "DEMOHomeViewController.h"
 
 @interface HeTabBarVC ()
 
@@ -24,6 +29,7 @@
 @synthesize menuVC;
 @synthesize dynamicVC;
 @synthesize logVC;
+@synthesize currentSnapShot;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -70,14 +76,35 @@
 - (void)setupSubviews
 {
     
+    DEMONavigationController *navigationController = [[DEMONavigationController alloc] initWithRootViewController:[[HeHomePageVC alloc] init]];
+    DEMOMenuViewController *mymenuController = [[DEMOMenuViewController alloc] initWithStyle:UITableViewStylePlain];
+    
+    // Create frosted view controller
+    //
+    
+    
     homePageVC = [[HeHomePageVC alloc] init];
-    CustomNavigationController *infoNav = [[CustomNavigationController alloc] initWithRootViewController:homePageVC];
+    homePageVC.view.userInteractionEnabled = YES;
     
-    menuVC = [[HeInfoMenuVC alloc] initWithRootController:infoNav];
+    HeSlideMenuVC *homeMenuVC = [[HeSlideMenuVC alloc] init];
+    CustomNavigationController *homeNav = [[CustomNavigationController alloc] initWithRootViewController:homePageVC];
+    homeMenuVC.selectIndexDelegate = homePageVC;
     
-    HeSlideMenuVC *leftController = [[HeSlideMenuVC alloc] init];
-    leftController.hostVC = menuVC;
-    menuVC.leftViewController = leftController;
+    homeNav.navigationBarHidden = YES;
+    homeNav.view.userInteractionEnabled = YES;
+    
+    REFrostedViewController *homefrostedVC = [[REFrostedViewController alloc] initWithContentViewController:homeNav menuViewController:homeMenuVC];
+    homefrostedVC.view.userInteractionEnabled = YES;
+    homefrostedVC.direction = REFrostedViewControllerDirectionRight;
+    homefrostedVC.liveBlurBackgroundStyle = REFrostedViewControllerLiveBackgroundStyleLight;
+    
+//    CustomNavigationController *infoNav = [[CustomNavigationController alloc] initWithRootViewController:homePageVC];
+//    
+//    menuVC = [[HeInfoMenuVC alloc] initWithRootController:infoNav];
+//    
+//    HeSlideMenuVC *leftController = [[HeSlideMenuVC alloc] init];
+//    leftController.hostVC = menuVC;
+//    menuVC.leftViewController = leftController;
     
     dynamicVC = [[HeDynamicVC alloc] init];
     CustomNavigationController *dynamicNav = [[CustomNavigationController alloc] initWithRootViewController:dynamicVC];
@@ -88,11 +115,21 @@
     chatVC = [[HeChatVC alloc] init];
     CustomNavigationController *chatNav = [[CustomNavigationController alloc] initWithRootViewController:chatVC];
     
-    userVC = [[HeUserVC alloc] init];
+    userVC = [[HeUserCenterVC alloc] init];
     CustomNavigationController *userNav = [[CustomNavigationController alloc]
                                            initWithRootViewController:userVC];
     
-    [self setViewControllers:@[menuVC,dynamicNav,chatNav,userNav]];
+    userNav.navigationBarHidden = YES;
+    userNav.view.userInteractionEnabled = YES;
+    
+    HeSlideMenuVC *userMenuVC = [[HeSlideMenuVC alloc] init];
+//    userMenuVC.customnav = userNav;
+    REFrostedViewController *userfrostedVC = [[REFrostedViewController alloc] initWithContentViewController:userNav menuViewController:userMenuVC];
+    userfrostedVC.view.userInteractionEnabled = YES;
+    userfrostedVC.direction = REFrostedViewControllerDirectionRight;
+    userfrostedVC.liveBlurBackgroundStyle = REFrostedViewControllerLiveBackgroundStyleLight;
+    
+    [self setViewControllers:@[homefrostedVC,dynamicNav,chatNav,userfrostedVC]];
     [self customizeTabBarForController];
 }
 
@@ -114,6 +151,7 @@
         
         index++;
     }
+    self.view.userInteractionEnabled = YES;
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

@@ -9,6 +9,7 @@
 #import "HeChatVC.h"
 #import "HeChatTableCell.h"
 #import "ChatViewController.h"
+#import "AppDelegate.h"
 
 @interface HeChatVC ()<UITableViewDelegate,UITableViewDataSource>
 @property(strong,nonatomic)IBOutlet UITableView *tableview;
@@ -42,6 +43,30 @@
     // Do any additional setup after loading the view from its nib.
     [self initializaiton];
     [self initView];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    self.navigationController.navigationBarHidden = NO;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:YES];
+    self.navigationController.navigationBarHidden = YES;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+    UIViewController *rootVC = ((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
+    UIImage *image = [Tool snapshot:rootVC.view];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    imageView.frame = CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGH);
+    imageView.userInteractionEnabled = YES;
+    HeTabBarVC *tabBarVC = (HeTabBarVC *)((AppDelegate *)([UIApplication sharedApplication].delegate).window.rootViewController);
+    tabBarVC.currentSnapShot = imageView;
 }
 
 - (void)initializaiton

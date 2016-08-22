@@ -161,6 +161,19 @@
 		EA5F0AA91D64C6D700F30729 /* HeRealTimeTrendVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA5F0AA71D64C6D700F30729 /* HeRealTimeTrendVC.xib */; };
 		EA5F0AAD1D64C77400F30729 /* HeRealTrendTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5F0AAC1D64C77400F30729 /* HeRealTrendTableCell.m */; };
 		EA5F0AB11D64D3BE00F30729 /* HeChatTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5F0AB01D64D3BE00F30729 /* HeChatTableCell.m */; };
+		EA6DFF5A1D6B41540069F4ED /* HeUserCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6DFF581D6B41540069F4ED /* HeUserCenterVC.m */; };
+		EA6DFF5B1D6B41540069F4ED /* HeUserCenterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6DFF591D6B41540069F4ED /* HeUserCenterVC.xib */; };
+		EA6DFF5D1D6B4B640069F4ED /* navigationBar_back_icon_white.png in Resources */ = {isa = PBXBuildFile; fileRef = EA6DFF5C1D6B4B640069F4ED /* navigationBar_back_icon_white.png */; };
+		EA6DFF6B1D6B51FF0069F4ED /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6DFF601D6B51FF0069F4ED /* RECommonFunctions.m */; };
+		EA6DFF6C1D6B51FF0069F4ED /* REFrostedContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6DFF621D6B51FF0069F4ED /* REFrostedContainerViewController.m */; };
+		EA6DFF6D1D6B51FF0069F4ED /* REFrostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6DFF641D6B51FF0069F4ED /* REFrostedViewController.m */; };
+		EA6DFF6E1D6B51FF0069F4ED /* UIImage+REFrostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6DFF661D6B51FF0069F4ED /* UIImage+REFrostedViewController.m */; };
+		EA6DFF6F1D6B51FF0069F4ED /* UIView+REFrostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6DFF681D6B51FF0069F4ED /* UIView+REFrostedViewController.m */; };
+		EA6DFF701D6B51FF0069F4ED /* UIViewController+REFrostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6DFF6A1D6B51FF0069F4ED /* UIViewController+REFrostedViewController.m */; };
+		EA6DFF731D6B53880069F4ED /* DEMONavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6DFF721D6B53880069F4ED /* DEMONavigationController.m */; };
+		EA6DFF761D6B53980069F4ED /* DEMOMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6DFF751D6B53980069F4ED /* DEMOMenuViewController.m */; };
+		EA6DFF791D6B53B90069F4ED /* DEMOHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6DFF781D6B53B90069F4ED /* DEMOHomeViewController.m */; };
+		EA6DFF7C1D6B54000069F4ED /* DEMOSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6DFF7B1D6B54000069F4ED /* DEMOSecondViewController.m */; };
 		EA8DA9641D5A171A00487BF4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8DA9631D5A171A00487BF4 /* main.m */; };
 		EA8DA9671D5A171A00487BF4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8DA9661D5A171A00487BF4 /* AppDelegate.m */; };
 		EA8DA96A1D5A171A00487BF4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8DA9691D5A171A00487BF4 /* ViewController.m */; };
@@ -1093,6 +1106,30 @@
 		EA5F0AAC1D64C77400F30729 /* HeRealTrendTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeRealTrendTableCell.m; sourceTree = "<group>"; };
 		EA5F0AAF1D64D3BE00F30729 /* HeChatTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeChatTableCell.h; sourceTree = "<group>"; };
 		EA5F0AB01D64D3BE00F30729 /* HeChatTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeChatTableCell.m; sourceTree = "<group>"; };
+		EA6DFF571D6B41540069F4ED /* HeUserCenterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeUserCenterVC.h; sourceTree = "<group>"; };
+		EA6DFF581D6B41540069F4ED /* HeUserCenterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeUserCenterVC.m; sourceTree = "<group>"; };
+		EA6DFF591D6B41540069F4ED /* HeUserCenterVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeUserCenterVC.xib; sourceTree = "<group>"; };
+		EA6DFF5C1D6B4B640069F4ED /* navigationBar_back_icon_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationBar_back_icon_white.png; sourceTree = "<group>"; };
+		EA6DFF5F1D6B51FF0069F4ED /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
+		EA6DFF601D6B51FF0069F4ED /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
+		EA6DFF611D6B51FF0069F4ED /* REFrostedContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REFrostedContainerViewController.h; sourceTree = "<group>"; };
+		EA6DFF621D6B51FF0069F4ED /* REFrostedContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REFrostedContainerViewController.m; sourceTree = "<group>"; };
+		EA6DFF631D6B51FF0069F4ED /* REFrostedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REFrostedViewController.h; sourceTree = "<group>"; };
+		EA6DFF641D6B51FF0069F4ED /* REFrostedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REFrostedViewController.m; sourceTree = "<group>"; };
+		EA6DFF651D6B51FF0069F4ED /* UIImage+REFrostedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+REFrostedViewController.h"; sourceTree = "<group>"; };
+		EA6DFF661D6B51FF0069F4ED /* UIImage+REFrostedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+REFrostedViewController.m"; sourceTree = "<group>"; };
+		EA6DFF671D6B51FF0069F4ED /* UIView+REFrostedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+REFrostedViewController.h"; sourceTree = "<group>"; };
+		EA6DFF681D6B51FF0069F4ED /* UIView+REFrostedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+REFrostedViewController.m"; sourceTree = "<group>"; };
+		EA6DFF691D6B51FF0069F4ED /* UIViewController+REFrostedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+REFrostedViewController.h"; sourceTree = "<group>"; };
+		EA6DFF6A1D6B51FF0069F4ED /* UIViewController+REFrostedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+REFrostedViewController.m"; sourceTree = "<group>"; };
+		EA6DFF711D6B53880069F4ED /* DEMONavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMONavigationController.h; sourceTree = "<group>"; };
+		EA6DFF721D6B53880069F4ED /* DEMONavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMONavigationController.m; sourceTree = "<group>"; };
+		EA6DFF741D6B53980069F4ED /* DEMOMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMOMenuViewController.h; sourceTree = "<group>"; };
+		EA6DFF751D6B53980069F4ED /* DEMOMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMOMenuViewController.m; sourceTree = "<group>"; };
+		EA6DFF771D6B53B90069F4ED /* DEMOHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMOHomeViewController.h; sourceTree = "<group>"; };
+		EA6DFF781D6B53B90069F4ED /* DEMOHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMOHomeViewController.m; sourceTree = "<group>"; };
+		EA6DFF7A1D6B54000069F4ED /* DEMOSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMOSecondViewController.h; sourceTree = "<group>"; };
+		EA6DFF7B1D6B54000069F4ED /* DEMOSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMOSecondViewController.m; sourceTree = "<group>"; };
 		EA8DA95F1D5A171A00487BF4 /* 司事.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "司事.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA8DA9631D5A171A00487BF4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EA8DA9651D5A171A00487BF4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -2483,6 +2520,9 @@
 				EA2AC31B1D5EBFC300C57B45 /* HeUserVC.h */,
 				EA2AC31C1D5EBFC400C57B45 /* HeUserVC.m */,
 				EA2AC31D1D5EBFC400C57B45 /* HeUserVC.xib */,
+				EA6DFF571D6B41540069F4ED /* HeUserCenterVC.h */,
+				EA6DFF581D6B41540069F4ED /* HeUserCenterVC.m */,
+				EA6DFF591D6B41540069F4ED /* HeUserCenterVC.xib */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -2566,6 +2606,7 @@
 		EA2AC3321D5EC21400C57B45 /* TabbarIcon */ = {
 			isa = PBXGroup;
 			children = (
+				EA6DFF5C1D6B4B640069F4ED /* navigationBar_back_icon_white.png */,
 				EA2AC3331D5EC22000C57B45 /* comonDefaultImage.png */,
 				EA2AC3341D5EC22000C57B45 /* NavBarIOS7_white.png */,
 				EA2AC3351D5EC22000C57B45 /* NavBarIOS7.png */,
@@ -2948,9 +2989,30 @@
 			name = Chat;
 			sourceTree = "<group>";
 		};
+		EA6DFF5E1D6B51FF0069F4ED /* REFrostedViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EA6DFF5F1D6B51FF0069F4ED /* RECommonFunctions.h */,
+				EA6DFF601D6B51FF0069F4ED /* RECommonFunctions.m */,
+				EA6DFF611D6B51FF0069F4ED /* REFrostedContainerViewController.h */,
+				EA6DFF621D6B51FF0069F4ED /* REFrostedContainerViewController.m */,
+				EA6DFF631D6B51FF0069F4ED /* REFrostedViewController.h */,
+				EA6DFF641D6B51FF0069F4ED /* REFrostedViewController.m */,
+				EA6DFF651D6B51FF0069F4ED /* UIImage+REFrostedViewController.h */,
+				EA6DFF661D6B51FF0069F4ED /* UIImage+REFrostedViewController.m */,
+				EA6DFF671D6B51FF0069F4ED /* UIView+REFrostedViewController.h */,
+				EA6DFF681D6B51FF0069F4ED /* UIView+REFrostedViewController.m */,
+				EA6DFF691D6B51FF0069F4ED /* UIViewController+REFrostedViewController.h */,
+				EA6DFF6A1D6B51FF0069F4ED /* UIViewController+REFrostedViewController.m */,
+			);
+			name = REFrostedViewController;
+			path = Resource/Custom/REFrostedViewController;
+			sourceTree = "<group>";
+		};
 		EA8DA9561D5A171A00487BF4 = {
 			isa = PBXGroup;
 			children = (
+				EA6DFF5E1D6B51FF0069F4ED /* REFrostedViewController */,
 				EA5F09E51D64BFA400F30729 /* DFTimelineView */,
 				EADF85471D621C680029DC4F /* ChatDemo-UI3.0 */,
 				EA2AC3301D5EC1E300C57B45 /* Resource */,
@@ -3131,6 +3193,14 @@
 		EA8DA9FF1D5A18CF00487BF4 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				EA6DFF7A1D6B54000069F4ED /* DEMOSecondViewController.h */,
+				EA6DFF7B1D6B54000069F4ED /* DEMOSecondViewController.m */,
+				EA6DFF771D6B53B90069F4ED /* DEMOHomeViewController.h */,
+				EA6DFF781D6B53B90069F4ED /* DEMOHomeViewController.m */,
+				EA6DFF741D6B53980069F4ED /* DEMOMenuViewController.h */,
+				EA6DFF751D6B53980069F4ED /* DEMOMenuViewController.m */,
+				EA6DFF711D6B53880069F4ED /* DEMONavigationController.h */,
+				EA6DFF721D6B53880069F4ED /* DEMONavigationController.m */,
 				EA2AC3661D6016F400C57B45 /* DDMenuController */,
 				EA2AC30E1D5EBF2200C57B45 /* HeInstructionView */,
 				EA8DAECF1D5A190100487BF4 /* Waiting */,
@@ -5845,6 +5915,7 @@
 				EA8DAEC11D5A18F200487BF4 /* WeiboSDK.bundle in Resources */,
 				EADF865F1D621C900029DC4F /* group_detail@2x.png in Resources */,
 				EA5F0A861D64BFA400F30729 /* AlbumOperateMoreHL@2x.png in Resources */,
+				EA6DFF5D1D6B4B640069F4ED /* navigationBar_back_icon_white.png in Resources */,
 				EA8DAD541D5A18D000487BF4 /* IQKeyboardManager.bundle in Resources */,
 				EA8DAD2E1D5A18D000487BF4 /* fail@3x.png in Resources */,
 				EA8DAE1F1D5A18D000487BF4 /* btn_020@2x.png in Resources */,
@@ -5936,6 +6007,7 @@
 				EADF866A1D621C900029DC4F /* nav_createGroup@2x.png in Resources */,
 				EA5F0A841D64BFA400F30729 /* AlbumOperateMore@2x.png in Resources */,
 				EADF86541D621C900029DC4F /* icon_035.gif in Resources */,
+				EA6DFF5B1D6B41540069F4ED /* HeUserCenterVC.xib in Resources */,
 				EA2AC3181D5EBF5300C57B45 /* HeLoginVC.xib in Resources */,
 				EA2AC3981D60192300C57B45 /* scanIcon.png in Resources */,
 				EA2AC39E1D60192300C57B45 /* user_placeholder_icon.png in Resources */,
@@ -6065,6 +6137,7 @@
 				EA8DACE51D5A18D000487BF4 /* AFHTTPRequestOperation.m in Sources */,
 				EADF886D1D62271A0029DC4F /* SearchMessageViewController.m in Sources */,
 				EA8DADC61D5A18D000487BF4 /* RACEagerSequence.m in Sources */,
+				EA6DFF6F1D6B51FF0069F4ED /* UIView+REFrostedViewController.m in Sources */,
 				EA8DAEB81D5A18F200487BF4 /* rscode.c in Sources */,
 				EA5F0A9C1D64BFA400F30729 /* DFLikeCommentToolbar.m in Sources */,
 				EA8DA9FA1D5A18C700487BF4 /* HeTabBarVC.m in Sources */,
@@ -6159,6 +6232,7 @@
 				EADF87A91D621E380029DC4F /* EaseUI.m in Sources */,
 				EA8DACE71D5A18D000487BF4 /* AFHTTPSessionManager.m in Sources */,
 				EA8DADAD1D5A18D000487BF4 /* NSObject+RACDeallocating.m in Sources */,
+				EA6DFF5A1D6B41540069F4ED /* HeUserCenterVC.m in Sources */,
 				EA8DAD0B1D5A18D000487BF4 /* UIButton+Corner.m in Sources */,
 				EADF85861D621C820029DC4F /* BaseTableViewCell.m in Sources */,
 				EA8DAD861D5A18D000487BF4 /* MLLabelTextStorage.m in Sources */,
@@ -6190,6 +6264,7 @@
 				EA8DAEB61D5A18F200487BF4 /* qrinput.c in Sources */,
 				EA8DAD901D5A18D000487BF4 /* MRZoomScrollView.m in Sources */,
 				EADF87D51D621E380029DC4F /* EMSDWebImageCompat.m in Sources */,
+				EA6DFF6B1D6B51FF0069F4ED /* RECommonFunctions.m in Sources */,
 				EA8DAD871D5A18D000487BF4 /* MLLinkLabel.m in Sources */,
 				EADF886B1D62271A0029DC4F /* PublicGroupListViewController.m in Sources */,
 				EADF87BC1D621E380029DC4F /* MJRefreshHeader.m in Sources */,
@@ -6198,6 +6273,7 @@
 				EA8DADEC1D5A18D000487BF4 /* UIActionSheet+RACSignalSupport.m in Sources */,
 				EADF883C1D6225EA0029DC4F /* AddFriendCell.m in Sources */,
 				EA8DAEB21D5A18F200487BF4 /* bitstream.c in Sources */,
+				EA6DFF7C1D6B54000069F4ED /* DEMOSecondViewController.m in Sources */,
 				EA8DADDD1D5A18D000487BF4 /* RACSignalProvider.d in Sources */,
 				EA8DACFF1D5A18D000487BF4 /* ASIInputStream.m in Sources */,
 				EADF88021D621E380029DC4F /* FixFopen.c in Sources */,
@@ -6235,6 +6311,7 @@
 				EADF88011D621E380029DC4F /* EaseEmotionManager.m in Sources */,
 				EA8DAEB91D5A18F200487BF4 /* split.c in Sources */,
 				EADF88871D6227620029DC4F /* RobotManager.m in Sources */,
+				EA6DFF6C1D6B51FF0069F4ED /* REFrostedContainerViewController.m in Sources */,
 				EA8DAD9A1D5A18D000487BF4 /* SINavigationMenuView.m in Sources */,
 				EA8DADEB1D5A18D000487BF4 /* RACValueTransformer.m in Sources */,
 				EA8DAE2D1D5A18D000487BF4 /* TZPhotoPreviewCell.m in Sources */,
@@ -6280,6 +6357,7 @@
 				EA8DAD5F1D5A18D000487BF4 /* JSONKit.m in Sources */,
 				EADF87CC1D621E380029DC4F /* MWGridCell.m in Sources */,
 				EA5F0A981D64BFA400F30729 /* DFTextImageLineCell.m in Sources */,
+				EA6DFF761D6B53980069F4ED /* DEMOMenuViewController.m in Sources */,
 				EA8DAD831D5A18D000487BF4 /* MLExpressionManager.m in Sources */,
 				EA5F0A921D64BFA400F30729 /* DFActivityLineCell.m in Sources */,
 				EADF880E1D621E380029DC4F /* EaseBubbleView+File.m in Sources */,
@@ -6298,6 +6376,7 @@
 				EADF88641D62271A0029DC4F /* ContactView.m in Sources */,
 				EA8DADCF1D5A18D000487BF4 /* RACKVOProxy.m in Sources */,
 				EADF87D41D621E380029DC4F /* EMSDImageCache.m in Sources */,
+				EA6DFF701D6B51FF0069F4ED /* UIViewController+REFrostedViewController.m in Sources */,
 				EA8DAD9D1D5A18D000487BF4 /* NYSegment.m in Sources */,
 				EA8DAE3A1D5A18D000487BF4 /* NSDate+convenience.m in Sources */,
 				EA8DACEA1D5A18D000487BF4 /* AFURLConnectionOperation.m in Sources */,
@@ -6311,6 +6390,7 @@
 				EA8DAD891D5A18D000487BF4 /* NSAttributedString+MLExpression.m in Sources */,
 				EA8DAD611D5A18D000487BF4 /* KxMenu.m in Sources */,
 				EA5F0A911D64BFA400F30729 /* DFActivityDetailLineCell.m in Sources */,
+				EA6DFF731D6B53880069F4ED /* DEMONavigationController.m in Sources */,
 				EA8DAD3E1D5A18D000487BF4 /* i2KEPCSingleComponentPickerView.m in Sources */,
 				EADF87C21D621E380029DC4F /* MJRefreshBackStateFooter.m in Sources */,
 				EADF88831D6227620029DC4F /* EMRobotChatTextBubbleView.m in Sources */,
@@ -6357,6 +6437,7 @@
 				EA5F0A701D64BFA400F30729 /* DFTimeLineViewController.m in Sources */,
 				EA8DAD1E1D5A18D000487BF4 /* DFImageHelper.m in Sources */,
 				EA8DADC81D5A18D000487BF4 /* RACEmptySignal.m in Sources */,
+				EA6DFF6D1D6B51FF0069F4ED /* REFrostedViewController.m in Sources */,
 				EADF881A1D621E380029DC4F /* EaseFaceView.m in Sources */,
 				EA8DADD91D5A18D000487BF4 /* RACSequence.m in Sources */,
 				EADF88631D62271A0029DC4F /* ContactSelectionViewController.m in Sources */,
@@ -6455,6 +6536,7 @@
 				EADF87FE1D621E380029DC4F /* EaseEmoji.m in Sources */,
 				EADF881B1D621E380029DC4F /* EaseFacialView.m in Sources */,
 				EA5F0A771D64BFA400F30729 /* DFUserActivityDetailLineItem.m in Sources */,
+				EA6DFF791D6B53B90069F4ED /* DEMOHomeViewController.m in Sources */,
 				EA8DADFC1D5A18D000487BF4 /* UITableViewHeaderFooterView+RACSignalSupport.m in Sources */,
 				EA8DAE281D5A18D000487BF4 /* TZAssetModel.m in Sources */,
 				EADF88761D62275A0029DC4F /* ChatroomListViewController.m in Sources */,
@@ -6547,6 +6629,7 @@
 				EA8DADE31D5A18D000487BF4 /* RACSubscriptingAssignmentTrampoline.m in Sources */,
 				EADF88851D6227620029DC4F /* RobotChatViewController.m in Sources */,
 				EA5F0A731D64BFA400F30729 /* DFActivityLineItem.m in Sources */,
+				EA6DFF6E1D6B51FF0069F4ED /* UIImage+REFrostedViewController.m in Sources */,
 				EA8DAE1B1D5A18D000487BF4 /* SVProgressHUD.m in Sources */,
 				EA8DAEB41D5A18F200487BF4 /* QRCodeGenerator.m in Sources */,
 				EADF88111D621E380029DC4F /* EaseBubbleView+Location.m in Sources */,

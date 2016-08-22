@@ -11,8 +11,13 @@
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import "HeBaseTableViewCell.h"
 #import "HeNearByTableCell.h"
+#import "HeUserVC.h"
+#import "AppDelegate.h"
+#import "HeSlideMenuVC.h"
+#import "HeSearchVC.h"
+#import "REFrostedViewController.h"
 
-@interface HeHomePageVC ()
+@interface HeHomePageVC ()<SelectIndexPathProtocol>
 @property(strong,nonatomic)IBOutlet UITableView *tableview;
 @property(strong,nonatomic)NSMutableArray *dataSource;
 @property(strong,nonatomic)UIButton *menuButton;
@@ -57,8 +62,14 @@
     _mapView.userTrackingMode = BMKUserTrackingModeNone;//设置定位的状态
     _mapView.showsUserLocation = YES;//显示定位图层
     
-    [self.view addSubview:menuButton];
-    [self.view addSubview:menuButton];
+    UIViewController *rootVC = ((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
+    UIImage *image = [Tool snapshot:rootVC.view];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    imageView.frame = CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGH);
+    imageView.userInteractionEnabled = YES;
+    HeTabBarVC *tabBarVC = (HeTabBarVC *)((AppDelegate *)([UIApplication sharedApplication].delegate).window.rootViewController);
+    tabBarVC.currentSnapShot = imageView;
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -86,6 +97,7 @@
     }
 }
 
+
 - (void)initializaiton
 {
     [super initializaiton];
@@ -100,13 +112,13 @@
     [Tool setExtraCellLineHidden:tableview];
     tableview.backgroundColor = [UIColor whiteColor];
     
-    menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
     menuButton.frame = CGRectMake(10, 30, 20, 20);
     [menuButton setBackgroundImage:[UIImage imageNamed:@"menuIcon"] forState:UIControlStateNormal];
     [menuButton setBackgroundImage:[UIImage imageNamed:@"menuIcon"] forState:UIControlStateHighlighted];
     [menuButton addTarget:self action:@selector(showLeft:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:menuButton];
+//    [self.view addSubview:menuButton];
 }
 
 - (void)showLeft:(id)sender
@@ -195,7 +207,7 @@
     if (!cell) {
         cell = [[HeNearByTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier cellSize:cellSize];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
     
@@ -234,6 +246,38 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSInteger row = indexPath.row;
     NSInteger section = indexPath.section;
+    HeUserVC *userVC = [[HeUserVC alloc] init];
+    userVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:userVC animated:YES];
+}
+
+- (void)selectAtIndex:(NSIndexPath *)path animation:(BOOL)animation
+{
+    NSInteger row = 0;
+    NSInteger section = 0;
+    HeTabBarVC *tabBarVC = (HeTabBarVC *)((AppDelegate *)([UIApplication sharedApplication].delegate).window.rootViewController);
+    switch (section) {
+        case 0:
+        {
+            switch (row) {
+                case 0:
+                {
+                    
+                    REFrostedViewController *userfrostedVC = (REFrostedViewController *)[[tabBarVC viewControllers] objectAtIndex:3];
+                    [userfrostedVC hideMenuViewController];
+                    HeSearchVC *searchVC = [[HeSearchVC alloc] init];
+                    searchVC.hidesBottomBarWhenPushed = YES;
+                    [self.navigationController pushViewController:searchVC animated:YES];
+                    break;
+                }
+                default:
+                    break;
+            }
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

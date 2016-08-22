@@ -11,6 +11,7 @@
 #import "HeRealTimeTrendVC.h"
 #import "NYSegmentedControl.h"
 #import "HeDistributeInviteVC.h"
+#import "AppDelegate.h"
 
 @interface HeDynamicVC ()
 {
@@ -55,6 +56,18 @@
     // Do any additional setup after loading the view from its nib.
     [self initializaiton];
     [self initView];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+    UIViewController *rootVC = ((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
+    UIImage *image = [Tool snapshot:rootVC.view];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    imageView.frame = CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGH);
+    imageView.userInteractionEnabled = YES;
+    HeTabBarVC *tabBarVC = (HeTabBarVC *)((AppDelegate *)([UIApplication sharedApplication].delegate).window.rootViewController);
+    tabBarVC.currentSnapShot = imageView;
 }
 
 - (void)initializaiton
