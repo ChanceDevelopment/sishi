@@ -52,6 +52,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCallNotification:) name:@"callControllerClose" object:nil];
 }
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -83,9 +84,17 @@
     [[EMClient sharedClient] removeDelegate:self];
 }
 
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:YES];
+    self.navigationController.navigationBarHidden = YES;
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
     if (self.conversation.type == EMConversationTypeGroupChat) {
         NSDictionary *ext = self.conversation.ext;
         if ([[ext objectForKey:@"subject"] length])
