@@ -87,6 +87,17 @@
 		EA2AC39E1D60192300C57B45 /* user_placeholder_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2AC3871D60192300C57B45 /* user_placeholder_icon.png */; };
 		EA2AC39F1D60192300C57B45 /* wechatIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2AC3881D60192300C57B45 /* wechatIcon.png */; };
 		EA2AC3A01D60192300C57B45 /* weiboIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2AC3891D60192300C57B45 /* weiboIcon.png */; };
+		EA4FA29A1D6C1DCA00099DCC /* HeLaunchJourneyUserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4FA2981D6C1DCA00099DCC /* HeLaunchJourneyUserVC.m */; };
+		EA4FA29B1D6C1DCA00099DCC /* HeLaunchJourneyUserVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4FA2991D6C1DCA00099DCC /* HeLaunchJourneyUserVC.xib */; };
+		EA4FA29F1D6C1DF600099DCC /* HeJourneyUserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4FA29D1D6C1DF600099DCC /* HeJourneyUserVC.m */; };
+		EA4FA2A01D6C1DF600099DCC /* HeJourneyUserVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4FA29E1D6C1DF600099DCC /* HeJourneyUserVC.xib */; };
+		EA4FA2A41D6C1E1000099DCC /* HeJourneyEndVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4FA2A21D6C1E1000099DCC /* HeJourneyEndVC.m */; };
+		EA4FA2A51D6C1E1000099DCC /* HeJourneyEndVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4FA2A31D6C1E1000099DCC /* HeJourneyEndVC.xib */; };
+		EA4FA2A91D6C1E4600099DCC /* HeJourneyCommentDriverVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4FA2A71D6C1E4600099DCC /* HeJourneyCommentDriverVC.m */; };
+		EA4FA2AA1D6C1E4600099DCC /* HeJourneyCommentDriverVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4FA2A81D6C1E4600099DCC /* HeJourneyCommentDriverVC.xib */; };
+		EA4FA2AE1D6C1E6F00099DCC /* HeJourneySuccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4FA2AC1D6C1E6F00099DCC /* HeJourneySuccessVC.m */; };
+		EA4FA2AF1D6C1E6F00099DCC /* HeJourneySuccessVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4FA2AD1D6C1E6F00099DCC /* HeJourneySuccessVC.xib */; };
+		EA4FA2B31D6C225800099DCC /* HeUserInfoTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4FA2B21D6C225800099DCC /* HeUserInfoTableCell.m */; };
 		EA5F09D21D64A53900F30729 /* HeDynamicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5F09D01D64A53900F30729 /* HeDynamicVC.m */; };
 		EA5F09D31D64A53A00F30729 /* HeDynamicVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA5F09D11D64A53900F30729 /* HeDynamicVC.xib */; };
 		EA5F09D61D64AB3F00F30729 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EA5F09D51D64AB3F00F30729 /* mapapi.bundle */; };
@@ -977,6 +988,23 @@
 		EA2AC3871D60192300C57B45 /* user_placeholder_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_placeholder_icon.png; sourceTree = "<group>"; };
 		EA2AC3881D60192300C57B45 /* wechatIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wechatIcon.png; sourceTree = "<group>"; };
 		EA2AC3891D60192300C57B45 /* weiboIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weiboIcon.png; sourceTree = "<group>"; };
+		EA4FA2971D6C1DCA00099DCC /* HeLaunchJourneyUserVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeLaunchJourneyUserVC.h; sourceTree = "<group>"; };
+		EA4FA2981D6C1DCA00099DCC /* HeLaunchJourneyUserVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeLaunchJourneyUserVC.m; sourceTree = "<group>"; };
+		EA4FA2991D6C1DCA00099DCC /* HeLaunchJourneyUserVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeLaunchJourneyUserVC.xib; sourceTree = "<group>"; };
+		EA4FA29C1D6C1DF600099DCC /* HeJourneyUserVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeJourneyUserVC.h; sourceTree = "<group>"; };
+		EA4FA29D1D6C1DF600099DCC /* HeJourneyUserVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeJourneyUserVC.m; sourceTree = "<group>"; };
+		EA4FA29E1D6C1DF600099DCC /* HeJourneyUserVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeJourneyUserVC.xib; sourceTree = "<group>"; };
+		EA4FA2A11D6C1E1000099DCC /* HeJourneyEndVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeJourneyEndVC.h; sourceTree = "<group>"; };
+		EA4FA2A21D6C1E1000099DCC /* HeJourneyEndVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeJourneyEndVC.m; sourceTree = "<group>"; };
+		EA4FA2A31D6C1E1000099DCC /* HeJourneyEndVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeJourneyEndVC.xib; sourceTree = "<group>"; };
+		EA4FA2A61D6C1E4600099DCC /* HeJourneyCommentDriverVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeJourneyCommentDriverVC.h; sourceTree = "<group>"; };
+		EA4FA2A71D6C1E4600099DCC /* HeJourneyCommentDriverVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeJourneyCommentDriverVC.m; sourceTree = "<group>"; };
+		EA4FA2A81D6C1E4600099DCC /* HeJourneyCommentDriverVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeJourneyCommentDriverVC.xib; sourceTree = "<group>"; };
+		EA4FA2AB1D6C1E6F00099DCC /* HeJourneySuccessVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeJourneySuccessVC.h; sourceTree = "<group>"; };
+		EA4FA2AC1D6C1E6F00099DCC /* HeJourneySuccessVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeJourneySuccessVC.m; sourceTree = "<group>"; };
+		EA4FA2AD1D6C1E6F00099DCC /* HeJourneySuccessVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeJourneySuccessVC.xib; sourceTree = "<group>"; };
+		EA4FA2B11D6C225800099DCC /* HeUserInfoTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeUserInfoTableCell.h; sourceTree = "<group>"; };
+		EA4FA2B21D6C225800099DCC /* HeUserInfoTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeUserInfoTableCell.m; sourceTree = "<group>"; };
 		EA5F09CF1D64A53900F30729 /* HeDynamicVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeDynamicVC.h; sourceTree = "<group>"; };
 		EA5F09D01D64A53900F30729 /* HeDynamicVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeDynamicVC.m; sourceTree = "<group>"; };
 		EA5F09D11D64A53900F30729 /* HeDynamicVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeDynamicVC.xib; sourceTree = "<group>"; };
@@ -2680,6 +2708,37 @@
 			path = Custom;
 			sourceTree = "<group>";
 		};
+		EA4FA2961D6C1D1000099DCC /* Journey */ = {
+			isa = PBXGroup;
+			children = (
+				EA4FA2971D6C1DCA00099DCC /* HeLaunchJourneyUserVC.h */,
+				EA4FA2981D6C1DCA00099DCC /* HeLaunchJourneyUserVC.m */,
+				EA4FA2991D6C1DCA00099DCC /* HeLaunchJourneyUserVC.xib */,
+				EA4FA29C1D6C1DF600099DCC /* HeJourneyUserVC.h */,
+				EA4FA29D1D6C1DF600099DCC /* HeJourneyUserVC.m */,
+				EA4FA29E1D6C1DF600099DCC /* HeJourneyUserVC.xib */,
+				EA4FA2A11D6C1E1000099DCC /* HeJourneyEndVC.h */,
+				EA4FA2A21D6C1E1000099DCC /* HeJourneyEndVC.m */,
+				EA4FA2A31D6C1E1000099DCC /* HeJourneyEndVC.xib */,
+				EA4FA2A61D6C1E4600099DCC /* HeJourneyCommentDriverVC.h */,
+				EA4FA2A71D6C1E4600099DCC /* HeJourneyCommentDriverVC.m */,
+				EA4FA2A81D6C1E4600099DCC /* HeJourneyCommentDriverVC.xib */,
+				EA4FA2AB1D6C1E6F00099DCC /* HeJourneySuccessVC.h */,
+				EA4FA2AC1D6C1E6F00099DCC /* HeJourneySuccessVC.m */,
+				EA4FA2AD1D6C1E6F00099DCC /* HeJourneySuccessVC.xib */,
+			);
+			name = Journey;
+			sourceTree = "<group>";
+		};
+		EA4FA2B01D6C21F200099DCC /* Journey */ = {
+			isa = PBXGroup;
+			children = (
+				EA4FA2B11D6C225800099DCC /* HeUserInfoTableCell.h */,
+				EA4FA2B21D6C225800099DCC /* HeUserInfoTableCell.m */,
+			);
+			name = Journey;
+			sourceTree = "<group>";
+		};
 		EA5F09CE1D64A52100F30729 /* Dynamic */ = {
 			isa = PBXGroup;
 			children = (
@@ -3150,6 +3209,7 @@
 		EA8DA9E61D5A18C700487BF4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EA4FA2961D6C1D1000099DCC /* Journey */,
 				EA12F7ED1D6554DE0085752A /* Custom */,
 				EA5F09CE1D64A52100F30729 /* Dynamic */,
 				EA2AC31A1D5EBFA900C57B45 /* News */,
@@ -4573,6 +4633,7 @@
 		EA8DAECE1D5A18FA00487BF4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EA4FA2B01D6C21F200099DCC /* Journey */,
 				EA5F0AAE1D64D3A200F30729 /* Chat */,
 				EA5F0AAA1D64C74B00F30729 /* Dynamic */,
 				EA5F09D71D64B53800F30729 /* HomePage */,
@@ -5846,6 +5907,7 @@
 				EA5F0A881D64BFA400F30729 /* AlbumOperateMoreViewBkg@2x.png in Resources */,
 				EADF86421D621C900029DC4F /* icon_018.gif in Resources */,
 				EA8DAEC51D5A18F200487BF4 /* ShareSDK.bundle in Resources */,
+				EA4FA2A51D6C1E1000099DCC /* HeJourneyEndVC.xib in Resources */,
 				EA8DA9F91D5A18C700487BF4 /* HeBaseViewController.xib in Resources */,
 				EA8DAD921D5A18D000487BF4 /* arrow_down1.png in Resources */,
 				EADF85681D621C7B0029DC4F /* sr_refresh.png in Resources */,
@@ -5926,6 +5988,7 @@
 				EA2AC3451D5EC24700C57B45 /* tabar_beautyZone_icon_active@2x.png in Resources */,
 				EA2AC39F1D60192300C57B45 /* wechatIcon.png in Resources */,
 				EADF86591D621C900029DC4F /* account@2x.png in Resources */,
+				EA4FA29B1D6C1DCA00099DCC /* HeLaunchJourneyUserVC.xib in Resources */,
 				EA2AC38A1D60192300C57B45 /* boyIcon.png in Resources */,
 				EADF86701D621C900029DC4F /* tabbar_contacts.png in Resources */,
 				EADF862D1D621C900029DC4F /* chat_receiver_audio_playing003@2x.png in Resources */,
@@ -5972,6 +6035,7 @@
 				EA8DAE1E1D5A18D000487BF4 /* btn_020.press@2x.png in Resources */,
 				EADF864C1D621C900029DC4F /* icon_024.gif in Resources */,
 				EA2AC3911D60192300C57B45 /* favouriteIcon.png in Resources */,
+				EA4FA2AA1D6C1E4600099DCC /* HeJourneyCommentDriverVC.xib in Resources */,
 				EA8DAD411D5A18D000487BF4 /* blackArrow@2x.png in Resources */,
 				EA2AC3491D5EC24700C57B45 /* tabar_recommend_icon_active@2x.png in Resources */,
 				EA8DAE251D5A18D000487BF4 /* TSLocateView.xib in Resources */,
@@ -6034,6 +6098,7 @@
 				EA8DAD481D5A18D000487BF4 /* whiteArrow.png in Resources */,
 				EA2AC3241D5EBFDF00C57B45 /* HeHomePageVC.xib in Resources */,
 				EADF86141D621C900029DC4F /* call_out.png in Resources */,
+				EA4FA2A01D6C1DF600099DCC /* HeJourneyUserVC.xib in Resources */,
 				EA2AC3A01D60192300C57B45 /* weiboIcon.png in Resources */,
 				EA8DAD301D5A18D000487BF4 /* refresh@3x.png in Resources */,
 				EA5F0A8A1D64BFA400F30729 /* AlbumShare@3x.png in Resources */,
@@ -6081,6 +6146,7 @@
 				EADF86581D621C900029DC4F /* account.png in Resources */,
 				EA8DAED51D5A190100487BF4 /* loading_anim1.png in Resources */,
 				EADF862E1D621C900029DC4F /* chat_receiver_audio_playing_full@2x.png in Resources */,
+				EA4FA2AF1D6C1E6F00099DCC /* HeJourneySuccessVC.xib in Resources */,
 				EA8DAD321D5A18D000487BF4 /* success@3x.png in Resources */,
 				EADF86671D621C900029DC4F /* group_participant_addHL@2x.png in Resources */,
 				EADF86191D621C900029DC4F /* call_silence@2x.png in Resources */,
@@ -6217,6 +6283,7 @@
 				EA8DAE341D5A18D000487BF4 /* UIButton+associate.m in Sources */,
 				EADF88671D62271A0029DC4F /* GroupListViewController.m in Sources */,
 				EA8DAD191D5A18D000487BF4 /* LXActionSheet.m in Sources */,
+				EA4FA29F1D6C1DF600099DCC /* HeJourneyUserVC.m in Sources */,
 				EADF858C1D621C820029DC4F /* EMNavigationController.m in Sources */,
 				EA8DADA41D5A18D000487BF4 /* RACEXTRuntimeExtensions.m in Sources */,
 				EA8DADB61D5A18D000487BF4 /* NSString+RACSequenceAdditions.m in Sources */,
@@ -6250,6 +6317,7 @@
 				EADF87DB1D621E380029DC4F /* MKAnnotationView+EMWebCache.m in Sources */,
 				EA5F0A9F1D64BFA400F30729 /* DFBaseUserLineCell.m in Sources */,
 				EA8DAD341D5A18D000487BF4 /* DFDatabaseHelper.m in Sources */,
+				EA4FA29A1D6C1DCA00099DCC /* HeLaunchJourneyUserVC.m in Sources */,
 				EA8DACF31D5A18D000487BF4 /* UIButton+AFNetworking.m in Sources */,
 				EADF87CD1D621E380029DC4F /* MWGridViewController.m in Sources */,
 				EA8DAD241D5A18D000487BF4 /* DFTableViewEGORefreshControl.m in Sources */,
@@ -6273,6 +6341,7 @@
 				EA8DADEC1D5A18D000487BF4 /* UIActionSheet+RACSignalSupport.m in Sources */,
 				EADF883C1D6225EA0029DC4F /* AddFriendCell.m in Sources */,
 				EA8DAEB21D5A18F200487BF4 /* bitstream.c in Sources */,
+				EA4FA2A41D6C1E1000099DCC /* HeJourneyEndVC.m in Sources */,
 				EA6DFF7C1D6B54000069F4ED /* DEMOSecondViewController.m in Sources */,
 				EA8DADDD1D5A18D000487BF4 /* RACSignalProvider.d in Sources */,
 				EA8DACFF1D5A18D000487BF4 /* ASIInputStream.m in Sources */,
@@ -6454,6 +6523,7 @@
 				EA5F0AB11D64D3BE00F30729 /* HeChatTableCell.m in Sources */,
 				EA8DAD8F1D5A18D000487BF4 /* README.md in Sources */,
 				EA8DAD8A1D5A18D000487BF4 /* NSAttributedString+MLLabel.m in Sources */,
+				EA4FA2AE1D6C1E6F00099DCC /* HeJourneySuccessVC.m in Sources */,
 				EADF883E1D6225EA0029DC4F /* ApplyFriendCell.m in Sources */,
 				EA8DACF91D5A18D000487BF4 /* ASIAuthenticationDialog.m in Sources */,
 				EA8DAD1D1D5A18D000487BF4 /* Reachability.m in Sources */,
@@ -6494,6 +6564,7 @@
 				EA8DA9E31D5A18BB00487BF4 /* UIResponder+Router.m in Sources */,
 				EA8DAD361D5A18D000487BF4 /* README.md in Sources */,
 				EADF87E51D621E380029DC4F /* PSTCollectionView.m in Sources */,
+				EA4FA2B31D6C225800099DCC /* HeUserInfoTableCell.m in Sources */,
 				EA8DAE271D5A18D000487BF4 /* TZAssetCell.m in Sources */,
 				EA8DADB71D5A18D000487BF4 /* NSString+RACSupport.m in Sources */,
 				EA8DADE71D5A18D000487BF4 /* RACTuple.m in Sources */,
@@ -6567,6 +6638,7 @@
 				EA8DAE431D5A18D000487BF4 /* ZJSwitch.m in Sources */,
 				EA8DAD561D5A18D000487BF4 /* IQSegmentedNextPrevious.m in Sources */,
 				EADF88131D621E380029DC4F /* EaseBubbleView+Video.m in Sources */,
+				EA4FA2A91D6C1E4600099DCC /* HeJourneyCommentDriverVC.m in Sources */,
 				EA8DADD81D5A18D000487BF4 /* RACScopedDisposable.m in Sources */,
 				EA8DADAB1D5A18D000487BF4 /* NSInvocation+RACTypeParsing.m in Sources */,
 				EA8DA9671D5A171A00487BF4 /* AppDelegate.m in Sources */,
