@@ -122,6 +122,14 @@
     NSInteger row = indexPath.row;
     NSInteger section = indexPath.section;
     
+    switch (section) {
+        case 0:
+        {
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
