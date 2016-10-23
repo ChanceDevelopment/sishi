@@ -1005,6 +1005,7 @@
 		EA4FA2AD1D6C1E6F00099DCC /* HeJourneySuccessVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeJourneySuccessVC.xib; sourceTree = "<group>"; };
 		EA4FA2B11D6C225800099DCC /* HeUserInfoTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeUserInfoTableCell.h; sourceTree = "<group>"; };
 		EA4FA2B21D6C225800099DCC /* HeUserInfoTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeUserInfoTableCell.m; sourceTree = "<group>"; };
+		EA5BA45A1DBD0CAB005DEE3C /* 司事.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "司事.entitlements"; sourceTree = "<group>"; };
 		EA5F09CF1D64A53900F30729 /* HeDynamicVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeDynamicVC.h; sourceTree = "<group>"; };
 		EA5F09D01D64A53900F30729 /* HeDynamicVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeDynamicVC.m; sourceTree = "<group>"; };
 		EA5F09D11D64A53900F30729 /* HeDynamicVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeDynamicVC.xib; sourceTree = "<group>"; };
@@ -3101,6 +3102,7 @@
 		EA8DA9611D5A171A00487BF4 /* sishi */ = {
 			isa = PBXGroup;
 			children = (
+				EA5BA45A1DBD0CAB005DEE3C /* 司事.entitlements */,
 				EA8DAECE1D5A18FA00487BF4 /* View */,
 				EA8DAE511D5A18E600487BF4 /* Model */,
 				EA8DA9E61D5A18C700487BF4 /* Controller */,
@@ -5853,6 +5855,9 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = E6CUH72B23;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -6820,6 +6825,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "sishi/司事.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou Chance Network Technology Co.,Ltd (E6CUH72B23)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6965,6 +6971,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "sishi/司事.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer: jun zhou (ZM3AW8VQ6N)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: jun zhou (ZM3AW8VQ6N)";
 				ENABLE_BITCODE = NO;
@@ -7006,7 +7013,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "sishi/司事.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou Chance Network Technology Co.,Ltd (E6CUH72B23)";
+				DEVELOPMENT_TEAM = E6CUH72B23;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7039,6 +7048,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.channce.sishi;
 				PRODUCT_NAME = "司事";
 				PROVISIONING_PROFILE = "f6104fa2-eed9-4e6f-9862-7b90bfef69f8";
+				PROVISIONING_PROFILE_SPECIFIER = 20160818_sishi_Release;
 			};
 			name = Release;
 		};
