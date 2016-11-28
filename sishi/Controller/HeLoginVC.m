@@ -43,6 +43,7 @@
 - (void)initializaiton
 {
     [super initializaiton];
+    //251、65、18登录按钮颜色
 }
 
 - (void)initView
