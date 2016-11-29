@@ -10,7 +10,7 @@
 #define sishiDefine_h
 
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double ) 568 ) < DBL_EPSILON )
-#define ALBUMNAME @"KunYuanDocument"
+#define ALBUMNAME @"SiShiDocument"
 //#define ALBUMNAMEDOCUMENT @"FuYangDocument"
 #define NAVTINTCOLOR [UIColor whiteColor]
 #define SCREENWIDTH ([UIScreen mainScreen].bounds.size.width)
