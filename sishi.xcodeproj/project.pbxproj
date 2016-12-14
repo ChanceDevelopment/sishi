@@ -15,7 +15,6 @@
 		EA12F7F71D655EF90085752A /* icon_feedback.png in Resources */ = {isa = PBXBuildFile; fileRef = EA12F7F61D655EF90085752A /* icon_feedback.png */; };
 		EA12F7F91D655F110085752A /* icon_set_black.png in Resources */ = {isa = PBXBuildFile; fileRef = EA12F7F81D655F110085752A /* icon_set_black.png */; };
 		EA12F7FB1D655F1B0085752A /* icon_trip.png in Resources */ = {isa = PBXBuildFile; fileRef = EA12F7FA1D655F1B0085752A /* icon_trip.png */; };
-		EA12F7FD1D655F440085752A /* icon_aboutus.png in Resources */ = {isa = PBXBuildFile; fileRef = EA12F7FC1D655F440085752A /* icon_aboutus.png */; };
 		EA12F7FF1D6586070085752A /* icon_change.png in Resources */ = {isa = PBXBuildFile; fileRef = EA12F7FE1D6586070085752A /* icon_change.png */; };
 		EA12F8081D6589E30085752A /* tabar_dynamic_icon_active@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA12F8001D6589E30085752A /* tabar_dynamic_icon_active@3x.png */; };
 		EA12F8091D6589E30085752A /* tabar_dynamic_icon_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA12F8011D6589E30085752A /* tabar_dynamic_icon_normal@3x.png */; };
@@ -607,14 +606,12 @@
 		EAA7909E1DEBDB0200443970 /* icon_bmw.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA7908E1DEBDB0200443970 /* icon_bmw.png */; };
 		EAA7909F1DEBDB0200443970 /* icon_change.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA7908F1DEBDB0200443970 /* icon_change.png */; };
 		EAA790A01DEBDB0200443970 /* icon_collection.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA790901DEBDB0200443970 /* icon_collection.png */; };
-		EAA790A11DEBDB0200443970 /* icon_cooperate.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA790911DEBDB0200443970 /* icon_cooperate.png */; };
 		EAA790A21DEBDB0200443970 /* icon_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA790921DEBDB0200443970 /* icon_delete.png */; };
 		EAA790A31DEBDB0200443970 /* icon_dot_select.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA790931DEBDB0200443970 /* icon_dot_select.png */; };
 		EAA790A41DEBDB0200443970 /* icon_dot_unselect.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA790941DEBDB0200443970 /* icon_dot_unselect.png */; };
 		EAA790A51DEBDB0200443970 /* icon_edit_black.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA790951DEBDB0200443970 /* icon_edit_black.png */; };
 		EAA790A61DEBDB0200443970 /* icon_edit_white.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA790961DEBDB0200443970 /* icon_edit_white.png */; };
 		EAA790B81DEBDB7400443970 /* icon_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA790A71DEBDB7400443970 /* icon_edit.png */; };
-		EAA790B91DEBDB7400443970 /* icon_feedback.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA790A81DEBDB7400443970 /* icon_feedback.png */; };
 		EAA790BA1DEBDB7400443970 /* icon_filter.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA790A91DEBDB7400443970 /* icon_filter.png */; };
 		EAA790BB1DEBDB7400443970 /* icon_follow_red.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA790AA1DEBDB7400443970 /* icon_follow_red.png */; };
 		EAA790BC1DEBDB7400443970 /* icon_follow_white.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA790AB1DEBDB7400443970 /* icon_follow_white.png */; };
@@ -625,9 +622,7 @@
 		EAA790C11DEBDB7400443970 /* icon_message_black.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA790B01DEBDB7400443970 /* icon_message_black.png */; };
 		EAA790C21DEBDB7400443970 /* icon_message.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA790B11DEBDB7400443970 /* icon_message.png */; };
 		EAA790C31DEBDB7400443970 /* icon_my_location.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA790B21DEBDB7400443970 /* icon_my_location.png */; };
-		EAA790C41DEBDB7400443970 /* icon_search.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA790B31DEBDB7400443970 /* icon_search.png */; };
 		EAA790C51DEBDB7400443970 /* icon_send.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA790B41DEBDB7400443970 /* icon_send.png */; };
-		EAA790C61DEBDB7400443970 /* icon_set_black.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA790B51DEBDB7400443970 /* icon_set_black.png */; };
 		EAA790C71DEBDB7400443970 /* icon_setting_white.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA790B61DEBDB7400443970 /* icon_setting_white.png */; };
 		EAA790C81DEBDB7400443970 /* icon_setting.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA790B71DEBDB7400443970 /* icon_setting.png */; };
 		EAA790CC1DEBDD9400443970 /* icon_dot_login_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA790CA1DEBDD9400443970 /* icon_dot_login_selected.png */; };
@@ -6003,7 +5998,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = He;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = Channce;
 				TargetAttributes = {
 					EA8DA95E1D5A171A00487BF4 = {
@@ -6094,7 +6089,6 @@
 				EADF86751D621C900029DC4F /* tabbar_setting@2x.png in Resources */,
 				EA8DAE231D5A18D000487BF4 /* ProvincesAndCities.plist in Resources */,
 				EADF86761D621C900029DC4F /* tabbar_settingHL.png in Resources */,
-				EAA790A11DEBDB0200443970 /* icon_cooperate.png in Resources */,
 				EAA790BA1DEBDB7400443970 /* icon_filter.png in Resources */,
 				EA8DAEBC1D5A18F200487BF4 /* ShareSDKUI.bundle in Resources */,
 				EA5F0AA91D64C6D700F30729 /* HeRealTimeTrendVC.xib in Resources */,
@@ -6210,7 +6204,6 @@
 				EADF860C1D621C900029DC4F /* 114.png in Resources */,
 				EA8DAD931D5A18D000487BF4 /* arrow_down1@2x.png in Resources */,
 				EAA790C01DEBDB7400443970 /* icon_invite.png in Resources */,
-				EAA790B91DEBDB7400443970 /* icon_feedback.png in Resources */,
 				EA5F0A891D64BFA400F30729 /* AlbumShare@2x.png in Resources */,
 				EADF866C1D621C900029DC4F /* tabbar_chats.png in Resources */,
 				EA8DAE1E1D5A18D000487BF4 /* btn_020.press@2x.png in Resources */,
@@ -6271,7 +6264,6 @@
 				EA2AC32F1D5EC08400C57B45 /* HeChatVC.xib in Resources */,
 				EADF86651D621C900029DC4F /* group_joinpublicgroup@2x.png in Resources */,
 				EADF86661D621C900029DC4F /* group_participant_add@2x.png in Resources */,
-				EAA790C61DEBDB7400443970 /* icon_set_black.png in Resources */,
 				EADF863C1D621C900029DC4F /* icon_010.gif in Resources */,
 				EADF863B1D621C900029DC4F /* icon_007_cover.png in Resources */,
 				EAA790CD1DEBDD9400443970 /* icon_dot_login_unselect.png in Resources */,
@@ -6281,7 +6273,6 @@
 				EA8DAD4A1D5A18D000487BF4 /* LICENSE.txt in Resources */,
 				EA2AC3921D60192300C57B45 /* menuIcon.png in Resources */,
 				EADF86521D621C900029DC4F /* icon_030.gif in Resources */,
-				EAA790C41DEBDB7400443970 /* icon_search.png in Resources */,
 				EAA790C71DEBDB7400443970 /* icon_setting_white.png in Resources */,
 				EADF861F1D621C900029DC4F /* chat_location_annotation_someone@2x.png in Resources */,
 				EAA790981DEBDB0200443970 /* icon_aboutus.png in Resources */,
@@ -6336,7 +6327,6 @@
 				EA8DAD2A1D5A18D000487BF4 /* back-arrow@3x.png in Resources */,
 				EADF86381D621C900029DC4F /* icon_002.gif in Resources */,
 				EAA790A31DEBDB0200443970 /* icon_dot_select.png in Resources */,
-				EA12F7FD1D655F440085752A /* icon_aboutus.png in Resources */,
 				EA12F7F21D6554F30085752A /* HeSearchVC.xib in Resources */,
 				EADF86401D621C900029DC4F /* icon_013.gif in Resources */,
 				EA8DAE1C1D5A18D000487BF4 /* bg_023@2x.png in Resources */,
@@ -6993,8 +6983,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -7039,7 +7031,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/sishi/sishi-Prefix.pch";
 				INFOPLIST_FILE = sishi/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7096,8 +7088,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -7140,8 +7134,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -7187,7 +7183,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/sishi/sishi-Prefix.pch";
 				INFOPLIST_FILE = sishi/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7230,7 +7226,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/sishi/sishi-Prefix.pch";
 				INFOPLIST_FILE = sishi/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
