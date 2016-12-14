@@ -572,10 +572,8 @@
 		EA8DAEC11D5A18F200487BF4 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EA8DAE841D5A18F200487BF4 /* WeiboSDK.bundle */; };
 		EA8DAEC21D5A18F200487BF4 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8DAE881D5A18F200487BF4 /* libWeChatSDK.a */; };
 		EA8DAEC31D5A18F200487BF4 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA8DAE891D5A18F200487BF4 /* README.txt */; };
-		EA8DAEC41D5A18F200487BF4 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8DAE8E1D5A18F200487BF4 /* MOBFoundation.framework */; };
 		EA8DAEC51D5A18F200487BF4 /* ShareSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EA8DAE8F1D5A18F200487BF4 /* ShareSDK.bundle */; };
 		EA8DAEC61D5A18F200487BF4 /* ShareSDKConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8DAE901D5A18F200487BF4 /* ShareSDKConnector.framework */; };
-		EA8DAEC71D5A18F200487BF4 /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8DAE921D5A18F200487BF4 /* UMMobClick.framework */; };
 		EA8DAEC81D5A18F200487BF4 /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8DAEAB1D5A18F200487BF4 /* libzbar.a */; };
 		EA8DAEC91D5A18F300487BF4 /* zbar-back.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8DAEAD1D5A18F200487BF4 /* zbar-back.png */; };
 		EA8DAECA1D5A18F300487BF4 /* zbar-help.html in Resources */ = {isa = PBXBuildFile; fileRef = EA8DAEAE1D5A18F200487BF4 /* zbar-help.html */; };
@@ -590,8 +588,8 @@
 		EAA24AB61D61A66700931751 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAA24AB21D61A66700931751 /* libcurl.a */; };
 		EAA24AB71D61A66700931751 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAA24AB31D61A66700931751 /* libssl.a */; };
 		EAA24AB81D61A66700931751 /* libHyphenateFullSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAA24AB41D61A66700931751 /* libHyphenateFullSDK.a */; };
+		EAA4F3281E01316200EF9E14 /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAA4F3271E01316200EF9E14 /* UMMobClick.framework */; };
 		EAA7907A1DEBD81B00443970 /* icon_back_white.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA790781DEBD81B00443970 /* icon_back_white.png */; };
-		EAA7907B1DEBD81B00443970 /* icon_back.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA790791DEBD81B00443970 /* icon_back.png */; };
 		EAA7907D1DEBD90500443970 /* abc_ic_commit_search_api_mtrl_alpha.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA7907C1DEBD90500443970 /* abc_ic_commit_search_api_mtrl_alpha.png */; };
 		EAA7907F1DEBD91000443970 /* icon_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA7907E1DEBD91000443970 /* icon_delete.png */; };
 		EAA790811DEBD9D700443970 /* icon_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA790801DEBD9D700443970 /* icon_delete@2x.png */; };
@@ -1912,10 +1910,8 @@
 		EA8DAE8A1D5A18F200487BF4 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		EA8DAE8B1D5A18F200487BF4 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		EA8DAE8C1D5A18F200487BF4 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
-		EA8DAE8E1D5A18F200487BF4 /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
 		EA8DAE8F1D5A18F200487BF4 /* ShareSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDK.bundle; sourceTree = "<group>"; };
 		EA8DAE901D5A18F200487BF4 /* ShareSDKConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKConnector.framework; sourceTree = "<group>"; };
-		EA8DAE921D5A18F200487BF4 /* UMMobClick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMMobClick.framework; sourceTree = "<group>"; };
 		EA8DAE971D5A18F200487BF4 /* Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoder.h; sourceTree = "<group>"; };
 		EA8DAE981D5A18F200487BF4 /* Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exception.h; sourceTree = "<group>"; };
 		EA8DAE991D5A18F200487BF4 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
@@ -1992,8 +1988,8 @@
 		EAA24AB21D61A66700931751 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcurl.a; sourceTree = "<group>"; };
 		EAA24AB31D61A66700931751 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
 		EAA24AB41D61A66700931751 /* libHyphenateFullSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libHyphenateFullSDK.a; sourceTree = "<group>"; };
+		EAA4F3271E01316200EF9E14 /* UMMobClick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMMobClick.framework; sourceTree = "<group>"; };
 		EAA790781DEBD81B00443970 /* icon_back_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_back_white.png; sourceTree = "<group>"; };
-		EAA790791DEBD81B00443970 /* icon_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_back.png; sourceTree = "<group>"; };
 		EAA7907C1DEBD90500443970 /* abc_ic_commit_search_api_mtrl_alpha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = abc_ic_commit_search_api_mtrl_alpha.png; sourceTree = "<group>"; };
 		EAA7907E1DEBD91000443970 /* icon_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_delete.png; path = Custom/icon_delete.png; sourceTree = "<group>"; };
 		EAA790801DEBD9D700443970 /* icon_delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_delete@2x.png"; path = "Custom/icon_delete@2x.png"; sourceTree = "<group>"; };
@@ -2532,7 +2528,6 @@
 				EA8DA9BE1D5A183800487BF4 /* MessageUI.framework in Frameworks */,
 				EA8DAEC21D5A18F200487BF4 /* libWeChatSDK.a in Frameworks */,
 				EA8DA9BC1D5A182F00487BF4 /* AdSupport.framework in Frameworks */,
-				EA8DAEC41D5A18F200487BF4 /* MOBFoundation.framework in Frameworks */,
 				EA8DA9BA1D5A182900487BF4 /* ImageIO.framework in Frameworks */,
 				EA8DA9B81D5A182300487BF4 /* JavaScriptCore.framework in Frameworks */,
 				EA8DA9B61D5A181A00487BF4 /* libstdc++.tbd in Frameworks */,
@@ -2546,13 +2541,13 @@
 				EA2AC35A1D600F2100C57B45 /* BaiduMapAPI_Map.framework in Frameworks */,
 				EA8DAEB11D5A18F200487BF4 /* jpush-ios-2.1.7.a in Frameworks */,
 				EADF85661D621C7B0029DC4F /* Bolts.framework in Frameworks */,
-				EA8DAEC71D5A18F200487BF4 /* UMMobClick.framework in Frameworks */,
 				EA8DA9B01D5A17F700487BF4 /* CoreVideo.framework in Frameworks */,
 				EA8DA9AE1D5A17E400487BF4 /* libxml2.tbd in Frameworks */,
 				EA8DAEBB1D5A18F200487BF4 /* ShareSDKExtension.framework in Frameworks */,
 				EA8DAEC61D5A18F200487BF4 /* ShareSDKConnector.framework in Frameworks */,
 				EAA24AB71D61A66700931751 /* libssl.a in Frameworks */,
 				EA8DA9AC1D5A17DA00487BF4 /* libstdc++.6.0.9.tbd in Frameworks */,
+				EAA4F3281E01316200EF9E14 /* UMMobClick.framework in Frameworks */,
 				EADF85671D621C7B0029DC4F /* Parse.framework in Frameworks */,
 				EA8DA9AA1D5A17D100487BF4 /* libresolv.tbd in Frameworks */,
 				EA2AC3591D600F2100C57B45 /* BaiduMapAPI_Location.framework in Frameworks */,
@@ -2772,7 +2767,6 @@
 			children = (
 				EAA7907C1DEBD90500443970 /* abc_ic_commit_search_api_mtrl_alpha.png */,
 				EAA790781DEBD81B00443970 /* icon_back_white.png */,
-				EAA790791DEBD81B00443970 /* icon_back.png */,
 				EA12F8191D66EA350085752A /* icon_add.png */,
 				EA12F7FE1D6586070085752A /* icon_change.png */,
 				EA2AC3731D60192300C57B45 /* boyIcon.png */,
@@ -4504,13 +4498,13 @@
 		EA8DAE581D5A18F200487BF4 /* ThirdPartySDK */ = {
 			isa = PBXGroup;
 			children = (
+				EAA4F3261E01316200EF9E14 /* umsdk_IOS_analyics_no-idfa_v4.0.5 */,
 				EAA790CE1DEBDE6000443970 /* SMS_SDK */,
 				EAA24A861D61A66700931751 /* EaseSDK */,
 				EA2AC34F1D600F2100C57B45 /* BaiduMap_SDK_v3.0 */,
 				EA8DAE591D5A18F200487BF4 /* JPush-iOS-SDK-2.1.7 */,
 				EA8DAE5D1D5A18F200487BF4 /* libqrencode */,
 				EA8DAE6E1D5A18F200487BF4 /* ShareSDK3.3.0 */,
-				EA8DAE911D5A18F200487BF4 /* umsdk_IOS_analyics_no-idfa_v4.0.5 */,
 				EA8DAE931D5A18F200487BF4 /* ZBarSDK */,
 			);
 			path = ThirdPartySDK;
@@ -4639,19 +4633,10 @@
 		EA8DAE8D1D5A18F200487BF4 /* Required */ = {
 			isa = PBXGroup;
 			children = (
-				EA8DAE8E1D5A18F200487BF4 /* MOBFoundation.framework */,
 				EA8DAE8F1D5A18F200487BF4 /* ShareSDK.bundle */,
 				EA8DAE901D5A18F200487BF4 /* ShareSDKConnector.framework */,
 			);
 			path = Required;
-			sourceTree = "<group>";
-		};
-		EA8DAE911D5A18F200487BF4 /* umsdk_IOS_analyics_no-idfa_v4.0.5 */ = {
-			isa = PBXGroup;
-			children = (
-				EA8DAE921D5A18F200487BF4 /* UMMobClick.framework */,
-			);
-			path = "umsdk_IOS_analyics_no-idfa_v4.0.5";
 			sourceTree = "<group>";
 		};
 		EA8DAE931D5A18F200487BF4 /* ZBarSDK */ = {
@@ -4835,6 +4820,14 @@
 				EAA24AB31D61A66700931751 /* libssl.a */,
 			);
 			path = 3rdparty;
+			sourceTree = "<group>";
+		};
+		EAA4F3261E01316200EF9E14 /* umsdk_IOS_analyics_no-idfa_v4.0.5 */ = {
+			isa = PBXGroup;
+			children = (
+				EAA4F3271E01316200EF9E14 /* UMMobClick.framework */,
+			);
+			path = "umsdk_IOS_analyics_no-idfa_v4.0.5";
 			sourceTree = "<group>";
 		};
 		EAA790861DEBDA4A00443970 /* Setting */ = {
@@ -6346,7 +6339,6 @@
 				EADF862E1D621C900029DC4F /* chat_receiver_audio_playing_full@2x.png in Resources */,
 				EA4FA2AF1D6C1E6F00099DCC /* HeJourneySuccessVC.xib in Resources */,
 				EA8DAD321D5A18D000487BF4 /* success@3x.png in Resources */,
-				EAA7907B1DEBD81B00443970 /* icon_back.png in Resources */,
 				EADF86671D621C900029DC4F /* group_participant_addHL@2x.png in Resources */,
 				EADF86191D621C900029DC4F /* call_silence@2x.png in Resources */,
 				EADF862F1D621C900029DC4F /* chat_receiver_bg.png in Resources */,

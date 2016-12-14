@@ -10,7 +10,6 @@
 #import "JPUSHService.h"
 #include <sys/xattr.h>
 #import "HeTabBarVC.h"
-#import <UMMobClick/MobClick.h>
 #import "HeInstructionView.h"
 #import "HeLoginVC.h"
 #import <ShareSDK/ShareSDK.h>
@@ -26,6 +25,7 @@
 #import "DEMONavigationController.h"
 #import "DEMOMenuViewController.h"
 #import "DEMOHomeViewController.h"
+#import <UMMobClick/MobClick.h>
 
 @interface AppDelegate ()
 @property(strong,nonatomic)HeSlideMenuVC *menuController;
@@ -177,7 +177,7 @@ BMKMapManager* _mapManager;
     NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:USERTOKENKEY];
     BOOL haveLogin = (userToken == nil) ? NO : YES;
     
-    if (0) {//登陆成功加载主窗口控制器
+    if (1) {//登陆成功加载主窗口控制器
         //        UIImage *navBackgroundImage = [UIImage imageNamed:@"NavBarIOS7_white"];
         //        [[UINavigationBar appearance] setBackgroundImage:navBackgroundImage forBarMetrics:UIBarMetricsDefault];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
