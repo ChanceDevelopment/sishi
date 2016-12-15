@@ -51,13 +51,6 @@
 @synthesize likeArray;
 @synthesize commentArray;
 
-- (NSMutableArray *)selectedLabelArray {
-    if (!_selectedLabelArray) {
-        _selectedLabelArray = [NSMutableArray array];
-    }
-    return _selectedLabelArray;
-}
-
 - (UIColor *)normalBorderColor {
     return [UIColor colorWithWhite:237.0 / 255.0 alpha:1.0];
 }
@@ -216,6 +209,8 @@
     [appointmentButton.titleLabel setFont:[UIFont systemFontOfSize:12.0]];
     [userInfoView addSubview:appointmentButton];
     [appointmentButton addTarget:self action:@selector(appointMentButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    userInfoView.frame = CGRectMake(0, 0, SCREENWIDTH, 150);
 }
 
 - (void)appointMentButtonClick:(UIButton *)button
@@ -285,6 +280,8 @@
     likeContentLabel.font = contentfont;
     likeContentLabel.frame = CGRectMake(likeContentLabelX, likeContentLabelY, likeContentLabelW, textSize.height);
     [userFavView addSubview:likeContentLabel];
+    
+    userFavView.frame = CGRectMake(0, 0, SCREENWIDTH, 150);
 }
 //评价
 - (void)initCommentView
@@ -332,6 +329,8 @@
         labelX = CGRectGetMaxX(marklabel.frame) + labelDistanceX;
         [commentView addSubview:marklabel];
     }
+    
+    commentView.frame = CGRectMake(0, 0, SCREENWIDTH, 150);
 }
 
 //信任值
@@ -387,6 +386,8 @@
     contentLabel.font = [UIFont systemFontOfSize:16.0];
     contentLabel.frame = CGRectMake(contentLabelX, contentLabelY, contentLabelW, contentLabelH);
     [trustView addSubview:contentLabel];
+    
+    trustView.frame = CGRectMake(0, 0, SCREENWIDTH, 150);
     
 }
 
@@ -466,27 +467,29 @@
     
     HeBaseTableViewCell *cell  = [tableView cellForRowAtIndexPath:indexPath];
     if (!cell) {
-        cell = [[HeBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
+        cell = [[HeBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier cellSize:cellSize];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     switch (row) {
         case 0:
         {
-            [cell addSubview:userInfoView];
+            [cell.contentView addSubview:userInfoView];
             break;
         }
         case 1:
         {
-            [cell addSubview:userFavView];
+            [cell.contentView addSubview:userFavView];
             break;
         }
         case 2:
         {
-            [cell addSubview:commentView];
+            [cell.contentView addSubview:commentView];
             break;
         }
         case 3:
         {
-            [cell addSubview:trustView];
+            [cell.contentView addSubview:trustView];
             break;
         }
         default:
