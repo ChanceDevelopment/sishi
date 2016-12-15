@@ -31,6 +31,21 @@
 @property(strong,nonatomic)UIView *trustView;
 @property(strong,nonatomic)NSMutableArray *likeArray;
 @property(strong,nonatomic)NSMutableArray *commentArray;
+/**
+ *  已选中的标签数组
+ */
+@property(nonatomic,copy)NSMutableArray *selectedLabelArray;
+
+/**
+ *  未被选中时标签的边框颜色
+ */
+@property(nonatomic,strong,readonly)UIColor *normalBorderColor;
+
+/**
+ *  被选中时标签的边框的颜色
+ */
+@property(nonatomic,strong,readonly)UIColor *markedLabelBorderColor;
+
 
 @end
 
@@ -50,6 +65,22 @@
 @synthesize trustView;
 @synthesize likeArray;
 @synthesize commentArray;
+
+- (NSMutableArray *)selectedLabelArray {
+    if (!_selectedLabelArray) {
+        _selectedLabelArray = [NSMutableArray array];
+    }
+    return _selectedLabelArray;
+}
+
+- (UIColor *)normalBorderColor {
+    return [UIColor colorWithWhite:237.0 / 255.0 alpha:1.0];
+}
+
+- (UIColor *)markedLabelBorderColor {
+    return [UIColor colorWithRed:249 / 255.0 green:255 / 255.0 blue:175 / 255.0 alpha:1];
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -131,6 +162,7 @@
 - (void)initUserInfoView
 {
     userInfoView = [[UIView alloc] init];
+    userInfoView.userInteractionEnabled = YES;//新增
     CGFloat nameLabelX = 10;
     CGFloat nameLabelY = 10;
     CGFloat nameLabelH = 40;
@@ -273,6 +305,7 @@
 - (void)initCommentView
 {
     commentView = [[UIView alloc] init];
+    commentView.userInteractionEnabled = YES;
     CGFloat titleLabelX = 10;
     CGFloat titleLabelY = 10;
     CGFloat titleLabelH = 40;
@@ -312,6 +345,9 @@
         
         marklabel.frame = frame;
         labelX = CGRectGetMaxX(marklabel.frame) + labelDistanceX;
+        marklabel.userInteractionEnabled = YES;
+        UITapGestureRecognizer *markLabelTapAction = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onMarkLabelTap:)];
+        [marklabel addGestureRecognizer:markLabelTapAction];
         [commentView addSubview:marklabel];
     }
 }
@@ -422,6 +458,18 @@
     return button;
 }
 
+- (void)onMarkLabelTap:(UITapGestureRecognizer *)tap {
+    UILabel *markLabel = (UILabel *)tap.view;
+    NSString *markText = markLabel.text;
+    if (![self.selectedLabelArray containsObject:markText]) {//已经选中的数组不包含这个标签
+        [self.selectedLabelArray addObject:markText];
+        markLabel.layer.borderColor = self.markedLabelBorderColor.CGColor;
+    } else {
+        [self.selectedLabelArray removeObject:markText];
+        markLabel.layer.borderColor = self.normalBorderColor.CGColor;
+    }
+}
+
 - (void)filterButtonClick:(UIButton *)button
 {
     NSLog(@"button = %@",button);
@@ -476,9 +524,6 @@
         default:
             break;
     }
-    
-    
-    
     
     return cell;
 }

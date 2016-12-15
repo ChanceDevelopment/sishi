@@ -196,8 +196,6 @@
     else{
         [self replaceController:oldVC newController:realTimeVC];
     }
-    
-    
 }
 
 //切换各个标签内容
@@ -213,8 +211,7 @@
      *  animations              转换过程中得动画
      *  completion              转换完成
      */
-    
-    [self addChildViewController:newController];
+//    self.segmentedControl.enabled = NO;
     [self transitionFromViewController:oldController toViewController:newController duration:0.5 options:UIViewAnimationOptionTransitionCrossDissolve animations:nil completion:^(BOOL finished) {
         
         if (finished) {
@@ -223,7 +220,7 @@
             [oldController willMoveToParentViewController:nil];
             [oldController removeFromParentViewController];
             self.currentVC = newController;
-            
+//            self.segmentedControl.enabled = YES;
         }else{
             
             self.currentVC = oldController;
