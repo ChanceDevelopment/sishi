@@ -16,11 +16,18 @@
 #import "HeSlideMenuVC.h"
 #import "HeSearchVC.h"
 #import "REFrostedViewController.h"
+#import "Masonry.h"
+#import "HeDistributeInviteVC.h"
 
 @interface HeHomePageVC ()<SelectIndexPathProtocol>
-@property(strong,nonatomic)IBOutlet UITableView *tableview;
+@property(weak,nonatomic)IBOutlet UITableView *tableview;
 @property(strong,nonatomic)NSMutableArray *dataSource;
 @property(strong,nonatomic)UIButton *menuButton;
+/**
+ *  发布新内容按钮
+ */
+@property(nonatomic,weak)IBOutlet UIButton *postButton;
+
 @end
 
 @implementation HeHomePageVC
@@ -69,7 +76,6 @@
     imageView.userInteractionEnabled = YES;
     HeTabBarVC *tabBarVC = (HeTabBarVC *)((AppDelegate *)([UIApplication sharedApplication].delegate).window.rootViewController);
     tabBarVC.currentSnapShot = imageView;
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -85,6 +91,7 @@
     [_mapView viewWillDisappear];
     _mapView.delegate = nil; // 不用时，置nil
     _locService.delegate = nil;
+    
 }
 - (void)viewDidUnload {
     [super viewDidUnload];
@@ -283,6 +290,13 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+/// 添加新
+- (IBAction)onPost:(UIButton *)sender {
+    HeDistributeInviteVC *distributeVC = [[HeDistributeInviteVC alloc] init];
+    distributeVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:distributeVC animated:YES];
 }
 
 /*

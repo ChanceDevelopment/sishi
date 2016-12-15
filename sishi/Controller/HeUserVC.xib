@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,22 +22,60 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wbq-P7-XuS">
-                    <rect key="frame" x="0.0" y="-20" width="375" height="687"/>
+                    <rect key="frame" x="0.0" y="-20" width="375" height="647"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="eNn-3c-ow1"/>
                         <outlet property="delegate" destination="-1" id="Vgq-jS-EjU"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="akQ-RZ-1ob">
+                    <rect key="frame" x="0.0" y="627" width="187" height="40"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="    关注">
+                        <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                    </state>
+                    <connections>
+                        <action selector="onFocus:" destination="-1" eventType="touchUpInside" id="Miz-30-HdF"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o8z-WX-3TO">
+                    <rect key="frame" x="188" y="627" width="187" height="40"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="    约Ta">
+                        <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                    </state>
+                    <connections>
+                        <action selector="onContact:" destination="-1" eventType="touchUpInside" id="vXq-Ik-5Ex"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xhN-JH-qGi">
+                    <rect key="frame" x="187" y="637" width="1" height="20"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="1" id="oIa-hp-nuo"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="akQ-RZ-1ob" firstAttribute="top" secondItem="wbq-P7-XuS" secondAttribute="bottom" id="7MM-hI-nQk"/>
+                <constraint firstItem="akQ-RZ-1ob" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9Un-bY-q78"/>
+                <constraint firstAttribute="bottom" secondItem="o8z-WX-3TO" secondAttribute="bottom" id="EfU-2m-IAs"/>
+                <constraint firstItem="o8z-WX-3TO" firstAttribute="leading" secondItem="xhN-JH-qGi" secondAttribute="trailing" id="HMY-6M-d51"/>
                 <constraint firstItem="wbq-P7-XuS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="O9m-fW-D7m">
                     <variation key="heightClass=regular-widthClass=compact" constant="-20"/>
                 </constraint>
+                <constraint firstItem="xhN-JH-qGi" firstAttribute="leading" secondItem="akQ-RZ-1ob" secondAttribute="trailing" id="UBh-2G-e8P"/>
                 <constraint firstItem="wbq-P7-XuS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XZ5-pZ-Os8"/>
-                <constraint firstAttribute="bottom" secondItem="wbq-P7-XuS" secondAttribute="bottom" id="rsL-gr-dKk"/>
+                <constraint firstItem="xhN-JH-qGi" firstAttribute="centerY" secondItem="akQ-RZ-1ob" secondAttribute="centerY" id="iHx-4Y-idX"/>
+                <constraint firstItem="o8z-WX-3TO" firstAttribute="width" secondItem="akQ-RZ-1ob" secondAttribute="width" id="peP-DZ-sJD"/>
+                <constraint firstAttribute="bottom" secondItem="wbq-P7-XuS" secondAttribute="bottom" constant="40" id="rsL-gr-dKk"/>
                 <constraint firstAttribute="trailing" secondItem="wbq-P7-XuS" secondAttribute="trailing" id="sxm-SZ-b87"/>
+                <constraint firstItem="xhN-JH-qGi" firstAttribute="height" secondItem="akQ-RZ-1ob" secondAttribute="height" multiplier="0.5" id="vUq-iA-LOT"/>
+                <constraint firstAttribute="bottom" secondItem="akQ-RZ-1ob" secondAttribute="bottom" id="vgk-Mp-aqT"/>
+                <constraint firstItem="o8z-WX-3TO" firstAttribute="top" secondItem="wbq-P7-XuS" secondAttribute="bottom" id="wCT-Mx-AMG"/>
+                <constraint firstAttribute="trailing" secondItem="o8z-WX-3TO" secondAttribute="trailing" id="yML-7v-1Kj"/>
             </constraints>
             <variation key="default">
                 <mask key="subviews">
@@ -60,6 +99,7 @@
                     <include reference="sxm-SZ-b87"/>
                 </mask>
             </variation>
+            <point key="canvasLocation" x="34.5" y="107.5"/>
         </view>
     </objects>
 </document>

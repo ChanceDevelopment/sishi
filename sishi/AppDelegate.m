@@ -120,6 +120,7 @@ BMKMapManager* _mapManager;
     if (haveLogin) {//登陆成功加载主窗口控制器
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         
+        [UINavigationBar appearance].tintColor = [UIColor blackColor];
         [[UINavigationBar appearance] setTitleTextAttributes:
          [NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], NSForegroundColorAttributeName, [UIFont systemFontOfSize:20.0], NSFontAttributeName, nil]];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
@@ -163,7 +164,6 @@ BMKMapManager* _mapManager;
         NSDictionary *attributeDict = @{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:20.0]};
         [[UINavigationBar appearance] setTitleTextAttributes:attributeDict];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
-        
     }
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

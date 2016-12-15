@@ -162,6 +162,11 @@
     return ((UIViewController *)self.viewControllers.firstObject);
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.frostedViewController hideMenuViewController];
+}
+
 /*
 #pragma mark - Navigation
 

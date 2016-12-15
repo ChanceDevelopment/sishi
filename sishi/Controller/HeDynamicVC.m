@@ -55,6 +55,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self initializaiton];
+    requestReply = YES;
     [self initView];
 }
 
@@ -80,8 +81,9 @@
 {
     [super initView];
     
-    NSArray *titleArray = @[@"动态",@"实时"];
+    /*NSArray *titleArray = @[@"动态",@"实时"];
     segmentedControl = [[NYSegmentedControl alloc] initWithItems:titleArray];
+    segmentedControl.frame = CGRectMake(0, 20, SCREENWIDTH, 40);
     segmentedControl.titleTextColor = [UIColor whiteColor];
     segmentedControl.selectedTitleTextColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"NavBarIOS7"]];
     segmentedControl.selectedTitleFont = [UIFont systemFontOfSize:13.0f];
@@ -93,15 +95,52 @@
     segmentedControl.segmentIndicatorBorderWidth = 0.0f;
     segmentedControl.segmentIndicatorInset = 0.0f;
     segmentedControl.segmentIndicatorBorderColor = [UIColor whiteColor];
-    [segmentedControl sizeToFit];
+    //[segmentedControl sizeToFit];
     segmentedControl.cornerRadius = 5.0;
+    //[self.view addSubview:segmentedControl];
+    self.navigationItem.titleView = segmentedControl;*/
     
     
-    sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(-10, 0, SCREENWIDTH, 40)];
+    
+    
+   sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(-10, 0, SCREENWIDTH, 40)];
     sectionHeaderView.backgroundColor = [UIColor colorWithWhite:237.0 / 255.0 alpha:1.0];
     sectionHeaderView.userInteractionEnabled = YES;
+    sectionHeaderView.clipsToBounds = YES;
     
-    NSArray *buttonArray = @[@"动态",@"实时"];
+    UIButton *activityButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [activityButton setTitle:@"动态" forState:UIControlStateNormal];
+    activityButton.frame = CGRectMake(0, 0, CGRectGetWidth(sectionHeaderView.frame) * 0.5, CGRectGetHeight(sectionHeaderView.frame));
+    [activityButton setTitleColor:[UIColor colorWithRed:255 / 255.0 green:64 / 255.0 blue:74 / 255.0 alpha:1] forState:UIControlStateNormal];
+    [activityButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
+    activityButton.tag = 10000;
+    [activityButton addTarget:self action:@selector(onSegment:) forControlEvents:UIControlEventTouchUpInside];
+    activityButton.backgroundColor = [UIColor whiteColor];
+    [sectionHeaderView addSubview:activityButton];
+    
+    UIButton *moodButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [moodButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [moodButton setTitle:@"心情" forState:UIControlStateNormal];
+    moodButton.frame = CGRectMake(CGRectGetMaxX(activityButton.frame), 0, CGRectGetWidth(activityButton.frame), CGRectGetHeight(activityButton.frame));
+    [moodButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
+    moodButton.backgroundColor = [UIColor whiteColor];
+    moodButton.tag = 10001;
+    [moodButton addTarget:self action:@selector(onSegment:) forControlEvents:UIControlEventTouchUpInside];
+    [sectionHeaderView addSubview:moodButton];
+    
+    UIView *verticalLineView = [[UIView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(activityButton.frame), 0, 1, CGRectGetHeight(activityButton.frame) * 0.5)];
+    verticalLineView.backgroundColor = [UIColor lightGrayColor];
+    CGPoint center = verticalLineView.center;
+    center.y = sectionHeaderView.frame.size.height * 0.5;
+    verticalLineView.center = center;
+    [sectionHeaderView addSubview:verticalLineView];
+    
+    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(sectionHeaderView.frame) - 1, CGRectGetWidth(sectionHeaderView.frame), 1)];
+    lineView.backgroundColor = [UIColor lightGrayColor];
+    [sectionHeaderView addSubview:lineView];
+    
+    
+  /*   NSArray *buttonArray = @[@"动态",@"实时"];
     for (NSInteger index = 0; index < [buttonArray count]; index++) {
         CGFloat buttonW = SCREENWIDTH / [buttonArray count];
         CGFloat buttonH = sectionHeaderView.frame.size.height;
@@ -131,8 +170,9 @@
     bottomLine.backgroundColor = [UIColor grayColor];
     [sectionHeaderView addSubview:bottomLine];
     
+   
+//    [self.view addSubview:sectionHeaderView];*/
     self.navigationItem.titleView = sectionHeaderView;
-//    [self.view addSubview:sectionHeaderView];
     
     logVC = [[HeLogTableVC alloc] init];
     [self addChildViewController:logVC];
@@ -140,9 +180,11 @@
     [self addChildViewController:realTimeVC];
     
     
-    realTimeVC.view.frame = CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGH);
-    self.currentVC = logVC;
+    realTimeVC.view.frame = self.view.bounds;
+    logVC.view.frame = self.view.bounds;
+    self.currentVC = realTimeVC;
     [self.view addSubview:logVC.view];
+    [self.view addSubview:realTimeVC.view];
 }
 
 - (IBAction)distributeButtonClick:(id)sender
@@ -160,7 +202,6 @@
     [button setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
     [button addTarget:self action:@selector(filterButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [button setBackgroundImage:[Tool buttonImageFromColor:[UIColor whiteColor] withImageSize:button.frame.size] forState:UIControlStateNormal];
-//    [button setBackgroundImage:[Tool buttonImageFromColor:sectionHeaderView.backgroundColor withImageSize:button.frame.size] forState:UIControlStateNormal];
     
     return button;
 }
@@ -184,8 +225,28 @@
         requestReply = YES;
         [self replaceController:currentVC newController:realTimeVC];
     }
-    
 }
+
+- (void)onSegment:(UIButton *) btn {
+    if ((btn.tag == 10000 && requestReply) || (btn.tag == 10001 && !requestReply)) {
+        return;
+    }
+    [btn setTitleColor:[UIColor colorWithRed:255 / 255.0 green:64 / 255.0 blue:74 / 255.0 alpha:1] forState:UIControlStateNormal];
+    for (UIView *subView in self.navigationItem.titleView.subviews) {
+        if ([subView isKindOfClass:[UIButton class]]) {
+            if (subView != btn)
+                [(UIButton *)subView setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            }
+    }
+    if (btn.tag == 10000) {//动态
+        [self replaceController:logVC newController:realTimeVC];
+        requestReply = YES;
+    } else {
+        [self replaceController:realTimeVC newController:logVC];
+        requestReply = NO;
+    }
+}
+
 - (void)segmentedControlValueChange:(NYSegmentedControl *)sender
 {
     NSLog(@"change");
@@ -212,7 +273,8 @@
      *  completion              转换完成
      */
 //    self.segmentedControl.enabled = NO;
-    [self transitionFromViewController:oldController toViewController:newController duration:0.5 options:UIViewAnimationOptionTransitionCrossDissolve animations:nil completion:^(BOOL finished) {
+    //一直crash,修改为直接修改视图层级
+    /*[self transitionFromViewController:oldController toViewController:newController duration:0.5 options:UIViewAnimationOptionTransitionCrossDissolve animations:nil completion:^(BOOL finished) {
         
         if (finished) {
             
@@ -226,7 +288,8 @@
             self.currentVC = oldController;
             
         }
-    }];
+    }];*/
+    [self.view bringSubviewToFront:newController.view];
 }
 
 - (void)didReceiveMemoryWarning {

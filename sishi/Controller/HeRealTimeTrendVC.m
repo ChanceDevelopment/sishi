@@ -10,6 +10,7 @@
 #import "MLLabel+Size.h"
 #import "HeBaseTableViewCell.h"
 #import "HeRealTrendTableCell.h"
+#import "HeRealTimeDetailController.h"
 
 #define TextLineHeight 1.2f
 
@@ -56,7 +57,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [self initializaiton];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self initView];
 }
 
@@ -277,7 +280,7 @@
     HeRealTrendTableCell *cell  = [tableView cellForRowAtIndexPath:indexPath];
     if (!cell) {
         cell = [[HeRealTrendTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier cellSize:cellSize];
-//        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
 //        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
@@ -295,7 +298,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSInteger row = indexPath.row;
     NSInteger section = indexPath.section;
-    
+    HeRealTimeDetailController *detailController = [[HeRealTimeDetailController alloc] initWithNibName:@"HeRealTimeDetailController" bundle:[NSBundle mainBundle]];
+    detailController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:detailController animated:YES];
     
 }
 

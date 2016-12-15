@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeHomePageVC">
             <connections>
                 <outlet property="_mapView" destination="dhd-Zt-i4M" id="zjf-CC-lci"/>
+                <outlet property="postButton" destination="5m1-Ov-cmT" id="2bx-oj-gu5"/>
                 <outlet property="tableview" destination="DfE-DI-p3h" id="txc-ly-8t1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -48,15 +49,28 @@
                         <outlet property="delegate" destination="-1" id="IPh-ZQ-ntZ"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5m1-Ov-cmT">
+                    <rect key="frame" x="295" y="543" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="aMC-l6-6gM"/>
+                        <constraint firstAttribute="width" constant="60" id="nen-BL-SB2"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="icon_add.png"/>
+                    <connections>
+                        <action selector="onPost:" destination="-1" eventType="touchUpInside" id="Ct5-tn-dn3"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="DfE-DI-p3h" secondAttribute="trailing" id="2x6-Li-y1W"/>
                 <constraint firstItem="dhd-Zt-i4M" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="8R0-u7-nTA"/>
+                <constraint firstAttribute="bottom" secondItem="5m1-Ov-cmT" secondAttribute="bottom" constant="64" id="C0z-rK-0u0"/>
                 <constraint firstItem="DfE-DI-p3h" firstAttribute="top" secondItem="dhd-Zt-i4M" secondAttribute="bottom" id="Gms-Du-hdi"/>
                 <constraint firstItem="dhd-Zt-i4M" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="S7d-wx-fVe"/>
                 <constraint firstItem="DfE-DI-p3h" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="U5y-Vs-Hjw"/>
                 <constraint firstAttribute="bottom" secondItem="DfE-DI-p3h" secondAttribute="bottom" id="hxJ-FP-fVG"/>
+                <constraint firstAttribute="trailing" secondItem="5m1-Ov-cmT" secondAttribute="trailing" constant="20" id="n9X-V5-f5N"/>
                 <constraint firstAttribute="trailing" secondItem="dhd-Zt-i4M" secondAttribute="trailing" id="wIF-Ex-MqE"/>
             </constraints>
             <variation key="default">
@@ -65,13 +79,13 @@
                     <exclude reference="DfE-DI-p3h"/>
                 </mask>
                 <mask key="constraints">
+                    <exclude reference="8R0-u7-nTA"/>
+                    <exclude reference="S7d-wx-fVe"/>
+                    <exclude reference="wIF-Ex-MqE"/>
                     <exclude reference="2x6-Li-y1W"/>
                     <exclude reference="Gms-Du-hdi"/>
                     <exclude reference="U5y-Vs-Hjw"/>
                     <exclude reference="hxJ-FP-fVG"/>
-                    <exclude reference="8R0-u7-nTA"/>
-                    <exclude reference="S7d-wx-fVe"/>
-                    <exclude reference="wIF-Ex-MqE"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
@@ -80,15 +94,18 @@
                     <include reference="DfE-DI-p3h"/>
                 </mask>
                 <mask key="constraints">
+                    <include reference="8R0-u7-nTA"/>
+                    <include reference="S7d-wx-fVe"/>
+                    <include reference="wIF-Ex-MqE"/>
                     <include reference="2x6-Li-y1W"/>
                     <include reference="Gms-Du-hdi"/>
                     <include reference="U5y-Vs-Hjw"/>
                     <include reference="hxJ-FP-fVG"/>
-                    <include reference="8R0-u7-nTA"/>
-                    <include reference="S7d-wx-fVe"/>
-                    <include reference="wIF-Ex-MqE"/>
                 </mask>
             </variation>
         </view>
     </objects>
+    <resources>
+        <image name="icon_add.png" width="192" height="192"/>
+    </resources>
 </document>

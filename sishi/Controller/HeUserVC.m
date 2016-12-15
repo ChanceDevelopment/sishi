@@ -26,6 +26,11 @@
 @property(strong,nonatomic)UIImageView *userBGImage;
 
 @property(strong,nonatomic)UIView *userInfoView;
+/**
+ *  认证通过View
+ */
+@property(nonatomic,strong)UIView *authView;
+
 @property(strong,nonatomic)UIView *userFavView;
 @property(strong,nonatomic)UIView *commentView;
 @property(strong,nonatomic)UIView *trustView;
@@ -48,6 +53,7 @@
 @synthesize userFavView;
 @synthesize commentView;
 @synthesize trustView;
+@synthesize authView;
 @synthesize likeArray;
 @synthesize commentArray;
 
@@ -131,9 +137,36 @@
     [userBGImage addSubview:backButton];
     
     [self initUserInfoView];
+    [self initAuthView];
     [self initUserFavView];
     [self initCommentView];
     [self initTrustView];
+    
+}
+
+- (void)initAuthView {
+    authView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 150)];
+    authView.userInteractionEnabled = YES;
+    CGFloat titleLabelX = 10;
+    CGFloat titleLabelY = 10;
+    CGFloat titleLabelH = 40;
+    CGFloat titleLabelW = SCREENWIDTH - 2 * titleLabelX;
+    UILabel *authLabel = [[UILabel alloc]initWithFrame:CGRectMake(titleLabelX, titleLabelY, titleLabelW, titleLabelH)];
+    authLabel.font = [UIFont systemFontOfSize:20];
+    authLabel.textColor = [UIColor grayColor];
+    authLabel.backgroundColor = [UIColor clearColor];
+    authLabel.textAlignment = NSTextAlignmentLeft;
+    authLabel.text = @"认证";
+    [authView addSubview:authLabel];
+    
+    UIButton *authButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    authButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    authButton.frame = CGRectMake(CGRectGetMinX(authLabel.frame), CGRectGetMaxY(authLabel.frame) + 10, 220, 20);
+    [authButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    authButton.userInteractionEnabled = NO;
+    //TODO:设置本按钮的图片
+    [authButton setTitle:@"真实信息已通过微信支付认证" forState:UIControlStateNormal];
+    [authView addSubview:authButton];
     
 }
 
@@ -445,10 +478,17 @@
 {
     NSLog(@"button = %@",button);
 }
+- (IBAction)onFocus:(UIButton *)sender {
+    
+}
+- (IBAction)onContact:(UIButton *)sender {
+}
+
+
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return 5;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -469,7 +509,6 @@
     if (!cell) {
         cell = [[HeBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier cellSize:cellSize];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     switch (row) {
         case 0:
@@ -477,17 +516,20 @@
             [cell.contentView addSubview:userInfoView];
             break;
         }
-        case 1:
+            case 1:
+            [cell.contentView addSubview:authView];
+            break;
+        case 2:
         {
             [cell.contentView addSubview:userFavView];
             break;
         }
-        case 2:
+        case 3:
         {
             [cell.contentView addSubview:commentView];
             break;
         }
-        case 3:
+        case 4:
         {
             [cell.contentView addSubview:trustView];
             break;
@@ -502,6 +544,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == 1) {
+        return 95;
+    }
     return 150.0;
 }
 
