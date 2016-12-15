@@ -46,6 +46,15 @@
 }
 
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -67,7 +76,7 @@
 - (void)initView
 {
     [super initView];
-    self.navigationController.navigationBarHidden = YES;
+    
     
     tableview.backgroundView = nil;
     tableview.backgroundColor = [UIColor whiteColor];

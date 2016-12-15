@@ -31,21 +31,6 @@
 @property(strong,nonatomic)UIView *trustView;
 @property(strong,nonatomic)NSMutableArray *likeArray;
 @property(strong,nonatomic)NSMutableArray *commentArray;
-/**
- *  已选中的标签数组
- */
-@property(nonatomic,copy)NSMutableArray *selectedLabelArray;
-
-/**
- *  未被选中时标签的边框颜色
- */
-@property(nonatomic,strong,readonly)UIColor *normalBorderColor;
-
-/**
- *  被选中时标签的边框的颜色
- */
-@property(nonatomic,strong,readonly)UIColor *markedLabelBorderColor;
-
 
 @end
 
@@ -345,9 +330,6 @@
         
         marklabel.frame = frame;
         labelX = CGRectGetMaxX(marklabel.frame) + labelDistanceX;
-        marklabel.userInteractionEnabled = YES;
-        UITapGestureRecognizer *markLabelTapAction = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onMarkLabelTap:)];
-        [marklabel addGestureRecognizer:markLabelTapAction];
         [commentView addSubview:marklabel];
     }
 }
@@ -458,18 +440,6 @@
     return button;
 }
 
-- (void)onMarkLabelTap:(UITapGestureRecognizer *)tap {
-    UILabel *markLabel = (UILabel *)tap.view;
-    NSString *markText = markLabel.text;
-    if (![self.selectedLabelArray containsObject:markText]) {//已经选中的数组不包含这个标签
-        [self.selectedLabelArray addObject:markText];
-        markLabel.layer.borderColor = self.markedLabelBorderColor.CGColor;
-    } else {
-        [self.selectedLabelArray removeObject:markText];
-        markLabel.layer.borderColor = self.normalBorderColor.CGColor;
-    }
-}
-
 - (void)filterButtonClick:(UIButton *)button
 {
     NSLog(@"button = %@",button);
@@ -497,8 +467,6 @@
     HeBaseTableViewCell *cell  = [tableView cellForRowAtIndexPath:indexPath];
     if (!cell) {
         cell = [[HeBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
-//        cell.selectionStyle = UITableViewCellSelectionStyleGray;
-//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     switch (row) {
         case 0:
