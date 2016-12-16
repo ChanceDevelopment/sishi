@@ -69,13 +69,13 @@
     _mapView.userTrackingMode = BMKUserTrackingModeNone;//设置定位的状态
     _mapView.showsUserLocation = YES;//显示定位图层
     
-    UIViewController *rootVC = ((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
-    UIImage *image = [Tool snapshot:rootVC.view];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-    imageView.frame = CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGH);
-    imageView.userInteractionEnabled = YES;
-    HeTabBarVC *tabBarVC = (HeTabBarVC *)((AppDelegate *)([UIApplication sharedApplication].delegate).window.rootViewController);
-    tabBarVC.currentSnapShot = imageView;
+//    UIViewController *rootVC = ((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
+//    UIImage *image = [Tool snapshot:rootVC.view];
+//    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+//    imageView.frame = CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGH);
+//    imageView.userInteractionEnabled = YES;
+//    HeTabBarVC *tabBarVC = (HeTabBarVC *)((AppDelegate *)([UIApplication sharedApplication].delegate).window.rootViewController);
+//    tabBarVC.currentSnapShot = imageView;
 }
 
 -(void)viewWillAppear:(BOOL)animated {

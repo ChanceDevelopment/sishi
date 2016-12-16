@@ -249,19 +249,9 @@
     switch (row) {
         case 0:
         {
-            if (self.selectIndexDelegate != nil) {
-                [self.selectIndexDelegate selectAtIndex:indexPath animation:YES];
-                return;
-            }
-            if (self.customnav != nil) {
-                HeSearchVC *searchVC = [[HeSearchVC alloc] init];
-                searchVC.hidesBottomBarWhenPushed = YES;
-                [self.customnav pushViewController:searchVC animated:YES];
-                return;
-            }
             HeSearchVC *searchVC = [[HeSearchVC alloc] init];
             searchVC.hidesBottomBarWhenPushed = YES;
-            [_hostVC.rootVC pushViewController:searchVC animated:YES];
+            [self.navigationController pushViewController:searchVC animated:YES];
             break;
         }
         default:
@@ -323,7 +313,7 @@
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"updateChannel" object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"updateChannel" object:nil];
 }
 /*
 #pragma mark - Navigation

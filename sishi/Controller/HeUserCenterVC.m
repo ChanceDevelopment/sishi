@@ -71,34 +71,34 @@
 //    [self addChildViewController:slideView];
 //    slideView.view.hidden = YES;
 }
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:YES];
-//    [[self rdv_tabBarController] setTabBarHidden:YES animated:YES];
-//    RDVTabBarController *tabbarVC = (RDVTabBarController *)((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
-//    [tabbarVC setTabBarHidden:YES animated:YES];
-    HeTabBarVC *tabBarVC = (HeTabBarVC *)((AppDelegate *)([UIApplication sharedApplication].delegate).window.rootViewController);
-    imageView = tabBarVC.currentSnapShot;
-    
-    
-    UIView *alphaView = [[UIView alloc] initWithFrame:imageView.bounds];
-    alphaView.backgroundColor = [UIColor blackColor];
-    alphaView.alpha = 0.6;
-    [imageView addSubview:alphaView];
-    imageView.userInteractionEnabled = YES;
-    [self.view addSubview:imageView];
-}
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:YES];
-    
-    slideView.view.frame = CGRectMake(LEFTMARGIN, 0, SCREENWIDTH, SCREENHEIGH);
-    [self.view addSubview:slideView.view];
-    UIView *view = [self.view viewWithTag:10086];
-    [self.view addSubview:view];
-    
-    [self.navigationController performSelector:@selector(showMenu) withObject:nil afterDelay:0];
-}
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//    [super viewWillAppear:YES];
+////    [[self rdv_tabBarController] setTabBarHidden:YES animated:YES];
+////    RDVTabBarController *tabbarVC = (RDVTabBarController *)((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
+////    [tabbarVC setTabBarHidden:YES animated:YES];
+//    HeTabBarVC *tabBarVC = (HeTabBarVC *)((AppDelegate *)([UIApplication sharedApplication].delegate).window.rootViewController);
+//    imageView = tabBarVC.currentSnapShot;
+//    
+//    
+//    UIView *alphaView = [[UIView alloc] initWithFrame:imageView.bounds];
+//    alphaView.backgroundColor = [UIColor blackColor];
+//    alphaView.alpha = 0.6;
+//    [imageView addSubview:alphaView];
+//    imageView.userInteractionEnabled = YES;
+//    [self.view addSubview:imageView];
+//}
+//- (void)viewDidAppear:(BOOL)animated
+//{
+//    [super viewDidAppear:YES];
+//    
+//    slideView.view.frame = CGRectMake(LEFTMARGIN, 0, SCREENWIDTH, SCREENHEIGH);
+//    [self.view addSubview:slideView.view];
+//    UIView *view = [self.view viewWithTag:10086];
+//    [self.view addSubview:view];
+//    
+//    [self.navigationController performSelector:@selector(showMenu) withObject:nil afterDelay:0];
+//}
 
 - (void)dealloc
 {

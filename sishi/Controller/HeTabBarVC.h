@@ -17,7 +17,7 @@
 #import "HeUserCenterVC.h"
 
 @interface HeTabBarVC : RDVTabBarController<UIAlertViewDelegate>
-@property(strong,nonatomic)HeUserCenterVC *userVC;
+@property(strong,nonatomic)HeSlideMenuVC *userVC;
 @property(strong,nonatomic)HeHomePageVC *homePageVC;
 @property(strong,nonatomic)HeChatVC *chatVC;
 @property(strong,nonatomic)HeInfoMenuVC *menuVC;

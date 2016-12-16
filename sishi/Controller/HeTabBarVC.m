@@ -86,17 +86,17 @@
     homePageVC = [[HeHomePageVC alloc] init];
     homePageVC.view.userInteractionEnabled = YES;
     
-    HeSlideMenuVC *homeMenuVC = [[HeSlideMenuVC alloc] init];
+//    HeSlideMenuVC *homeMenuVC = [[HeSlideMenuVC alloc] init];
     CustomNavigationController *homeNav = [[CustomNavigationController alloc] initWithRootViewController:homePageVC];
-    homeMenuVC.selectIndexDelegate = homePageVC;
+//    homeMenuVC.selectIndexDelegate = homePageVC;
     
     homeNav.navigationBarHidden = YES;
     homeNav.view.userInteractionEnabled = YES;
     
-    REFrostedViewController *homefrostedVC = [[REFrostedViewController alloc] initWithContentViewController:homeNav menuViewController:homeMenuVC];
-    homefrostedVC.view.userInteractionEnabled = YES;
-    homefrostedVC.direction = REFrostedViewControllerDirectionRight;
-    homefrostedVC.liveBlurBackgroundStyle = REFrostedViewControllerLiveBackgroundStyleLight;
+//    REFrostedViewController *homefrostedVC = [[REFrostedViewController alloc] initWithContentViewController:homeNav menuViewController:homeMenuVC];
+//    homefrostedVC.view.userInteractionEnabled = YES;
+//    homefrostedVC.direction = REFrostedViewControllerDirectionRight;
+//    homefrostedVC.liveBlurBackgroundStyle = REFrostedViewControllerLiveBackgroundStyleLight;
     
 //    CustomNavigationController *infoNav = [[CustomNavigationController alloc] initWithRootViewController:homePageVC];
 //    
@@ -115,21 +115,21 @@
     chatVC = [[HeChatVC alloc] init];
     CustomNavigationController *chatNav = [[CustomNavigationController alloc] initWithRootViewController:chatVC];
     
-    userVC = [[HeUserCenterVC alloc] init];
+    userVC = [[HeSlideMenuVC alloc] init];
     CustomNavigationController *userNav = [[CustomNavigationController alloc]
                                            initWithRootViewController:userVC];
     
     userNav.navigationBarHidden = YES;
     userNav.view.userInteractionEnabled = YES;
     
-    HeSlideMenuVC *userMenuVC = [[HeSlideMenuVC alloc] init];
-//    userMenuVC.customnav = userNav;
-    REFrostedViewController *userfrostedVC = [[REFrostedViewController alloc] initWithContentViewController:userNav menuViewController:userMenuVC];
-    userfrostedVC.view.userInteractionEnabled = YES;
-    userfrostedVC.direction = REFrostedViewControllerDirectionRight;
-    userfrostedVC.liveBlurBackgroundStyle = REFrostedViewControllerLiveBackgroundStyleLight;
+//    HeSlideMenuVC *userMenuVC = [[HeSlideMenuVC alloc] init];
+////    userMenuVC.customnav = userNav;
+//    REFrostedViewController *userfrostedVC = [[REFrostedViewController alloc] initWithContentViewController:userNav menuViewController:userMenuVC];
+//    userfrostedVC.view.userInteractionEnabled = YES;
+//    userfrostedVC.direction = REFrostedViewControllerDirectionRight;
+//    userfrostedVC.liveBlurBackgroundStyle = REFrostedViewControllerLiveBackgroundStyleLight;
     
-    [self setViewControllers:@[homefrostedVC,dynamicNav,chatNav,userfrostedVC]];
+    [self setViewControllers:@[homeNav,dynamicNav,chatNav,userNav]];
     [self customizeTabBarForController];
 }
 
