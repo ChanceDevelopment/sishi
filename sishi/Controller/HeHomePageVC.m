@@ -80,6 +80,7 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
+     [self.navigationController setNavigationBarHidden:YES animated:YES];
     [_mapView viewWillAppear];
     _mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
     _locService.delegate = self;
@@ -87,6 +88,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     [BMKMapView enableCustomMapStyle:NO];//关闭个性化地图
     [_mapView viewWillDisappear];
     _mapView.delegate = nil; // 不用时，置nil
@@ -115,7 +117,7 @@
 - (void)initView
 {
     [super initView];
-    self.navigationController.navigationBarHidden = YES;
+//    self.navigationController.navigationBarHidden = YES;
     [Tool setExtraCellLineHidden:tableview];
     tableview.backgroundColor = [UIColor whiteColor];
     
@@ -292,7 +294,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-/// 添加新
+#pragma mark :- 添加新发布
 - (IBAction)onPost:(UIButton *)sender {
     HeDistributeInviteVC *distributeVC = [[HeDistributeInviteVC alloc] init];
     distributeVC.hidesBottomBarWhenPushed = YES;

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A22149981E038E29002D8F52 /* ImageAdder.m in Sources */ = {isa = PBXBuildFile; fileRef = A22149971E038E29002D8F52 /* ImageAdder.m */; };
+		A221499B1E0390E2002D8F52 /* ImageAdderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A221499A1E0390E2002D8F52 /* ImageAdderViewCell.m */; };
+		A221499D1E03BCB7002D8F52 /* add_pho.png in Resources */ = {isa = PBXBuildFile; fileRef = A221499C1E03BCB7002D8F52 /* add_pho.png */; };
 		A2C829891E024E1700645639 /* HeRealTimeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C829871E024E1700645639 /* HeRealTimeDetailController.m */; };
 		A2C8298A1E024E1700645639 /* HeRealTimeDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2C829881E024E1700645639 /* HeRealTimeDetailController.xib */; };
 		A2C829911E0264E500645639 /* ImageBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C829901E0264E500645639 /* ImageBannerView.m */; };
@@ -951,6 +954,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A22149961E038E29002D8F52 /* ImageAdder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAdder.h; sourceTree = "<group>"; };
+		A22149971E038E29002D8F52 /* ImageAdder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageAdder.m; sourceTree = "<group>"; };
+		A22149991E0390E2002D8F52 /* ImageAdderViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAdderViewCell.h; sourceTree = "<group>"; };
+		A221499A1E0390E2002D8F52 /* ImageAdderViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageAdderViewCell.m; sourceTree = "<group>"; };
+		A221499C1E03BCB7002D8F52 /* add_pho.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_pho.png; sourceTree = "<group>"; };
 		A2C829861E024E1700645639 /* HeRealTimeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeRealTimeDetailController.h; sourceTree = "<group>"; };
 		A2C829871E024E1700645639 /* HeRealTimeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeRealTimeDetailController.m; sourceTree = "<group>"; };
 		A2C829881E024E1700645639 /* HeRealTimeDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeRealTimeDetailController.xib; sourceTree = "<group>"; };
@@ -2642,6 +2650,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A22149951E038DC3002D8F52 /* ImagePicker&Viewer(添加图片) */ = {
+			isa = PBXGroup;
+			children = (
+				A22149961E038E29002D8F52 /* ImageAdder.h */,
+				A22149971E038E29002D8F52 /* ImageAdder.m */,
+				A22149991E0390E2002D8F52 /* ImageAdderViewCell.h */,
+				A221499A1E0390E2002D8F52 /* ImageAdderViewCell.m */,
+			);
+			path = "ImagePicker&Viewer(添加图片)";
+			sourceTree = "<group>";
+		};
 		A2C8298B1E02648A00645639 /* BannerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2885,6 +2904,7 @@
 		EA2AC3721D60190D00C57B45 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				A221499C1E03BCB7002D8F52 /* add_pho.png */,
 				EAA7907C1DEBD90500443970 /* abc_ic_commit_search_api_mtrl_alpha.png */,
 				EAA790781DEBD81B00443970 /* icon_back_white.png */,
 				EA12F8191D66EA350085752A /* icon_add.png */,
@@ -3467,6 +3487,7 @@
 		EA8DA9FF1D5A18CF00487BF4 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				A22149951E038DC3002D8F52 /* ImagePicker&Viewer(添加图片) */,
 				A2C829C01E029C5400645639 /* LabelSelectView */,
 				A2C8298B1E02648A00645639 /* BannerView */,
 				EA6DFF7A1D6B54000069F4ED /* DEMOSecondViewController.h */,
@@ -6460,6 +6481,7 @@
 				EADF86401D621C900029DC4F /* icon_013.gif in Resources */,
 				EA8DAE1C1D5A18D000487BF4 /* bg_023@2x.png in Resources */,
 				EADF85691D621C7B0029DC4F /* sr_refresh@2X.png in Resources */,
+				A221499D1E03BCB7002D8F52 /* add_pho.png in Resources */,
 				EADF86581D621C900029DC4F /* account.png in Resources */,
 				EA8DAED51D5A190100487BF4 /* loading_anim1.png in Resources */,
 				EADF862E1D621C900029DC4F /* chat_receiver_audio_playing_full@2x.png in Resources */,
@@ -6585,6 +6607,7 @@
 				EA8DADDE1D5A18D000487BF4 /* RACSignalSequence.m in Sources */,
 				EA8DADFA1D5A18D000487BF4 /* UISwitch+RACSignalSupport.m in Sources */,
 				EADF87B21D621E380029DC4F /* wav.mm in Sources */,
+				A221499B1E0390E2002D8F52 /* ImageAdderViewCell.m in Sources */,
 				EA8DAD051D5A18D000487BF4 /* DCPicScrollView.m in Sources */,
 				EADF88161D621E380029DC4F /* EaseChatToolbar.m in Sources */,
 				EA5F0A9D1D64BFA400F30729 /* DFLikeCommentView.m in Sources */,
@@ -6768,6 +6791,7 @@
 				EA8DADCE1D5A18D000487BF4 /* RACKVOChannel.m in Sources */,
 				EA8DA9FC1D5A18C700487BF4 /* RDVTabBar.m in Sources */,
 				EA8DAE381D5A18D000487BF4 /* UUDatePicker_DateModel.m in Sources */,
+				A22149981E038E29002D8F52 /* ImageAdder.m in Sources */,
 				EA8DADAC1D5A18D000487BF4 /* NSNotificationCenter+RACSupport.m in Sources */,
 				EADF87FD1D621E380029DC4F /* EaseMessageReadManager.m in Sources */,
 				EA8DAE351D5A18D000487BF4 /* UIButton+Bootstrap.m in Sources */,

@@ -11,7 +11,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TripEditController">
             <connections>
+                <outlet property="carTypeLabel" destination="7PR-3c-b0f" id="XnN-aP-Aqt"/>
                 <outlet property="coverImageView" destination="C3Y-Wa-ANG" id="dNX-Ct-5BO"/>
+                <outlet property="destinationInputField" destination="fNX-XN-jUJ" id="mzH-Yo-mmw"/>
+                <outlet property="labelSelectView" destination="jkW-QJ-FTa" id="ZRr-FO-vdG"/>
+                <outlet property="labelViewHeightConstraint" destination="EJb-1r-hwC" id="Rrx-ke-TG3"/>
+                <outlet property="noteInputField" destination="ax9-ga-xZY" id="4g2-bR-5s5"/>
+                <outlet property="startDateBtn" destination="pSF-lh-lRb" id="2PA-f6-9lW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,13 +26,13 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3iB-QO-lxs">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="3iB-QO-lxs">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cL1-bK-jGR">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="473"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C3Y-Wa-ANG">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading_anim1.png" translatesAutoresizingMaskIntoConstraints="NO" id="C3Y-Wa-ANG">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="138"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="138" id="jht-mh-tTe"/>
@@ -38,9 +44,8 @@
                                     <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pSF-lh-lRb">
-                                    <rect key="frame" x="84" y="157" width="87" height="28"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pSF-lh-lRb">
+                                    <rect key="frame" x="84" y="156" width="99" height="30"/>
                                     <state key="normal" title="2018年8月8日">
                                         <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                     </state>
@@ -95,13 +100,13 @@
                                     <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="jkW-QJ-FTa">
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="jkW-QJ-FTa" customClass="LabelSelectView">
                                     <rect key="frame" x="10" y="316" width="355" height="48"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="48" id="EJb-1r-hwC"/>
                                     </constraints>
-                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="25K-ze-egJ">
+                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="25K-ze-egJ">
                                         <size key="itemSize" width="50" height="50"/>
                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -141,10 +146,13 @@
                                     </state>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="10"/>
+                                            <integer key="value" value="5"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="onComplete:" destination="-1" eventType="touchUpInside" id="bye-35-dEz"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -180,6 +188,7 @@
                                 <constraint firstItem="ujU-sZ-LPD" firstAttribute="top" secondItem="KKq-IK-i3h" secondAttribute="bottom" constant="25" id="jTP-Qn-axi"/>
                                 <constraint firstItem="7PR-3c-b0f" firstAttribute="centerY" secondItem="5T4-UW-WA3" secondAttribute="centerY" id="lLz-Xv-pHd"/>
                                 <constraint firstAttribute="trailing" secondItem="ax9-ga-xZY" secondAttribute="trailing" constant="10" id="lqJ-VM-Axt"/>
+                                <constraint firstAttribute="bottom" secondItem="CFG-7A-BVZ" secondAttribute="bottom" constant="10" id="m8i-nZ-xHM"/>
                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="pSF-lh-lRb" secondAttribute="trailing" constant="10" id="mNn-yB-V1w"/>
                                 <constraint firstItem="28j-I5-c5b" firstAttribute="top" secondItem="v4q-6x-qcO" secondAttribute="bottom" constant="20" id="mh8-SM-E9c"/>
                                 <constraint firstItem="KKq-IK-i3h" firstAttribute="top" secondItem="7PR-3c-b0f" secondAttribute="bottom" id="quy-Az-DER"/>
@@ -194,7 +203,6 @@
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="cL1-bK-jGR" secondAttribute="trailing" id="PG1-W2-Ats"/>
-                        <constraint firstItem="cL1-bK-jGR" firstAttribute="height" secondItem="3iB-QO-lxs" secondAttribute="height" id="b4W-bT-ItQ"/>
                         <constraint firstItem="cL1-bK-jGR" firstAttribute="leading" secondItem="3iB-QO-lxs" secondAttribute="leading" id="kWg-p5-s0G"/>
                         <constraint firstAttribute="bottom" secondItem="cL1-bK-jGR" secondAttribute="bottom" id="ldp-oT-t9H"/>
                         <constraint firstItem="cL1-bK-jGR" firstAttribute="width" secondItem="3iB-QO-lxs" secondAttribute="width" id="oxr-Ro-Esj"/>
@@ -211,4 +219,7 @@
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="loading_anim1.png" width="150" height="220"/>
+    </resources>
 </document>

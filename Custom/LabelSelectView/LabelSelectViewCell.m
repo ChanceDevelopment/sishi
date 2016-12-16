@@ -24,9 +24,10 @@
     if (self = [super initWithFrame:frame]) {
         self.labelName = [[UILabel alloc]initWithFrame:CGRectZero];
         self.labelName.font = [UIFont systemFontOfSize:13];
+        self.labelName.textColor = [UIColor scrollViewTexturedBackgroundColor];
         self.labelName.textAlignment = NSTextAlignmentCenter;
         self.labelName.backgroundColor = [UIColor whiteColor];
-        self.labelName.layer.cornerRadius = 3;
+        self.labelName.layer.cornerRadius = 2;
         self.labelName.clipsToBounds = YES;
         self.labelName.layer.borderWidth = 1;
         self.labelName.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor colorWithWhite:0.7 alpha:1]);
@@ -37,10 +38,15 @@
     }
     return self;
 }
-
-- (void)setLabelString:(NSString *)labelString {
-    _labelString = labelString;
-    self.labelName.text = labelString;
+- (void)setLabelModel:(LabelSelectViewModel *)labelModel {
+    _labelModel = labelModel;
+    
+    self.labelName.text = labelModel.labelString;
+    self.labelName.font = labelModel.font;
+    if (labelModel.isSelected) {
+        self.labelName.layer.borderColor = [UIColor redColor].CGColor;
+    } else {
+        self.labelName.layer.borderColor = [UIColor colorWithWhite:0.7 alpha:1].CGColor;
+    }
 }
-
 @end

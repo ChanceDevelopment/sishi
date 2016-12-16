@@ -300,6 +300,7 @@
     NSInteger section = indexPath.section;
     HeRealTimeDetailController *detailController = [[HeRealTimeDetailController alloc] initWithNibName:@"HeRealTimeDetailController" bundle:[NSBundle mainBundle]];
     detailController.hidesBottomBarWhenPushed = YES;
+    detailController.title = @"详情内容";
     [self.navigationController pushViewController:detailController animated:YES];
     
 }

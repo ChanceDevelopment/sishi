@@ -7,6 +7,7 @@
 //
 
 #import "HeRealTimeDetailController.h"
+#import "TripEditController.h"
 
 @interface HeRealTimeDetailController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -28,7 +29,7 @@
 
 - (void)setupView {
     self.title = @"XXXXXXX";
-    
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,7 +37,9 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)onEdit:(UIButton *)sender {
-    
+    TripEditController *tripController = [[TripEditController alloc]initWithNibName:@"TripEditController" bundle:[NSBundle mainBundle]];
+    tripController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:tripController animated:YES];
 }
 
 /*

@@ -10,13 +10,14 @@
 
 @implementation LabelSelectViewModel
 
-- (instancetype)initWithLabelString:(NSString *)label {
+- (instancetype)initWithLabelString:(NSString *)label font:(UIFont *)font{
     if (self = [super init]) {
         self.labelString = label;
+        self.font = font;
         CGSize contentSize = [label boundingRectWithSize:
                               CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)
                                                  options:NSStringDrawingUsesLineFragmentOrigin
-                                              attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}
+                                              attributes:@{NSFontAttributeName:font}
                                                  context:nil].size;
         self.itemSize = CGSizeMake(contentSize.width + 10, contentSize.height + 5);
     }

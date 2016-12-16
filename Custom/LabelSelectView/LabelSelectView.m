@@ -20,14 +20,69 @@
 
 @implementation LabelSelectView
 
+- (NSMutableArray<LabelSelectViewModel *> *)modelList {
+    if (!_modelList) {
+        _modelList = [NSMutableArray array];
+    }
+    return _modelList;
+}
+
+- (void)setLabelList:(NSArray<NSString *> *)labelList {
+    _labelList = labelList;
+    [self.modelList removeAllObjects];
+    for (NSString *labelName in labelList) {
+        LabelSelectViewModel *labelModel = [[LabelSelectViewModel alloc]initWithLabelString:labelName font:self.labelFont];
+        [self.modelList addObject:labelModel];
+    }
+    [self reloadSections:[NSIndexSet indexSetWithIndex:0]];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+    layout.minimumLineSpacing = 5;
+    layout.minimumInteritemSpacing = 5;
+    if (self = [super initWithFrame:frame collectionViewLayout:layout]) {
         self.delegate = self;
         self.dataSource = self;
+        self.scrollEnabled = NO;
         [self registerClass:[LabelSelectViewCell class] forCellWithReuseIdentifier:@"LabelSelectViewCell"];
     }
     return self;
 }
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.delegate = self;
+    self.dataSource = self;
+    self.scrollEnabled = NO;
+    [self registerClass:[LabelSelectViewCell class] forCellWithReuseIdentifier:@"LabelSelectViewCell"];
+}
+
+#pragma mark :- Utils
+
+- (CGFloat)labelViewHeightForLabels:(NSArray<NSString *> *)labels targetRectWidth:(CGFloat)rectWidth {
+    NSUInteger lineCount = 1;
+    CGFloat finalX = 0.0;
+    CGFloat columeSpacing = 5.0;
+    CGFloat itemHeight = 0.0;
+    CGFloat lineSpacing = 5.0;
+    for (NSString *labelName in labels) {
+        LabelSelectViewModel *itemModel = [[LabelSelectViewModel alloc]initWithLabelString:labelName font:self.labelFont];
+        if (itemHeight != itemModel.itemSize.height) {//获取每个单元格的高度
+            itemHeight = itemModel.itemSize.height;
+        }
+        CGSize itemSize = itemModel.itemSize;
+            if (rectWidth > itemSize.width + finalX + columeSpacing) {//可以放下当前的单元格
+            finalX += itemSize.width + columeSpacing;
+        } else {//放不下当前单元格,执行换行操作
+            finalX = 0.0;
+            lineCount += 1;
+        }
+    }
+    CGFloat viewHeight = lineCount * itemHeight + (lineCount - 1) * lineSpacing;
+    return viewHeight;
+}
+
 
 #pragma mark :- UICollectionViewDelegate & DataSource
 
@@ -40,11 +95,16 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(LabelSelectViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    cell.labelString = [self.modelList[indexPath.item] labelString];
+    cell.labelModel = self.modelList[indexPath.item];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return self.modelList[indexPath.item].itemSize;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self.modelList objectAtIndex:indexPath.row].selected = ![self.modelList objectAtIndex:indexPath.row].isSelected;
+    [self reloadItemsAtIndexPaths:@[indexPath]];
 }
 
 /*

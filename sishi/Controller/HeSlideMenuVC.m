@@ -183,7 +183,7 @@
 //    [narvigationBar setTitleTextAttributes:attributeDict];
 //    [self.view addSubview:narvigationBar];
     
-    UINavigationItem *navitem = [[UINavigationItem alloc] initWithTitle:nil];
+    UINavigationItem *navitem = [[UINavigationItem alloc] initWithTitle:@""];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
     label.backgroundColor = [UIColor clearColor];
@@ -241,6 +241,7 @@
     // set the root controller
     NSLog(@"%@",self.navigationController);
     [_hostVC showRootController:YES];
+    
     NSInteger row = indexPath.row;
     NSInteger section = indexPath.section;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

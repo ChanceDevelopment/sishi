@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HeBaseViewController : UIViewController
+@interface HeBaseViewController : UIViewController<UIGestureRecognizerDelegate>
 
 - (void)initializaiton;
 - (void)initView;

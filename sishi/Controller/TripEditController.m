@@ -7,9 +7,16 @@
 //
 
 #import "TripEditController.h"
+#import "LabelSelectView.h"
 
 @interface TripEditController ()
 @property (weak, nonatomic) IBOutlet UIImageView *coverImageView;
+@property (weak, nonatomic) IBOutlet UIButton *startDateBtn;
+@property (weak, nonatomic) IBOutlet UITextField *destinationInputField;
+@property (weak, nonatomic) IBOutlet UITextField *carTypeLabel;
+@property (weak, nonatomic) IBOutlet LabelSelectView *labelSelectView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *labelViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet UITextField *noteInputField;
 
 @end
 
@@ -17,13 +24,37 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self setupView];
+    
+}
+
+- (void)setupView {
+    NSArray *labels = ({
+        NSMutableArray *labelList = [NSMutableArray arrayWithCapacity:10];
+        for (NSInteger index = 0; index < 10; index ++) {
+            NSString *labelString = [NSString stringWithFormat:@"标签%ld",index];
+            [labelList addObject:labelString];
+        }
+        [NSArray arrayWithArray:labelList];
+    });
+    self.labelSelectView.labelFont = [UIFont systemFontOfSize:15];
+    self.labelSelectView.labelList = labels;
+    CGFloat viewHeight = [self.labelSelectView labelViewHeightForLabels:labels targetRectWidth:SCREENWIDTH - 10];
+    self.labelViewHeightConstraint.constant = viewHeight;
     
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+/**
+ 点击 "完成"按钮
+ */
+- (IBAction)onComplete:(UIButton *)sender {
+    
 }
 
 /*

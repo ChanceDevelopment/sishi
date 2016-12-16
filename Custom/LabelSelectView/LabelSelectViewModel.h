@@ -20,8 +20,18 @@
  */
 @property(nonatomic,assign)CGSize itemSize;
 
+/**
+ *  标签需要展示的文字的字体
+ */
+@property(nonatomic,strong)UIFont *font;
+
+/**
+ *  当前标签是否被点击
+ */
+@property(nonatomic,assign,getter=isSelected)BOOL selected;
 
 
-- (instancetype)initWithLabelString:(NSString *)label;
+
+- (instancetype)initWithLabelString:(NSString *)label font:(UIFont *)font;
 
 @end

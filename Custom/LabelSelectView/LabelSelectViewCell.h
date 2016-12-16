@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "Masonry.h"
+#import "LabelSelectViewModel.h"
 
 @interface LabelSelectViewCell : UICollectionViewCell
 
 /**
- *  当前表情名称
+ *  当前标签的Model
  */
-@property(nonatomic,strong)NSString *labelString;
+@property(nonatomic,strong)LabelSelectViewModel *labelModel;
 
 
 @end

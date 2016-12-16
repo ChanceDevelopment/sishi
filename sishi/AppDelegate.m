@@ -120,9 +120,9 @@ BMKMapManager* _mapManager;
     if (haveLogin) {//登陆成功加载主窗口控制器
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         
-        [UINavigationBar appearance].tintColor = [UIColor blackColor];
-        [[UINavigationBar appearance] setTitleTextAttributes:
-         [NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], NSForegroundColorAttributeName, [UIFont systemFontOfSize:20.0], NSFontAttributeName, nil]];
+//        [UINavigationBar appearance].tintColor = [UIColor blackColor];
+//        [[UINavigationBar appearance] setTitleTextAttributes:
+//         [NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], NSForegroundColorAttributeName, [UIFont systemFontOfSize:20.0], NSFontAttributeName, nil]];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
         
         HeTabBarVC *tabBarController = [[HeTabBarVC alloc] init];
@@ -151,7 +151,7 @@ BMKMapManager* _mapManager;
     
     [[UINavigationBar appearance] setShadowImage:[UIImage new]];
     if (ISIOS7) {
-        [[UINavigationBar appearance] setTintColor:NAVTINTCOLOR];
+        [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
         UIImage *navBackgroundImage = [UIImage imageNamed:@"NavBarIOS7_white"];
         [[UINavigationBar appearance] setBackgroundImage:navBackgroundImage forBarMetrics:UIBarMetricsDefault];
         NSDictionary *attributeDict = @{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:20.0]};

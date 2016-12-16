@@ -19,6 +19,7 @@
 #define ISIOS6 ([[[UIDevice currentDevice] systemVersion] floatValue] < 6.9)
 #define IOS7OFFSET        64
 
+#define kWeakSelf __weak typeof(self) weakSelf = self
 
 //百度地图的appKey
 #define BAIDUMAPKEY @"88pB2Bdcg0bPyCPjEXTXaLGkhUBUU2Ft"
