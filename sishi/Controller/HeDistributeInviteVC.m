@@ -44,7 +44,6 @@
         weakSelf.imageAdderHeightConstraint.constant = viewHeight;
         [weakSelf.containerView layoutIfNeeded];
     };
-    
 }
 
 #pragma mark :- ImageAdder Delegate

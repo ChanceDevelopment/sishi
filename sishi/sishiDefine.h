@@ -103,6 +103,12 @@
 #define REQUESTCODE_SUCCEED 200
 //活动的图标空位符号
 #define EMPTYSTRING @"     : "
+
+#define UIColorFromRGB(rgbValue) [UIColor \
+colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
 //默认橙色的RGB
 #define APPDEFAULTORANGE ([UIColor colorWithRed:255.0 / 255.0 green:174.0 / 255.0 blue:0.0 / 255.0 alpha:1.0])
 //默认标题颜色

@@ -10,6 +10,14 @@
 		A22149981E038E29002D8F52 /* ImageAdder.m in Sources */ = {isa = PBXBuildFile; fileRef = A22149971E038E29002D8F52 /* ImageAdder.m */; };
 		A221499B1E0390E2002D8F52 /* ImageAdderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A221499A1E0390E2002D8F52 /* ImageAdderViewCell.m */; };
 		A221499D1E03BCB7002D8F52 /* add_pho.png in Resources */ = {isa = PBXBuildFile; fileRef = A221499C1E03BCB7002D8F52 /* add_pho.png */; };
+		A22149A01E03EA74002D8F52 /* MyTripListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A221499F1E03EA74002D8F52 /* MyTripListController.m */; };
+		A22149A71E03EBBD002D8F52 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = A22149A21E03EBBD002D8F52 /* LICENSE */; };
+		A22149A81E03EBBD002D8F52 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A22149A31E03EBBD002D8F52 /* README.md */; };
+		A22149A91E03EBBD002D8F52 /* UICollectionViewLeftAlignedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A22149A61E03EBBD002D8F52 /* UICollectionViewLeftAlignedLayout.m */; };
+		A22149AC1E03F2B9002D8F52 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A22149AB1E03F2B9002D8F52 /* SettingsController.m */; };
+		A22149AF1E03F39A002D8F52 /* FocusListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A22149AE1E03F39A002D8F52 /* FocusListViewController.m */; };
+		A22149B31E03F426002D8F52 /* FocusTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A22149B11E03F426002D8F52 /* FocusTableViewCell.m */; };
+		A22149B41E03F426002D8F52 /* FocusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A22149B21E03F426002D8F52 /* FocusTableViewCell.xib */; };
 		A2C829891E024E1700645639 /* HeRealTimeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C829871E024E1700645639 /* HeRealTimeDetailController.m */; };
 		A2C8298A1E024E1700645639 /* HeRealTimeDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2C829881E024E1700645639 /* HeRealTimeDetailController.xib */; };
 		A2C829911E0264E500645639 /* ImageBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C829901E0264E500645639 /* ImageBannerView.m */; };
@@ -959,6 +967,19 @@
 		A22149991E0390E2002D8F52 /* ImageAdderViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAdderViewCell.h; sourceTree = "<group>"; };
 		A221499A1E0390E2002D8F52 /* ImageAdderViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageAdderViewCell.m; sourceTree = "<group>"; };
 		A221499C1E03BCB7002D8F52 /* add_pho.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_pho.png; sourceTree = "<group>"; };
+		A221499E1E03EA74002D8F52 /* MyTripListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTripListController.h; sourceTree = "<group>"; };
+		A221499F1E03EA74002D8F52 /* MyTripListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTripListController.m; sourceTree = "<group>"; };
+		A22149A21E03EBBD002D8F52 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		A22149A31E03EBBD002D8F52 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		A22149A51E03EBBD002D8F52 /* UICollectionViewLeftAlignedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICollectionViewLeftAlignedLayout.h; sourceTree = "<group>"; };
+		A22149A61E03EBBD002D8F52 /* UICollectionViewLeftAlignedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICollectionViewLeftAlignedLayout.m; sourceTree = "<group>"; };
+		A22149AA1E03F2B9002D8F52 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
+		A22149AB1E03F2B9002D8F52 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
+		A22149AD1E03F39A002D8F52 /* FocusListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FocusListViewController.h; sourceTree = "<group>"; };
+		A22149AE1E03F39A002D8F52 /* FocusListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FocusListViewController.m; sourceTree = "<group>"; };
+		A22149B01E03F426002D8F52 /* FocusTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FocusTableViewCell.h; sourceTree = "<group>"; };
+		A22149B11E03F426002D8F52 /* FocusTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FocusTableViewCell.m; sourceTree = "<group>"; };
+		A22149B21E03F426002D8F52 /* FocusTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FocusTableViewCell.xib; sourceTree = "<group>"; };
 		A2C829861E024E1700645639 /* HeRealTimeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeRealTimeDetailController.h; sourceTree = "<group>"; };
 		A2C829871E024E1700645639 /* HeRealTimeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeRealTimeDetailController.m; sourceTree = "<group>"; };
 		A2C829881E024E1700645639 /* HeRealTimeDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeRealTimeDetailController.xib; sourceTree = "<group>"; };
@@ -2661,6 +2682,25 @@
 			path = "ImagePicker&Viewer(添加图片)";
 			sourceTree = "<group>";
 		};
+		A22149A11E03EBBD002D8F52 /* UICollectionViewLeftAlignedLayout */ = {
+			isa = PBXGroup;
+			children = (
+				A22149A21E03EBBD002D8F52 /* LICENSE */,
+				A22149A31E03EBBD002D8F52 /* README.md */,
+				A22149A41E03EBBD002D8F52 /* UICollectionViewLeftAlignedLayout */,
+			);
+			path = UICollectionViewLeftAlignedLayout;
+			sourceTree = "<group>";
+		};
+		A22149A41E03EBBD002D8F52 /* UICollectionViewLeftAlignedLayout */ = {
+			isa = PBXGroup;
+			children = (
+				A22149A51E03EBBD002D8F52 /* UICollectionViewLeftAlignedLayout.h */,
+				A22149A61E03EBBD002D8F52 /* UICollectionViewLeftAlignedLayout.m */,
+			);
+			path = UICollectionViewLeftAlignedLayout;
+			sourceTree = "<group>";
+		};
 		A2C8298B1E02648A00645639 /* BannerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2740,6 +2780,12 @@
 				EA12F7EE1D6554F30085752A /* HeSearchVC.h */,
 				EA12F7EF1D6554F30085752A /* HeSearchVC.m */,
 				EA12F7F01D6554F30085752A /* HeSearchVC.xib */,
+				A221499E1E03EA74002D8F52 /* MyTripListController.h */,
+				A221499F1E03EA74002D8F52 /* MyTripListController.m */,
+				A22149AA1E03F2B9002D8F52 /* SettingsController.h */,
+				A22149AB1E03F2B9002D8F52 /* SettingsController.m */,
+				A22149AD1E03F39A002D8F52 /* FocusListViewController.h */,
+				A22149AE1E03F39A002D8F52 /* FocusListViewController.m */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
@@ -3268,6 +3314,9 @@
 			children = (
 				EA5F0AAB1D64C77400F30729 /* HeRealTrendTableCell.h */,
 				EA5F0AAC1D64C77400F30729 /* HeRealTrendTableCell.m */,
+				A22149B01E03F426002D8F52 /* FocusTableViewCell.h */,
+				A22149B11E03F426002D8F52 /* FocusTableViewCell.m */,
+				A22149B21E03F426002D8F52 /* FocusTableViewCell.xib */,
 			);
 			name = Dynamic;
 			sourceTree = "<group>";
@@ -4647,6 +4696,7 @@
 		EA8DAE581D5A18F200487BF4 /* ThirdPartySDK */ = {
 			isa = PBXGroup;
 			children = (
+				A22149A11E03EBBD002D8F52 /* UICollectionViewLeftAlignedLayout */,
 				A2C829921E027D0500645639 /* Masonry */,
 				EAA4F3261E01316200EF9E14 /* umsdk_IOS_analyics_no-idfa_v4.0.5 */,
 				EAA790CE1DEBDE6000443970 /* SMS_SDK */,
@@ -6326,6 +6376,7 @@
 				EA2AC31F1D5EBFC400C57B45 /* HeUserVC.xib in Resources */,
 				EA8DAEC31D5A18F200487BF4 /* README.txt in Resources */,
 				EADF867E1D621CBE0029DC4F /* Settings.bundle in Resources */,
+				A22149B41E03F426002D8F52 /* FocusTableViewCell.xib in Resources */,
 				EADF86131D621C900029DC4F /* chatListCellHead@2x.png in Resources */,
 				EADF86201D621C900029DC4F /* chat_location_detail_disclosure.png in Resources */,
 				EA12F80F1D6589E30085752A /* tabar_user_icon_normal@3x.png in Resources */,
@@ -6411,6 +6462,7 @@
 				EADF866F1D621C900029DC4F /* tabbar_chatsHL@2x.png in Resources */,
 				EA2AC3961D60192300C57B45 /* newUserIcon.png in Resources */,
 				EA2AC32F1D5EC08400C57B45 /* HeChatVC.xib in Resources */,
+				A22149A71E03EBBD002D8F52 /* LICENSE in Resources */,
 				EADF86651D621C900029DC4F /* group_joinpublicgroup@2x.png in Resources */,
 				EADF86661D621C900029DC4F /* group_participant_add@2x.png in Resources */,
 				EADF863C1D621C900029DC4F /* icon_010.gif in Resources */,
@@ -6594,6 +6646,7 @@
 				EADF88401D6225EA0029DC4F /* RealtimeSearchUtil.m in Sources */,
 				EADF87E91D621E380029DC4F /* PSTCollectionViewFlowLayout.m in Sources */,
 				EA8DACFA1D5A18D000487BF4 /* ASIDataCompressor.m in Sources */,
+				A22149A01E03EA74002D8F52 /* MyTripListController.m in Sources */,
 				EA8DAD201D5A18D000487BF4 /* DFToolUtil.m in Sources */,
 				EADF87CB1D621E380029DC4F /* MWCaptionView.m in Sources */,
 				EA8DADF31D5A18D000487BF4 /* UIDatePicker+RACSignalSupport.m in Sources */,
@@ -6708,6 +6761,7 @@
 				EADF88121D621E380029DC4F /* EaseBubbleView+Text.m in Sources */,
 				A2C829C91E029F6F00645639 /* LabelSelectViewModel.m in Sources */,
 				EADF87C71D621E380029DC4F /* MJRefreshConst.m in Sources */,
+				A22149A81E03EBBD002D8F52 /* README.md in Sources */,
 				EADF88251D6221C90029DC4F /* InvitationManager.m in Sources */,
 				EADF87F91D621E380029DC4F /* UIViewController+DismissKeyboard.m in Sources */,
 				EA8DAD1C1D5A18D000487BF4 /* DFReachabilityUtil.m in Sources */,
@@ -6751,6 +6805,7 @@
 				EADF88031D621E380029DC4F /* EaseConversationListViewController.m in Sources */,
 				EADF880D1D621E380029DC4F /* EaseMessageTimeCell.m in Sources */,
 				EA8DADED1D5A18D000487BF4 /* UIAlertView+RACSignalSupport.m in Sources */,
+				A22149AF1E03F39A002D8F52 /* FocusListViewController.m in Sources */,
 				EA8DAD0D1D5A18D000487BF4 /* UITabBar+Badge.m in Sources */,
 				EADF87E41D621E380029DC4F /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				EADF87E21D621E380029DC4F /* UIImageView+EMWebCache.m in Sources */,
@@ -6910,6 +6965,7 @@
 				EA8DAD4B1D5A18D000487BF4 /* README.markdown in Sources */,
 				EA8DA9F71D5A18C700487BF4 /* CustomNavigationController.m in Sources */,
 				EA8DACF61D5A18D000487BF4 /* UIRefreshControl+AFNetworking.m in Sources */,
+				A22149A91E03EBBD002D8F52 /* UICollectionViewLeftAlignedLayout.m in Sources */,
 				EA8DAEB51D5A18F200487BF4 /* qrencode.c in Sources */,
 				EADF88141D621E380029DC4F /* EaseBubbleView+Voice.m in Sources */,
 				EA8DADCB1D5A18D000487BF4 /* RACGroupedSignal.m in Sources */,
@@ -7051,6 +7107,7 @@
 				EADF87EF1D621E380029DC4F /* PSTGridLayoutRow.m in Sources */,
 				EA8DA9E21D5A18BB00487BF4 /* NSString+Valid.m in Sources */,
 				EA8DACFD1D5A18D000487BF4 /* ASIFormDataRequest.m in Sources */,
+				A22149B31E03F426002D8F52 /* FocusTableViewCell.m in Sources */,
 				EA8DAD5C1D5A18D000487BF4 /* UIView+IQKeyboardToolbar.m in Sources */,
 				EA8DADB21D5A18D000487BF4 /* NSObject+RACSelectorSignal.m in Sources */,
 				EA8DAD9F1D5A18D000487BF4 /* NYSegmentIndicator.m in Sources */,
@@ -7062,6 +7119,7 @@
 				EA5F0A731D64BFA400F30729 /* DFActivityLineItem.m in Sources */,
 				EA6DFF6E1D6B51FF0069F4ED /* UIImage+REFrostedViewController.m in Sources */,
 				EA8DAE1B1D5A18D000487BF4 /* SVProgressHUD.m in Sources */,
+				A22149AC1E03F2B9002D8F52 /* SettingsController.m in Sources */,
 				EA8DAEB41D5A18F200487BF4 /* QRCodeGenerator.m in Sources */,
 				EADF88111D621E380029DC4F /* EaseBubbleView+Location.m in Sources */,
 				EA8DAE3D1D5A18D000487BF4 /* UIView+convenience.m in Sources */,

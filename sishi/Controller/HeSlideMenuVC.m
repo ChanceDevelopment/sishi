@@ -10,6 +10,9 @@
 #import "DDMenuController.h"
 #import "HeBaseIconTitleTableCell.h"
 #import "HeSearchVC.h"
+#import "MyTripListController.h"
+#import "SettingsController.h"
+#import "FocusListViewController.h"
 
 #define kMenuDisplayedWidth 280.0f
 #define TextLineHeight 1.2f
@@ -43,6 +46,7 @@
     [self initializaiton];
     [self initView];
     [self loadDataFromLocal];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -55,8 +59,6 @@
     [super initializaiton];
     titledataSource = @[@"搜索",@"我的行程",@"设置",@"关于我们",@"向我们反馈"];
     dataSource = @[@"icon_search",@"icon_trip",@"icon_set_black",@"icon_aboutus",@"icon_feedback"];
-    
-    
 }
 
 - (void)loadDataFromLocal
@@ -238,7 +240,6 @@
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    // set the root controller
     NSLog(@"%@",self.navigationController);
     [_hostVC showRootController:YES];
     
@@ -254,6 +255,21 @@
             [self.navigationController pushViewController:searchVC animated:YES];
             break;
         }
+        case 1: {
+            MyTripListController *myTripList = [[MyTripListController alloc]init];
+            myTripList.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:myTripList animated:YES];
+        }break;
+        case 2: {
+            SettingsController *settingController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"SettingsController"];
+            settingController.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:settingController animated:YES];
+        }break;
+        case 5:{
+            FocusListViewController *focusController = [[FocusListViewController alloc]initWithStyle:UITableViewStylePlain];
+            focusController.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:focusController animated:YES];
+        }break;
         default:
             break;
     }
