@@ -22,6 +22,11 @@
 		A2C829B81E027D0500645639 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C829AA1E027D0500645639 /* View+MASAdditions.m */; };
 		A2C829B91E027D0500645639 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C829AD1E027D0500645639 /* ViewController+MASAdditions.m */; };
 		A2C829BA1E027D0500645639 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A2C829AE1E027D0500645639 /* README.md */; };
+		A2C829BE1E02972300645639 /* TripEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C829BC1E02972300645639 /* TripEditController.m */; };
+		A2C829BF1E02972300645639 /* TripEditController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2C829BD1E02972300645639 /* TripEditController.xib */; };
+		A2C829C31E029C9C00645639 /* LabelSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C829C21E029C9C00645639 /* LabelSelectView.m */; };
+		A2C829C61E029CBA00645639 /* LabelSelectViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C829C51E029CBA00645639 /* LabelSelectViewCell.m */; };
+		A2C829C91E029F6F00645639 /* LabelSelectViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C829C81E029F6F00645639 /* LabelSelectViewModel.m */; };
 		EA12F7EA1D65492B0085752A /* icon_cooperate.png in Resources */ = {isa = PBXBuildFile; fileRef = EA12F7E91D65492B0085752A /* icon_cooperate.png */; };
 		EA12F7EC1D654A950085752A /* icon_tips.png in Resources */ = {isa = PBXBuildFile; fileRef = EA12F7EB1D654A950085752A /* icon_tips.png */; };
 		EA12F7F11D6554F30085752A /* HeSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA12F7EF1D6554F30085752A /* HeSearchVC.m */; };
@@ -978,6 +983,15 @@
 		A2C829AC1E027D0500645639 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		A2C829AD1E027D0500645639 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
 		A2C829AE1E027D0500645639 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		A2C829BB1E02972300645639 /* TripEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripEditController.h; sourceTree = "<group>"; };
+		A2C829BC1E02972300645639 /* TripEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripEditController.m; sourceTree = "<group>"; };
+		A2C829BD1E02972300645639 /* TripEditController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripEditController.xib; sourceTree = "<group>"; };
+		A2C829C11E029C9C00645639 /* LabelSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelSelectView.h; sourceTree = "<group>"; };
+		A2C829C21E029C9C00645639 /* LabelSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelSelectView.m; sourceTree = "<group>"; };
+		A2C829C41E029CBA00645639 /* LabelSelectViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelSelectViewCell.h; sourceTree = "<group>"; };
+		A2C829C51E029CBA00645639 /* LabelSelectViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelSelectViewCell.m; sourceTree = "<group>"; };
+		A2C829C71E029F6F00645639 /* LabelSelectViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelSelectViewModel.h; sourceTree = "<group>"; };
+		A2C829C81E029F6F00645639 /* LabelSelectViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelSelectViewModel.m; sourceTree = "<group>"; };
 		EA12F7E91D65492B0085752A /* icon_cooperate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_cooperate.png; sourceTree = "<group>"; };
 		EA12F7EB1D654A950085752A /* icon_tips.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_tips.png; sourceTree = "<group>"; };
 		EA12F7EE1D6554F30085752A /* HeSearchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeSearchVC.h; sourceTree = "<group>"; };
@@ -2679,6 +2693,19 @@
 			path = Masonry;
 			sourceTree = "<group>";
 		};
+		A2C829C01E029C5400645639 /* LabelSelectView */ = {
+			isa = PBXGroup;
+			children = (
+				A2C829C11E029C9C00645639 /* LabelSelectView.h */,
+				A2C829C21E029C9C00645639 /* LabelSelectView.m */,
+				A2C829C41E029CBA00645639 /* LabelSelectViewCell.h */,
+				A2C829C51E029CBA00645639 /* LabelSelectViewCell.m */,
+				A2C829C71E029F6F00645639 /* LabelSelectViewModel.h */,
+				A2C829C81E029F6F00645639 /* LabelSelectViewModel.m */,
+			);
+			path = LabelSelectView;
+			sourceTree = "<group>";
+		};
 		EA12F7E81D6549220085752A /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -2934,6 +2961,9 @@
 				A2C829861E024E1700645639 /* HeRealTimeDetailController.h */,
 				A2C829871E024E1700645639 /* HeRealTimeDetailController.m */,
 				A2C829881E024E1700645639 /* HeRealTimeDetailController.xib */,
+				A2C829BB1E02972300645639 /* TripEditController.h */,
+				A2C829BC1E02972300645639 /* TripEditController.m */,
+				A2C829BD1E02972300645639 /* TripEditController.xib */,
 				EA12F81B1D66EB100085752A /* HeDistributeInviteVC.h */,
 				EA12F81C1D66EB100085752A /* HeDistributeInviteVC.m */,
 				EA12F81D1D66EB100085752A /* HeDistributeInviteVC.xib */,
@@ -3437,6 +3467,7 @@
 		EA8DA9FF1D5A18CF00487BF4 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				A2C829C01E029C5400645639 /* LabelSelectView */,
 				A2C8298B1E02648A00645639 /* BannerView */,
 				EA6DFF7A1D6B54000069F4ED /* DEMOSecondViewController.h */,
 				EA6DFF7B1D6B54000069F4ED /* DEMOSecondViewController.m */,
@@ -6441,6 +6472,7 @@
 				EAA7909F1DEBDB0200443970 /* icon_change.png in Resources */,
 				EA12F8081D6589E30085752A /* tabar_dynamic_icon_active@3x.png in Resources */,
 				EA8DAD941D5A18D000487BF4 /* arrow_down@2x.png in Resources */,
+				A2C829BF1E02972300645639 /* TripEditController.xib in Resources */,
 				EADF866B1D621C900029DC4F /* newFriends@2x.png in Resources */,
 				EA8DAEBF1D5A18F200487BF4 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				EAA790811DEBD9D700443970 /* icon_delete@2x.png in Resources */,
@@ -6641,6 +6673,7 @@
 				EADF87DC1D621E380029DC4F /* NSData+EMImageContentType.m in Sources */,
 				EADF87C01D621E380029DC4F /* MJRefreshBackGifFooter.m in Sources */,
 				EADF880B1D621E380029DC4F /* EaseCustomMessageCell.m in Sources */,
+				A2C829C61E029CBA00645639 /* LabelSelectViewCell.m in Sources */,
 				EA5F0A711D64BFA400F30729 /* DFUserTimeLineViewController.m in Sources */,
 				EADF87AB1D621E380029DC4F /* EMAudioRecorderUtil.m in Sources */,
 				EA5F09E31D64BF4700F30729 /* HeLogTableVC.m in Sources */,
@@ -6650,6 +6683,7 @@
 				EA8DACF41D5A18D000487BF4 /* UIImageView+AFNetworking.m in Sources */,
 				EA8DADBF1D5A18D000487BF4 /* RACCommand.m in Sources */,
 				EADF88121D621E380029DC4F /* EaseBubbleView+Text.m in Sources */,
+				A2C829C91E029F6F00645639 /* LabelSelectViewModel.m in Sources */,
 				EADF87C71D621E380029DC4F /* MJRefreshConst.m in Sources */,
 				EADF88251D6221C90029DC4F /* InvitationManager.m in Sources */,
 				EADF87F91D621E380029DC4F /* UIViewController+DismissKeyboard.m in Sources */,
@@ -6954,6 +6988,7 @@
 				EADF886A1D62271A0029DC4F /* PublicGroupDetailViewController.m in Sources */,
 				EADF856A1D621C7B0029DC4F /* SRRefreshView.m in Sources */,
 				EA5F0A741D64BFA400F30729 /* DFBaseLineItem.m in Sources */,
+				A2C829C31E029C9C00645639 /* LabelSelectView.m in Sources */,
 				EA8DAE291D5A18D000487BF4 /* TZImageManager.m in Sources */,
 				EADF88861D6227620029DC4F /* RobotListViewController.m in Sources */,
 				EA8DAE501D5A18DF00487BF4 /* UIImageUploader.m in Sources */,
@@ -7018,6 +7053,7 @@
 				EA8DADC91D5A18D000487BF4 /* RACErrorSignal.m in Sources */,
 				EA8DADEA1D5A18D000487BF4 /* RACUnit.m in Sources */,
 				A2C829911E0264E500645639 /* ImageBannerView.m in Sources */,
+				A2C829BE1E02972300645639 /* TripEditController.m in Sources */,
 				EA8DAD8B1D5A18D000487BF4 /* NSMutableAttributedString+MLLabel.m in Sources */,
 				EA8DAD161D5A18D000487BF4 /* JSBadgeView.m in Sources */,
 				EA5F0A661D64BFA400F30729 /* DFBaseLineCellAdapter.m in Sources */,
