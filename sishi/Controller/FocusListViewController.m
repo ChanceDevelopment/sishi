@@ -23,9 +23,19 @@
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    [self.tableView registerClass:[FocusTableViewCell class] forCellReuseIdentifier:@"FocusTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"FocusTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"FocusTableViewCell"];
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 #pragma mark - Table view data source

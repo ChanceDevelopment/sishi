@@ -206,7 +206,10 @@ BMKMapManager* _mapManager;
 {
     [ShareSDK registerApp:SHARESDKKEY
           activePlatforms:@[
-                            @(SSDKPlatformTypeWechat)
+                            @(SSDKPlatformTypeWechat),
+                            @(SSDKPlatformTypeQQ),
+                            @(SSDKPlatformSubTypeWechatTimeline),
+                            @(SSDKPlatformSubTypeWechatSession)
                             ]
                  onImport:^(SSDKPlatformType platformType) {
                      
@@ -220,8 +223,9 @@ BMKMapManager* _mapManager;
                              [ShareSDKConnector connectQQ:[QQApiInterface class]
                                         tencentOAuthClass:[TencentOAuth class]];
                              break;
-                             
-                             
+                            case SSDKPlatformTypeSinaWeibo:
+                             [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+                             break;
                          default:
                              break;
                      }
@@ -240,6 +244,12 @@ BMKMapManager* _mapManager;
                       [appInfo SSDKSetupQQByAppId:QQKEY
                                            appKey:QQAPPSECRET
                                          authType:SSDKAuthTypeBoth];
+                      break;
+                      
+                    case SSDKPlatformTypeSinaWeibo:
+                  {
+                      [appInfo SSDKSetupSinaWeiboByAppKey:SINAWEIBOKEY appSecret:SINAWEIBOAPPSECRET redirectUri:SINAWEIBOREDURECTURI authType:SSDKAuthTypeBoth];
+                  }
                       break;
                       
                   default:

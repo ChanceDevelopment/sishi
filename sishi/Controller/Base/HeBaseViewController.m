@@ -32,9 +32,9 @@
 {
     [super viewWillAppear:animated];
     //代理置空，否则会闪退
-    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        self.navigationController.interactivePopGestureRecognizer.delegate = nil;
-    }
+//    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+//        self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+//    }
     if ([self isMemberOfClass:[HeLoginVC class]] || [self isMemberOfClass:[HeSlideMenuVC class]] || [self isMemberOfClass:[HeRealTimeTrendVC class]] || [self isMemberOfClass:[HeLogTableVC class]]) {
         
         return;
@@ -77,17 +77,17 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     //开启iOS7的滑动返回效果
-    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        //只有在二级页面生效
-        if ([self.navigationController.viewControllers count] >= 2) {
-            self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-            self.navigationController.interactivePopGestureRecognizer.delegate = self;
-        }
-        else{
-            self.navigationController.interactivePopGestureRecognizer.delegate = nil;
-            self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-        }
-    }
+//    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+//        //只有在二级页面生效
+//        if ([self.navigationController.viewControllers count] >= 2) {
+//            self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+//            self.navigationController.interactivePopGestureRecognizer.delegate = self;
+//        }
+//        else{
+//            self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+//            self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+//        }
+//    }
 }
 
 //变量资源的初始化

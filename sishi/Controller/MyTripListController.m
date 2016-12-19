@@ -23,7 +23,8 @@
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    [self.tableView registerClass:[HeRealTrendTableCell class] forCellReuseIdentifier:@"HeRealTrendTableCell"];
+//    [self.tableView registerClass:[HeRealTrendTableCell class] forCellReuseIdentifier:@"HeRealTrendTableCell"];
+    self.tableView.tableFooterView = [[UIView alloc]init];
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -41,8 +42,8 @@
 #pragma mark - Table view data source
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    return UITableViewAutomaticDimension;
+//    self.navigationController.
+    return 120;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -52,12 +53,16 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 //#warning Incomplete implementation, return the number of rows
-    return self.dataList.count;
+//    return self.dataList.count;
+    return 10;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HeRealTrendTableCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HeRealTrendTableCell"];
+    if (!cell) {
+        cell = [[HeRealTrendTableCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HeRealTrendTableCell" cellSize:CGSizeMake(SCREENWIDTH, 120)];
+    }
     
     return cell;
 }

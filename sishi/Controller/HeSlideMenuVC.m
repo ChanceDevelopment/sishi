@@ -13,6 +13,12 @@
 #import "MyTripListController.h"
 #import "SettingsController.h"
 #import "FocusListViewController.h"
+#import <UMMobClick/MobClick.h>
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKConnector/ShareSDKConnector.h>
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+
 
 #define kMenuDisplayedWidth 280.0f
 #define TextLineHeight 1.2f
@@ -57,8 +63,8 @@
 - (void)initializaiton
 {
     [super initializaiton];
-    titledataSource = @[@"搜索",@"我的行程",@"设置",@"关于我们",@"向我们反馈"];
-    dataSource = @[@"icon_search",@"icon_trip",@"icon_set_black",@"icon_aboutus",@"icon_feedback"];
+    titledataSource = @[@"搜索",@"我的行程",@"设置",@"关于我们",@"向我们反馈",@"我关注的人",@"邀请我的好友"];
+    dataSource = @[@"icon_search",@"icon_trip",@"icon_set_black",@"icon_aboutus",@"icon_feedback",@"",@""];
 }
 
 - (void)loadDataFromLocal
@@ -259,7 +265,8 @@
             MyTripListController *myTripList = [[MyTripListController alloc]init];
             myTripList.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:myTripList animated:YES];
-        }break;
+            break;
+        }
         case 2: {
             SettingsController *settingController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"SettingsController"];
             settingController.hidesBottomBarWhenPushed = YES;
@@ -270,6 +277,16 @@
             focusController.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:focusController animated:YES];
         }break;
+        case 6:
+        {
+            
+            NSMutableDictionary *shareParas = [NSMutableDictionary dictionary];
+            [shareParas SSDKSetupShareParamsByText:@"分享内容" images:nil url:[NSURL URLWithString:@"baidu.com"] title:@"这里是标题" type:SSDKContentTypeAuto];
+         [ShareSDK share:SSDKPlatformTypeSinaWeibo | SSDKPlatformSubTypeWechatSession | SSDKPlatformSubTypeWechatTimeline parameters:shareParas onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+             NSLog(@"share state %lu",(unsigned long)state);
+         }];
+            break;
+        }
         default:
             break;
     }
