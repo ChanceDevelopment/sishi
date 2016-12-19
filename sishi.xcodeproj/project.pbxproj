@@ -79,7 +79,6 @@
 		EA2AC3491D5EC24700C57B45 /* tabar_recommend_icon_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2AC33F1D5EC24700C57B45 /* tabar_recommend_icon_active@2x.png */; };
 		EA2AC34A1D5EC24700C57B45 /* tabar_recommend_icon_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2AC3401D5EC24700C57B45 /* tabar_recommend_icon_normal@2x.png */; };
 		EA2AC34D1D5EC24700C57B45 /* tabbar_normal_background.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2AC3431D5EC24700C57B45 /* tabbar_normal_background.png */; };
-		EA2AC34E1D5EC24700C57B45 /* tabbar_normal_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2AC3441D5EC24700C57B45 /* tabbar_normal_background@2x.png */; };
 		EA2AC3571D600F2100C57B45 /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2AC3501D600F2100C57B45 /* BaiduMapAPI_Base.framework */; };
 		EA2AC3581D600F2100C57B45 /* BaiduMapAPI_Cloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2AC3511D600F2100C57B45 /* BaiduMapAPI_Cloud.framework */; };
 		EA2AC3591D600F2100C57B45 /* BaiduMapAPI_Location.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2AC3521D600F2100C57B45 /* BaiduMapAPI_Location.framework */; };
@@ -1071,7 +1070,6 @@
 		EA2AC33F1D5EC24700C57B45 /* tabar_recommend_icon_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabar_recommend_icon_active@2x.png"; sourceTree = "<group>"; };
 		EA2AC3401D5EC24700C57B45 /* tabar_recommend_icon_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabar_recommend_icon_normal@2x.png"; sourceTree = "<group>"; };
 		EA2AC3431D5EC24700C57B45 /* tabbar_normal_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_normal_background.png; sourceTree = "<group>"; };
-		EA2AC3441D5EC24700C57B45 /* tabbar_normal_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_normal_background@2x.png"; sourceTree = "<group>"; };
 		EA2AC3501D600F2100C57B45 /* BaiduMapAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Base.framework; sourceTree = "<group>"; };
 		EA2AC3511D600F2100C57B45 /* BaiduMapAPI_Cloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Cloud.framework; sourceTree = "<group>"; };
 		EA2AC3521D600F2100C57B45 /* BaiduMapAPI_Location.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Location.framework; sourceTree = "<group>"; };
@@ -2897,7 +2895,6 @@
 				EA2AC33F1D5EC24700C57B45 /* tabar_recommend_icon_active@2x.png */,
 				EA2AC3401D5EC24700C57B45 /* tabar_recommend_icon_normal@2x.png */,
 				EA2AC3431D5EC24700C57B45 /* tabbar_normal_background.png */,
-				EA2AC3441D5EC24700C57B45 /* tabbar_normal_background@2x.png */,
 			);
 			name = NavigationBar;
 			sourceTree = "<group>";
@@ -6414,7 +6411,6 @@
 				A2C829AF1E027D0500645639 /* LICENSE in Resources */,
 				EA2AC3491D5EC24700C57B45 /* tabar_recommend_icon_active@2x.png in Resources */,
 				EA8DAE251D5A18D000487BF4 /* TSLocateView.xib in Resources */,
-				EA2AC34E1D5EC24700C57B45 /* tabbar_normal_background@2x.png in Resources */,
 				EA2AC39C1D60192300C57B45 /* tabbar_normal_background.png in Resources */,
 				EADF865C1D621C900029DC4F /* add@2x.png in Resources */,
 				EAA790991DEBDB0200443970 /* icon_add_pics.png in Resources */,
