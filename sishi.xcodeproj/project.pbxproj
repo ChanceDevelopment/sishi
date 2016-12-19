@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A211A34B1E07B98C004C3331 /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A34A1E07B98C004C3331 /* TTTAttributedLabel.m */; };
+		A211A34F1E07C858004C3331 /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A34D1E07C858004C3331 /* RegisterController.m */; };
+		A211A3501E07C858004C3331 /* RegisterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A211A34E1E07C858004C3331 /* RegisterController.xib */; };
+		A211A3541E07CD55004C3331 /* RegisterCompleteionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A3521E07CD55004C3331 /* RegisterCompleteionInfo.m */; };
+		A211A3551E07CD55004C3331 /* RegisterCompleteionInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = A211A3531E07CD55004C3331 /* RegisterCompleteionInfo.xib */; };
+		A211A3591E07D99C004C3331 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A3571E07D99C004C3331 /* LoginViewController.m */; };
+		A211A35A1E07D99C004C3331 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A211A3581E07D99C004C3331 /* LoginViewController.xib */; };
 		A22149981E038E29002D8F52 /* ImageAdder.m in Sources */ = {isa = PBXBuildFile; fileRef = A22149971E038E29002D8F52 /* ImageAdder.m */; };
 		A221499B1E0390E2002D8F52 /* ImageAdderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A221499A1E0390E2002D8F52 /* ImageAdderViewCell.m */; };
 		A221499D1E03BCB7002D8F52 /* add_pho.png in Resources */ = {isa = PBXBuildFile; fileRef = A221499C1E03BCB7002D8F52 /* add_pho.png */; };
@@ -961,6 +968,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A211A3491E07B98C004C3331 /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
+		A211A34A1E07B98C004C3331 /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
+		A211A34C1E07C858004C3331 /* RegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterController.h; sourceTree = "<group>"; };
+		A211A34D1E07C858004C3331 /* RegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterController.m; sourceTree = "<group>"; };
+		A211A34E1E07C858004C3331 /* RegisterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterController.xib; sourceTree = "<group>"; };
+		A211A3511E07CD55004C3331 /* RegisterCompleteionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterCompleteionInfo.h; sourceTree = "<group>"; };
+		A211A3521E07CD55004C3331 /* RegisterCompleteionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterCompleteionInfo.m; sourceTree = "<group>"; };
+		A211A3531E07CD55004C3331 /* RegisterCompleteionInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterCompleteionInfo.xib; sourceTree = "<group>"; };
+		A211A3561E07D99C004C3331 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		A211A3571E07D99C004C3331 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		A211A3581E07D99C004C3331 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		A22149961E038E29002D8F52 /* ImageAdder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAdder.h; sourceTree = "<group>"; };
 		A22149971E038E29002D8F52 /* ImageAdder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageAdder.m; sourceTree = "<group>"; };
 		A22149991E0390E2002D8F52 /* ImageAdderViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAdderViewCell.h; sourceTree = "<group>"; };
@@ -2669,6 +2687,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A211A3481E07B984004C3331 /* TTTAttributedLabel */ = {
+			isa = PBXGroup;
+			children = (
+				A211A3491E07B98C004C3331 /* TTTAttributedLabel.h */,
+				A211A34A1E07B98C004C3331 /* TTTAttributedLabel.m */,
+			);
+			path = TTTAttributedLabel;
+			sourceTree = "<group>";
+		};
 		A22149951E038DC3002D8F52 /* ImagePicker&Viewer(添加图片) */ = {
 			isa = PBXGroup;
 			children = (
@@ -2828,6 +2855,15 @@
 				EA2AC3141D5EBF5300C57B45 /* HeLoginVC.h */,
 				EA2AC3151D5EBF5300C57B45 /* HeLoginVC.m */,
 				EA2AC3161D5EBF5300C57B45 /* HeLoginVC.xib */,
+				A211A34C1E07C858004C3331 /* RegisterController.h */,
+				A211A34D1E07C858004C3331 /* RegisterController.m */,
+				A211A34E1E07C858004C3331 /* RegisterController.xib */,
+				A211A3511E07CD55004C3331 /* RegisterCompleteionInfo.h */,
+				A211A3521E07CD55004C3331 /* RegisterCompleteionInfo.m */,
+				A211A3531E07CD55004C3331 /* RegisterCompleteionInfo.xib */,
+				A211A3561E07D99C004C3331 /* LoginViewController.h */,
+				A211A3571E07D99C004C3331 /* LoginViewController.m */,
+				A211A3581E07D99C004C3331 /* LoginViewController.xib */,
 			);
 			name = LoginEnroll;
 			sourceTree = "<group>";
@@ -4693,6 +4729,7 @@
 		EA8DAE581D5A18F200487BF4 /* ThirdPartySDK */ = {
 			isa = PBXGroup;
 			children = (
+				A211A3481E07B984004C3331 /* TTTAttributedLabel */,
 				A22149A11E03EBBD002D8F52 /* UICollectionViewLeftAlignedLayout */,
 				A2C829921E027D0500645639 /* Masonry */,
 				EAA4F3261E01316200EF9E14 /* umsdk_IOS_analyics_no-idfa_v4.0.5 */,
@@ -6295,6 +6332,7 @@
 				EADF867B1D621C900029DC4F /* tabbarSelectBg@2x.png in Resources */,
 				EAA7909A1DEBDB0200443970 /* icon_add_white.png in Resources */,
 				EADF860F1D621C900029DC4F /* 57.png in Resources */,
+				A211A35A1E07D99C004C3331 /* LoginViewController.xib in Resources */,
 				EA2AC3971D60192300C57B45 /* qqIcon.png in Resources */,
 				EAA790C51DEBDB7400443970 /* icon_send.png in Resources */,
 				EADF864B1D621C900029DC4F /* icon_022_cover.png in Resources */,
@@ -6430,6 +6468,7 @@
 				EA8DAE1D1D5A18D000487BF4 /* btn_020.disable@2x.png in Resources */,
 				EADF864F1D621C900029DC4F /* icon_027_cover.png in Resources */,
 				EA8DAD2C1D5A18D000487BF4 /* Expression.plist in Resources */,
+				A211A3551E07CD55004C3331 /* RegisterCompleteionInfo.xib in Resources */,
 				EADF86741D621C900029DC4F /* tabbar_setting.png in Resources */,
 				EADF863A1D621C900029DC4F /* icon_007.gif in Resources */,
 				EA8DADA21D5A18D000487BF4 /* README.textile in Resources */,
@@ -6459,6 +6498,7 @@
 				EA2AC3961D60192300C57B45 /* newUserIcon.png in Resources */,
 				EA2AC32F1D5EC08400C57B45 /* HeChatVC.xib in Resources */,
 				A22149A71E03EBBD002D8F52 /* LICENSE in Resources */,
+				A211A3501E07C858004C3331 /* RegisterController.xib in Resources */,
 				EADF86651D621C900029DC4F /* group_joinpublicgroup@2x.png in Resources */,
 				EADF86661D621C900029DC4F /* group_participant_add@2x.png in Resources */,
 				EADF863C1D621C900029DC4F /* icon_010.gif in Resources */,
@@ -6640,11 +6680,13 @@
 				EA5F0A8F1D64BFA400F30729 /* CommentInputView.m in Sources */,
 				EA8DAE3C1D5A18D000487BF4 /* UIColor+expanded.m in Sources */,
 				EADF88401D6225EA0029DC4F /* RealtimeSearchUtil.m in Sources */,
+				A211A3591E07D99C004C3331 /* LoginViewController.m in Sources */,
 				EADF87E91D621E380029DC4F /* PSTCollectionViewFlowLayout.m in Sources */,
 				EA8DACFA1D5A18D000487BF4 /* ASIDataCompressor.m in Sources */,
 				A22149A01E03EA74002D8F52 /* MyTripListController.m in Sources */,
 				EA8DAD201D5A18D000487BF4 /* DFToolUtil.m in Sources */,
 				EADF87CB1D621E380029DC4F /* MWCaptionView.m in Sources */,
+				A211A34F1E07C858004C3331 /* RegisterController.m in Sources */,
 				EA8DADF31D5A18D000487BF4 /* UIDatePicker+RACSignalSupport.m in Sources */,
 				EA5F09D21D64A53900F30729 /* HeDynamicVC.m in Sources */,
 				EADF87D31D621E380029DC4F /* DACircularProgressView.m in Sources */,
@@ -6863,6 +6905,7 @@
 				EA8DACEF1D5A18D000487BF4 /* README.md in Sources */,
 				EA8DAD891D5A18D000487BF4 /* NSAttributedString+MLExpression.m in Sources */,
 				EA8DAD611D5A18D000487BF4 /* KxMenu.m in Sources */,
+				A211A3541E07CD55004C3331 /* RegisterCompleteionInfo.m in Sources */,
 				EA5F0A911D64BFA400F30729 /* DFActivityDetailLineCell.m in Sources */,
 				EA6DFF731D6B53880069F4ED /* DEMONavigationController.m in Sources */,
 				A2C829B21E027D0500645639 /* MASConstraintMaker.m in Sources */,
@@ -6919,6 +6962,7 @@
 				EADF88631D62271A0029DC4F /* ContactSelectionViewController.m in Sources */,
 				EA8DAE4D1D5A18DF00487BF4 /* AES128Util.m in Sources */,
 				EA8DADBD1D5A18D000487BF4 /* RACBlockTrampoline.m in Sources */,
+				A211A34B1E07B98C004C3331 /* TTTAttributedLabel.m in Sources */,
 				EADF87AA1D621E380029DC4F /* EMAudioPlayerUtil.m in Sources */,
 				EA5F0A681D64BFA400F30729 /* DFTextImageLineCellAdapter.m in Sources */,
 				EA8DAD951D5A18D000487BF4 /* SICellSelection.m in Sources */,
