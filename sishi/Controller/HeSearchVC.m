@@ -10,6 +10,7 @@
 #import "MLLabel+Size.h"
 #import "HeBaseTableViewCell.h"
 #import "MLLinkLabel.h"
+#import "SearchResultController.h"
 #import "LabelSelectView.h"
 
 #define TextLineHeight 1.2f
@@ -509,7 +510,9 @@
 }
 
 - (IBAction)onSearch:(UIButton *)sender {
-    
+    //TODO: 判断搜索内容-.-
+    SearchResultController *resultController = [[SearchResultController alloc]init];
+    [self.navigationController pushViewController:resultController animated:YES];
 }
 
 /*

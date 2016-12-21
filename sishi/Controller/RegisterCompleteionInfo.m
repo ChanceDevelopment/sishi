@@ -28,27 +28,10 @@
     self.inputFieldContainerView.layer.borderWidth = 1.0;
 }
 
-//- (void)viewWillAppear:(BOOL)animated {
-//    [super viewWillAppear:animated];
-//    [self.navigationController setNavigationBarHidden:YES animated:YES];
-//}
-//
-//- (void)viewWillDisappear:(BOOL)animated {
-//    [super viewWillDisappear:animated];
-//    [self.navigationController setNavigationBarHidden:NO animated:YES];
-//}
-
 - (void)awakeFromNib {
     [super awakeFromNib];
-   
-    
-    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 - (IBAction)onFinishRegister:(UIButton *)sender {
     
 }

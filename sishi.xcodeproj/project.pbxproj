@@ -14,6 +14,7 @@
 		A211A3551E07CD55004C3331 /* RegisterCompleteionInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = A211A3531E07CD55004C3331 /* RegisterCompleteionInfo.xib */; };
 		A211A3591E07D99C004C3331 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A3571E07D99C004C3331 /* LoginViewController.m */; };
 		A211A35A1E07D99C004C3331 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A211A3581E07D99C004C3331 /* LoginViewController.xib */; };
+		A211A35D1E07E636004C3331 /* SearchResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A35C1E07E636004C3331 /* SearchResultController.m */; };
 		A22149981E038E29002D8F52 /* ImageAdder.m in Sources */ = {isa = PBXBuildFile; fileRef = A22149971E038E29002D8F52 /* ImageAdder.m */; };
 		A221499B1E0390E2002D8F52 /* ImageAdderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A221499A1E0390E2002D8F52 /* ImageAdderViewCell.m */; };
 		A221499D1E03BCB7002D8F52 /* add_pho.png in Resources */ = {isa = PBXBuildFile; fileRef = A221499C1E03BCB7002D8F52 /* add_pho.png */; };
@@ -979,6 +980,8 @@
 		A211A3561E07D99C004C3331 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		A211A3571E07D99C004C3331 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		A211A3581E07D99C004C3331 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		A211A35B1E07E636004C3331 /* SearchResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultController.h; sourceTree = "<group>"; };
+		A211A35C1E07E636004C3331 /* SearchResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultController.m; sourceTree = "<group>"; };
 		A22149961E038E29002D8F52 /* ImageAdder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAdder.h; sourceTree = "<group>"; };
 		A22149971E038E29002D8F52 /* ImageAdder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageAdder.m; sourceTree = "<group>"; };
 		A22149991E0390E2002D8F52 /* ImageAdderViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAdderViewCell.h; sourceTree = "<group>"; };
@@ -2805,6 +2808,8 @@
 				EA12F7EE1D6554F30085752A /* HeSearchVC.h */,
 				EA12F7EF1D6554F30085752A /* HeSearchVC.m */,
 				EA12F7F01D6554F30085752A /* HeSearchVC.xib */,
+				A211A35B1E07E636004C3331 /* SearchResultController.h */,
+				A211A35C1E07E636004C3331 /* SearchResultController.m */,
 				A221499E1E03EA74002D8F52 /* MyTripListController.h */,
 				A221499F1E03EA74002D8F52 /* MyTripListController.m */,
 				A22149AA1E03F2B9002D8F52 /* SettingsController.h */,
@@ -7060,6 +7065,7 @@
 				EA8DADC21D5A18D000487BF4 /* RACDelegateProxy.m in Sources */,
 				EADF87FE1D621E380029DC4F /* EaseEmoji.m in Sources */,
 				EADF881B1D621E380029DC4F /* EaseFacialView.m in Sources */,
+				A211A35D1E07E636004C3331 /* SearchResultController.m in Sources */,
 				EA5F0A771D64BFA400F30729 /* DFUserActivityDetailLineItem.m in Sources */,
 				EA6DFF791D6B53B90069F4ED /* DEMOHomeViewController.m in Sources */,
 				EA8DADFC1D5A18D000487BF4 /* UITableViewHeaderFooterView+RACSignalSupport.m in Sources */,
