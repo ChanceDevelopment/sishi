@@ -18,6 +18,8 @@
 #import <ShareSDKConnector/ShareSDKConnector.h>
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/QQApiInterface.h>
+#import <ShareSDKUI/ShareSDKUI.h>
+#import "PersonalController.h"
 
 
 #define kMenuDisplayedWidth 280.0f
@@ -58,6 +60,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
     [self.view addSubview:footerView];
 }
 - (void)initializaiton
@@ -94,6 +98,8 @@
     [tableHeader addSubview:userInfoView];
     userInfoView.userInteractionEnabled = YES;
     tableHeader.backgroundColor = _tableView.backgroundColor;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onInfoViewTap:)];
+    [tableHeader addGestureRecognizer:tap];
     _tableView.tableHeaderView = tableHeader;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -168,10 +174,13 @@
 //    footerView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREENHEIGH - height, SCREENWIDTH, height)];
     UILabel *tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 0, SCREENWIDTH, height)];
     [tipLabel setBackgroundColor:[UIColor clearColor]];
+    tipLabel.userInteractionEnabled = YES;
     tipLabel.textAlignment = NSTextAlignmentLeft;
     tipLabel.font = [UIFont systemFontOfSize:18.0];
     tipLabel.text = @"切换到用户模式";
     tipLabel.textColor = [UIColor blackColor];
+    UITapGestureRecognizer *tipLabelTapGest = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onChangeLoginType:)];
+    [tipLabel addGestureRecognizer:tipLabelTapGest];
     [footerView addSubview:tipLabel];
 
     UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake(10, (height - 25) / 2.0, 25, 25)];
@@ -205,6 +214,15 @@
 
     
     
+}
+
+- (void)onChangeLoginType:(UITapGestureRecognizer *)tap {
+    [self showHint:@"will change login state..."];
+}
+
+- (void)onInfoViewTap:(UITapGestureRecognizer *)tap {
+    PersonalController *person = [[PersonalController alloc]initWithNibName:@"PersonalController" bundle:[NSBundle mainBundle]];
+    [self.navigationController pushViewController:person animated:YES];
 }
 
 #pragma mark - UITableViewDataSource
@@ -281,10 +299,28 @@
         {
             
             NSMutableDictionary *shareParas = [NSMutableDictionary dictionary];
-            [shareParas SSDKSetupShareParamsByText:@"分享内容" images:nil url:[NSURL URLWithString:@"baidu.com"] title:@"这里是标题" type:SSDKContentTypeAuto];
-         [ShareSDK share:SSDKPlatformTypeSinaWeibo | SSDKPlatformSubTypeWechatSession | SSDKPlatformSubTypeWechatTimeline parameters:shareParas onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
-             NSLog(@"share state %lu",(unsigned long)state);
-         }];
+            [shareParas SSDKSetupShareParamsByText:@"司事,约你一路同行" images:nil url:[NSURL URLWithString:@"baidu.com"] title:@"司事" type:SSDKContentTypeAuto];
+//         [ShareSDK share:SSDKPlatformTypeSinaWeibo | SSDKPlatformSubTypeWechatSession | SSDKPlatformSubTypeWechatTimeline parameters:shareParas onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+//             NSLog(@"share state %lu",(unsigned long)state);
+//         }];
+            
+           [ShareSDK showShareActionSheet:self.view
+                                                                                       items:nil
+                                                                                 shareParams:shareParas
+                                                                         onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
+                                                                             switch (state) {
+                                                                                 case SSDKResponseStateSuccess:
+                                                                                     NSLog(@"分享成功");
+                                                                                     break;
+                                                                                case SSDKResponseStateFail:
+                                                                                     NSLog(@"分享失败");
+                                                                                     break;
+                                                                                 default:
+                                                                                     break;
+                                                                             }
+          }];
+            
+//            [shareActionSheet showInView:self.view];
             break;
         }
         default:

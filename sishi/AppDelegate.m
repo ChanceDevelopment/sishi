@@ -26,6 +26,7 @@
 #import "DEMOMenuViewController.h"
 #import "DEMOHomeViewController.h"
 #import <UMMobClick/MobClick.h>
+#import <SMS_SDK/SMSSDK.h>
 
 @interface AppDelegate ()
 @property(strong,nonatomic)HeSlideMenuVC *menuController;
@@ -38,11 +39,16 @@ BMKMapManager* _mapManager;
 @synthesize queue;
 @synthesize menuController;
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    
-    
+     EMOptions *options = [EMOptions optionsWithAppkey:@"douser#istore"];
+    [[EMClient sharedClient]initializeSDKWithOptions:options];
     [self initialization];
     [self initShareSDK];
     [self umengTrack];
@@ -154,7 +160,7 @@ BMKMapManager* _mapManager;
         [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
         UIImage *navBackgroundImage = [UIImage imageNamed:@"NavBarIOS7_white"];
         [[UINavigationBar appearance] setBackgroundImage:navBackgroundImage forBarMetrics:UIBarMetricsDefault];
-        NSDictionary *attributeDict = @{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:20.0]};
+        NSDictionary *attributeDict = @{NSForegroundColorAttributeName:[UIColor blackColor],NSFontAttributeName:[UIFont systemFontOfSize:20.0]};
         [[UINavigationBar appearance] setTitleTextAttributes:attributeDict];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     }
@@ -168,6 +174,10 @@ BMKMapManager* _mapManager;
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
+    
+     [SMSSDK registerApp:SHARESDKSMSKEY withSecret:SHARESDKSMSAPPSECRET];
+    
+    
 }
 
 #pragma mark - login changed
@@ -177,27 +187,30 @@ BMKMapManager* _mapManager;
     NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:USERTOKENKEY];
     BOOL haveLogin = (userToken == nil) ? NO : YES;
     
+    kWeakSelf;
+    [[NSNotificationCenter defaultCenter]addObserverForName:LOGINKEY object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        weakSelf.window.rootViewController = [[HeTabBarVC alloc] init];
+    }];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:
+     [NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], NSForegroundColorAttributeName, [UIFont systemFontOfSize:20.0], NSFontAttributeName, nil]];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    
     if (1) {//登陆成功加载主窗口控制器
         //        UIImage *navBackgroundImage = [UIImage imageNamed:@"NavBarIOS7_white"];
         //        [[UINavigationBar appearance] setBackgroundImage:navBackgroundImage forBarMetrics:UIBarMetricsDefault];
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-        
-        [[UINavigationBar appearance] setTitleTextAttributes:
-         [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, [UIFont systemFontOfSize:20.0], NSFontAttributeName, nil]];
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-        
-        
         HeTabBarVC *tabBarVC = [[HeTabBarVC alloc] init];
-        
-        
-        
         self.viewController = tabBarVC;
         
     }
     else{
         HeLoginVC *loginVC = [[HeLoginVC alloc] init];
+        
         CustomNavigationController *loginNav = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
         self.viewController = loginNav;
+        
     }
     self.window.rootViewController = self.viewController;
 }
@@ -206,17 +219,14 @@ BMKMapManager* _mapManager;
 {
     [ShareSDK registerApp:SHARESDKKEY
           activePlatforms:@[
-                            @(SSDKPlatformTypeWechat),
                             @(SSDKPlatformTypeQQ),
                             @(SSDKPlatformSubTypeWechatTimeline),
                             @(SSDKPlatformSubTypeWechatSession)
                             ]
                  onImport:^(SSDKPlatformType platformType) {
-                     
                      switch (platformType)
                      {
                          case SSDKPlatformTypeWechat:
-                             //                             [ShareSDKConnector connectWeChat:[WXApi class]];
                              [ShareSDKConnector connectWeChat:[WXApi class] delegate:self];
                              break;
                          case SSDKPlatformTypeQQ:
@@ -229,7 +239,6 @@ BMKMapManager* _mapManager;
                          default:
                              break;
                      }
-                     
                  }
           onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo) {
               
@@ -470,12 +479,14 @@ BMKMapManager* _mapManager;
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    [[EMClient sharedClient]applicationDidEnterBackground:application];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     [application setApplicationIconBadgeNumber:0];
     [application cancelAllLocalNotifications];
+    [[EMClient sharedClient]applicationWillEnterForeground:application];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

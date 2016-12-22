@@ -7,6 +7,9 @@
 //
 
 #import "RegisterCompleteionInfo.h"
+#import "Tool.h"
+#import "ApiUtils.h"
+#import "UIViewController+HUD.h"
 
 @interface RegisterCompleteionInfo ()
 @property (weak, nonatomic) IBOutlet UIView *inputFieldContainerView;
@@ -19,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
     self.navigationItem.title = @"手机注册";
     
     self.inputFieldContainerView.layer.cornerRadius = 7;
@@ -33,7 +36,43 @@
 }
 
 - (IBAction)onFinishRegister:(UIButton *)sender {
-    
+    NSString *response = [Tool checkRegisterPassword:self.passwordInputField.text];
+    if (response) {
+        [self showHint:response];
+        return;
+    }
+    if (!self.nickNameInputField.text.length) {
+        [self showHint:@"请输入您的昵称"];
+        return;
+    }
+    kWeakSelf;
+//    [ApiUtils userRegisterWithNickName:self.nickNameInputField.text
+//                                 uName:self.phoneNumber
+//                                   psw:self.passwordInputField.text
+//                            onResponse:^{
+////                                [self showHint:@"注册成功"];
+//    } onRequestError:^(NSString *responseErrorInfo) {
+//        [weakSelf showHint:responseErrorInfo];
+//    }];
+//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    [[EMClient sharedClient] asyncRegisterWithUsername:self.phoneNumber
+//                                             password:self.passwordInputField.text
+//                                              success:^{
+                                                      [ApiUtils userRegisterWithNickName:self.nickNameInputField.text
+                                                                                   uName:self.phoneNumber
+                                                                                     psw:self.passwordInputField.text
+                                                                              onResponse:^{
+                                                                                  [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];//注册成功
+                                                      } onRequestError:^(NSString *responseErrorInfo) {//注册失败
+                                                          [weakSelf showHint:responseErrorInfo];
+                                                          [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                                      }];
+//    } failure:^(EMError *aError) {
+//        NSLog(@"%@",aError.description);
+//        NSLog(@"error code %u ",aError.code);
+//        [weakSelf showHint:aError.errorDescription];
+//        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+//    }];
 }
 
 /*

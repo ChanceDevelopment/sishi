@@ -15,6 +15,22 @@
 		A211A3591E07D99C004C3331 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A3571E07D99C004C3331 /* LoginViewController.m */; };
 		A211A35A1E07D99C004C3331 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A211A3581E07D99C004C3331 /* LoginViewController.xib */; };
 		A211A35D1E07E636004C3331 /* SearchResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A35C1E07E636004C3331 /* SearchResultController.m */; };
+		A211A3611E0A1525004C3331 /* ApiUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A3601E0A1525004C3331 /* ApiUtils.m */; };
+		A211A3651E0A618E004C3331 /* PersonalController.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A3631E0A618E004C3331 /* PersonalController.m */; };
+		A211A3661E0A618E004C3331 /* PersonalController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A211A3641E0A618E004C3331 /* PersonalController.xib */; };
+		A211A3951E0A6B77004C3331 /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A3881E0A6B77004C3331 /* TAAbstractDotView.m */; };
+		A211A3961E0A6B77004C3331 /* TAAnimatedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A38A1E0A6B77004C3331 /* TAAnimatedDotView.m */; };
+		A211A3971E0A6B77004C3331 /* TADotView.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A38C1E0A6B77004C3331 /* TADotView.m */; };
+		A211A3981E0A6B77004C3331 /* TAPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A38E1E0A6B77004C3331 /* TAPageControl.m */; };
+		A211A3991E0A6B77004C3331 /* SDCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A3901E0A6B77004C3331 /* SDCollectionViewCell.m */; };
+		A211A39A1E0A6B77004C3331 /* SDCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A3921E0A6B77004C3331 /* SDCycleScrollView.m */; };
+		A211A39B1E0A6B77004C3331 /* UIView+SDExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A3941E0A6B77004C3331 /* UIView+SDExtension.m */; };
+		A211A39E1E0A7551004C3331 /* UserInfoEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A39D1E0A7551004C3331 /* UserInfoEditController.m */; };
+		A211A3A21E0A783E004C3331 /* UserCertificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A3A01E0A783E004C3331 /* UserCertificationController.m */; };
+		A211A3A31E0A783E004C3331 /* UserCertificationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A211A3A11E0A783E004C3331 /* UserCertificationController.xib */; };
+		A211A3A71E0B730C004C3331 /* LoginUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A3A61E0B730C004C3331 /* LoginUserInfoModel.m */; };
+		A211A3AB1E0BB659004C3331 /* UserFollowListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A3AA1E0BB659004C3331 /* UserFollowListModel.m */; };
+		A211A3AE1E0BC3DF004C3331 /* UIViewController+UIImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A3AD1E0BC3DF004C3331 /* UIViewController+UIImagePickerController.m */; };
 		A22149981E038E29002D8F52 /* ImageAdder.m in Sources */ = {isa = PBXBuildFile; fileRef = A22149971E038E29002D8F52 /* ImageAdder.m */; };
 		A221499B1E0390E2002D8F52 /* ImageAdderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A221499A1E0390E2002D8F52 /* ImageAdderViewCell.m */; };
 		A221499D1E03BCB7002D8F52 /* add_pho.png in Resources */ = {isa = PBXBuildFile; fileRef = A221499C1E03BCB7002D8F52 /* add_pho.png */; };
@@ -982,6 +998,36 @@
 		A211A3581E07D99C004C3331 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		A211A35B1E07E636004C3331 /* SearchResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultController.h; sourceTree = "<group>"; };
 		A211A35C1E07E636004C3331 /* SearchResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultController.m; sourceTree = "<group>"; };
+		A211A35F1E0A1525004C3331 /* ApiUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiUtils.h; sourceTree = "<group>"; };
+		A211A3601E0A1525004C3331 /* ApiUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiUtils.m; sourceTree = "<group>"; };
+		A211A3621E0A618E004C3331 /* PersonalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalController.h; sourceTree = "<group>"; };
+		A211A3631E0A618E004C3331 /* PersonalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalController.m; sourceTree = "<group>"; };
+		A211A3641E0A618E004C3331 /* PersonalController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalController.xib; sourceTree = "<group>"; };
+		A211A3871E0A6B77004C3331 /* TAAbstractDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAbstractDotView.h; sourceTree = "<group>"; };
+		A211A3881E0A6B77004C3331 /* TAAbstractDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAbstractDotView.m; sourceTree = "<group>"; };
+		A211A3891E0A6B77004C3331 /* TAAnimatedDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAnimatedDotView.h; sourceTree = "<group>"; };
+		A211A38A1E0A6B77004C3331 /* TAAnimatedDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAnimatedDotView.m; sourceTree = "<group>"; };
+		A211A38B1E0A6B77004C3331 /* TADotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TADotView.h; sourceTree = "<group>"; };
+		A211A38C1E0A6B77004C3331 /* TADotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TADotView.m; sourceTree = "<group>"; };
+		A211A38D1E0A6B77004C3331 /* TAPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAPageControl.h; sourceTree = "<group>"; };
+		A211A38E1E0A6B77004C3331 /* TAPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAPageControl.m; sourceTree = "<group>"; };
+		A211A38F1E0A6B77004C3331 /* SDCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCollectionViewCell.h; sourceTree = "<group>"; };
+		A211A3901E0A6B77004C3331 /* SDCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCollectionViewCell.m; sourceTree = "<group>"; };
+		A211A3911E0A6B77004C3331 /* SDCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCycleScrollView.h; sourceTree = "<group>"; };
+		A211A3921E0A6B77004C3331 /* SDCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCycleScrollView.m; sourceTree = "<group>"; };
+		A211A3931E0A6B77004C3331 /* UIView+SDExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDExtension.h"; sourceTree = "<group>"; };
+		A211A3941E0A6B77004C3331 /* UIView+SDExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDExtension.m"; sourceTree = "<group>"; };
+		A211A39C1E0A7551004C3331 /* UserInfoEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoEditController.h; sourceTree = "<group>"; };
+		A211A39D1E0A7551004C3331 /* UserInfoEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoEditController.m; sourceTree = "<group>"; };
+		A211A39F1E0A783E004C3331 /* UserCertificationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCertificationController.h; sourceTree = "<group>"; };
+		A211A3A01E0A783E004C3331 /* UserCertificationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCertificationController.m; sourceTree = "<group>"; };
+		A211A3A11E0A783E004C3331 /* UserCertificationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCertificationController.xib; sourceTree = "<group>"; };
+		A211A3A51E0B730C004C3331 /* LoginUserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginUserInfoModel.h; sourceTree = "<group>"; };
+		A211A3A61E0B730C004C3331 /* LoginUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginUserInfoModel.m; sourceTree = "<group>"; };
+		A211A3A91E0BB659004C3331 /* UserFollowListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserFollowListModel.h; sourceTree = "<group>"; };
+		A211A3AA1E0BB659004C3331 /* UserFollowListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFollowListModel.m; sourceTree = "<group>"; };
+		A211A3AC1E0BC3DF004C3331 /* UIViewController+UIImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+UIImagePickerController.h"; sourceTree = "<group>"; };
+		A211A3AD1E0BC3DF004C3331 /* UIViewController+UIImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+UIImagePickerController.m"; sourceTree = "<group>"; };
 		A22149961E038E29002D8F52 /* ImageAdder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAdder.h; sourceTree = "<group>"; };
 		A22149971E038E29002D8F52 /* ImageAdder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageAdder.m; sourceTree = "<group>"; };
 		A22149991E0390E2002D8F52 /* ImageAdderViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAdderViewCell.h; sourceTree = "<group>"; };
@@ -2699,6 +2745,62 @@
 			path = TTTAttributedLabel;
 			sourceTree = "<group>";
 		};
+		A211A35E1E0A14FB004C3331 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A211A35F1E0A1525004C3331 /* ApiUtils.h */,
+				A211A3601E0A1525004C3331 /* ApiUtils.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		A211A3851E0A6B77004C3331 /* SDCycleScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				A211A3861E0A6B77004C3331 /* PageControl */,
+				A211A38F1E0A6B77004C3331 /* SDCollectionViewCell.h */,
+				A211A3901E0A6B77004C3331 /* SDCollectionViewCell.m */,
+				A211A3911E0A6B77004C3331 /* SDCycleScrollView.h */,
+				A211A3921E0A6B77004C3331 /* SDCycleScrollView.m */,
+				A211A3931E0A6B77004C3331 /* UIView+SDExtension.h */,
+				A211A3941E0A6B77004C3331 /* UIView+SDExtension.m */,
+			);
+			path = SDCycleScrollView;
+			sourceTree = "<group>";
+		};
+		A211A3861E0A6B77004C3331 /* PageControl */ = {
+			isa = PBXGroup;
+			children = (
+				A211A3871E0A6B77004C3331 /* TAAbstractDotView.h */,
+				A211A3881E0A6B77004C3331 /* TAAbstractDotView.m */,
+				A211A3891E0A6B77004C3331 /* TAAnimatedDotView.h */,
+				A211A38A1E0A6B77004C3331 /* TAAnimatedDotView.m */,
+				A211A38B1E0A6B77004C3331 /* TADotView.h */,
+				A211A38C1E0A6B77004C3331 /* TADotView.m */,
+				A211A38D1E0A6B77004C3331 /* TAPageControl.h */,
+				A211A38E1E0A6B77004C3331 /* TAPageControl.m */,
+			);
+			path = PageControl;
+			sourceTree = "<group>";
+		};
+		A211A3A41E0B7146004C3331 /* Login & Register */ = {
+			isa = PBXGroup;
+			children = (
+				A211A3A51E0B730C004C3331 /* LoginUserInfoModel.h */,
+				A211A3A61E0B730C004C3331 /* LoginUserInfoModel.m */,
+			);
+			path = "Login & Register";
+			sourceTree = "<group>";
+		};
+		A211A3A81E0BB64D004C3331 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				A211A3A91E0BB659004C3331 /* UserFollowListModel.h */,
+				A211A3AA1E0BB659004C3331 /* UserFollowListModel.m */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		A22149951E038DC3002D8F52 /* ImagePicker&Viewer(添加图片) */ = {
 			isa = PBXGroup;
 			children = (
@@ -2816,6 +2918,14 @@
 				A22149AB1E03F2B9002D8F52 /* SettingsController.m */,
 				A22149AD1E03F39A002D8F52 /* FocusListViewController.h */,
 				A22149AE1E03F39A002D8F52 /* FocusListViewController.m */,
+				A211A3621E0A618E004C3331 /* PersonalController.h */,
+				A211A3631E0A618E004C3331 /* PersonalController.m */,
+				A211A3641E0A618E004C3331 /* PersonalController.xib */,
+				A211A39C1E0A7551004C3331 /* UserInfoEditController.h */,
+				A211A39D1E0A7551004C3331 /* UserInfoEditController.m */,
+				A211A39F1E0A783E004C3331 /* UserCertificationController.h */,
+				A211A3A01E0A783E004C3331 /* UserCertificationController.m */,
+				A211A3A11E0A783E004C3331 /* UserCertificationController.xib */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
@@ -3391,11 +3501,11 @@
 		EA8DA9561D5A171A00487BF4 = {
 			isa = PBXGroup;
 			children = (
+				A211A35E1E0A14FB004C3331 /* Utils */,
 				EA6DFF5E1D6B51FF0069F4ED /* REFrostedViewController */,
 				EA5F09E51D64BFA400F30729 /* DFTimelineView */,
 				EADF85471D621C680029DC4F /* ChatDemo-UI3.0 */,
 				EA2AC3301D5EC1E300C57B45 /* Resource */,
-				EA8DAECD1D5A18F300487BF4 /* Util */,
 				EA8DAE581D5A18F200487BF4 /* ThirdPartySDK */,
 				EA8DAE441D5A18DF00487BF4 /* Helper */,
 				EA8DA9FF1D5A18CF00487BF4 /* Custom */,
@@ -3523,6 +3633,8 @@
 				EA8DA9DC1D5A18BB00487BF4 /* UIViewController+DismissKeyboard.m */,
 				EA8DA9DD1D5A18BB00487BF4 /* UIViewController+HUD.h */,
 				EA8DA9DE1D5A18BB00487BF4 /* UIViewController+HUD.m */,
+				A211A3AC1E0BC3DF004C3331 /* UIViewController+UIImagePickerController.h */,
+				A211A3AD1E0BC3DF004C3331 /* UIViewController+UIImagePickerController.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -4722,6 +4834,8 @@
 		EA8DAE511D5A18E600487BF4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A211A3A81E0BB64D004C3331 /* User */,
+				A211A3A41E0B7146004C3331 /* Login & Register */,
 				EA5F0AA11D64C14100F30729 /* LogActivityModel */,
 				EA8DAE521D5A18E600487BF4 /* HeSysbsModel.h */,
 				EA8DAE531D5A18E600487BF4 /* HeSysbsModel.m */,
@@ -4734,6 +4848,7 @@
 		EA8DAE581D5A18F200487BF4 /* ThirdPartySDK */ = {
 			isa = PBXGroup;
 			children = (
+				A211A3851E0A6B77004C3331 /* SDCycleScrollView */,
 				A211A3481E07B984004C3331 /* TTTAttributedLabel */,
 				A22149A11E03EBBD002D8F52 /* UICollectionViewLeftAlignedLayout */,
 				A2C829921E027D0500645639 /* Masonry */,
@@ -4940,13 +5055,6 @@
 				EA8DAEB01D5A18F200487BF4 /* zbar-samples.png */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		EA8DAECD1D5A18F300487BF4 /* Util */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Util;
 			sourceTree = "<group>";
 		};
 		EA8DAECE1D5A18FA00487BF4 /* View */ = {
@@ -6292,6 +6400,7 @@
 				EADF86311D621C900029DC4F /* chat_sender_audio_playing_000@2x.png in Resources */,
 				EA12F7F91D655F110085752A /* icon_set_black.png in Resources */,
 				EAA7909E1DEBDB0200443970 /* icon_bmw.png in Resources */,
+				A211A3A31E0A783E004C3331 /* UserCertificationController.xib in Resources */,
 				EA12F7EA1D65492B0085752A /* icon_cooperate.png in Resources */,
 				EA2AC39B1D60192300C57B45 /* speedUpIcon.png in Resources */,
 				EA5F0A831D64BFA400F30729 /* AlbumLike@3x.png in Resources */,
@@ -6399,6 +6508,7 @@
 				EADF86591D621C900029DC4F /* account@2x.png in Resources */,
 				EA4FA29B1D6C1DCA00099DCC /* HeLaunchJourneyUserVC.xib in Resources */,
 				EA2AC38A1D60192300C57B45 /* boyIcon.png in Resources */,
+				A211A3661E0A618E004C3331 /* PersonalController.xib in Resources */,
 				EAA790971DEBDB0200443970 /* ic_sexton.png in Resources */,
 				EADF86701D621C900029DC4F /* tabbar_contacts.png in Resources */,
 				EADF862D1D621C900029DC4F /* chat_receiver_audio_playing003@2x.png in Resources */,
@@ -6636,12 +6746,14 @@
 				EADF87E61D621E380029DC4F /* PSTCollectionViewCell.m in Sources */,
 				EA8DAD4F1D5A18D000487BF4 /* FMDatabaseQueue.m in Sources */,
 				EA8DACE51D5A18D000487BF4 /* AFHTTPRequestOperation.m in Sources */,
+				A211A3971E0A6B77004C3331 /* TADotView.m in Sources */,
 				EADF886D1D62271A0029DC4F /* SearchMessageViewController.m in Sources */,
 				EA8DADC61D5A18D000487BF4 /* RACEagerSequence.m in Sources */,
 				EA6DFF6F1D6B51FF0069F4ED /* UIView+REFrostedViewController.m in Sources */,
 				EA8DAEB81D5A18F200487BF4 /* rscode.c in Sources */,
 				EA5F0A9C1D64BFA400F30729 /* DFLikeCommentToolbar.m in Sources */,
 				EA8DA9FA1D5A18C700487BF4 /* HeTabBarVC.m in Sources */,
+				A211A39E1E0A7551004C3331 /* UserInfoEditController.m in Sources */,
 				EA5F0A691D64BFA400F30729 /* DFUserActivityDetailLineCellAdapter.m in Sources */,
 				EA8DAD121D5A18D000487BF4 /* DFSectionIndexTabelViewController.m in Sources */,
 				EADF88841D6227620029DC4F /* EMRotbotChatViewCell.m in Sources */,
@@ -6670,6 +6782,7 @@
 				EA8DADD21D5A18D000487BF4 /* RACObjCRuntime.m in Sources */,
 				EA8DADE01D5A18D000487BF4 /* RACStringSequence.m in Sources */,
 				EA5F0A7B1D64BFA400F30729 /* DFLineJoinItem.m in Sources */,
+				A211A3991E0A6B77004C3331 /* SDCollectionViewCell.m in Sources */,
 				EA8DADA51D5A18D000487BF4 /* NSArray+RACSequenceAdditions.m in Sources */,
 				EA8DADA91D5A18D000487BF4 /* NSFileHandle+RACSupport.m in Sources */,
 				EA5F0A641D64BFA400F30729 /* DFActivityDetailLineCellAdapter.m in Sources */,
@@ -6710,6 +6823,7 @@
 				EADF87CE1D621E380029DC4F /* MWPhoto.m in Sources */,
 				EADF87F81D621E380029DC4F /* NSString+Valid.m in Sources */,
 				EA8DAD211D5A18D000487BF4 /* MLLinkClickLabel.m in Sources */,
+				A211A3AE1E0BC3DF004C3331 /* UIViewController+UIImagePickerController.m in Sources */,
 				EA2AC3231D5EBFDF00C57B45 /* HeHomePageVC.m in Sources */,
 				EA8DADAF1D5A18D000487BF4 /* NSObject+RACKVOWrapper.m in Sources */,
 				EA8DAE321D5A18D000487BF4 /* NSString+Catagory.m in Sources */,
@@ -6718,6 +6832,7 @@
 				EA8DAD1F1D5A18D000487BF4 /* DFSandboxHelper.m in Sources */,
 				EADF87ED1D621E380029DC4F /* PSTGridLayoutInfo.m in Sources */,
 				EA8DADFF1D5A18D000487BF4 /* README.md in Sources */,
+				A211A39A1E0A6B77004C3331 /* SDCycleScrollView.m in Sources */,
 				EA8DADF41D5A18D000487BF4 /* UIGestureRecognizer+RACSignalSupport.m in Sources */,
 				EA2AC32E1D5EC08400C57B45 /* HeChatVC.m in Sources */,
 				EA8DAE341D5A18D000487BF4 /* UIButton+associate.m in Sources */,
@@ -6750,6 +6865,7 @@
 				EADF881E1D621E380029DC4F /* EaseConversationCell.m in Sources */,
 				EADF880F1D621E380029DC4F /* EaseBubbleView+Gif.m in Sources */,
 				EADF87F31D621E380029DC4F /* EaseConversationModel.m in Sources */,
+				A211A3AB1E0BB659004C3331 /* UserFollowListModel.m in Sources */,
 				EA8DAD6A1D5A18D000487BF4 /* MJPhotoProgressView.m in Sources */,
 				EA8DACE41D5A18D000487BF4 /* AFHttpTool.m in Sources */,
 				A2C829BA1E027D0500645639 /* README.md in Sources */,
@@ -6778,6 +6894,7 @@
 				EA8DAD871D5A18D000487BF4 /* MLLinkLabel.m in Sources */,
 				EADF886B1D62271A0029DC4F /* PublicGroupListViewController.m in Sources */,
 				EADF87BC1D621E380029DC4F /* MJRefreshHeader.m in Sources */,
+				A211A3651E0A618E004C3331 /* PersonalController.m in Sources */,
 				EA8DAE561D5A18E600487BF4 /* HeSysbsModel.m in Sources */,
 				EA5F0A6B1D64BFA400F30729 /* DFUserNewsActivityDetailLineCellAdapter.m in Sources */,
 				EA8DADEC1D5A18D000487BF4 /* UIActionSheet+RACSignalSupport.m in Sources */,
@@ -6816,12 +6933,14 @@
 				EADF87EA1D621E380029DC4F /* PSTCollectionViewItemKey.m in Sources */,
 				EA8DAD391D5A18D000487BF4 /* i2KEPCBasePickerView.m in Sources */,
 				EA8DADB31D5A18D000487BF4 /* NSOrderedSet+RACSequenceAdditions.m in Sources */,
+				A211A3A71E0B730C004C3331 /* LoginUserInfoModel.m in Sources */,
 				A2C829B71E027D0500645639 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				EA8DADEE1D5A18D000487BF4 /* UIBarButtonItem+RACCommandSupport.m in Sources */,
 				EADF883B1D6225EA0029DC4F /* ContactListViewController.m in Sources */,
 				EA8DAD6B1D5A18D000487BF4 /* MJPhotoToolbar.m in Sources */,
 				EADF88191D621E380029DC4F /* EaseTextView.m in Sources */,
 				EADF856C1D621C7B0029DC4F /* TTGlobalUICommon.m in Sources */,
+				A211A3611E0A1525004C3331 /* ApiUtils.m in Sources */,
 				EADF88151D621E380029DC4F /* EaseBubbleView.m in Sources */,
 				EADF88011D621E380029DC4F /* EaseEmotionManager.m in Sources */,
 				EA8DAEB91D5A18F200487BF4 /* split.c in Sources */,
@@ -6855,6 +6974,7 @@
 				EA8DAD841D5A18D000487BF4 /* MLLabel.m in Sources */,
 				EADF87FB1D621E380029DC4F /* EaseChineseToPinyin.m in Sources */,
 				EA8DAD071D5A18D000487BF4 /* MLLabel+Size.m in Sources */,
+				A211A3A21E0A783E004C3331 /* UserCertificationController.m in Sources */,
 				EA5F0A751D64BFA400F30729 /* DFCollectActivityLineItem.m in Sources */,
 				EA8DAD1A1D5A18D000487BF4 /* PullMoreFooterView.m in Sources */,
 				EADF858A1D621C820029DC4F /* BaseViewController.m in Sources */,
@@ -6939,6 +7059,7 @@
 				EA8DADE21D5A18D000487BF4 /* RACSubscriber.m in Sources */,
 				EA8DADD71D5A18D000487BF4 /* RACScheduler.m in Sources */,
 				EADF87CF1D621E380029DC4F /* MWPhotoBrowser.m in Sources */,
+				A211A3981E0A6B77004C3331 /* TAPageControl.m in Sources */,
 				EA8DAE4E1D5A18DF00487BF4 /* NSData+ASE128.m in Sources */,
 				A2C829B81E027D0500645639 /* View+MASAdditions.m in Sources */,
 				EADF856B1D621C7B0029DC4F /* SRSlimeView.m in Sources */,
@@ -6951,7 +7072,9 @@
 				EA8DAD151D5A18D000487BF4 /* DFBaseUploadDataService.m in Sources */,
 				EADF87BF1D621E380029DC4F /* MJRefreshAutoStateFooter.m in Sources */,
 				EADF88291D62225D0029DC4F /* ChatDemoHelper.m in Sources */,
+				A211A3961E0A6B77004C3331 /* TAAnimatedDotView.m in Sources */,
 				EA8DAD571D5A18D000487BF4 /* IQTextView.m in Sources */,
+				A211A39B1E0A6B77004C3331 /* UIView+SDExtension.m in Sources */,
 				EADF87F21D621E380029DC4F /* EaseSDKHelper.m in Sources */,
 				EA8DADC51D5A18D000487BF4 /* RACDynamicSignal.m in Sources */,
 				EA8DAD091D5A18D000487BF4 /* NSMutableDictionary+JSON.m in Sources */,
@@ -7095,6 +7218,7 @@
 				EA8DADCC1D5A18D000487BF4 /* RACImmediateScheduler.m in Sources */,
 				EA8DAD681D5A18D000487BF4 /* MJPhotoBrowser.m in Sources */,
 				EADF88091D621E380029DC4F /* EaseUserCell.m in Sources */,
+				A211A3951E0A6B77004C3331 /* TAAbstractDotView.m in Sources */,
 				EA8DAE431D5A18D000487BF4 /* ZJSwitch.m in Sources */,
 				EA8DAD561D5A18D000487BF4 /* IQSegmentedNextPrevious.m in Sources */,
 				EADF88131D621E380029DC4F /* EaseBubbleView+Video.m in Sources */,
@@ -7474,6 +7598,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.channce.sishi;
 				PRODUCT_NAME = "司事";
 				PROVISIONING_PROFILE = "04189e48-19ad-4bbf-aa2c-2195cd8e1e94";
+				PROVISIONING_PROFILE_SPECIFIER = "iOS Development For New Device";
 			};
 			name = Debug;
 		};

@@ -10,15 +10,11 @@
 #import "DFTextImageLineItem.h"
 #import "DFLineLikeItem.h"
 #import "DFLineCommentItem.h"
-//#import "UserTimelineViewController.h"
 #import "DFActivityLineItem.h"
-//#import "HeDistributeVC.h"
-//#import "HeActivityDetailVC.h"
 #import "DFLineJoinItem.h"
 #import "ActivityLogModel.h"
 #include <string.h>
 #import "HeSysbsModel.h"
-//#import "HeUerLogActivityVC.h"
 #import "DFBaseLineCell.h"
 
 #import <ShareSDK/ShareSDK.h>
@@ -27,6 +23,7 @@
 #import <ShareSDKUI/SSUIShareActionSheetStyle.h>
 #import <ShareSDKUI/SSUIShareActionSheetCustomItem.h>
 #import <ShareSDK/ShareSDK+Base.h>
+#import "ApiUtils.h"
 
 //#import "HeConvertToCommonEmoticonsHelper.h"
 #import "UIButton+Bootstrap.h"
@@ -56,6 +53,11 @@
 //@property(strong,nonatomic)NSMutableArray *emojiFaceArray;
 //@property(assign,nonatomic)BOOL startEmoji;
 
+/**
+ *  当前正在显示的是第几页的内容
+ */
+@property(nonatomic,assign)NSUInteger currentIndex;
+
 @property(strong,nonatomic)UIView *sectionHeaderView;
 
 @end
@@ -67,9 +69,6 @@
 @synthesize encodewebview;
 @synthesize escDict;
 @synthesize logPlaceholderImage;
-//@synthesize emojiArray;
-//@synthesize unicodeArray;
-//@synthesize emojiFaceArray;
 @synthesize sectionHeaderView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -128,7 +127,6 @@
     self.tableView.backgroundView = nil;
     self.tableView.backgroundColor = [UIColor whiteColor];
     [Tool setExtraCellLineHidden:self.tableView];
-//    [self pullUpUpdate];
     
     sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 40)];
     sectionHeaderView.backgroundColor = [UIColor colorWithWhite:237.0 / 255.0 alpha:1.0];
@@ -365,119 +363,132 @@
 
 - (void)loadActivityDiaryWithParams:(NSDictionary *)loadParams show:(BOOL)show
 {
-    logPlaceholderImage.hidden = YES;
-    NSString *loadActivityDiaryPath = [NSString stringWithFormat:@"%@%@",BASEURL,GETACTIVITYDIARY];
-    if (show) {
-        [Waiting show];
-    }
-    [AFHttpTool requestWihtMethod:RequestMethodTypePost url:loadActivityDiaryPath params:loadParams success:^(AFHTTPRequestOperation* operation,id response){
-        if (show) {
-            [Waiting dismiss];
-        }
-        NSString *respondString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
-        NSDictionary *respondDict = [respondString objectFromJSONString];
-        
-        NSInteger totalCount = [[respondDict objectForKey:@"totalCount"] integerValue];
-        NSInteger totalPages = [[respondDict objectForKey:@"totalPages"] integerValue];
-        if (updateOption == 1 && totalCount == 1) {
-            [self.view addSubview:logPlaceholderImage];
-            logPlaceholderImage.hidden = NO;
-            return;
-        }
-        else{
-            [self.view addSubview:logPlaceholderImage];
-            logPlaceholderImage.hidden = YES;
-        }
-        if (totalCount != 0) {
-            if (updateOption == 1) {
-                [dataSource removeAllObjects];
-                id results = [respondDict objectForKey:@"result"];
-                if ([results isKindOfClass:[NSArray class]]) {
-                    NSMutableArray *contentArray = [[NSMutableArray alloc] initWithCapacity:0];
-                    NSMutableArray *commentArray = [[NSMutableArray alloc] initWithCapacity:0];
-                    for (id resultObj in results) {
-                        ActivityLogModel *activityLogModel = [[ActivityLogModel alloc] initModelWithDict:resultObj];
-                        [dataSource addObject:activityLogModel];
-                        [dataDict setObject:activityLogModel forKey:activityLogModel.activityid];
-                        [contentArray addObject:activityLogModel.content];
-                        [commentArray addObject:activityLogModel.commentStringList];
-//                        if ([emojiArray count] < 36) {
-//                            NSString *content = [resultObj objectForKey:@"content"];
-//                            [emojiArray addObject:content];
+//    logPlaceholderImage.hidden = YES;
+//    NSString *loadActivityDiaryPath = [NSString stringWithFormat:@"%@%@",BASEURL,GETACTIVITYDIARY];
+//    if (show) {
+//        [Waiting show];
+//    }
+//    [AFHttpTool requestWihtMethod:RequestMethodTypePost url:loadActivityDiaryPath params:loadParams success:^(AFHTTPRequestOperation* operation,id response){
+//        if (show) {
+//            [Waiting dismiss];
+//        }
+//        NSString *respondString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
+//        NSDictionary *respondDict = [respondString objectFromJSONString];
+//        
+//        NSInteger totalCount = [[respondDict objectForKey:@"totalCount"] integerValue];
+//        NSInteger totalPages = [[respondDict objectForKey:@"totalPages"] integerValue];
+//        if (updateOption == 1 && totalCount == 1) {
+//            [self.view addSubview:logPlaceholderImage];
+//            logPlaceholderImage.hidden = NO;
+//            return;
+//        }
+//        else{
+//            [self.view addSubview:logPlaceholderImage];
+//            logPlaceholderImage.hidden = YES;
+//        }
+//        if (totalCount != 0) {
+//            if (updateOption == 1) {
+//                [dataSource removeAllObjects];
+//                id results = [respondDict objectForKey:@"result"];
+//                if ([results isKindOfClass:[NSArray class]]) {
+//                    NSMutableArray *contentArray = [[NSMutableArray alloc] initWithCapacity:0];
+//                    NSMutableArray *commentArray = [[NSMutableArray alloc] initWithCapacity:0];
+//                    for (id resultObj in results) {
+//                        ActivityLogModel *activityLogModel = [[ActivityLogModel alloc] initModelWithDict:resultObj];
+//                        [dataSource addObject:activityLogModel];
+//                        [dataDict setObject:activityLogModel forKey:activityLogModel.activityid];
+//                        [contentArray addObject:activityLogModel.content];
+//                        [commentArray addObject:activityLogModel.commentStringList];
+////                        if ([emojiArray count] < 36) {
+////                            NSString *content = [resultObj objectForKey:@"content"];
+////                            [emojiArray addObject:content];
+////                        }
+//                    }
+//                    [self translateUnicdoeToChineseWithContentArray:contentArray commentArray:commentArray];
+//                    
+//                }
+//                [self endRefresh];
+//            }
+//            else{
+//                id results = [respondDict objectForKey:@"result"];
+//                if ([results isKindOfClass:[NSArray class]]) {
+//                    if ([results count] > 0) {
+//                        NSMutableArray *contentArray = [[NSMutableArray alloc] initWithCapacity:0];
+//                        NSMutableArray *commentArray = [[NSMutableArray alloc] initWithCapacity:0];
+//                        for (id resultObj in results) {
+//                            ActivityLogModel *activityLogModel = [[ActivityLogModel alloc] initModelWithDict:resultObj];
+//                            [dataSource addObject:activityLogModel];
+//                            [dataDict setObject:activityLogModel forKey:activityLogModel.activityid];
+//                            
+//                            [contentArray addObject:activityLogModel.content];
+//                            [commentArray addObject:activityLogModel.commentStringList];
+////                            if ([emojiArray count] < 36) {
+////                                NSString *content = [resultObj objectForKey:@"content"];
+////                                [emojiArray addObject:content];
+////                            }
+////                            else{
+////                                NSMutableString *mutable_emojiContent = [[NSMutableString alloc] initWithCapacity:0];
+////                                for (NSString *str in emojiArray) {
+////                                    NSString *emojiStr = [str stringByReplacingOccurrencesOfString:@"&#" withString:@""];
+////                                    [mutable_emojiContent insertString:emojiStr atIndex:0];
+////                                }
+////                                NSArray *array = [mutable_emojiContent componentsSeparatedByString:@";"];
+////                                NSArray *array1 = [[NSArray alloc] initWithArray:array];
+////                                NSMutableArray *array2 = [[NSMutableArray alloc] initWithCapacity:2];
+////                                for (NSString *str in array1) {
+////                                    if (![str hasSuffix:@";"]) {
+////                                        NSString *substr = [NSString stringWithFormat:@"&#%@;",str];
+////                                        [unicodeArray addObject:substr];
+////                                        
+////                                    }
+////                                }
+////                                [self performSelector:@selector(startTranslate) withObject:nil afterDelay:5];
+////                                
+////                            }
+//                            
 //                        }
-                    }
-                    [self translateUnicdoeToChineseWithContentArray:contentArray commentArray:commentArray];
-                    
-                }
-                [self endRefresh];
-            }
-            else{
-                id results = [respondDict objectForKey:@"result"];
-                if ([results isKindOfClass:[NSArray class]]) {
-                    if ([results count] > 0) {
-                        NSMutableArray *contentArray = [[NSMutableArray alloc] initWithCapacity:0];
-                        NSMutableArray *commentArray = [[NSMutableArray alloc] initWithCapacity:0];
-                        for (id resultObj in results) {
-                            ActivityLogModel *activityLogModel = [[ActivityLogModel alloc] initModelWithDict:resultObj];
-                            [dataSource addObject:activityLogModel];
-                            [dataDict setObject:activityLogModel forKey:activityLogModel.activityid];
-                            
-                            [contentArray addObject:activityLogModel.content];
-                            [commentArray addObject:activityLogModel.commentStringList];
-//                            if ([emojiArray count] < 36) {
-//                                NSString *content = [resultObj objectForKey:@"content"];
-//                                [emojiArray addObject:content];
-//                            }
-//                            else{
-//                                NSMutableString *mutable_emojiContent = [[NSMutableString alloc] initWithCapacity:0];
-//                                for (NSString *str in emojiArray) {
-//                                    NSString *emojiStr = [str stringByReplacingOccurrencesOfString:@"&#" withString:@""];
-//                                    [mutable_emojiContent insertString:emojiStr atIndex:0];
-//                                }
-//                                NSArray *array = [mutable_emojiContent componentsSeparatedByString:@";"];
-//                                NSArray *array1 = [[NSArray alloc] initWithArray:array];
-//                                NSMutableArray *array2 = [[NSMutableArray alloc] initWithCapacity:2];
-//                                for (NSString *str in array1) {
-//                                    if (![str hasSuffix:@";"]) {
-//                                        NSString *substr = [NSString stringWithFormat:@"&#%@;",str];
-//                                        [unicodeArray addObject:substr];
-//                                        
-//                                    }
-//                                }
-//                                [self performSelector:@selector(startTranslate) withObject:nil afterDelay:5];
-//                                
-//                            }
-                            
-                        }
-                        [self translateUnicdoeToChineseWithContentArray:contentArray commentArray:commentArray];
-                    }
-                    else{
-//                        [self showHint:@"更多已加载完毕"];
-                        pageNo--;
-                    }
-                }
-                [self endLoadMore];
-            }
-        }
-        else{
-            
-            NSString *message = [response objectForKey:@"message"];
-            if ([message isMemberOfClass:[NSNull class]] || message == nil) {
-                message = ERRORREQUESTTIP;
-            }
-            [self showHint:message];
-        }
-    } failure:^(NSError *error){
-        if (updateOption == 1) {
-            [self endRefresh];
-        }
-        else{
-            [self endLoadMore];
-        }
-        if (show) {
-            [Waiting dismiss];
-        }
-        [self showHint:ERRORREQUESTTIP];
+//                        [self translateUnicdoeToChineseWithContentArray:contentArray commentArray:commentArray];
+//                    }
+//                    else{
+////                        [self showHint:@"更多已加载完毕"];
+//                        pageNo--;
+//                    }
+//                }
+//                [self endLoadMore];
+//            }
+//        }
+//        else{
+//            
+//            NSString *message = [response objectForKey:@"message"];
+//            if ([message isMemberOfClass:[NSNull class]] || message == nil) {
+//                message = ERRORREQUESTTIP;
+//            }
+//            [self showHint:message];
+//        }
+//    } failure:^(NSError *error){
+//        if (updateOption == 1) {
+//            [self endRefresh];
+//        }
+//        else{
+//            [self endLoadMore];
+//        }
+//        if (show) {
+//            [Waiting dismiss];
+//        }
+//        [self showHint:ERRORREQUESTTIP];
+//    }];
+    
+//    [Waiting dismiss];
+//    [self endLoadMore];
+    NSString *longitude = [NSString stringWithFormat:@""];
+    NSString *latitude = [NSString stringWithFormat:@""];
+    [ApiUtils queryMoodListWithStartIndex:self.currentIndex
+                                longitude:longitude
+                                 latitude:latitude
+                           onResponseInfo:^(NSArray *responseList) {
+                               
+    } onResponseError:^(NSString *responseErrorInfo) {
+        
     }];
 }
 
@@ -1053,7 +1064,7 @@
 
 -(void) refresh
 {
-    //下来刷新
+    //下拉刷新
     pageNo = 1;
     updateOption = 1;
     

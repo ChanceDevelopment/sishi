@@ -7,10 +7,10 @@
 */
 
 "ShareType_0" = "Unknown";
-"ShareType_1" = "Sina Weibo";
+"ShareType_1" = "新浪微博";
 "ShareType_2" = "Tencent Weibo";
-"ShareType_5" = "Douban";
-"ShareType_6" = "QZone";
+"ShareType_5" = "豆瓣";
+"ShareType_6" = "QQ空间";
 "ShareType_7" = "Renren";
 "ShareType_8" = "Kaixin";
 "ShareType_9" = "Pengyou";
@@ -26,8 +26,8 @@
 "ShareType_19" = "SMS";
 "ShareType_20" = "Print";
 "ShareType_21" = "Copy";
-"ShareType_22" = "Wechat contacts";
-"ShareType_23" = "Wechat moments";
+"ShareType_22" = "微信好友";
+"ShareType_23" = "微信朋友圈";
 "ShareType_24" = "QQ";
 "ShareType_25" = "Instapaper";
 "ShareType_26" = "Pocket";

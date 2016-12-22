@@ -499,7 +499,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupView];
-    
 }
 
 - (void)setupView {
@@ -507,6 +506,9 @@
     self.labelSelectView.labelList  = @[@"标签内容balabala",@"标签内容balabala"];
     CGFloat viewHeight = [self.labelSelectView labelViewHeightForLabels:self.labelSelectView.labelList targetRectWidth:SCREENWIDTH - 20];
     self.labelSelectViewConstraint.constant = viewHeight;
+    
+    
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 - (IBAction)onSearch:(UIButton *)sender {

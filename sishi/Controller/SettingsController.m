@@ -7,6 +7,8 @@
 //
 
 #import "SettingsController.h"
+#import "HeLoginVC.h"
+#import "JPUSHService.h"
 
 @interface SettingsController ()
 
@@ -26,16 +28,31 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)onLogout:(UIButton *)sender {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERTOKENKEY];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+    [self.navigationController popViewControllerAnimated:YES];
+    [JPUSHService setTags:nil alias:@"" fetchCompletionHandle:nil];
+    [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        HeLoginVC *loginVC = [[HeLoginVC alloc] init];
+        CustomNavigationController *loginNav = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
+        [[UIApplication sharedApplication].keyWindow setRootViewController:loginNav];
+    });
 }
 
 #pragma mark - Table view data source

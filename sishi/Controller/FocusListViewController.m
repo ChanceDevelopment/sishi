@@ -8,12 +8,15 @@
 
 #import "FocusListViewController.h"
 #import "FocusTableViewCell.h"
+#import "MJRefresh.h"
+#import "ApiUtils.h"
+#import "UIViewController+HUD.h"
 
 @interface FocusListViewController ()
 /**
  *  关注用户列表
  */
-@property(nonatomic,copy)NSMutableArray *focusUserList;
+@property(nonatomic,copy)NSMutableArray <UserFollowListModel *>*focusUserList;
 @end
 
 @implementation FocusListViewController
@@ -23,19 +26,38 @@
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
+    self.navigationItem.title = @"我关注的";
     [self.tableView registerNib:[UINib nibWithNibName:@"FocusTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"FocusTableViewCell"];
+    self.tableView.tableFooterView = [UIView new];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(onHeaderRefresh:)];
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)onHeaderRefresh:(MJRefreshNormalHeader *)header {
+//    [self showHudInView:self.view hint:@""];
+    [ApiUtils queryMYFocusListWithResponseList:^(NSArray<UserFollowListModel *> *focusList) {
+        [header endRefreshing];
+        [self.focusUserList removeAllObjects];
+        [self.focusUserList addObjectsFromArray:focusList];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+    } onError:^(NSString *responseErrorInfo) {
+//        [self hideHud];
+        [self showHint:responseErrorInfo];
+        [header endRefreshing];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
 }
 
 #pragma mark - Table view data source
@@ -45,7 +67,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.focusUserList.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -53,9 +75,17 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FocusTableViewCell" forIndexPath:indexPath];
+    FocusTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FocusTableViewCell" forIndexPath:indexPath];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(FocusTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    UserFollowListModel *model = self.focusUserList[indexPath.row];
+    cell.model = model;
+    cell.onContact = ^(UserFollowListModel *userModel) {
+        NSLog(@"didselect contact button with detail model %@",userModel);
+    };
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

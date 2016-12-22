@@ -11,6 +11,7 @@
 #import "HeBaseTableViewCell.h"
 #import "HeRealTrendTableCell.h"
 #import "HeRealTimeDetailController.h"
+#import "Masonry.h"
 
 #define TextLineHeight 1.2f
 
@@ -25,6 +26,16 @@
 @property(strong,nonatomic)EGORefreshTableFootView *refreshFooterView;
 @property(assign,nonatomic)NSInteger pageNo;
 
+/**
+ *  发布 按钮
+ */
+@property(nonatomic,strong)UIButton *releaseBtn;
+
+/**
+ *  过滤 按钮
+ */
+@property(nonatomic,strong)UIButton *filterBtn;
+
 @end
 
 @implementation HeRealTimeTrendVC
@@ -34,6 +45,31 @@
 @synthesize refreshFooterView;
 @synthesize refreshHeaderView;
 @synthesize pageNo;
+
+
+- (UIButton *)releaseBtn {
+    if (!_releaseBtn) {
+        _releaseBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+        [_releaseBtn addTarget:self action:@selector(onRelease:) forControlEvents:UIControlEventTouchUpInside];
+        [_releaseBtn setImage:[UIImage imageNamed:@"icon_edit.png"] forState:UIControlStateNormal];
+        _releaseBtn.layer.cornerRadius = 25;
+        _releaseBtn.layer.shadowOffset = CGSizeMake(5, 5);
+        _releaseBtn.layer.shadowColor = [UIColor blackColor].CGColor;
+        _releaseBtn.layer.shadowRadius = 25.0;
+        _releaseBtn.layer.shadowOpacity = 1.0;
+        _releaseBtn.clipsToBounds = YES;
+        _releaseBtn.backgroundColor = [UIColor colorWithRed:255 / 255.0 green:63 / 255.0 blue:73 / 255.0 alpha:1];
+    }
+    return _releaseBtn;
+}
+
+- (UIButton *)filterBtn {
+    if (!_filterBtn) {
+        _filterBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+        
+    }
+    return _filterBtn;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -95,6 +131,13 @@
         }
         [sectionHeaderView addSubview:button];
     }
+    
+    [self.view addSubview:self.releaseBtn];
+    [self.releaseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.view).offset(-10);
+        make.bottom.equalTo(self.view).offset(-20);
+        make.size.mas_equalTo(CGSizeMake(50, 50));
+    }];
 }
 
 - (UIButton *)buttonWithTitle:(NSString *)buttonTitle frame:(CGRect)buttonFrame
@@ -158,6 +201,11 @@
     
 }
 
+#pragma mark :- 发布 
+- (void)onRelease:(UIButton *)btn {
+    
+}
+
 #pragma mark -
 #pragma mark Data Source Loading / Reloading Methods
 
@@ -195,7 +243,6 @@
     //刚开始拖拽的时候触发下载数据
     [refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
     [refreshFooterView egoRefreshScrollViewDidScroll:scrollView];
-    
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{

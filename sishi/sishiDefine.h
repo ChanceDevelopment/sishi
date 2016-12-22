@@ -9,6 +9,13 @@
 #ifndef sishiDefine_h
 #define sishiDefine_h
 
+////////// 网络请求API 相关
+
+
+
+//////////
+
+
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double ) 568 ) < DBL_EPSILON )
 #define ALBUMNAME @"SiShiDocument"
 //#define ALBUMNAMEDOCUMENT @"FuYangDocument"

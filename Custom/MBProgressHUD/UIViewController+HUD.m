@@ -34,6 +34,15 @@ static const void *HttpRequestHUDKey = &HttpRequestHUDKey;
     [self setHUD:HUD];
 }
 
+- (void)showHUD {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+}
+
+- (void)hideHUD {
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
+
+
 - (void)showHint:(NSString *)hint {
     if ([hint isEqualToString:@"录音没有开始"]) {
         NSLog(@"dd");

@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserFollowListModel.h"
+
+typedef void(^FocusTableViewCellCallBack)(UserFollowListModel *model);
 
 @interface FocusTableViewCell : UITableViewCell
+/**
+ *  列表页面Mode
+ */
+@property(nonatomic,strong)UserFollowListModel *model;
+
+/**
+ *  点击
+ */
+@property(nonatomic,copy)FocusTableViewCellCallBack onContact;
 
 @end

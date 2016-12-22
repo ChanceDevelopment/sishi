@@ -14,6 +14,7 @@
                 <outlet property="authCodeInputField" destination="Zi4-W0-igZ" id="VZ5-os-lPk"/>
                 <outlet property="inputFieldContainerView" destination="AMi-jD-B0N" id="pCQ-4K-TKg"/>
                 <outlet property="phoneInputField" destination="zIk-xy-FEQ" id="BQv-3O-o9e"/>
+                <outlet property="verificationBtn" destination="Bty-Qc-Njg" id="dvA-DB-xmZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -26,19 +27,19 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XaS-Vl-3lP">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="348"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="349"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AMi-jD-B0N">
-                                    <rect key="frame" x="10" y="45" width="355" height="98"/>
+                                    <rect key="frame" x="10" y="45" width="355" height="99"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手机号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gZ3-7b-y0a">
-                                            <rect key="frame" x="25" y="15" width="55.5" height="21.5"/>
+                                            <rect key="frame" x="25" y="15" width="56" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zIk-xy-FEQ">
-                                            <rect key="frame" x="90.5" y="4" width="249.5" height="45"/>
+                                            <rect key="frame" x="91" y="4" width="249" height="45"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="45" id="Q1f-O9-vPQ"/>
                                             </constraints>
@@ -54,18 +55,23 @@
                                             </constraints>
                                         </view>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zi4-W0-igZ">
-                                            <rect key="frame" x="90.5" y="50" width="249.5" height="45"/>
+                                            <rect key="frame" x="91" y="50" width="249" height="45"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bty-Qc-Njg">
-                                            <rect key="frame" x="293" y="59" width="57" height="26"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                            <state key="normal" title="发送验证码"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bty-Qc-Njg">
+                                            <rect key="frame" x="278" y="58.5" width="62" height="27"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <state key="normal" title="发送验证码">
+                                                <color key="titleColor" red="0.99840146299999999" green="0.34669867160000001" blue="0.35690140720000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="onGetAuthCode:" destination="-1" eventType="touchUpInside" id="r1t-hd-fT7"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="验证码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tuh-qb-LVO">
-                                            <rect key="frame" x="25" y="62" width="55.5" height="21"/>
+                                            <rect key="frame" x="25" y="62" width="56" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -86,14 +92,14 @@
                                         <constraint firstItem="Tuh-qb-LVO" firstAttribute="centerX" secondItem="gZ3-7b-y0a" secondAttribute="centerX" id="Zx0-6l-RCR"/>
                                         <constraint firstItem="Tuh-qb-LVO" firstAttribute="centerY" secondItem="Zi4-W0-igZ" secondAttribute="centerY" id="edG-so-rz6"/>
                                         <constraint firstItem="zIk-xy-FEQ" firstAttribute="leading" secondItem="gZ3-7b-y0a" secondAttribute="trailing" constant="10" id="gqr-Q1-cjF"/>
-                                        <constraint firstAttribute="trailing" secondItem="Bty-Qc-Njg" secondAttribute="trailing" constant="5" id="tK0-xX-IkO"/>
+                                        <constraint firstAttribute="trailing" secondItem="Bty-Qc-Njg" secondAttribute="trailing" constant="15" id="tK0-xX-IkO"/>
                                         <constraint firstItem="Zi4-W0-igZ" firstAttribute="top" secondItem="sa9-LV-nde" secondAttribute="bottom" id="vqv-Ot-Cbg"/>
                                         <constraint firstAttribute="trailing" secondItem="sa9-LV-nde" secondAttribute="trailing" constant="10" id="wS0-LV-qyh"/>
                                         <constraint firstItem="Zi4-W0-igZ" firstAttribute="leading" secondItem="zIk-xy-FEQ" secondAttribute="leading" id="ys8-uk-dK3"/>
                                     </constraints>
                                 </view>
                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAx-Tw-oN5">
-                                    <rect key="frame" x="25" y="268" width="325" height="45"/>
+                                    <rect key="frame" x="25" y="269" width="325" height="45"/>
                                     <color key="backgroundColor" red="1" green="0.34509803919999998" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="6pI-g9-Lcw"/>

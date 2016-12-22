@@ -62,7 +62,6 @@
         
         self.bgImage = [[ImageBannerView alloc]initWithFrame:CGRectMake(bgX, bgY, bgW, bgH)];
         self.bgImage.padding = 25;
-        self.bgImage.userInteractionEnabled = NO;
         self.bgImage.backgroundColor = [UIColor whiteColor];
         self.bgImage.imageLinkGroup = @[@"",@"",@""];
         [self addSubview:self.bgImage];

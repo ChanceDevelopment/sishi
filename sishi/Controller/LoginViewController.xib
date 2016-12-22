@@ -38,12 +38,18 @@
                                             <state key="normal" title="  我是司机">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="onDriver:" destination="-1" eventType="touchUpInside" id="n6I-2b-3bi"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bI0-Ro-EV3">
                                             <rect key="frame" x="70" y="0.0" width="70" height="30"/>
                                             <state key="normal" title="  我是乘客">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="onPassenger:" destination="-1" eventType="touchUpInside" id="3oc-BT-AV6"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -10,6 +10,7 @@
 #import "TTTAttributedLabel.h"
 #import "RegisterController.h"
 #import "LoginViewController.h"
+#import "ReactiveCocoa.h"
 
 @interface HeLoginVC ()
 @property (weak, nonatomic) IBOutlet TTTAttributedLabel *attributeLabel;
@@ -107,7 +108,7 @@
     
 }
 - (IBAction)onCreatAccount:(UIButton *)sender {
-    
+//    sender.
     RegisterController *registerController = [[RegisterController alloc] initWithNibName:@"RegisterController" bundle:[NSBundle mainBundle]];
     [self.navigationController pushViewController:registerController animated:YES];
 }

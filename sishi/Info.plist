@@ -53,7 +53,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>QQ41B3BA6A</string>
+				<string>QQ00000008</string>
 			</array>
 		</dict>
 		<dict>
@@ -77,6 +77,11 @@
 	<string>6</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>mqzone</string>
+		<string>mqzoneopensdk</string>
+		<string>mqzoneopensdkapi</string>
+		<string>mqzoneopensdkapi19</string>
+		<string>mqzoneopensdkapiV2</string>
 		<string>mqqOpensdkSSoLogin</string>
 		<string>mqqopensdkapiV2</string>
 		<string>mqqopensdkapiV3</string>

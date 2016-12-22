@@ -21,11 +21,10 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.contactButton.layer.cornerRadius = 2;
+    self.contactButton.layer.cornerRadius = 3;
     self.contactButton.layer.borderWidth = 1;
     self.contactButton.layer.borderColor = UIColorFromRGB(0XFF585B).CGColor;
     self.contactButton.clipsToBounds = YES;
-    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -34,6 +33,17 @@
     // Configure the view for the selected state
 }
 - (IBAction)onContact:(UIButton *)sender {
+    if (self.onContact) {
+        self.onContact(self.model);
+    }
+}
+
+- (void)setModel:(UserFollowListModel *)model {
+    _model = model;
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:model.userHeader] placeholderImage:[UIImage imageNamed:@"demo_nearBgImage.jpg"]];
+    self.headImageView.clipsToBounds = YES;
+    self.nameLabel.text = model.userName;
+//    self.hobbyLabel.text = model.ho
     
 }
 

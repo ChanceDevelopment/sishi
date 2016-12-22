@@ -75,6 +75,8 @@
 //判断字符串是否手机号码
 + (BOOL)isMobileNumber:(NSString *)mobileNum;
 
++ (BOOL)isIDCardNumber:(NSString *)cardNumber;
+
 
 + (NSData *)deleteErrorStringInData:(NSData *)inputData;
 + (NSString *)replaceUnicode:(NSString *)unicodeStr;

@@ -939,6 +939,12 @@
     return [[UIDevice currentDevice] systemName];
 }
 
++ (BOOL)isIDCardNumber:(NSString *)cardNumber {
+    NSString *regex = @"^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}([0-9]|X)$";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+    return [predicate evaluateWithObject:cardNumber];
+}
+
 + (BOOL)isMobileNumber:(NSString *)mobileNum
 {
     if (mobileNum == nil || [mobileNum isEqualToString:@""]) {
@@ -973,16 +979,19 @@
      27         * 号码：七位或八位
      28         */
     // NSString * PHS = @"^0(10|2[0-5789]|\\d{3})\\d{7,8}$";
+    NSString *virtualNumber = @"^170\\d{8}";
     
     NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
     NSPredicate *regextestcm = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CM];
     NSPredicate *regextestcu = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CU];
     NSPredicate *regextestct = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CT];
+    NSPredicate *regextextvirtualnumber = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",virtualNumber];
     
     if (([regextestmobile evaluateWithObject:mobileNum] == YES)
         || ([regextestcm evaluateWithObject:mobileNum] == YES)
         || ([regextestct evaluateWithObject:mobileNum] == YES)
-        || ([regextestcu evaluateWithObject:mobileNum] == YES))
+        || ([regextestcu evaluateWithObject:mobileNum] == YES)
+        || [regextextvirtualnumber evaluateWithObject:mobileNum] == YES)
     {
         return YES;
     }

@@ -10,14 +10,27 @@
 #import "HeChatTableCell.h"
 #import "ChatViewController.h"
 #import "AppDelegate.h"
+#import "EMSDK.h"
 
 @interface HeChatVC ()<UITableViewDelegate,UITableViewDataSource>
 @property(strong,nonatomic)IBOutlet UITableView *tableview;
+/**
+ *  聊天数据源数组
+ */
+@property(nonatomic,strong)NSMutableArray *chatArray;
 
 @end
 
 @implementation HeChatVC
 @synthesize tableview;
+
+
+- (NSMutableArray *)chatArray {
+    if (!_chatArray) {
+        _chatArray = [NSMutableArray array];
+    }
+    return _chatArray;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,7 +44,6 @@
         label.textAlignment = NSTextAlignmentCenter;
         self.navigationItem.titleView = label;
         label.text = @"消息";
-        
         [label sizeToFit];
         self.title = @"";
     }
@@ -40,7 +52,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
     [self initializaiton];
     [self initView];
 }
@@ -56,18 +68,6 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
-//- (void)viewDidAppear:(BOOL)animated
-//{
-//    [super viewDidAppear:YES];
-//    UIViewController *rootVC = ((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
-//    UIImage *image = [Tool snapshot:rootVC.view];
-//    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-//    imageView.frame = CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGH);
-//    imageView.userInteractionEnabled = YES;
-//    HeTabBarVC *tabBarVC = (HeTabBarVC *)((AppDelegate *)([UIApplication sharedApplication].delegate).window.rootViewController);
-//    tabBarVC.currentSnapShot = imageView;
-//}
-
 - (void)initializaiton
 {
     [super initializaiton];
@@ -82,11 +82,13 @@
     tableview.backgroundColor = [UIColor whiteColor];
     tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     [Tool setExtraCellLineHidden:tableview];
+//    [EMClient sharedClient]load
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.chatArray.count;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -106,7 +108,6 @@
     if (!cell) {
         cell = [[HeChatTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier cellSize:cellSize];
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
-//            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
     return cell;

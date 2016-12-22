@@ -129,7 +129,7 @@
 //    userfrostedVC.direction = REFrostedViewControllerDirectionRight;
 //    userfrostedVC.liveBlurBackgroundStyle = REFrostedViewControllerLiveBackgroundStyleLight;
     
-    [self setViewControllers:@[homeNav,dynamicNav,chatNav,userNav]];
+    [self setViewControllers:@[homeNav,chatNav,dynamicNav,userNav]];
     [self customizeTabBarForController];
 }
 
@@ -138,7 +138,7 @@
     //    tabbar_normal_background   tabbar_selected_background
     UIImage *finishedImage = [UIImage imageNamed:@"tabbar_normal_background"];
     UIImage *unfinishedImage = [UIImage imageNamed:@"tabbar_normal_background"];
-    NSArray *tabBarItemImages = @[@"tabar_homepage_icon", @"tabar_dynamic_icon", @"tabar_news_icon", @"tabar_user_icon"];
+    NSArray *tabBarItemImages = @[@"tabar_homepage_icon", @"tabar_news_icon", @"tabar_dynamic_icon", @"tabar_user_icon"];
     
     NSInteger index = 0;
     for (RDVTabBarItem *item in [[self tabBar] items]) {

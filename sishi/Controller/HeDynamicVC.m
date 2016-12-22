@@ -101,7 +101,7 @@
     self.navigationItem.titleView = segmentedControl;*/
     
     
-    
+    self.navigationItem.backBarButtonItem  = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
     
    sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(-10, 0, SCREENWIDTH, 40)];
     sectionHeaderView.backgroundColor = [UIColor colorWithWhite:237.0 / 255.0 alpha:1.0];

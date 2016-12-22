@@ -9,6 +9,7 @@
 #import "LabelSelectView.h"
 #import "LabelSelectViewModel.h"
 #import "LabelSelectViewCell.h"
+#import "UICollectionViewLeftAlignedLayout.h"
 
 
 @interface LabelSelectView ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
@@ -38,7 +39,7 @@
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+    UICollectionViewLeftAlignedLayout *layout = [[UICollectionViewLeftAlignedLayout alloc]init];
     layout.minimumLineSpacing = 5;
     layout.minimumInteritemSpacing = 5;
     if (self = [super initWithFrame:frame collectionViewLayout:layout]) {
@@ -56,6 +57,8 @@
     self.dataSource = self;
     self.scrollEnabled = NO;
     [self registerClass:[LabelSelectViewCell class] forCellWithReuseIdentifier:@"LabelSelectViewCell"];
+    [(UICollectionViewLeftAlignedLayout *)self.collectionViewLayout setMinimumLineSpacing:5];
+    [(UICollectionViewLeftAlignedLayout *)self.collectionViewLayout setMinimumInteritemSpacing:5];
 }
 
 #pragma mark :- Utils
