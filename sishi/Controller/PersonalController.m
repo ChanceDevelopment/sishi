@@ -19,6 +19,10 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *authViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIButton *hobbyBtn;
 @property (weak, nonatomic) IBOutlet UIButton *confidenceValueLabel;
+/**
+ *  titleAttributes
+ */
+@property(nonatomic,strong)NSDictionary *titleAttributes;
 
 @end
 
@@ -28,7 +32,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"我的信息";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(onEdit:)];
+    UIButton *editItem = [UIButton buttonWithType:UIButtonTypeSystem];
+    editItem.frame = CGRectMake(0, 0, 25, 25);
+    [editItem setBackgroundImage:[UIImage imageNamed:@"icon_edit_white.png"] forState:UIControlStateNormal];
+    [editItem addTarget:self action:@selector(onEdit:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:editItem];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
@@ -39,8 +49,23 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.titleAttributes = self.navigationController.navigationBar.titleTextAttributes;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
+    self.navigationController.navigationBar.translucent = YES;
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.titleTextAttributes = self.titleAttributes;
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    self.navigationController.navigationBar.translucent = NO;
+    [self.navigationController.navigationBar setShadowImage:nil];
+    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
 }
 
 - (void)didReceiveMemoryWarning {

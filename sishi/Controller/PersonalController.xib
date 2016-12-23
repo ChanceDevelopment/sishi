@@ -30,7 +30,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="382" height="787"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x9g-2u-Y96">
-                            <rect key="frame" x="0.0" y="0.0" width="382" height="746"/>
+                            <rect key="frame" x="0.0" y="0.0" width="382" height="741"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XXX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1BG-BR-QVT">
                                     <rect key="frame" x="10" y="193" width="34" height="21"/>
@@ -117,7 +117,7 @@
                                     </state>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="满分 12 分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDY-6L-Ycy">
-                                    <rect key="frame" x="27" y="686" width="57" height="15"/>
+                                    <rect key="frame" x="27" y="681" width="57" height="15"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" red="0.46661311388015747" green="0.46669745445251465" blue="0.46660774946212769" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -172,7 +172,7 @@
                                 <constraint firstItem="dk1-j2-d9Q" firstAttribute="top" secondItem="yu0-Df-Lzj" secondAttribute="bottom" constant="25" id="BCe-Px-nBc"/>
                                 <constraint firstItem="ZDY-6L-Ycy" firstAttribute="trailing" secondItem="qNM-kD-EEh" secondAttribute="trailing" id="BPl-6N-M2U"/>
                                 <constraint firstAttribute="bottom" secondItem="ZDY-6L-Ycy" secondAttribute="bottom" constant="45" id="BUA-FW-oWD"/>
-                                <constraint firstItem="ZDY-6L-Ycy" firstAttribute="top" secondItem="qNM-kD-EEh" secondAttribute="bottom" constant="5" id="DBC-E5-VNy"/>
+                                <constraint firstItem="ZDY-6L-Ycy" firstAttribute="top" secondItem="qNM-kD-EEh" secondAttribute="bottom" id="DBC-E5-VNy"/>
                                 <constraint firstAttribute="trailing" secondItem="ai7-Ux-9Ug" secondAttribute="trailing" id="Eam-ZC-XMo"/>
                                 <constraint firstItem="USd-QQ-MGT" firstAttribute="top" secondItem="dk1-j2-d9Q" secondAttribute="bottom" constant="25" id="Fbs-UJ-Ghw"/>
                                 <constraint firstAttribute="trailing" secondItem="dk1-j2-d9Q" secondAttribute="trailing" id="FyA-t8-D6L"/>

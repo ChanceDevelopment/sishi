@@ -389,7 +389,7 @@
                                                     <rect key="frame" x="72" y="5" width="293" height="134"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="133.5" id="r9Y-Lo-Oqe"/>
+                                                        <constraint firstAttribute="height" constant="60" id="r9Y-Lo-Oqe"/>
                                                     </constraints>
                                                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ckq-TZ-dSa">
                                                         <size key="itemSize" width="50" height="50"/>
@@ -407,6 +407,11 @@
                                                             </view>
                                                         </collectionViewCell>
                                                     </cells>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="r9Y-Lo-Oqe"/>
+                                                        </mask>
+                                                    </variation>
                                                 </collectionView>
                                             </subviews>
                                             <constraints>

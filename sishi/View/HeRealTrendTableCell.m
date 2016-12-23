@@ -32,7 +32,7 @@
         CGFloat bgW = SCREENWIDTH - 2 * bgX;
         CGFloat bgH = cellsize.height - 2 * bgY;
         bgView = [[UIView alloc] initWithFrame:CGRectMake(bgX, bgY, bgW, bgH)];
-        bgView.backgroundColor = [UIColor colorWithWhite:237.0 / 255.0 alpha:1.0];
+        bgView.backgroundColor = UIColorFromRGB(0xeeeeee);
         bgView.layer.masksToBounds = YES;
         bgView.layer.cornerRadius = 5.0;
         [self addSubview:bgView];

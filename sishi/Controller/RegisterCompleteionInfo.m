@@ -55,24 +55,48 @@
 //        [weakSelf showHint:responseErrorInfo];
 //    }];
 //    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    dispatch_async(dispatch_queue_create("com.sishi.easemob.register", DISPATCH_QUEUE_SERIAL), ^{
+//       EMError *loginError =  [[EMClient sharedClient]registerWithUsername:weakSelf.phoneNumber password:weakSelf.passwordInputField.text];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//           [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+//        });
+//        if (!loginError) {
+            [ApiUtils userRegisterWithNickName:self.nickNameInputField.text
+                                         uName:self.phoneNumber
+                                           psw:self.passwordInputField.text
+                                    onResponse:^{
+                                        [[NSNotificationCenter defaultCenter]postNotificationName:USERREGISTERSUCCESSKEY object:nil userInfo:@{@"uname":self.phoneNumber,@"password":self.passwordInputField.text}];
+                                    } onRequestError:^(NSString *responseErrorInfo) {//注册失败
+                                        dispatch_async(dispatch_get_main_queue(), ^{
+                                            [weakSelf showHint:responseErrorInfo];
+                                        });
+                                    }];
+//        } else {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                    [weakSelf showHint:loginError.errorDescription];
+//            });
+//            
+//        }
+//    });
 //    [[EMClient sharedClient] asyncRegisterWithUsername:self.phoneNumber
 //                                             password:self.passwordInputField.text
 //                                              success:^{
-                                                      [ApiUtils userRegisterWithNickName:self.nickNameInputField.text
-                                                                                   uName:self.phoneNumber
-                                                                                     psw:self.passwordInputField.text
-                                                                              onResponse:^{
-                                                                                  [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];//注册成功
-                                                      } onRequestError:^(NSString *responseErrorInfo) {//注册失败
-                                                          [weakSelf showHint:responseErrorInfo];
-                                                          [MBProgressHUD hideHUDForView:self.view animated:YES];
-                                                      }];
+//                                                      [ApiUtils userRegisterWithNickName:self.nickNameInputField.text
+//                                                                                   uName:self.phoneNumber
+//                                                                                     psw:self.passwordInputField.text
+//                                                                              onResponse:^{
+//                                                                                  [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];//注册成功
+//                                                      } onRequestError:^(NSString *responseErrorInfo) {//注册失败
+//                                                          [weakSelf showHint:responseErrorInfo];
+//                                                          [MBProgressHUD hideHUDForView:self.view animated:YES];
+//                                                      }];//
 //    } failure:^(EMError *aError) {
 //        NSLog(@"%@",aError.description);
 //        NSLog(@"error code %u ",aError.code);
 //        [weakSelf showHint:aError.errorDescription];
 //        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
 //    }];
+
 }
 
 /*

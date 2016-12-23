@@ -24,6 +24,14 @@
 #define SCREENHEIGH ([UIScreen mainScreen].bounds.size.height)
 #define ISIOS7 ([[[UIDevice currentDevice] systemVersion] floatValue] > 6.9)
 #define ISIOS6 ([[[UIDevice currentDevice] systemVersion] floatValue] < 6.9)
+
+
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+
+#define kScaleOfScreenWidth(a) (SCREEN_WIDTH * ((a) / (375.0)))
+#define kScaleOfScreenHeight(a) (SCREEN_HEIGHT * ((a) / (667.0)))
+
 #define IOS7OFFSET        64
 
 #define kWeakSelf __weak typeof(self) weakSelf = self
@@ -92,6 +100,9 @@
 #define USERPASSWORDKEY @"userPasswordKey"
 #define USERHAVELOGINKEY @"userHaveLogin"
 #define FRIENDLISTDOWNLOADSUCCEED @"friendDownloadSucceed"
+
+///用户注册成功之后回调,userinfo参数分别是uname和password
+#define USERREGISTERSUCCESSKEY @"USERREGISTERSUCCESS"
 
 #define ERRORREQUESTTIP @"网络出错，请稍后再试!"
 #define MODIFYPASSWORDKEY @"modifyPasswordKey"

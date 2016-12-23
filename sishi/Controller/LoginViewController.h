@@ -9,5 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface LoginViewController : UIViewController
+/**
+ *  用户名
+ */
+@property(nonatomic,copy)NSString *uname;
 
+/**
+ *  密码
+ */
+@property(nonatomic,copy)NSString *password;
 @end

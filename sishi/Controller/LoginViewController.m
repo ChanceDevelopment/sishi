@@ -11,6 +11,7 @@
 #import "ApiUtils.h"
 #import "AppDelegate.h"
 #import <SMS_SDK/SMSSDK.h>
+#import "WXApi.h"
 #import "JPUSHService.h"
 
 @interface LoginViewController ()
@@ -28,6 +29,16 @@
 @end
 
 @implementation LoginViewController
+
+- (void)setUname:(NSString *)uname {
+    _uname = uname;
+    self.phoneInputField.text = uname;
+}
+
+- (void)setPassword:(NSString *)password {
+    _password = password;
+    self.passwordInputField.text = password;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -60,16 +71,28 @@
                        loginType:self.isDriver ? @"0" : @"1"
                   onResponseInfo:^(LoginUserInfoModel *userInfo) {
                       
-                      dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                          [[EMClient sharedClient]loginWithUsername:userInfo.userProvince password:@""];
-                          [JPUSHService setTags:nil alias:userInfo.userId fetchCompletionHandle:nil];
-                          //保存登录信息
-                          NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                          [defaults setObject:userInfo.userId forKey:USERTOKENKEY];
-                          [defaults synchronize];
-                          [weakSelf hideHud];
-                          [[NSNotificationCenter defaultCenter]postNotificationName:LOGINKEY object:nil];
-                      });
+//                      dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//                         EMError *loginError =  [[EMClient sharedClient]loginWithUsername:userInfo.userProvince password:@""];
+//                          if (!loginError) {
+//                              dispatch_async(dispatch_get_main_queue(), ^{
+                                  [JPUSHService setTags:nil alias:userInfo.userId fetchCompletionHandle:nil];
+                                  //保存登录信息
+                                  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                                  [defaults setObject:userInfo.userId forKey:USERTOKENKEY];
+                                  [defaults synchronize];
+                                  [weakSelf hideHud];
+//                        NSLog(@"weakSelf navigation controller %@",weakSelf.navigationController);
+//                                  [weakSelf.navigationController dismissViewControllerAnimated:YES completion:nil];
+                      [[NSNotificationCenter defaultCenter]postNotificationName:KNOTIFICATION_LOGINCHANGE object:nil];
+//                              });
+//                          } else {
+//                              dispatch_async(dispatch_get_main_queue(), ^{
+//                                  [weakSelf hideHud];
+//                                  [weakSelf showHint:@"聊天服务登录异常"];
+//                                  NSLog(@"login easemob with error %@",loginError.errorDescription);
+//                              });
+//                          }
+//                      });
                       
     } onResponseError:^(NSString *responseErrorInfo) {
         [weakSelf showHint:responseErrorInfo];

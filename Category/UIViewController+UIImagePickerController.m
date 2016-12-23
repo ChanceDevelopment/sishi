@@ -7,9 +7,19 @@
 //
 
 #import "UIViewController+UIImagePickerController.h"
+#import <objc/runtime.h>
 
 @implementation UIViewController (UIImagePickerController)
-- (void)pickImage {
+- (void)setIdentifier:(NSString *)identifier {
+    objc_setAssociatedObject(self, @selector(identifier), identifier, OBJC_ASSOCIATION_COPY);
+}
+
+- (NSString *)identifier {
+    return objc_getAssociatedObject(self, @selector(identifier));
+}
+
+- (void)pickImage:(NSString *)identifier {
+    self.identifier = identifier;
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
     imagePicker.delegate = self;
     imagePicker.allowsEditing = YES;
@@ -32,9 +42,9 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     [picker dismissViewControllerAnimated:YES completion:nil];
-    if ([self respondsToSelector:@selector(finishPickWithImage:)]) {
+    if ([self respondsToSelector:@selector(finishPickWithImage:identifier:)]) {
         UIImage *editedImage = (UIImage *)info[UIImagePickerControllerEditedImage];
-        [self finishPickWithImage:editedImage];
+        [self finishPickWithImage:editedImage identifier:self.identifier];
     }
 }
 @end

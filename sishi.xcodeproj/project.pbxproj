@@ -62,6 +62,8 @@
 		A2C829C31E029C9C00645639 /* LabelSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C829C21E029C9C00645639 /* LabelSelectView.m */; };
 		A2C829C61E029CBA00645639 /* LabelSelectViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C829C51E029CBA00645639 /* LabelSelectViewCell.m */; };
 		A2C829C91E029F6F00645639 /* LabelSelectViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C829C81E029F6F00645639 /* LabelSelectViewModel.m */; };
+		A2FF4B601E0CECCA00A3739E /* SelectViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FF4B5F1E0CECCA00A3739E /* SelectViewContainer.m */; };
+		A2FF4B621E0CECE200A3739E /* SelectViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2FF4B611E0CECE200A3739E /* SelectViewContainer.xib */; };
 		EA12F7EA1D65492B0085752A /* icon_cooperate.png in Resources */ = {isa = PBXBuildFile; fileRef = EA12F7E91D65492B0085752A /* icon_cooperate.png */; };
 		EA12F7EC1D654A950085752A /* icon_tips.png in Resources */ = {isa = PBXBuildFile; fileRef = EA12F7EB1D654A950085752A /* icon_tips.png */; };
 		EA12F7F11D6554F30085752A /* HeSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA12F7EF1D6554F30085752A /* HeSearchVC.m */; };
@@ -1087,6 +1089,9 @@
 		A2C829C51E029CBA00645639 /* LabelSelectViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelSelectViewCell.m; sourceTree = "<group>"; };
 		A2C829C71E029F6F00645639 /* LabelSelectViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelSelectViewModel.h; sourceTree = "<group>"; };
 		A2C829C81E029F6F00645639 /* LabelSelectViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelSelectViewModel.m; sourceTree = "<group>"; };
+		A2FF4B5E1E0CECCA00A3739E /* SelectViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectViewContainer.h; sourceTree = "<group>"; };
+		A2FF4B5F1E0CECCA00A3739E /* SelectViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectViewContainer.m; sourceTree = "<group>"; };
+		A2FF4B611E0CECE200A3739E /* SelectViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectViewContainer.xib; sourceTree = "<group>"; };
 		EA12F7E91D65492B0085752A /* icon_cooperate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_cooperate.png; sourceTree = "<group>"; };
 		EA12F7EB1D654A950085752A /* icon_tips.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_tips.png; sourceTree = "<group>"; };
 		EA12F7EE1D6554F30085752A /* HeSearchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeSearchVC.h; sourceTree = "<group>"; };
@@ -2895,6 +2900,16 @@
 			path = LabelSelectView;
 			sourceTree = "<group>";
 		};
+		A2FF4B371E0CE5C300A3739E /* AlertViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A2FF4B5E1E0CECCA00A3739E /* SelectViewContainer.h */,
+				A2FF4B5F1E0CECCA00A3739E /* SelectViewContainer.m */,
+				A2FF4B611E0CECE200A3739E /* SelectViewContainer.xib */,
+			);
+			path = AlertViewController;
+			sourceTree = "<group>";
+		};
 		EA12F7E81D6549220085752A /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -3686,6 +3701,7 @@
 		EA8DA9FF1D5A18CF00487BF4 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				A2FF4B371E0CE5C300A3739E /* AlertViewController */,
 				A22149951E038DC3002D8F52 /* ImagePicker&Viewer(添加图片) */,
 				A2C829C01E029C5400645639 /* LabelSelectView */,
 				A2C8298B1E02648A00645639 /* BannerView */,
@@ -6609,6 +6625,7 @@
 				EADF86451D621C900029DC4F /* icon_019_cover.png in Resources */,
 				EA2AC38B1D60192300C57B45 /* commentIcon.png in Resources */,
 				EA2AC3461D5EC24700C57B45 /* tabar_beautyZone_icon_normal@2x.png in Resources */,
+				A2FF4B621E0CECE200A3739E /* SelectViewContainer.xib in Resources */,
 				EADF866F1D621C900029DC4F /* tabbar_chatsHL@2x.png in Resources */,
 				EA2AC3961D60192300C57B45 /* newUserIcon.png in Resources */,
 				EA2AC32F1D5EC08400C57B45 /* HeChatVC.xib in Resources */,
@@ -6813,6 +6830,7 @@
 				EA8DAD081D5A18D000487BF4 /* NSDictionary+JSON.m in Sources */,
 				EA8DAE3B1D5A18D000487BF4 /* NSMutableArray+convenience.m in Sources */,
 				EA8DAD001D5A18D000487BF4 /* ASINetworkQueue.m in Sources */,
+				A2FF4B601E0CECCA00A3739E /* SelectViewContainer.m in Sources */,
 				EA8DADDE1D5A18D000487BF4 /* RACSignalSequence.m in Sources */,
 				EA8DADFA1D5A18D000487BF4 /* UISwitch+RACSignalSupport.m in Sources */,
 				EADF87B21D621E380029DC4F /* wav.mm in Sources */,
@@ -7598,7 +7616,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.channce.sishi;
 				PRODUCT_NAME = "司事";
 				PROVISIONING_PROFILE = "04189e48-19ad-4bbf-aa2c-2195cd8e1e94";
-				PROVISIONING_PROFILE_SPECIFIER = "iOS Development For New Device";
+				PROVISIONING_PROFILE_SPECIFIER = 20160818_sishi_Release;
 			};
 			name = Debug;
 		};

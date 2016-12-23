@@ -21,7 +21,7 @@ typedef void(^ApiUtilsSuccessWithVoidResponse)(void);
  */
 typedef void(^ApiUtilsSuccessWithResponseBool)(BOOL success);
 
-typedef void(^ApiUtilsErrorWithRequestError)(NSError *error);
+//typedef void(^ApiUtilsErrorWithRequestError)(NSError *error);
 
 typedef void(^ApiUtilsResponseError)(NSString *responseErrorInfo);
 
@@ -63,5 +63,15 @@ typedef void(^ApiUtilsSuccessWithResponseList)(NSArray *responseList);
 
 
 + (void)queryMYFocusListWithResponseList:(void(^)(NSArray <UserFollowListModel *>*))successHandler onError:(ApiUtilsResponseError)responseErrorHandler;
+
+
+
+//配置个人信息更新接口的参数
++ (NSDictionary *)userInfoWithUserName:(NSString *)uNick userProvince:(NSString *)userProvince userCity:(NSString *)userCity userMonth:(NSString *)month userBirthDat:(NSString *)birthDaty userAge:(NSString *)age gender:(NSString *)gender userHeaderImage:(NSString *)userImage phoneNumber:(NSString *)phone sign:(NSString *)sign;
+
++ (void)updateUserInfoWith:(NSDictionary *)info onResponseSuccess:(ApiUtilsSuccessWithVoidResponse)compleheHandler onResponseError:(ApiUtilsResponseError)errorHandler;
+
+
+
 
 @end

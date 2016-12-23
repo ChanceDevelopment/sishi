@@ -27,8 +27,9 @@
 #import "DEMOHomeViewController.h"
 #import <UMMobClick/MobClick.h>
 #import <SMS_SDK/SMSSDK.h>
+#import "WXApi.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<WXApiDelegate>
 @property(strong,nonatomic)HeSlideMenuVC *menuController;
 
 @end
@@ -42,6 +43,25 @@ BMKMapManager* _mapManager;
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+
+#pragma mark :- WXApi Delegate
+
+- (void)onReq:(BaseReq *)req {
+    
+}
+
+- (void)onResp:(BaseResp *)resp {
+    if ([resp isMemberOfClass: SendAuthResp.self]) {
+        SendAuthResp *req = (SendAuthResp *)resp;
+        if (req.code) {
+            NSLog(@"weixin login callback with response code %@",req.code);
+//            [[NSNotificationCenter defaultCenter]postNotificationName:kNotificationWXLoginCallBack object:nil userInfo:@{@"CodeURL":req.code}];
+        } else {
+            printf("\nno response code ");
+        }
+    }
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -81,6 +101,22 @@ BMKMapManager* _mapManager;
     return YES;
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    NSString *hostName = url.host;
+    if ([hostName hasPrefix:@"wx"]) {
+        return [WXApi handleOpenURL:url delegate:self];
+    }
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    NSString *hostName = url.host;
+    if ([hostName hasPrefix:hostName]) {
+        return [WXApi handleOpenURL:url delegate:self];
+    }
+    return YES;
+}
+
 - (void)launchBaiduMap
 {
     // 要使用百度地图，请先启动BaiduMapManager
@@ -117,13 +153,13 @@ BMKMapManager* _mapManager;
 
 - (void)setUpRootVC
 {
-    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:USERTOKENKEY];
-    BOOL haveLogin = (userToken == nil) ? NO : YES;
+//    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:USERTOKENKEY];
+//    BOOL haveLogin = (userToken == nil) ? NO : YES;
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     
-    if (haveLogin) {//登陆成功加载主窗口控制器
+//    if (haveLogin) {//登陆成功加载主窗口控制器
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         
 //        [UINavigationBar appearance].tintColor = [UIColor blackColor];
@@ -133,12 +169,12 @@ BMKMapManager* _mapManager;
         
         HeTabBarVC *tabBarController = [[HeTabBarVC alloc] init];
         self.viewController = tabBarController;
-    }
-    else{
-        HeLoginVC *loginVC = [[HeLoginVC alloc] init];
-        CustomNavigationController *loginNav = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
-        self.viewController = loginNav;
-    }
+//    }
+//    else{
+//        HeLoginVC *loginVC = [[HeLoginVC alloc] init];
+//        CustomNavigationController *loginNav = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
+//        self.viewController = loginNav;
+//    }
     self.window.rootViewController = self.viewController;
 }
 
@@ -176,8 +212,6 @@ BMKMapManager* _mapManager;
     self.window.backgroundColor = [UIColor whiteColor];
     
      [SMSSDK registerApp:SHARESDKSMSKEY withSecret:SHARESDKSMSAPPSECRET];
-    
-    
 }
 
 #pragma mark - login changed
@@ -187,10 +221,8 @@ BMKMapManager* _mapManager;
     NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:USERTOKENKEY];
     BOOL haveLogin = (userToken == nil) ? NO : YES;
     
-    kWeakSelf;
-    [[NSNotificationCenter defaultCenter]addObserverForName:LOGINKEY object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
-        weakSelf.window.rootViewController = [[HeTabBarVC alloc] init];
-    }];
+//    kWeakSelf;
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(onLoginSuccess:) name:LOGINKEY object:nil];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
@@ -198,7 +230,7 @@ BMKMapManager* _mapManager;
      [NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], NSForegroundColorAttributeName, [UIFont systemFontOfSize:20.0], NSFontAttributeName, nil]];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     
-    if (1) {//登陆成功加载主窗口控制器
+    if (haveLogin) {//登陆成功加载主窗口控制器
         //        UIImage *navBackgroundImage = [UIImage imageNamed:@"NavBarIOS7_white"];
         //        [[UINavigationBar appearance] setBackgroundImage:navBackgroundImage forBarMetrics:UIBarMetricsDefault];
         HeTabBarVC *tabBarVC = [[HeTabBarVC alloc] init];
@@ -260,12 +292,21 @@ BMKMapManager* _mapManager;
                       [appInfo SSDKSetupSinaWeiboByAppKey:SINAWEIBOKEY appSecret:SINAWEIBOAPPSECRET redirectUri:SINAWEIBOREDURECTURI authType:SSDKAuthTypeBoth];
                   }
                       break;
-                      
                   default:
                       break;
               }
           }];
+}
+
+#pragma mark :- 通知
+- (void)onLoginSuccess:(NSNotification *)note {
+    HeTabBarVC *tabBarVC = [[HeTabBarVC alloc] init];
     
+//    CustomNavigationController *loginNav = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
+//    self.viewController = nil;
+//    self.window.rootViewController = nil;
+    self.viewController = tabBarVC;
+    self.window.rootViewController = tabBarVC;
 }
 
 //打电话的全局方法

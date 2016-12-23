@@ -44,15 +44,19 @@
 - (IBAction)onLogout:(UIButton *)sender {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERTOKENKEY];
     [[NSUserDefaults standardUserDefaults]synchronize];
-    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter]postNotificationName:KNOTIFICATION_LOGINCHANGE object:nil];
     [JPUSHService setTags:nil alias:@"" fetchCompletionHandle:nil];
-    [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
-        HeLoginVC *loginVC = [[HeLoginVC alloc] init];
-        CustomNavigationController *loginNav = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
-        [[UIApplication sharedApplication].keyWindow setRootViewController:loginNav];
-    });
+//    [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+//    HeLoginVC *loginVC = [[HeLoginVC alloc] init];
+//    CustomNavigationController *loginNav = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
+//    [self.rdv_tabBarController presentViewController:loginNav animated:YES completion:nil];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
+//        HeLoginVC *loginVC = [[HeLoginVC alloc] init];
+//        CustomNavigationController *loginNav = [[CustomNavigationController alloc] initWithRootViewController:loginVC];
+//        [[UIApplication sharedApplication].keyWindow setRootViewController:loginNav];
+//    });
 }
 
 #pragma mark - Table view data source

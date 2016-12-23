@@ -149,4 +149,30 @@ static AFHTTPSessionManager *sessionManager = nil;
         }
     }];
 }
+
+
+
+
+
++ (NSDictionary *)userInfoWithUserName:(NSString *)uNick userProvince:(NSString *)userProvince userCity:(NSString *)userCity userMonth:(NSString *)month userBirthDat:(NSString *)birthDaty userAge:(NSString *)age gender:(NSString *)gender userHeaderImage:(NSString *)userImage phoneNumber:(NSString *)phone sign:(NSString *)sign {
+    NSMutableDictionary *infoDict = [NSMutableDictionary dictionary];
+    NSString *userId = [[NSUserDefaults standardUserDefaults]stringForKey:USERIDKEY];
+    infoDict[@"userId"] = userId;
+    infoDict[@"userNick"] = uNick;
+    infoDict[@"userProvince"] = userProvince;
+    infoDict[@"userCity"] = userCity;
+    infoDict[@"userMouth"] = month;
+    infoDict[@"userDaty"] = birthDaty;
+    infoDict[@"userAge"] = age;
+    infoDict[@"userSex"] = gender;
+    infoDict[@"userHeader"] = userImage;
+    infoDict[@"userPhone"] = phone;
+    infoDict[@"userSign"] = sign;
+    return [NSDictionary dictionaryWithDictionary:infoDict];
+}
+
++ (void)updateUserInfoWith:(NSDictionary *)info onResponseSuccess:(ApiUtilsSuccessWithVoidResponse)compleheHandler onResponseError:(ApiUtilsResponseError)errorHandler {
+    NSString *api = [NSString stringWithFormat:@"%@%@",];
+}
+
 @end

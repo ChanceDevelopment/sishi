@@ -42,12 +42,6 @@
         CGFloat nameW = SCREENWIDTH - 2 * nameX;
         CGFloat nameH = 30;
         
-        //bgImage = [[UIImageView alloc] initWithFrame:CGRectMake(bgX, bgY, bgW, bgH)];
-        //bgImage.image = [UIImage imageNamed:@"demo_nearBgImage.jpg"];
-       // bgImage.layer.masksToBounds = YES;
-       // bgImage.contentMode = UIViewContentModeScaleAspectFill;
-       // [self addSubview:bgImage];
-        
         UILabel *nearbyLabel = [[UILabel alloc]initWithFrame:CGRectZero];
         nearbyLabel.frame = CGRectMake(10, 10, 80, 20);
         nearbyLabel.text = @"附近用户";
@@ -66,7 +60,7 @@
         self.bgImage.imageLinkGroup = @[@"",@"",@""];
         [self addSubview:self.bgImage];
         
-        self.upvoteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.upvoteButton = [UIButton buttonWithType:UIButtonTypeSystem];
         [self.upvoteButton setTitle:@"👍" forState:UIControlStateNormal];
         [self.upvoteButton addTarget:self action:@selector(onUpvote:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.upvoteButton];
@@ -82,10 +76,13 @@
         
         headImage = [[UIImageView alloc] initWithFrame:CGRectMake(headX, headY, headW, headH)];
         headImage.image = [UIImage imageNamed:@"demo_nearBgImage.jpg"];
+        headImage.userInteractionEnabled = YES;
         headImage.layer.masksToBounds = YES;
         headImage.layer.borderWidth = 1.0;
         headImage.layer.borderColor = [UIColor whiteColor].CGColor;
         headImage.layer.cornerRadius = headW / 2.0;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onTapUserHead:)];
+        [headImage addGestureRecognizer:tap];
         headImage.contentMode = UIViewContentModeScaleAspectFill;
         [self addSubview:headImage];
         
@@ -151,6 +148,10 @@
         
     }
     return self;
+}
+
+- (void)onTapUserHead:(UITapGestureRecognizer *)tap {
+    
 }
 
 - (void)onContact:(UIButton *)btn {

@@ -17,6 +17,7 @@
 #import "DEMONavigationController.h"
 #import "DEMOMenuViewController.h"
 #import "DEMOHomeViewController.h"
+#import "HeLoginVC.h"
 
 @interface HeTabBarVC ()
 
@@ -42,6 +43,17 @@
     [self autoLogin];
     [self setupSubviews];
     
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:USERTOKENKEY];
+    BOOL haveLogin = (userToken == nil) ? NO : YES;
+    if (!haveLogin) {
+//        HeLoginVC *login = [[HeLoginVC alloc]init];
+//        CustomNavigationController *navigator = [[CustomNavigationController alloc]initWithRootViewController:login];
+//        [self presentViewController:navigator animated:YES completion:nil];
+    }
 }
 
 //后台自动登录

@@ -11,14 +11,20 @@
 #import "RegisterController.h"
 #import "LoginViewController.h"
 #import "ReactiveCocoa.h"
+#import "WXApi.h"
 
-@interface HeLoginVC ()
+@interface HeLoginVC ()<WXApiDelegate>
 @property (weak, nonatomic) IBOutlet TTTAttributedLabel *attributeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *accountLabel;
 
 @end
 
 @implementation HeLoginVC
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
 
 //- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 //{
@@ -51,6 +57,13 @@
     [super initializaiton];
     
     self.accountLabel.layer.borderColor = [UIColor whiteColor].CGColor;
+    kWeakSelf;
+    [[NSNotificationCenter defaultCenter]addObserverForName:USERREGISTERSUCCESSKEY object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        NSString *uname = note.userInfo[@"uname"];
+        NSString *password = note.userInfo[@"password"];
+        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+        [weakSelf onLogin:nil];
+    }];
     
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]initWithString:@"注册账号即表示我同意 司事 的服务条款、支付服务条款、隐私政策、退款政策和司机保障计划条款"];
     [attributedString addAttribute:NSUnderlineStyleAttributeName value:@1 range:NSMakeRange(15, 4)];
@@ -106,6 +119,10 @@
 }
 - (IBAction)onWeChatLogin:(UIButton *)sender {
     
+    SendAuthReq* req =[[SendAuthReq alloc ] init];
+    req.scope = @"snsapi_userinfo,snsapi_base";
+    req.state = @"0744" ;
+    [WXApi sendAuthReq:req viewController:self delegate:self];
 }
 - (IBAction)onCreatAccount:(UIButton *)sender {
 //    sender.
