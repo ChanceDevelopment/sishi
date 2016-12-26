@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -50,7 +50,7 @@
                     </connections>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5m1-Ov-cmT">
-                    <rect key="frame" x="295" y="543" width="60" height="60"/>
+                    <rect key="frame" x="295" y="582" width="60" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="aMC-l6-6gM"/>
                         <constraint firstAttribute="width" constant="60" id="nen-BL-SB2"/>
@@ -65,7 +65,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="DfE-DI-p3h" secondAttribute="trailing" id="2x6-Li-y1W"/>
                 <constraint firstItem="dhd-Zt-i4M" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="8R0-u7-nTA"/>
-                <constraint firstAttribute="bottom" secondItem="5m1-Ov-cmT" secondAttribute="bottom" constant="64" id="C0z-rK-0u0"/>
+                <constraint firstAttribute="bottom" secondItem="5m1-Ov-cmT" secondAttribute="bottom" constant="25" id="C0z-rK-0u0"/>
                 <constraint firstItem="DfE-DI-p3h" firstAttribute="top" secondItem="dhd-Zt-i4M" secondAttribute="bottom" id="Gms-Du-hdi"/>
                 <constraint firstItem="dhd-Zt-i4M" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="S7d-wx-fVe"/>
                 <constraint firstItem="DfE-DI-p3h" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="U5y-Vs-Hjw"/>

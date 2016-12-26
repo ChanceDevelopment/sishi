@@ -12,6 +12,8 @@
 #import "MLLinkLabel.h"
 #import "LabelSelectView.h"
 #import "ImageAdder.h"
+#import "SelectViewContainer.h"
+#import "ApiUtils.h"
 
 #define TextLineHeight 1.2f
 
@@ -24,26 +26,66 @@
 @property (weak, nonatomic) IBOutlet UITextField *noteInputField;
 @property (weak, nonatomic) IBOutlet ImageAdder *imageAdder;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *labelSelectViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageAdderHeightConstraint;
+
+/**
+ *  兴趣爱好数组
+ */
+@property(nonatomic,strong)NSArray <HobbyListModel *>*hobbyList;
+
+/**
+ *  时间选择器
+ */
+@property(nonatomic,strong)UIDatePicker *datePicker;
 
 @end
 
 @implementation HeDistributeInviteVC
+
+- (UIDatePicker *)datePicker {
+    if (!_datePicker) {
+        _datePicker = [[UIDatePicker alloc]initWithFrame:CGRectZero];
+        _datePicker.minimumDate = [NSDate date];
+        _datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+        
+    }
+    return _datePicker;
+}
+
 - (void)viewDidLoad {
+    [super viewDidLoad];
+    self.navigationItem.title = @"发布新行程";
     [self setupView];
 }
 
 - (void)setupView {
     self.imageAdder.imageAdderDelegate = self;
     self.labelSelectView.labelFont = [UIFont systemFontOfSize:15];
-    self.labelSelectView.labelList = @[@"标签1",@"标签2",@"标签3",@"标签4",@"标签5",@"标签6",@"标签6 + 1"];
-    CGFloat labelViewHeight = [self.labelSelectView labelViewHeightForLabels:self.labelSelectView.labelList targetRectWidth:SCREENWIDTH - 20];
-    self.labelSelectViewHeightConstraint.constant = labelViewHeight;
+//    self.labelSelectView.labelList = @[@"标签1",@"标签2",@"标签3",@"标签4",@"标签5",@"标签6",@"标签6 + 1"];
+    [self queryLabels];
+    
     kWeakSelf;
     self.imageAdder.onChangeHeight = ^(CGFloat viewHeight) {
         weakSelf.imageAdderHeightConstraint.constant = viewHeight;
         [weakSelf.containerView layoutIfNeeded];
     };
+}
+
+
+- (void)queryLabels {
+    [ApiUtils queryAllHobbyListWithCompleteHandler:^(NSArray<HobbyListModel *> *hobbyList) {
+        self.hobbyList = hobbyList;
+        NSMutableArray <NSString *>* hobbyStringList = [NSMutableArray arrayWithCapacity:hobbyList.count];
+        for (HobbyListModel *hobbyModel in hobbyList) {
+            [hobbyStringList addObject:hobbyModel.loveContent];
+        }
+        self.labelSelectView.labelList = [NSArray arrayWithArray:hobbyStringList];
+        CGFloat labelViewHeight = [self.labelSelectView labelViewHeightForLabels:self.labelSelectView.labelList targetRectWidth:SCREENWIDTH - 20];
+        self.labelSelectViewHeightConstraint.constant = labelViewHeight;
+    } errorHandler:^(NSString *responseErrorInfo) {
+        [self showHint:[NSString stringWithFormat:@"%@标签获取失败",responseErrorInfo]];
+    }];
 }
 
 #pragma mark :- ImageAdder Delegate
@@ -74,6 +116,61 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
     UIImage *image = (UIImage *)info[UIImagePickerControllerOriginalImage];
     [self.imageAdder appendImage:image];
+    
+}
+- (IBAction)onPickerTime:(UIButton *)sender {
+    SelectViewContainer *container = [SelectViewContainer defaultContainerView];
+    kWeakSelf;
+    container.onConfirm = ^(){
+        NSDate *date = weakSelf.datePicker.date;
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        formatter.dateFormat = @"yyyy/MM/dd HH:mm";
+        NSString *dateString = [formatter stringFromDate:date];
+        [weakSelf.startTimeLabel setTitle:dateString forState:UIControlStateNormal];
+    };
+    [container showWithContentView:self.datePicker withTitle:@"请选择出发时间"];
+}
+- (IBAction)onSubmit:(UIButton *)sender {
+    if (!self.destinationInputField.text.length) {
+        [self showHint:@"请先输入目的地"];
+        return;
+    } else if (!self.getInCarInputField.text.length) {
+        [self showHint:@"请输入上车地点"];
+        return;
+    } else if (!self.datePicker.date) {
+        [self showHint:@"请先选择出发时间"];
+        return;
+    } else if (!self.labelSelectView.selectedLabelList.count ) {
+        [self showHint:@"请选择标签"];
+        return;
+    } else if (!self.noteInputField.text.length) {
+        [self showHint:@"请先填写完整信息"];
+        return;
+    } else if (!self.imageAdder.imageList.count) {
+        [self showHint:@"请先添加照片"];
+        return;
+    }
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    CGFloat longitude = [[NSUserDefaults standardUserDefaults]doubleForKey:kDefaultsUserLocationlongitude];
+    CGFloat latitude = [[NSUserDefaults standardUserDefaults]doubleForKey:kDefaultsUserLocationLatitude];
+    NSString *userGoTime = [NSString stringWithFormat:@"%.0f",self.datePicker.date.timeIntervalSince1970 * 1000];
+    NSString *wishTarget = [self.labelSelectView.selectedLabelList componentsJoinedByString:@","];
+    NSMutableArray *userImageNameList = [NSMutableArray arrayWithCapacity:self.imageAdder.imageList.count];
+    for (UIImage *image in self.imageAdder.imageList) {
+        NSString *base64 = [Tool Base64StringFromUIImage:image];
+        [userImageNameList addObject:base64];
+    }
+    NSString *imageNameListString = [userImageNameList componentsJoinedByString:@","];
+    NSDictionary *tripInfo = [ApiUtils tripInfoWithUserGoTime:userGoTime wishTarget:wishTarget  ownerImage:imageNameListString startPlace:self.getInCarInputField.text stopPlace:self.destinationInputField.text tripNote:self.noteInputField.text tripType:@"1" tripState:@"1" receiverId:@"" longitude:longitude latitude:latitude carOwnerState:@"1"];
+    [ApiUtils publishNewTripWithTripInfo:tripInfo completeHandler:^{
+        [MBProgressHUD hideHUDForView:self.view.window animated:YES];
+        NSLog(@"发布成功");
+        [self showHint:@"发布成功"];
+        [self.navigationController popViewControllerAnimated:YES];
+    } errorHandler:^(NSString *responseErrorInfo) {
+        [self showHint:responseErrorInfo];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
     
 }
 @end

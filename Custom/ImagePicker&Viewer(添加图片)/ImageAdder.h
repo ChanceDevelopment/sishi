@@ -60,6 +60,11 @@ typedef void (^ImageAdderOnChangeViewHeightCallBack) (CGFloat viewheight);
 @property(nonatomic,assign)CGSize itemSize;
 
 /**
+ *  图片对象数组
+ */
+@property(nonatomic,copy)NSMutableArray <UIImage *>* imageList;
+
+/**
  *  当View的高度改变时回调
  */
 @property(nonatomic,copy)ImageAdderOnChangeViewHeightCallBack onChangeHeight;

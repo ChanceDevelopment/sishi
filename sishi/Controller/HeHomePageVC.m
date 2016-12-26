@@ -18,6 +18,8 @@
 #import "REFrostedViewController.h"
 #import "Masonry.h"
 #import "HeDistributeInviteVC.h"
+#import "MJRefresh.h"
+#import "ApiUtils.h"
 
 @interface HeHomePageVC ()<SelectIndexPathProtocol>
 @property(weak,nonatomic)IBOutlet UITableView *tableview;
@@ -28,9 +30,22 @@
  */
 @property(nonatomic,weak)IBOutlet UIButton *postButton;
 
+/**
+ *  数据源数组
+ */
+@property(nonatomic,strong)NSMutableArray *nearbyUserList;
+
 @end
 
 @implementation HeHomePageVC
+
+
+- (NSMutableArray *)nearbyUserList {
+    if (!_nearbyUserList) {
+        _nearbyUserList = [NSMutableArray array];
+    }
+    return _nearbyUserList;
+}
 @synthesize tableview;
 @synthesize dataSource;
 @synthesize menuButton;
@@ -59,6 +74,10 @@
     [super viewDidLoad];
     [self initializaiton];
     [self initView];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [[NSNotificationCenter defaultCenter]addObserverForName:kNotificationUserChangeState object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        [self.tableview reloadData];
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -104,6 +123,7 @@
     if (_mapView) {
         _mapView = nil;
     }
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 
@@ -126,10 +146,29 @@
     [menuButton setBackgroundImage:[UIImage imageNamed:@"menuIcon"] forState:UIControlStateNormal];
     [menuButton setBackgroundImage:[UIImage imageNamed:@"menuIcon"] forState:UIControlStateHighlighted];
     [menuButton addTarget:self action:@selector(showLeft:) forControlEvents:UIControlEventTouchUpInside];
-    
-//    [self.view addSubview:menuButton];
+    self.tableview.mj_header = ({
+        MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(onHeaderRefresh:)];
+        
+        header;
+    });
+    [self.tableview.mj_header beginRefreshing];
 }
 
+
+- (void)onHeaderRefresh:(MJRefreshNormalHeader *)header {
+    NSString *gender = [[NSUserDefaults standardUserDefaults]stringForKey:kDefaultsUserGender];
+    CGFloat longitude = [[NSUserDefaults standardUserDefaults]doubleForKey:kDefaultsUserLocationlongitude];
+    CGFloat latitude = [[NSUserDefaults standardUserDefaults]doubleForKey:kDefaultsUserLocationLatitude];
+    [ApiUtils queryNearbyUserWithUserGender:[gender isEqualToString:@"1"] ? @"2" : @"1" longitude:longitude latitude:latitude startIndex:0 onResponse:^(NSArray<NearbyUserListModel *> *nearby) {
+        [header endRefreshing];
+        [self.nearbyUserList removeAllObjects];
+        [self.nearbyUserList addObjectsFromArray:nearby];
+        [self.tableview reloadData];
+    } errorHandler:^(NSString *responseErrorInfo) {
+        [header endRefreshing];
+        [self showHint:responseErrorInfo ];
+    }];
+}
 - (void)showLeft:(id)sender
 {
     [self routerEventWithName:@"showLeft" userInfo:nil];
@@ -157,6 +196,10 @@
 {
     //    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
     [_mapView updateLocationData:userLocation];
+    CGFloat longitude = userLocation.location.coordinate.longitude;
+    CGFloat latitude = userLocation.location.coordinate.latitude;
+    [[NSUserDefaults standardUserDefaults]setDouble:longitude forKey:kDefaultsUserLocationlongitude];
+    [[NSUserDefaults standardUserDefaults]setDouble:latitude forKey:kDefaultsUserLocationLatitude];
 }
 
 /**
@@ -196,7 +239,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return self.nearbyUserList.count;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -224,6 +267,22 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(HeNearByTableCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    kWeakSelf;
+    NearbyUserListModel *nearbyModel = self.nearbyUserList[indexPath.row];
+    cell.model = nearbyModel;
+    cell.onContactAction = ^(HeNearByTableCell *targetCell) {
+        [MBProgressHUD showHUDAddedTo:weakSelf.view.window animated:YES];
+        [ApiUtils sendAskingFor:nearbyModel.userId tripId:@" " withCompleteHandler:^{
+            [weakSelf showHint:@"已发出邀约"];
+            [MBProgressHUD hideHUDForView:weakSelf.view.window animated:YES];
+        } errorHandler:^(NSString *responseErrorInfo) {
+            [MBProgressHUD hideHUDForView:self.view.window animated:YES];
+            [weakSelf showHint:responseErrorInfo];
+        }];
+    };
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger section = indexPath.section;
@@ -243,8 +302,9 @@
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:header.bounds];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textColor = [UIColor blackColor];
-    titleLabel.font = [UIFont boldSystemFontOfSize:23.0];
-    titleLabel.text = @"   Air 您好!";
+    titleLabel.font = [UIFont boldSystemFontOfSize:24.0];
+    NSString *uNick = [Tool defaultsForKey:kDefaultsUserNick];
+    titleLabel.text  = [NSString stringWithFormat:@"   %@  您好 !",uNick];
     [header addSubview:titleLabel];
     
     return header;
@@ -255,9 +315,11 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSInteger row = indexPath.row;
     NSInteger section = indexPath.section;
+    NearbyUserListModel *nearbyModel = self.nearbyUserList[indexPath.row];
     HeUserVC *userVC = [[HeUserVC alloc] init];
     userVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:userVC animated:YES];
+    userVC.uid = nearbyModel.userId;
 }
 
 - (void)selectAtIndex:(NSIndexPath *)path animation:(BOOL)animation

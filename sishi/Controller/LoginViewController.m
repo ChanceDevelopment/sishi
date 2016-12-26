@@ -71,29 +71,45 @@
                        loginType:self.isDriver ? @"0" : @"1"
                   onResponseInfo:^(LoginUserInfoModel *userInfo) {
                       
-//                      dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//                         EMError *loginError =  [[EMClient sharedClient]loginWithUsername:userInfo.userProvince password:@""];
-//                          if (!loginError) {
-//                              dispatch_async(dispatch_get_main_queue(), ^{
+                      dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                      BOOL isAuthlogin = [EMClient sharedClient].options.isAutoLogin;
+                      EMError *loginError = nil;
+                      if (!isAuthlogin) {
+                          loginError =  [[EMClient sharedClient]loginWithUsername:userInfo.userPhone password:weakSelf.passwordInputField.text];
+                          [[EMClient sharedClient].options setIsAutoLogin:YES];
+                      }
+                          if (!loginError) {
+                              dispatch_async(dispatch_get_main_queue(), ^{
                                   [JPUSHService setTags:nil alias:userInfo.userId fetchCompletionHandle:nil];
                                   //保存登录信息
                                   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                                  [defaults setObject:userInfo.userId forKey:USERTOKENKEY];
+                                  [defaults setObject:userInfo.userId forKey:USERIDKEY];
+                        [defaults setObject:userInfo.userSex forKey:kDefaultsUserGender];
+                        [defaults setDouble:userInfo.userPositionX forKey:kDefaultsUserLocationlongitude];
+                        [defaults setDouble:userInfo.userPositionY forKey:kDefaultsUserLocationLatitude];
+                        [defaults setObject:userInfo.userPhone forKey:kDefaultsUserPhone];
+                        [defaults setObject:userInfo.userHeader forKey:kDefaultsUserHeaderImage];
+                        [defaults setObject:userInfo.userNick forKey:kDefaultsUserNick];
+                        [defaults setObject:userInfo.userState forKey:kDefaultsUserJudge];
+                      [defaults setObject:userInfo.userAge forKey:kDefaultsUserAge];
+                      [defaults setObject:userInfo.userAddress forKey:kDefaultsUserAddress];
+                      [defaults setObject:userInfo.userSign forKey:kDefaultsUserSign];
+                      [defaults setObject:userInfo.userDaty forKey:kDefaultsUserBirthday];
+                      [defaults setObject:userInfo.userMouth forKey:kDefaultsUserBirthMonth];
+                      [defaults setBool:[userInfo.userPass isEqualToString:@"1"] forKey:kDefaultsUserHaveCerificationed];
                                   [defaults synchronize];
                                   [weakSelf hideHud];
-//                        NSLog(@"weakSelf navigation controller %@",weakSelf.navigationController);
-//                                  [weakSelf.navigationController dismissViewControllerAnimated:YES completion:nil];
                       [[NSNotificationCenter defaultCenter]postNotificationName:KNOTIFICATION_LOGINCHANGE object:nil];
-//                              });
-//                          } else {
-//                              dispatch_async(dispatch_get_main_queue(), ^{
-//                                  [weakSelf hideHud];
-//                                  [weakSelf showHint:@"聊天服务登录异常"];
-//                                  NSLog(@"login easemob with error %@",loginError.errorDescription);
-//                              });
-//                          }
-//                      });
-                      
+                              });
+                          } else {
+                              dispatch_async(dispatch_get_main_queue(), ^{
+                                  [weakSelf hideHud];
+                                  [weakSelf showHint:@"聊天服务登录异常"];
+                                  NSLog(@"login easemob with error %@",loginError.errorDescription);
+                              });
+                          }
+                      });
+     
     } onResponseError:^(NSString *responseErrorInfo) {
         [weakSelf showHint:responseErrorInfo];
         [weakSelf hideHud];

@@ -8,6 +8,8 @@
 
 #import "MyTripListController.h"
 #import "HeRealTrendTableCell.h"
+#import "ApiUtils.h"
+#import "MJRefresh.h"
 
 @interface MyTripListController ()
 /**
@@ -29,6 +31,27 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(onHeaderRefresh:)];
+    self.tableView.mj_footer = ({
+        MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(onFooterLoadMore:)];
+        footer.automaticallyHidden = YES;
+        footer.automaticallyChangeAlpha = YES;
+        footer;
+    });
+}
+
+- (void)onHeaderRefresh:(MJRefreshNormalHeader *)header {
+    
+    [ApiUtils queryTripListWithUser:[Tool uid] carOwnerIsend:@"4" onComplete:^(NSArray<TripListModel *> *response) {
+        [header endRefreshing];
+    } errorHandler:^(NSString *responseErrorInfo) {
+        [header endRefreshing];
+        [self showHint:responseErrorInfo];
+    }];
+}
+
+- (void)onFooterLoadMore:(MJRefreshAutoNormalFooter *)footer {
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -54,7 +77,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.dataList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

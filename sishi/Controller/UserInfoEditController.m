@@ -12,6 +12,7 @@
 #import "sishiDefine.h"
 #import "UserCertificationController.h"
 #import "SelectViewContainer.h"
+#import "ApiUtils.h"
 
 @interface UserInfoEditController ()<ImageAdderAddImageProtocol,UIPickerViewDelegate,UIPickerViewDataSource>
 @property (weak, nonatomic) IBOutlet UIButton *headImageBtn;
@@ -23,8 +24,33 @@
 @property (weak, nonatomic) IBOutlet UITextField *phoneInputField;
 @property (weak, nonatomic) IBOutlet UITextField *descInputField;
 @property (weak, nonatomic) IBOutlet ImageAdder *imageAdder;
+@property (weak, nonatomic) IBOutlet ImageAdder *localImageAdder;
+/**
+ *  已拥有照片的单元格高度
+ */
+@property(nonatomic,assign)CGFloat localImageAdderHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *adderHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIButton *completeBtn;
+@property (weak, nonatomic) IBOutlet UIButton *authBtn;
+
+/**
+ *  性别
+ */
+@property(nonatomic,strong)NSString *gender;
+
+/**
+ *  出生月份
+ */
+@property(nonatomic,strong)NSString *birthMonth;
+
+/**
+ *  出生日期
+ */
+@property(nonatomic,strong)NSString *birthDay;
+
+
+
+
 /**
  *  照片墙单元格高度
  */
@@ -69,6 +95,14 @@
 
 - (NSArray<NSString *> *)genderSelectList {
     return @[@"男",@"女"];
+}
+
+- (void)setGender:(NSString *)gender {
+    if ([gender isEqualToString:@"男"]) {
+        _gender = @"1";
+    } else {
+        _gender = @"2";
+    }
 }
 
 - (NSArray<NSString *> *)monthList {
@@ -119,6 +153,26 @@
     return _birthdayPicker;
 }
 
+- (void)setImageLinkgroup:(NSArray<NSString *> *)imageLinkgroup {
+    _imageLinkgroup = imageLinkgroup;
+    NSMutableArray <NSString *>*imageLinkList = [NSMutableArray arrayWithCapacity:imageLinkgroup.count];
+    for (NSString *imageName in imageLinkgroup) {
+        NSString *name = imageName;
+        if (![name hasPrefix:@"http"] || ![name hasPrefix:@"HTTP"]) {
+            name = [NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],imageName];
+        }
+        [imageLinkList addObject:name];
+    }
+    
+    kWeakSelf;
+    self.localImageAdder.onChangeHeight = ^(CGFloat viewHeight) {
+        [weakSelf.tableView beginUpdates];
+        weakSelf.localImageAdderHeight = viewHeight + 15;
+        [weakSelf.tableView endUpdates];
+    };
+    self.localImageAdder.imageLinkGroup = imageLinkList;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -131,25 +185,46 @@
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
     
     self.imageAdderHeight = 105;
+    self.localImageAdderHeight = 105;
     self.tableView.estimatedRowHeight = 45;
     if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
         self.tableView.separatorInset = UIEdgeInsetsZero;
     }
-    
+    self.localImageAdder.onlyShow = YES;
     self.completeBtn.layer.cornerRadius = 5;
     self.completeBtn.clipsToBounds = YES;
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0);
     kWeakSelf;
     self.imageAdder.onChangeHeight = ^(CGFloat height) {
-//        weakSelf.adderHeightConstraint.constant = height;
         //刷新单元格高度
-        
         [weakSelf.tableView beginUpdates];
         weakSelf.imageAdderHeight = height + 15;
         [weakSelf.tableView endUpdates];
 //        [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:9 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
     };
+
     self.imageAdder.imageAdderDelegate = self;
+}
+
+- (void)configPageInfo {
+    NSString *userNick = [Tool defaultsForKey:kDefaultsUserNick];
+    self.nickNameInputField.text = userNick;
+    NSString *gender = [Tool uGender];
+    self.genderLabel.text = gender;
+    self.ageInputField.text = [NSString stringWithFormat:@"%ld",[Tool uAge]];
+    NSString *day = [Tool uBirthday];
+    if (day.length) {
+        NSString *month = [Tool uBirthMonth];
+        self.birthdayLabel.text = [NSString stringWithFormat:@"%@ 月 %@ 日",month,day];
+    }
+    NSString *address = [Tool defaultsForKey:kDefaultsUserAddress];
+    self.addressInputField.text = address;
+    self.phoneInputField.text = [Tool defaultsForKey:kDefaultsUserPhone];
+    self.descInputField.text = [Tool defaultsForKey:kDefaultsUserSign];
+    if ([Tool isCertificationed]) {
+        self.authBtn.enabled = NO;
+        [self.authBtn setTitle:@"已认证" forState:UIControlStateNormal];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -186,8 +261,43 @@
 }
 
 - (IBAction)onComplete:(UIButton *)sender {
+    NSString *userHeadImage = [Tool Base64StringFromUIImage:self.headImage];
+    if (!userHeadImage) {
+        userHeadImage = @"";
+    }
     
+    NSDictionary *userInfo = [ApiUtils userInfoWithUserName:self.nickNameInputField.text userProvince:[Tool judge] userCity:self.addressInputField.text userMonth:self.birthMonth userBirthDat:self.birthDay userAge:[NSString stringWithFormat:@"%ld",(long)[Tool uAge]] gender:self.gender userHeaderImage:userHeadImage phoneNumber:self.phoneInputField.text sign:self.descInputField.text];
+    [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    [ApiUtils updateUserInfoWith:userInfo onResponseSuccess:^{
+        [MBProgressHUD hideHUDForView:self.view.window animated:YES];
+        [[NSNotificationCenter defaultCenter]postNotificationName:kNotificationUserInfoChange object:nil];
+        [self showHint:@"修改成功"];
+        [self updateLocalUserInfo];
+        [self.navigationController popViewControllerAnimated:YES];
+    } onResponseError:^(NSString *responseErrorInfo) {
+        [MBProgressHUD hideHUDForView:self.view.window animated:YES];
+        [self showHint:responseErrorInfo];
+    }];
 }
+- (void)updateLocalUserInfo {
+    ////TODO 修改本地用户个人信息
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:self.gender forKey:kDefaultsUserGender];
+    [defaults setObject:self.phoneInputField.text forKey:kDefaultsUserPhone];
+//    [defaults setObject:[Tool base] forKey:kDefaultsUserHeaderImage];
+    [defaults setObject:self.nickNameInputField.text forKey:kDefaultsUserNick];
+//    [defaults setObject:userInfo.userState forKey:kDefaultsUserJudge];
+    [defaults setInteger:[self.ageInputField.text integerValue] forKey:kDefaultsUserAge];
+    [defaults setObject:self.addressInputField.text forKey:kDefaultsUserAddress];
+    [defaults setObject:self.descInputField.text forKey:kDefaultsUserSign];
+    [defaults setObject:self.birthDay forKey:kDefaultsUserBirthday];
+    [defaults setObject:self.birthMonth forKey:kDefaultsUserBirthMonth];
+//    [defaults setBool:[userInfo.userPass isEqualToString:@"1"] forKey:kDefaultsUserHaveCerificationed];
+    [defaults synchronize];
+}
+
+
 //点击认证 按钮
 - (IBAction)onAuth:(UIButton *)sender {
     UserCertificationController *authController = [[UserCertificationController alloc]initWithNibName:@"UserCertificationController" bundle:[NSBundle mainBundle]];
@@ -221,12 +331,15 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if (pickerView == self.genderPicker) {
             self.genderLabel.text = self.genderSelectList[row];
+        self.gender = self.genderSelectList[row];
     } else {
         if (component == 0) {
             [pickerView reloadComponent:1];//刷新第二列
         }
         NSString *month = self.monthList[[pickerView selectedRowInComponent:0]];
         NSString *day = self.dayArray[[pickerView selectedRowInComponent:0]][row];
+        self.birthMonth = month;
+        self.birthDay = day;
         self.birthdayLabel.text = [NSString stringWithFormat:@"%@ %@",month,day];
     }
 }
@@ -238,6 +351,8 @@
         return self.imageAdderHeight;
     } else if (indexPath.row == 11) {
         return 65;
+    } else if (indexPath.row == 10) {
+        return self.localImageAdderHeight;
     }
     return 45;
 }

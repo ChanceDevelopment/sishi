@@ -1089,4 +1089,60 @@
     return image;
 }
 
+
++ (NSString *)uid {
+    NSString *uid = [[NSUserDefaults standardUserDefaults]stringForKey:USERIDKEY];
+    return uid ? uid : @"";
+}
+
++ (NSString *)judge {
+    NSString *uid = [[NSUserDefaults standardUserDefaults]stringForKey:kDefaultsUserJudge];
+    return uid ? uid : @"";
+}
+
++ (NSString *)uGender {
+    NSString *gender = [Tool defaultsForKey:kDefaultsUserGender];
+    return [gender isEqualToString:@"1"] ? @"男" : @"女";
+}
+
++ (NSInteger)uAge {
+    NSInteger age = [[NSUserDefaults standardUserDefaults] integerForKey:kDefaultsUserAge];
+    return age;
+}
+
++ (NSString *)uBirthday {
+    NSString *birth = [Tool defaultsForKey:kDefaultsUserBirthday];
+    return birth;
+}
+
++ (NSString *)uBirthMonth {
+    NSString *month = [Tool defaultsForKey:kDefaultsUserBirthMonth];
+    return month;
+}
+
++ (BOOL)isCertificationed {
+    return [[NSUserDefaults standardUserDefaults]boolForKey:kDefaultsUserHaveCerificationed];
+}
+
+
++ (NSString *)defaultsForKey:(NSString *)key {
+    NSString *value = [[NSUserDefaults standardUserDefaults]stringForKey:key];
+    return value ? value : @"";
+}
+
++ (UIImage *)UIImageFromBase64String:(NSString *)base64 {
+    NSData *_decodedImageData   = [[NSData alloc] initWithBase64EncodedString:base64 options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    
+    UIImage *_decodedImage      = [UIImage imageWithData:_decodedImageData];
+    
+    return _decodedImage;
+}
+
++ (NSString *)Base64StringFromUIImage:(UIImage *)image {
+    
+    NSData *_data = UIImageJPEGRepresentation(image, 0.2f);
+    
+    NSString *_encodedImageStr = [_data base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
+    return _encodedImageStr;
+}
 @end

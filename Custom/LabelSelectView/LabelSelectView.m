@@ -28,6 +28,17 @@
     return _modelList;
 }
 
+
+- (NSArray<NSString *> *)selectedLabelList {
+    NSMutableArray <NSString *>* labelList = [NSMutableArray array];
+    for (LabelSelectViewModel *labelModel in self.modelList) {
+        if (labelModel.isSelected) {
+                [labelList addObject:labelModel.labelString];
+        }
+    }
+    return [NSArray arrayWithArray:labelList];
+}
+
 - (void)setLabelList:(NSArray<NSString *> *)labelList {
     _labelList = labelList;
     [self.modelList removeAllObjects];

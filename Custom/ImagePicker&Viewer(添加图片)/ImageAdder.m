@@ -13,11 +13,6 @@
 @interface ImageAdder ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 /**
- *  图片对象数组
- */
-@property(nonatomic,copy)NSMutableArray <UIImage *>* imageList;
-
-/**
  *  添加图片 按钮
  */
 @property(nonatomic,strong)UIButton *addBtn;
@@ -75,7 +70,6 @@
 #pragma mark :- ObserverCallBack
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-    
     if (self.onChangeHeight) {
         self.onChangeHeight(self.contentSize.height);
     }
@@ -100,7 +94,6 @@
             return [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageAdderViewCell" forIndexPath:indexPath];
         } else {//展示图片
             UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
-//            return [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
             [cell.contentView addSubview:self.addBtn];
             [self.addBtn mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(cell.contentView);
@@ -122,6 +115,9 @@
                 [weakSelf.imageList removeObjectAtIndex:indexPath.item];
                 [weakSelf reloadSections:[NSIndexSet indexSetWithIndex:0]];
             };
+        } else {
+            ImageAdderViewCell *imageCell = (ImageAdderViewCell *)cell;
+            imageCell.imageLink = self.imageLinkGroup[indexPath.item];
         }
     }
 }
@@ -129,6 +125,11 @@
 
 #pragma mark :- 添加图片按钮
 - (void)onAddImage:(UIButton *)btn {
+    if (self.imageList.count >= self.imageLimitCanAdd) {
+        if (_imageLimitCanAdd >= 1) {
+            return;
+        }
+    }
     if (self.imageAdderDelegate && [self.imageAdderDelegate respondsToSelector:@selector(imageAdder:addImageWithImageList:)]) {
         [self.imageAdderDelegate imageAdder:self addImageWithImageList:self.imageList];
     }

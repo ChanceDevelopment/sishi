@@ -23,6 +23,12 @@ typedef void(^LabelSelectViewViewHeightChangeCallBack)(CGFloat viewHeight);
 @property(nonatomic,strong)NSArray <NSString *>* labelList;
 
 /**
+ *  已选中的标签列表
+ */
+@property(nonatomic,readonly)NSArray <NSString *>* selectedLabelList;
+
+
+/**
  *  标签显示的字体,需要先设置此属性在设置标签列表
  */
 @property(nonatomic,strong)UIFont *labelFont;

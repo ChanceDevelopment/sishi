@@ -8,6 +8,7 @@
 
 #import "ImageAdderViewCell.h"
 #import "Masonry.h"
+#import "ApiUtils.h"
 
 @interface ImageAdderViewCell ()
 /**
@@ -54,6 +55,10 @@
 
 - (void)setImageLink:(NSString *)imageLink {
     _imageLink = imageLink;
+    self.deleteBtn.hidden = YES;
+    if (![imageLink hasPrefix:@"http"] || ![imageLink hasPrefix:@"HTTP"]) {
+        imageLink = [NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],imageLink];
+    }
     NSURL *imageUrl = [NSURL URLWithString:imageLink];
     [self.imageView sd_setImageWithURL:imageUrl];
 }

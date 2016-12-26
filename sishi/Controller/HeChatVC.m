@@ -12,12 +12,12 @@
 #import "AppDelegate.h"
 #import "EMSDK.h"
 
-@interface HeChatVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface HeChatVC ()<UITableViewDelegate,UITableViewDataSource,EMChatManagerDelegate>
 @property(strong,nonatomic)IBOutlet UITableView *tableview;
 /**
  *  聊天数据源数组
  */
-@property(nonatomic,strong)NSMutableArray *chatArray;
+@property(nonatomic,strong)NSMutableArray <EMConversation *>*chatArray;
 
 @end
 
@@ -50,9 +50,14 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [[EMClient sharedClient].chatManager removeDelegate:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
     [self initializaiton];
     [self initView];
 }
@@ -61,6 +66,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self reloadEaseMobConversations];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -82,9 +88,37 @@
     tableview.backgroundColor = [UIColor whiteColor];
     tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     [Tool setExtraCellLineHidden:tableview];
-//    [EMClient sharedClient]load
+
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
+
+
+#pragma mark :- 环信代理回调 
+- (void)didUpdateConversationList:(NSArray *)aConversationList {
+    [self.chatArray removeAllObjects];
+    [self.chatArray addObjectsFromArray:aConversationList];
+}
+
+- (void)didReceiveMessages:(NSArray *)aMessages {
+//    [self.tableview reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+    [self reloadEaseMobConversations];
+}
+
+
+///刷新环信消息
+- (void)reloadEaseMobConversations {
+    kWeakSelf;
+    dispatch_queue_t loadMessageQueue = dispatch_queue_create("com.sishi.easemob.loadmessage", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_async(loadMessageQueue, ^{
+        NSArray *conversations = [[EMClient sharedClient].chatManager getAllConversations];
+        [weakSelf.chatArray removeAllObjects];
+        [weakSelf.chatArray addObjectsFromArray:conversations];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.tableview reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+        });
+    });
+}
+
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -124,10 +158,39 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSInteger row = indexPath.row;
     NSInteger section = indexPath.section;
-    ChatViewController *chatView = [[ChatViewController alloc] initWithConversationChatter:@"何晓明" conversationType:EMConversationTypeChat];
-    chatView.title = @"何晓明";
+    EMConversation *conversation = self.chatArray[indexPath.row];
+    ChatViewController *chatView = [[ChatViewController alloc] initWithConversationChatter:conversation.conversationId conversationType:EMConversationTypeChat];
+    NSString *chatterName = @"";
+    if (conversation.latestMessage.direction == EMMessageDirectionSend) {
+        chatterName = conversation.latestMessage.to;
+    } else {
+        chatterName = conversation.latestMessage.from;
+    }
+    chatView.title = chatterName;
     chatView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:chatView animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(HeChatTableCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    EMConversation *conversation = [self.chatArray objectAtIndex:indexPath.row];
+    EMMessage *lastestMessage = conversation.latestMessage;
+    EMMessageBody *messageBody = lastestMessage.body;
+    EMMessageDirection direction = lastestMessage.direction;
+    NSString *otherPeopleName = nil;
+    if (direction == EMMessageDirectionSend) {
+        otherPeopleName = lastestMessage.to;
+    } else {
+        otherPeopleName = lastestMessage.from;
+    }
+    if ([messageBody isKindOfClass:[EMImageMessageBody class]]) {
+        cell.contentLabel.text = @"[图片]";
+    } else if ([messageBody isKindOfClass:[EMTextMessageBody class]]) {
+        EMTextMessageBody *textMessage = (EMTextMessageBody *)messageBody;
+        cell.contentLabel.text = textMessage.text;
+    } else if ([messageBody isKindOfClass:[EMVoiceMessageBody class]]) {
+        cell.contentLabel.text = @"[语音]";
+    }
+    cell.titleLabel.text = otherPeopleName;
 }
 
 - (void)didReceiveMemoryWarning {

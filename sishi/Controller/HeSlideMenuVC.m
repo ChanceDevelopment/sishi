@@ -20,6 +20,8 @@
 #import <TencentOpenAPI/QQApiInterface.h>
 #import <ShareSDKUI/ShareSDKUI.h>
 #import "PersonalController.h"
+#import "ApiUtils.h"
+#import "FeedbackController.h"
 
 
 #define kMenuDisplayedWidth 280.0f
@@ -46,6 +48,10 @@
 @synthesize footerView;
 @synthesize selectIndexDelegate;
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
 
 #pragma mark - View lifecycle
 
@@ -84,6 +90,9 @@
 - (void)initView
 {
     [super initView];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(onChangeUserInfo:) name:kNotificationUserInfoChange object:nil];
+    
     [Tool setExtraCellLineHidden:_tableView];
     _tableView.separatorStyle = UITableViewCellAccessoryNone;
     _tableView.backgroundView = nil;
@@ -114,8 +123,14 @@
     userImage.contentMode = UIViewContentModeScaleAspectFill;
     userImage.frame = CGRectMake(headX, headY, headW, headH);
     [userInfoView addSubview:userImage];
+    NSString *imageString = [Tool defaultsForKey:kDefaultsUserHeaderImage];
+    if ([imageString hasPrefix:@"http"] || [imageString hasPrefix:@"HTTP"]) {
+        [userImage sd_setImageWithURL:[NSURL URLWithString:imageString]];
+    } else {
+        [userImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],imageString]]];
+    }
     
-    NSString *username = @"Tony";
+    NSString *username = [Tool defaultsForKey:kDefaultsUserNick];
     UIFont *textFont = [UIFont systemFontOfSize:20.0];
     CGFloat nameLabelX = CGRectGetMaxX(userImage.frame) + 10;
     CGFloat nameLabelY = headY;
@@ -131,6 +146,7 @@
     nameLabel.frame = CGRectMake(nameLabelX, nameLabelY, nameLabelW, nameLabelH);
     [userInfoView addSubview:nameLabel];
     
+    
     CGFloat maxWidth = nameLabelW;
     CGSize textSize = [MLLinkLabel getViewSizeByString:username maxWidth:maxWidth font:textFont lineHeight:TextLineHeight lines:0];
     CGRect frame = nameLabel.frame;
@@ -144,7 +160,7 @@
     markLabel = [[UILabel alloc] init];
     markLabel.textAlignment = NSTextAlignmentLeft;
     markLabel.backgroundColor = [UIColor clearColor];
-    markLabel.text = @"VIP5";
+    markLabel.text = @"未认证";
     markLabel.textAlignment = NSTextAlignmentLeft;
     markLabel.textColor = [UIColor redColor];
     markLabel.font = textFont;
@@ -159,7 +175,7 @@
     phoneLabel = [[UILabel alloc] init];
     phoneLabel.textAlignment = NSTextAlignmentLeft;
     phoneLabel.backgroundColor = [UIColor clearColor];
-    phoneLabel.text = @"13650707294";
+    phoneLabel.text = [Tool defaultsForKey:kDefaultsUserPhone];
     phoneLabel.textAlignment = NSTextAlignmentLeft;
     phoneLabel.textColor = [UIColor grayColor];
     phoneLabel.font = textFont;
@@ -177,11 +193,17 @@
     tipLabel.userInteractionEnabled = YES;
     tipLabel.textAlignment = NSTextAlignmentLeft;
     tipLabel.font = [UIFont systemFontOfSize:18.0];
-    tipLabel.text = @"切换到用户模式";
+    NSString *userJudge = [[Tool judge] isEqualToString:@"0"] ? @"用户" : @"车主";
+    tipLabel.text = [NSString stringWithFormat:@"切换到%@模式",userJudge];
     tipLabel.textColor = [UIColor blackColor];
     UITapGestureRecognizer *tipLabelTapGest = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onChangeLoginType:)];
     [tipLabel addGestureRecognizer:tipLabelTapGest];
     [footerView addSubview:tipLabel];
+    
+    [[NSNotificationCenter defaultCenter]addObserverForName:kNotificationUserChangeState object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        NSString *userJudge = [[Tool judge] isEqualToString:@"0"] ? @"用户" : @"车主";
+        tipLabel.text = [NSString stringWithFormat:@"切换到%@模式",userJudge];
+    }];
 
     UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake(10, (height - 25) / 2.0, 25, 25)];
     icon.image = [UIImage imageNamed:@"icon_change"];
@@ -216,8 +238,31 @@
     
 }
 
+- (void)onChangeUserInfo:(NSNotification *)note {
+    NSString *imageLink = [Tool defaultsForKey:kDefaultsUserHeaderImage];
+    [self.userImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],imageLink]]];
+    NSString *uNick = [Tool defaultsForKey:kDefaultsUserPhone];
+    self.phoneLabel.text = uNick;
+    NSString *authLabelString = @"未认证";
+    if ([Tool isCertificationed]) {
+        authLabelString = @"已认证";
+    }
+    markLabel.text = authLabelString;
+}
+
 - (void)onChangeLoginType:(UITapGestureRecognizer *)tap {
-    [self showHint:@"will change login state..."];
+//    [self showHint:@"will change login state..."];
+//    NSString *judge = [Tool judge];
+    [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    [ApiUtils switchUserStateWithCompleteHandler:^(NSInteger state) {
+        [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%ld",state] forKey:kDefaultsUserJudge];
+        [[NSNotificationCenter defaultCenter]postNotificationName:kNotificationUserChangeState object:nil];
+        [NSUserDefaults standardUserDefaults];
+        [MBProgressHUD hideHUDForView:self.view.window animated:YES];
+    } errorHandler:^(NSString *responseErrorInfo) {
+        [self showHint:responseErrorInfo];
+        [MBProgressHUD hideHUDForView:self.view.window animated:YES];
+    }];
 }
 
 - (void)onInfoViewTap:(UITapGestureRecognizer *)tap {
@@ -290,6 +335,13 @@
             settingController.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:settingController animated:YES];
         }break;
+        case 4: {
+            FeedbackController *feedBack = [[UIStoryboard storyboardWithName:@"Main"
+                                                                      bundle:[NSBundle mainBundle]]
+                                            instantiateViewControllerWithIdentifier:@"FeedbackController"];
+            [self.navigationController pushViewController:feedBack animated:YES];
+            break;
+        }
         case 5:{
             FocusListViewController *focusController = [[FocusListViewController alloc]initWithStyle:UITableViewStylePlain];
             focusController.hidesBottomBarWhenPushed = YES;
@@ -297,7 +349,6 @@
         }break;
         case 6:
         {
-            
             NSMutableDictionary *shareParas = [NSMutableDictionary dictionary];
             [shareParas SSDKSetupShareParamsByText:@"司事,约你一路同行" images:nil url:[NSURL URLWithString:@"baidu.com"] title:@"司事" type:SSDKContentTypeAuto];
 //         [ShareSDK share:SSDKPlatformTypeSinaWeibo | SSDKPlatformSubTypeWechatSession | SSDKPlatformSubTypeWechatTimeline parameters:shareParas onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
@@ -380,10 +431,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)dealloc
-{
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"updateChannel" object:nil];
-}
 /*
 #pragma mark - Navigation
 

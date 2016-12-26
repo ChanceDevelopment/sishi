@@ -9,11 +9,6 @@
 #ifndef sishiDefine_h
 #define sishiDefine_h
 
-////////// 网络请求API 相关
-
-
-
-//////////
 
 
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double ) 568 ) < DBL_EPSILON )
@@ -80,9 +75,60 @@
 //友盟iPad的key
 #define UMANALYSISKEY_HD @"57a9e9d2e0f55a7e9300187c"
 
+///////////////////////////////////
+//当前登录用户的身份类型 "1"用户"0"车主
+#define kDefaultsUserJudge @"kDefaultsUserJudge"
+
+///用户昵称
+#define kDefaultsUserNick @"kDefaultsUserNick"
+
+///手机号码
+#define kDefaultsUserPhone @"kDefaultsUserPhone"
+
+#define kDefaultsUserAge @"kDefaultsUserAge"
+
+#define kDefaultsUserAddress  @"kDefaultsUserAddress"
+
+#define kDefaultsUserSign @"kDefaultsUserSign"
+
+///出生月份
+#define kDefaultsUserBirthMonth @"kDefaultsUserBirthday"
+///出生日期
+#define kDefaultsUserBirthday @"kDefaultsUserBirthday"
+
+//#define kDefaults
+
+#define kDefaultsUserHeaderImage @"kDefaultsUserHeaderImage"
+
+///判断用户是否已认证
+#define kDefaultsUserHaveCerificationed @"kDefaultsUserHaveCerificationed"
+
+//用户性别
+#define kDefaultsUserGender @"kDefaultsUserGender"
+
+#define kDefaultsUserLocationlongitude @"kDefaultsUserLocationlongitude"
+
+#define kDefaultsUserLocationLatitude @"kDefaultsUserLocationLatitude"
+
+///////////////////////////////////
+
 
 //登录状态发生变化的通知
 #define KNOTIFICATION_LOGINCHANGE @"loginStateChange"
+
+
+
+
+
+////////////////////////////////////////////////////////////
+
+//车主/用户身份发生变化时通知
+#define kNotificationUserChangeState @"kNotificationUserChangeState"
+
+//修改用户信息时通知
+#define kNotificationUserInfoChange @"kNotificationUserInfoChange"
+
+////////////////////////////////////////////////////////////
 
 #define UPDATEUSER_NOTIFICATION @"updateUser"
 

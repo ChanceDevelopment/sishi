@@ -67,7 +67,7 @@ BMKMapManager* _mapManager;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-     EMOptions *options = [EMOptions optionsWithAppkey:@"douser#istore"];
+     EMOptions *options = [EMOptions optionsWithAppkey:EASEMOBKEY];
     [[EMClient sharedClient]initializeSDKWithOptions:options];
     [self initialization];
     [self initShareSDK];
@@ -218,7 +218,7 @@ BMKMapManager* _mapManager;
 
 - (void)loginStateChange:(NSNotification *)notification
 {
-    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:USERTOKENKEY];
+    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
     BOOL haveLogin = (userToken == nil) ? NO : YES;
     
 //    kWeakSelf;

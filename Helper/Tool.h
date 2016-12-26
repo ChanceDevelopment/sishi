@@ -81,4 +81,60 @@
 + (NSData *)deleteErrorStringInData:(NSData *)inputData;
 + (NSString *)replaceUnicode:(NSString *)unicodeStr;
 + (UIImage *)snapshot:(UIView *)view;
+
+
+
+
+
+
+
+
+
+#pragma mark :- User Login State Utils
+/**
+ *  当前登录的用户Id
+ */
+@property(nonatomic,class,readonly)NSString *uid;
+
+/**
+ *  当前登录用户的性别,男/女
+ */
+@property(nonatomic,class,readonly)NSString *uGender;
+
+
+/**
+ *  当前登录用户的年龄
+ */
+@property(nonatomic,class,readonly)NSInteger uAge;
+
+/**
+ *  当前登录用户的出生日期
+ */
+@property(nonatomic,class,readonly)NSString *uBirthday;
+
+/**
+ *  当前登录用户的出生月份
+ */
+@property(nonatomic,class,readonly)NSString *uBirthMonth;
+
+
+/**
+ *  当前用户是否已认证
+ */
+@property(nonatomic,class,readonly)BOOL isCertificationed;
+
+
+/**
+ *   当前登录用户类型
+ */
+@property(nonatomic,class,readonly)NSString *judge;
+
++ (NSString *)defaultsForKey:(NSString *)key;
+
+
+
++ (UIImage *)UIImageFromBase64String:(NSString *)base64;
+
++ (NSString *)Base64StringFromUIImage:(UIImage *)image;
+
 @end

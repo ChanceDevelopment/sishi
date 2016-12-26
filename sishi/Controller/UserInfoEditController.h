@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface UserInfoEditController : UITableViewController
-
+/**
+ *  图片链接数组
+ */
+@property(nonatomic,copy)NSArray <NSString *>* imageLinkgroup;
 @end

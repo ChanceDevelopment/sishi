@@ -42,7 +42,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)onLogout:(UIButton *)sender {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERTOKENKEY];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERIDKEY];
     [[NSUserDefaults standardUserDefaults]synchronize];
 //    [self.navigationController popViewControllerAnimated:YES];
     [[NSNotificationCenter defaultCenter]postNotificationName:KNOTIFICATION_LOGINCHANGE object:nil];

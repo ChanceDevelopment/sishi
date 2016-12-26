@@ -8,6 +8,11 @@
 
 #import "HeBaseTableViewCell.h"
 #import "ImageBannerView.h"
+#import "NearbyUserListModel.h"
+
+@class HeNearByTableCell;
+typedef void(^NearbyTableViewCellCallBack)(HeNearByTableCell *targetCell);
+
 
 @interface HeNearByTableCell : HeBaseTableViewCell
 @property(strong,nonatomic)UILabel *nameLabel;
@@ -25,6 +30,15 @@
  */
 @property(nonatomic,strong)UIButton *upvoteButton;
 
+/**
+ *  单元格Model
+ */
+@property(nonatomic,strong)NearbyUserListModel *model;
 
+
+/**
+ *  点击 "约他" 按钮 回调
+ */
+@property(nonatomic,copy)NearbyTableViewCellCallBack onContactAction;
 
 @end

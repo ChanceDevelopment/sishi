@@ -7,6 +7,8 @@
 //
 
 #import "HeBaseTableViewCell.h"
+#import "DynamicListModel.h"
+#import "ApiUtils.h"
 
 @interface HeRealTrendTableCell : HeBaseTableViewCell
 @property(strong,nonatomic)UIView *bgView;
@@ -14,6 +16,11 @@
 @property(strong,nonatomic)UILabel *titleLabel;
 @property(strong,nonatomic)UILabel *timeLabel;
 @property(strong,nonatomic)UILabel *contentLabel;
+
+/**
+ *  单元格Model
+ */
+@property(nonatomic,strong)TripListModel *model;
 
 
 @end

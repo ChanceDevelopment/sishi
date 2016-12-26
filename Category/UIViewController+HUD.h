@@ -18,6 +18,8 @@
 
 - (void)hideHud;
 
+- (void)showhud;
+
 - (void)showHint:(NSString *)hint;
 
 // 从默认(showHint:)显示的位置再往上(下)yOffset

@@ -54,13 +54,13 @@
 //    } onRequestError:^(NSString *responseErrorInfo) {
 //        [weakSelf showHint:responseErrorInfo];
 //    }];
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    dispatch_async(dispatch_queue_create("com.sishi.easemob.register", DISPATCH_QUEUE_SERIAL), ^{
-//       EMError *loginError =  [[EMClient sharedClient]registerWithUsername:weakSelf.phoneNumber password:weakSelf.passwordInputField.text];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//           [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-//        });
-//        if (!loginError) {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_queue_create("com.sishi.easemob.register", DISPATCH_QUEUE_SERIAL), ^{
+       EMError *loginError =  [[EMClient sharedClient]registerWithUsername:weakSelf.phoneNumber password:weakSelf.passwordInputField.text];
+        dispatch_async(dispatch_get_main_queue(), ^{
+           [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        });
+        if (!loginError) {
             [ApiUtils userRegisterWithNickName:self.nickNameInputField.text
                                          uName:self.phoneNumber
                                            psw:self.passwordInputField.text
@@ -71,13 +71,13 @@
                                             [weakSelf showHint:responseErrorInfo];
                                         });
                                     }];
-//        } else {
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                    [weakSelf showHint:loginError.errorDescription];
-//            });
-//            
-//        }
-//    });
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakSelf showHint:loginError.errorDescription];
+            });
+            
+        }
+    });
 //    [[EMClient sharedClient] asyncRegisterWithUsername:self.phoneNumber
 //                                             password:self.passwordInputField.text
 //                                              success:^{

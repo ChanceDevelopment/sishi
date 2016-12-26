@@ -9,6 +9,7 @@
 #import "PersonalController.h"
 #import "SDCycleScrollView.h"
 #import "UserInfoEditController.h"
+#import "ApiUtils.h"
 
 @interface PersonalController ()
 @property (weak, nonatomic) IBOutlet SDCycleScrollView *imageBanner;
@@ -23,6 +24,9 @@
  *  titleAttributes
  */
 @property(nonatomic,strong)NSDictionary *titleAttributes;
+@property (weak, nonatomic) IBOutlet UIView *containerView;
+@property (weak, nonatomic) IBOutlet UILabel *ageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *signLabel;
 
 @end
 
@@ -40,11 +44,53 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:editItem];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.nameLabel.text = [Tool defaultsForKey:kDefaultsUserNick];
+    
+    [self configPageInfo];
 }
 
 - (void)onEdit:(UIBarButtonItem *)edit {
     UserInfoEditController *editController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"UserInfoEditController"];
     [self.navigationController pushViewController:editController animated:YES];
+}
+
+- (void)configPageInfo {
+    [ApiUtils queryCurrentUserInfoWithCompleteHander:^(UserFollowListModel*responseInfo) {
+        NSArray *imageNameList = [responseInfo.userHeader componentsSeparatedByString:@","];
+        NSMutableArray *imageLinkList = [NSMutableArray arrayWithCapacity:imageNameList.count];
+        for (NSString *imageName in imageNameList) {
+            if ([imageName hasPrefix:@"http"] || [imageName hasPrefix:@"HTTP"]) {
+                [imageLinkList addObject:imageName];
+            } else {
+                [imageLinkList addObject:[NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],imageName]];
+            }
+        }
+        self.imageBanner.imageURLStringsGroup = imageLinkList;
+        NSString *gender = responseInfo.userSex;
+        if ([gender isEqualToString:@"1"]) {
+            self.sexLabel.text = @"男";
+        } else if ([gender isEqualToString:@"@"]) {
+            self.sexLabel.text = @"女";
+        } else {
+            self.sexLabel.text = @"";
+        }
+        
+        self.ageLabel.text = [NSString stringWithFormat:@"%@",responseInfo.userAge];
+        self.signLabel.text = responseInfo.userSign;
+        
+        if (!responseInfo.userPass) {//未认证
+            self.authViewHeightConstraint.constant = 0;
+            [self.containerView layoutIfNeeded];
+        } else {
+            self.authLabel.text = @"已认证";
+        }
+        NSString *hobbys = responseInfo.userCarlable ? responseInfo.userCarlable : @"";
+        NSString *hobbyString = [NSString stringWithFormat:@"爱好      %@",hobbys];
+        [self.hobbyBtn setTitle:hobbyString forState:UIControlStateNormal];
+        
+    } errorHandler:^(NSString *responseErrorInfo) {
+        [self showHint:responseErrorInfo];
+    } ];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

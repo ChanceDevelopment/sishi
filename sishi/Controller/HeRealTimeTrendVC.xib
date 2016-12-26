@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeRealTimeTrendVC">
             <connections>
+                <outlet property="filterBtn" destination="DfT-pu-JRv" id="Okf-Wc-5N5"/>
+                <outlet property="releaseBtn" destination="PbZ-hc-kkG" id="GG1-bl-crn"/>
                 <outlet property="tableview" destination="dkC-Gi-M0m" id="MyW-t4-ZuH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -28,12 +30,38 @@
                         <outlet property="delegate" destination="-1" id="XZq-dw-cDh"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PbZ-hc-kkG">
+                    <rect key="frame" x="290" y="582" width="60" height="60"/>
+                    <color key="backgroundColor" red="0.99840146299999999" green="0.34669867160000001" blue="0.35690140720000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="229-ee-Auc"/>
+                        <constraint firstAttribute="width" constant="60" id="ZkU-B8-ncz"/>
+                    </constraints>
+                    <state key="normal" image="icon_edit.png"/>
+                    <connections>
+                        <action selector="onReleaseAction:" destination="-1" eventType="touchUpInside" id="Niw-Xk-ZEG"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DfT-pu-JRv">
+                    <rect key="frame" x="290" y="507" width="60" height="60"/>
+                    <color key="backgroundColor" red="0.99840146299999999" green="0.34669867160000001" blue="0.35690140720000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="Filter"/>
+                    <connections>
+                        <action selector="onFilterAction:" destination="-1" eventType="touchUpInside" id="3DE-XX-uLc"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="PbZ-hc-kkG" secondAttribute="bottom" constant="25" id="0Nj-pD-Kn6"/>
+                <constraint firstItem="DfT-pu-JRv" firstAttribute="height" secondItem="PbZ-hc-kkG" secondAttribute="height" id="7ej-48-Hu6"/>
+                <constraint firstItem="DfT-pu-JRv" firstAttribute="centerX" secondItem="PbZ-hc-kkG" secondAttribute="centerX" id="DSZ-au-emm"/>
                 <constraint firstAttribute="trailing" secondItem="dkC-Gi-M0m" secondAttribute="trailing" id="J0Y-1k-CZT"/>
                 <constraint firstItem="dkC-Gi-M0m" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="OgD-m0-N7J"/>
+                <constraint firstItem="PbZ-hc-kkG" firstAttribute="top" secondItem="DfT-pu-JRv" secondAttribute="bottom" constant="15" id="kBU-GL-2PI"/>
                 <constraint firstItem="dkC-Gi-M0m" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="mSM-3Q-Las"/>
+                <constraint firstItem="DfT-pu-JRv" firstAttribute="width" secondItem="PbZ-hc-kkG" secondAttribute="width" id="oIC-vN-rwl"/>
+                <constraint firstAttribute="trailing" secondItem="PbZ-hc-kkG" secondAttribute="trailing" constant="25" id="z0c-Cs-yX0"/>
                 <constraint firstAttribute="bottom" secondItem="dkC-Gi-M0m" secondAttribute="bottom" id="zHb-re-63b"/>
             </constraints>
             <variation key="default">
@@ -60,4 +88,7 @@
             </variation>
         </view>
     </objects>
+    <resources>
+        <image name="icon_edit.png" width="65" height="70"/>
+    </resources>
 </document>

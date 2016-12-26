@@ -17,13 +17,24 @@
  *  关注用户列表
  */
 @property(nonatomic,copy)NSMutableArray <UserFollowListModel *>*focusUserList;
+/**
+ *  当前分页页数
+ */
+@property(nonatomic,assign)NSInteger pageIndex;
 @end
 
 @implementation FocusListViewController
 
+- (NSMutableArray<UserFollowListModel *> *)focusUserList  {
+    if (!_focusUserList) {
+        _focusUserList = [NSMutableArray array];
+    }
+    return _focusUserList;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.pageIndex = 0;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     self.navigationItem.title = @"我关注的";
@@ -32,6 +43,7 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(onHeaderRefresh:)];
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)onHeaderRefresh:(MJRefreshNormalHeader *)header {
@@ -83,13 +95,25 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(FocusTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     UserFollowListModel *model = self.focusUserList[indexPath.row];
     cell.model = model;
+    kWeakSelf;
     cell.onContact = ^(UserFollowListModel *userModel) {
-        NSLog(@"didselect contact button with detail model %@",userModel);
+        [MBProgressHUD showHUDAddedTo:weakSelf.view.window animated:YES];
+        [ApiUtils sendAskingFor:userModel.userId tripId:@"" withCompleteHandler:^{
+            [weakSelf showHint:@"成功邀约"];
+            [MBProgressHUD hideHUDForView:weakSelf.view.window animated:YES];
+        } errorHandler:^(NSString *responseErrorInfo) {
+            [self showHint:responseErrorInfo];
+            [MBProgressHUD hideHUDForView:weakSelf.view.window animated:YES];
+        }];
     };
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    HeUserVC *userVC = [[HeUserVC alloc]initWithNibName:@"HeUserVC" bundle:[NSBundle mainBundle]];
+    [self.navigationController pushViewController:userVC animated:YES];
+    userVC.uid = self.focusUserList[indexPath.row].userId;
 }
 
 /*

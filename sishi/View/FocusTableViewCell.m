@@ -8,6 +8,8 @@
 
 #import "FocusTableViewCell.h"
 #import "sishiDefine.h"
+#import "ApiUtils.h"
+
 @interface FocusTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIButton *contactButton;
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;
@@ -21,6 +23,10 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+    self.headImageView.layer.cornerRadius = 22.5;
+    self.headImageView.clipsToBounds = YES;
+    
     self.contactButton.layer.cornerRadius = 3;
     self.contactButton.layer.borderWidth = 1;
     self.contactButton.layer.borderColor = UIColorFromRGB(0XFF585B).CGColor;
@@ -40,11 +46,10 @@
 
 - (void)setModel:(UserFollowListModel *)model {
     _model = model;
-    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:model.userHeader] placeholderImage:[UIImage imageNamed:@"demo_nearBgImage.jpg"]];
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],model.userHeader]] placeholderImage:[UIImage imageNamed:@"demo_nearBgImage.jpg"]];
     self.headImageView.clipsToBounds = YES;
-    self.nameLabel.text = model.userName;
-//    self.hobbyLabel.text = model.ho
-    
+    self.nameLabel.text = model.userNick;
+    self.hobbyLabel.text = model.userCarlable;
 }
 
 @end

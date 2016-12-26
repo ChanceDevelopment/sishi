@@ -19,7 +19,7 @@
 @property (nonatomic, strong) NSString *userCarlable;
 @property (nonatomic, strong) NSString *userAlipay;
 @property (nonatomic, strong) NSString *userPwd;
-@property (nonatomic, assign) double usercarPass;
+@property (nonatomic, assign) NSInteger usercarPass;
 @property (nonatomic, strong) NSString *userNick;
 @property (nonatomic, strong) NSString *userDrivinglicense;
 @property (nonatomic, strong) NSString *userTrueName;
@@ -28,7 +28,7 @@
 @property (nonatomic, strong) NSString *userPositionX;
 @property (nonatomic, strong) NSString *userPrivatephoto;
 @property (nonatomic, strong) NSString *userDaty;
-@property (nonatomic, assign) double userPass;
+@property (nonatomic, assign) NSInteger userPass;
 @property (nonatomic, strong) NSString *userPhone;
 @property (nonatomic, strong) NSString *userAddress;
 @property (nonatomic, strong) NSString *userCity;

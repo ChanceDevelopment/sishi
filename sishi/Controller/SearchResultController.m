@@ -7,12 +7,19 @@
 //
 
 #import "SearchResultController.h"
+#import "MJRefresh.h"
+#import "ApiUtils.h"
 
 @interface SearchResultController ()
 /**
  *  搜索结果数据源
  */
 @property(nonatomic,strong)NSMutableArray *searchResultList;
+
+/**
+ *  当前显示页数
+ */
+@property(nonatomic,assign)NSInteger pageIndex;
 
 @end
 
@@ -31,8 +38,22 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     self.tableView.tableFooterView = [UIView new];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(onHeaderRefresh:)];
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)onHeaderRefresh:(MJRefreshNormalHeader *)header {
+    
+    NSString *judge = [[Tool judge] isEqualToString:@"0"] ? @"1" : @"0";
+    CGFloat longitude = [[NSUserDefaults standardUserDefaults]doubleForKey:kDefaultsUserLocationlongitude];
+    CGFloat latitude = [[NSUserDefaults standardUserDefaults] doubleForKey:kDefaultsUserLocationLatitude];
+    [ApiUtils filterUserWithTripId:@"" carUserLike:self.hobbyList gender:@"0" userJudge:judge longitude:longitude latitude:latitude startIndex:0 onResponseList:^(NSArray *responseList) {
+        
+    } errorHandler:^(NSString *responseErrorInfo) {
+        
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

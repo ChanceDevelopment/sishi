@@ -12,6 +12,7 @@
 #import "MLLinkLabel.h"
 #import "SearchResultController.h"
 #import "LabelSelectView.h"
+#import "ApiUtils.h"
 
 #define TextLineHeight 1.2f
 
@@ -499,22 +500,43 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupView];
+    self.title = @"搜索";
 }
 
 - (void)setupView {
     self.labelSelectView.labelFont = [UIFont systemFontOfSize:15];
-    self.labelSelectView.labelList  = @[@"标签内容balabala",@"标签内容balabala"];
-    CGFloat viewHeight = [self.labelSelectView labelViewHeightForLabels:self.labelSelectView.labelList targetRectWidth:SCREENWIDTH - 20];
-    self.labelSelectViewConstraint.constant = viewHeight;
+//    self.labelSelectView.labelList  = @[@"标签内容balabala",@"标签内容balabala"];
+//    CGFloat viewHeight = [self.labelSelectView labelViewHeightForLabels:self.labelSelectView.labelList targetRectWidth:SCREENWIDTH - 20];
+//    self.labelSelectViewConstraint.constant = viewHeight;
     
-    
+        [ApiUtils queryAllHobbyListWithCompleteHandler:^(NSArray<HobbyListModel *> *hobbyList) {
+            NSMutableArray *hobbyStringList  =[NSMutableArray arrayWithCapacity:hobbyList.count];
+            for (HobbyListModel *hobbyModel in hobbyList) {
+                [hobbyStringList addObject:hobbyModel.loveContent];
+            }
+            self.labelSelectView.labelList = [NSArray arrayWithArray:hobbyStringList];
+            CGFloat viewHeight = [self.labelSelectView labelViewHeightForLabels:self.labelSelectView.labelList targetRectWidth:SCREENWIDTH - 20];
+            self.labelSelectViewConstraint.constant = viewHeight;
+        } errorHandler:^(NSString *responseErrorInfo) {
+            [self showHint:responseErrorInfo];
+        }];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 - (IBAction)onSearch:(UIButton *)sender {
-    //TODO: 判断搜索内容-.-
+    
+    if (!self.incarInputField.text.length) {
+        [self showHint:@"请先填写上车地点"];
+        return;
+    } else if (!self.labelSelectView.selectedLabelList.count) {
+//        [self showHint:@"请选"]
+//        return;
+    }
     SearchResultController *resultController = [[SearchResultController alloc]init];
+    resultController.hobbyList = [self.labelSelectView.selectedLabelList componentsJoinedByString:@","];
+    resultController.getinCarAddress = self.incarInputField.text;
     [self.navigationController pushViewController:resultController animated:YES];
+
 }
 
 /*

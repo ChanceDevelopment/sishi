@@ -12,6 +12,9 @@
 #import "HeRealTrendTableCell.h"
 #import "HeRealTimeDetailController.h"
 #import "Masonry.h"
+#import "MJRefresh.h"
+#import "ApiUtils.h"
+#import "HeDistributeInviteVC.h"
 
 #define TextLineHeight 1.2f
 
@@ -29,12 +32,12 @@
 /**
  *  发布 按钮
  */
-@property(nonatomic,strong)UIButton *releaseBtn;
+@property(nonatomic,strong)IBOutlet UIButton *releaseBtn;
 
 /**
  *  过滤 按钮
  */
-@property(nonatomic,strong)UIButton *filterBtn;
+@property(nonatomic,strong) IBOutlet UIButton *filterBtn;
 
 @end
 
@@ -47,28 +50,11 @@
 @synthesize pageNo;
 
 
-- (UIButton *)releaseBtn {
-    if (!_releaseBtn) {
-        _releaseBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        [_releaseBtn addTarget:self action:@selector(onRelease:) forControlEvents:UIControlEventTouchUpInside];
-        [_releaseBtn setImage:[UIImage imageNamed:@"icon_edit.png"] forState:UIControlStateNormal];
-        _releaseBtn.layer.cornerRadius = 25;
-        _releaseBtn.layer.shadowOffset = CGSizeMake(5, 5);
-        _releaseBtn.layer.shadowColor = [UIColor blackColor].CGColor;
-        _releaseBtn.layer.shadowRadius = 25.0;
-        _releaseBtn.layer.shadowOpacity = 1.0;
-        _releaseBtn.clipsToBounds = YES;
-        _releaseBtn.backgroundColor = [UIColor colorWithRed:255 / 255.0 green:63 / 255.0 blue:73 / 255.0 alpha:1];
+- (NSMutableArray *)dataSource {
+    if (!dataSource) {
+        dataSource = [NSMutableArray array];
     }
-    return _releaseBtn;
-}
-
-- (UIButton *)filterBtn {
-    if (!_filterBtn) {
-        _filterBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        
-    }
-    return _filterBtn;
+    return dataSource;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -97,6 +83,13 @@
     [self initializaiton];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self initView];
+    
+    self.filterBtn.layer.cornerRadius = 30;
+    self.filterBtn.clipsToBounds = YES;
+    self.releaseBtn.layer.cornerRadius = 30;
+    self.releaseBtn.clipsToBounds = YES;
+    self.releaseBtn.imageEdgeInsets = UIEdgeInsetsMake(30, 30, 30, 30);
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 - (void)initializaiton
@@ -110,12 +103,15 @@
     tableview.backgroundView = nil;
     tableview.backgroundColor = [UIColor whiteColor];
     tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(onHeaderRefresh:)];
+    
     [Tool setExtraCellLineHidden:tableview];
     [self pullUpUpdate];
     
-    sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 40)];
-    sectionHeaderView.backgroundColor = [UIColor colorWithWhite:237.0 / 255.0 alpha:1.0];
-    sectionHeaderView.userInteractionEnabled = YES;
+//    sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 40)];
+//    sectionHeaderView.backgroundColor = [UIColor colorWithWhite:237.0 / 255.0 alpha:1.0];
+//    sectionHeaderView.userInteractionEnabled = YES;
     
     NSArray *buttonArray = @[@"我的男神",@"我的女神"];
     for (NSInteger index = 0; index < [buttonArray count]; index++) {
@@ -132,11 +128,18 @@
         [sectionHeaderView addSubview:button];
     }
     
-    [self.view addSubview:self.releaseBtn];
-    [self.releaseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.view).offset(-10);
-        make.bottom.equalTo(self.view).offset(-20);
-        make.size.mas_equalTo(CGSizeMake(50, 50));
+}
+
+
+- (void)onHeaderRefresh:(MJRefreshNormalHeader *)header {
+    [ApiUtils queryRealtimeTripInfoWithCompleteHandler:^(NSArray<TripListModel *> *tripList) {
+        [self.dataSource removeAllObjects];
+        [self.dataSource addObjectsFromArray:tripList];
+        [tableview reloadData];
+        [header endRefreshing];
+    } errorHandler:^(NSString *responseErrorInfo) {
+        [self showHint:responseErrorInfo];
+        [header endRefreshing];
     }];
 }
 
@@ -184,10 +187,10 @@
 
 -(void)pullUpUpdate
 {
-    self.refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableview.bounds.size.height, SCREENWIDTH, self.tableview.bounds.size.height)];
-    refreshHeaderView.delegate = self;
-    [tableview addSubview:refreshHeaderView];
-    [refreshHeaderView refreshLastUpdatedDate];
+//    self.refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableview.bounds.size.height, SCREENWIDTH, self.tableview.bounds.size.height)];
+//    refreshHeaderView.delegate = self;
+//    [tableview addSubview:refreshHeaderView];
+//    [refreshHeaderView refreshLastUpdatedDate];
 }
 -(void)pullDownUpdate
 {
@@ -198,11 +201,14 @@
     refreshFooterView.delegate = self;
     [tableview addSubview:refreshFooterView];
     [refreshFooterView refreshLastUpdatedDate];
-    
 }
 
-#pragma mark :- 发布 
-- (void)onRelease:(UIButton *)btn {
+#pragma mark :- 发布
+- (IBAction)onReleaseAction:(UIButton *)sender {
+    HeDistributeInviteVC *releasePage = [[HeDistributeInviteVC alloc]initWithNibName:@"HeDistributeInviteVC" bundle:[NSBundle mainBundle]];
+    [self.navigationController pushViewController:releasePage animated:YES];
+}
+- (IBAction)onFilterAction:(UIButton *)sender {
     
 }
 
@@ -287,6 +293,8 @@
     updateOption = 1;//刷新加载标志
     pageNo = 1;
     @try {
+        
+        
     }
     @catch (NSException *exception) {
         //抛出异常不应当处理dateline
@@ -308,7 +316,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.dataSource.count;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -338,6 +346,10 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 120;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(HeRealTrendTableCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.model = self.dataSource[indexPath.row];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

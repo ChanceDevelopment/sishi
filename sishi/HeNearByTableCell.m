@@ -8,6 +8,7 @@
 
 #import "HeNearByTableCell.h"
 #import "Masonry.h"
+#import "ApiUtils.h"
 @interface HeNearByTableCell ()
 
 /**
@@ -42,9 +43,11 @@
         CGFloat nameW = SCREENWIDTH - 2 * nameX;
         CGFloat nameH = 30;
         
+        NSString *isUser = [[Tool judge] isEqualToString:@"0"] ? @"用户" : @"车主";
+        
         UILabel *nearbyLabel = [[UILabel alloc]initWithFrame:CGRectZero];
         nearbyLabel.frame = CGRectMake(10, 10, 80, 20);
-        nearbyLabel.text = @"附近用户";
+        nearbyLabel.text = [NSString stringWithFormat:@"附近%@",isUser];
         nearbyLabel.font = [UIFont systemFontOfSize:13];
         nearbyLabel.textColor = [UIColor colorWithWhite:0.7 alpha:1];
         [self addSubview:nearbyLabel];
@@ -150,12 +153,30 @@
     return self;
 }
 
+- (void)setModel:(NearbyUserListModel *)model {
+    _model = model;
+    NSArray *imagelist = [model.userPaperWall componentsSeparatedByString:@","];
+    NSMutableArray *imageLinkArray = [NSMutableArray arrayWithCapacity:imagelist.count];
+    for (NSString *imageName in imagelist) {
+        [imageLinkArray addObject:[NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],imageName]];
+    }
+    self.bgImage.imageLinkGroup = [NSArray arrayWithArray:imageLinkArray];
+    NSString *distance = [NSString stringWithFormat:@"距离您%.2fkm",model.distance];
+    self.distanceLabel.text = distance;
+    self.nameLabel.text = model.userNick;
+    [self.headImage sd_setImageWithURL:[NSURL URLWithString:model.userHeader]];
+    self.tipLabel.text = model.userSign;
+    
+}
+
 - (void)onTapUserHead:(UITapGestureRecognizer *)tap {
     
 }
 
 - (void)onContact:(UIButton *)btn {
-    
+    if (self.onContactAction) {
+        self.onContactAction(self);
+    }
 }
 
 - (void)onUpvote:(UIButton *)btn {

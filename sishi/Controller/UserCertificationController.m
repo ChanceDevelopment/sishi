@@ -8,14 +8,17 @@
 
 #import "UserCertificationController.h"
 #import "Masonry.h"
+#import "ApiUtils.h"
 
 static NSInteger kImageUpLoadMaxCount = 4;
 
 @interface UserCertificationController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *nameInputField;
 /**
  *  图片数组
  */
 @property(nonatomic,strong)NSMutableArray *imageArray;
+@property (weak, nonatomic) IBOutlet UITextField *idCardInputField;
 
 /**
  *  图片高度数组
@@ -213,6 +216,32 @@ static NSInteger kImageUpLoadMaxCount = 4;
     UIImage *editedImage = (UIImage *)info[UIImagePickerControllerEditedImage];
     [self addImage:editedImage];
     [picker dismissViewControllerAnimated:YES completion:nil];
+}
+- (IBAction)onSubmit:(UIButton *)sender {
+    if (!self.nameInputField.text.length) {
+        [self showHint:@"请输入您的真实姓名"];
+        return;
+    } else if (!self.idCardInputField.text.length || ![Tool isIDCardNumber:self.idCardInputField.text]) {
+        [self showHint:@"请输入真实有效的身份证号码"];
+        return;
+    }
+    if (self.imageArray.count != 4) {
+        [self showHint:@"请添加足够的照片"];
+        return;
+    }
+    NSMutableArray *imageNameArray = [NSMutableArray arrayWithCapacity:self.imageArray.count];
+    for (UIImage *image in self.imageArray) {
+        [imageNameArray addObject:[Tool Base64StringFromUIImage:image]];
+    }
+    [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    [ApiUtils userProveWithTrueName:self.nameInputField.text idCard:self.idCardInputField.text privatePhoto:[imageNameArray componentsJoinedByString:@","] onCompleteHandler:^{
+        [MBProgressHUD hideHUDForView:self.view.window animated:YES];
+        [self showHint:@"认证提交成功"];
+        [self.navigationController popViewControllerAnimated:YES];
+    } errorHandler:^(NSString *responseErrorInfo) {
+        [MBProgressHUD hideHUDForView:self.view.window animated:YES];
+        [self showHint:responseErrorInfo];
+    }];
 }
 
 /*

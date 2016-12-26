@@ -8,6 +8,9 @@
 
 #import "HeBaseViewController.h"
 
-@interface HeUserVC : HeBaseViewController
-
+@interface HeUserVC : UIViewController
+/**
+ *  用户Id
+ */
+@property(nonatomic,copy)NSString *uid;
 @end

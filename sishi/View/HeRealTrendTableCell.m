@@ -8,6 +8,7 @@
 
 #import "HeRealTrendTableCell.h"
 
+
 @implementation HeRealTrendTableCell
 @synthesize bgView;
 @synthesize headImage;
@@ -22,6 +23,13 @@
     // Drawing code
 }
 */
+
+- (void)setModel:(TripListModel *)model {
+    _model = model;
+    [self.headImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],model.userHeader]]];
+    self.timeLabel.text = model.carEndtime;
+//    self.contentLabel.text = model.dynamicContent;
+}
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier cellSize:(CGSize)cellsize
 {

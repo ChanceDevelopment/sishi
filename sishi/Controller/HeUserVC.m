@@ -10,6 +10,8 @@
 #import "MLLabel+Size.h"
 #import "HeBaseTableViewCell.h"
 #import "AppDelegate.h"
+#import "ApiUtils.h"
+#import "SDCycleScrollView.h"
 
 #define TextLineHeight 1.2f
 
@@ -19,13 +21,37 @@
 }
 @property(strong,nonatomic)IBOutlet UITableView *tableview;
 @property(strong,nonatomic)UIView *sectionHeaderView;
+
+/**
+ *  图片轮播图
+ */
+@property(nonatomic,strong)SDCycleScrollView *imageBannerView;
+
 @property(strong,nonatomic)NSArray *dataSource;
 @property(strong,nonatomic)NSArray *iconDataSource;
 @property(strong,nonatomic)UILabel *nameLabel;
+
+@property(nonatomic,strong)NSDictionary *titleAttributes;
+
+/**
+ *  性别Label
+ */
+@property(nonatomic,strong)UILabel *genderLabel;
+
 @property(strong,nonatomic)UILabel *addressLabel;
 @property(strong,nonatomic)UIImageView *userBGImage;
 
 @property(strong,nonatomic)UIView *userInfoView;
+
+/**
+ *  是否已关注当前用户
+ */
+@property(nonatomic,assign)BOOL isFocused;
+
+/**
+ *  是否已认证通过
+ */
+@property(nonatomic,assign)BOOL isCerificationed;
 /**
  *  认证通过View
  */
@@ -36,6 +62,12 @@
 @property(strong,nonatomic)UIView *trustView;
 @property(strong,nonatomic)NSMutableArray *likeArray;
 @property(strong,nonatomic)NSMutableArray *commentArray;
+
+/**
+ *  签名Label
+ */
+@property(nonatomic,strong)UILabel *signLabel;
+
 
 @end
 
@@ -88,20 +120,45 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     [self initializaiton];
     [self initView];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.titleAttributes = self.navigationController.navigationBar.titleTextAttributes;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
+    
+    [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    self.navigationController.navigationBar.titleTextAttributes = self.titleAttributes;
+    [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.navigationBar.shadowImage = nil;
+    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+}
+
 - (void)initializaiton
 {
-    [super initializaiton];
+//    [super initializaiton];
     dataSource = @[@[@"我的相册",@"我的发布",@"我的参与"],@[@"设置"]];
     iconDataSource = @[@[@"icon_album",@"icon_put",@"icon_participation"],@[@"icon_setting"]];
 }
 
 - (void)initView
 {
-    [super initView];
+//    [super initView];
     tableview.backgroundView = nil;
     tableview.backgroundColor = [UIColor colorWithWhite:237.0 /255.0 alpha:1.0];
     [Tool setExtraCellLineHidden:tableview];
@@ -109,8 +166,8 @@
     dataSource = @[@[@"我的相册",@"我的发布",@"我的参与"],@[@"设置"]];
     
     CGFloat headerH = 200;
-    self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBarHidden = YES;
+//    self.navigationController.navigationBar.translucent = NO;
+//    self.navigationController.navigationBarHidden = YES;
     
     sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, headerH)];
     sectionHeaderView.backgroundColor = [UIColor colorWithWhite:237.0 / 255.0 alpha:1.0];
@@ -118,23 +175,27 @@
     
     tableview.tableHeaderView = sectionHeaderView;
     
-    userBGImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"demo_nearBgImage.jpg"]];
-    userBGImage.layer.masksToBounds = YES;
-    userBGImage.contentMode = UIViewContentModeScaleAspectFill;
-    userBGImage.frame = CGRectMake(0, 0, SCREENWIDTH, headerH);
-    [sectionHeaderView addSubview:userBGImage];
-    userBGImage.userInteractionEnabled = YES;
-    sectionHeaderView.userInteractionEnabled = YES;
+//    userBGImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"demo_nearBgImage.jpg"]];
+//    userBGImage.layer.masksToBounds = YES;
+//    userBGImage.contentMode = UIViewContentModeScaleAspectFill;
+//    userBGImage.frame = CGRectMake(0, 0, SCREENWIDTH, headerH);
+//    [sectionHeaderView addSubview:userBGImage];
+//    userBGImage.userInteractionEnabled = YES;
+//    sectionHeaderView.userInteractionEnabled = YES;
+    self.imageBannerView = [[SDCycleScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, headerH)];
+    self.imageBannerView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+    self.imageBannerView.autoScroll = NO;
+    [sectionHeaderView addSubview:self.imageBannerView];
     
-    CGFloat buttonX = 20;
-    CGFloat buttonY = 50;
-    CGFloat buttonW = 25;
-    CGFloat buttonH = 25;
-    UIButton *backButton = [[UIButton alloc] init];
-    backButton.frame = CGRectMake(buttonX, buttonY, buttonW, buttonH);
-    [backButton setImage:[UIImage imageNamed:@"navigationBar_back_icon"] forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(backItemClick:) forControlEvents:UIControlEventTouchUpInside];
-    [userBGImage addSubview:backButton];
+//    CGFloat buttonX = 20;
+//    CGFloat buttonY = 50;
+//    CGFloat buttonW = 25;
+//    CGFloat buttonH = 25;
+//    UIButton *backButton = [[UIButton alloc] init];
+//    backButton.frame = CGRectMake(buttonX, buttonY, buttonW, buttonH);
+//    [backButton setImage:[UIImage imageNamed:@"navigationBar_back_icon"] forState:UIControlStateNormal];
+//    [backButton addTarget:self action:@selector(backItemClick:) forControlEvents:UIControlEventTouchUpInside];
+//    [userBGImage addSubview:backButton];
     
     [self initUserInfoView];
     [self initAuthView];
@@ -193,18 +254,18 @@
     CGFloat sexLabelY = CGRectGetMaxY(nameLabel.frame);
     CGFloat sexLabelH = 30;
     CGFloat sexLabelW = SCREENWIDTH - 2 * sexLabelX;
-    UILabel *sexLabel = [[UILabel alloc] init];
-    sexLabel.textAlignment = NSTextAlignmentLeft;
-    sexLabel.backgroundColor = [UIColor clearColor];
-    sexLabel.text = @"女   22岁    VIPS";
-    sexLabel.textAlignment = NSTextAlignmentLeft;
-    sexLabel.textColor = [UIColor grayColor];
-    sexLabel.font = [UIFont systemFontOfSize:15.0];
-    sexLabel.frame = CGRectMake(sexLabelX, sexLabelY, sexLabelW, sexLabelH);
-    [userInfoView addSubview:sexLabel];
+    self.genderLabel = [[UILabel alloc] init];
+    self.genderLabel.textAlignment = NSTextAlignmentLeft;
+    self.genderLabel.backgroundColor = [UIColor clearColor];
+    self.genderLabel.text = @"女   22岁    VIPS";
+    self.genderLabel.textAlignment = NSTextAlignmentLeft;
+    self.genderLabel.textColor = [UIColor grayColor];
+    self.genderLabel.font = [UIFont systemFontOfSize:15.0];
+    self.genderLabel.frame = CGRectMake(sexLabelX, sexLabelY, sexLabelW, sexLabelH);
+    [userInfoView addSubview:self.genderLabel];
     
     CGFloat addressLabelX = 10;
-    CGFloat addressLabelY = CGRectGetMaxY(sexLabel.frame);
+    CGFloat addressLabelY = CGRectGetMaxY(self.genderLabel.frame);
     CGFloat addressLabelH = 30;
     CGFloat addressLabelW = SCREENWIDTH - 2 * sexLabelX;
     addressLabel = [[UILabel alloc] init];
@@ -221,27 +282,27 @@
     CGFloat signLabelY = CGRectGetMaxY(addressLabel.frame);
     CGFloat signLabelH = 30;
     CGFloat signLabelW = SCREENWIDTH - 2 * sexLabelX;
-    UILabel *signLabel = [[UILabel alloc] init];
-    signLabel.textAlignment = NSTextAlignmentLeft;
-    signLabel.backgroundColor = [UIColor clearColor];
-    signLabel.text = @"我想和你一起虚度时光";
-    signLabel.textAlignment = NSTextAlignmentLeft;
-    signLabel.textColor = [UIColor grayColor];
-    signLabel.font = [UIFont systemFontOfSize:15.0];
-    signLabel.frame = CGRectMake(signLabelX, signLabelY, signLabelW, signLabelH);
-    [userInfoView addSubview:signLabel];
+    self.signLabel = [[UILabel alloc] init];
+    self.signLabel.textAlignment = NSTextAlignmentLeft;
+    self.signLabel.backgroundColor = [UIColor clearColor];
+    self.signLabel.text = @"我想和你一起虚度时光";
+    self.signLabel.textAlignment = NSTextAlignmentLeft;
+    self.signLabel.textColor = [UIColor grayColor];
+    self.signLabel.font = [UIFont systemFontOfSize:15.0];
+    self.signLabel.frame = CGRectMake(signLabelX, signLabelY, signLabelW, signLabelH);
+    [userInfoView addSubview:self.signLabel];
     
-    UIButton *appointmentButton = [[UIButton alloc] init];
-    appointmentButton.frame = CGRectMake(SCREENWIDTH - 70, nameLabelY, 60, 30);
-    [appointmentButton setTitle:@"约她(他)" forState:UIControlStateNormal];
-    appointmentButton.layer.cornerRadius = 3.0;
-    appointmentButton.layer.borderWidth = 1.0;
-    appointmentButton.layer.borderColor = [UIColor redColor].CGColor;
-    appointmentButton.layer.masksToBounds = YES;
-    [appointmentButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [appointmentButton.titleLabel setFont:[UIFont systemFontOfSize:12.0]];
-    [userInfoView addSubview:appointmentButton];
-    [appointmentButton addTarget:self action:@selector(appointMentButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+//    UIButton *appointmentButton = [[UIButton alloc] init];
+//    appointmentButton.frame = CGRectMake(SCREENWIDTH - 70, nameLabelY, 60, 30);
+//    [appointmentButton setTitle:@"约她(他)" forState:UIControlStateNormal];
+//    appointmentButton.layer.cornerRadius = 3.0;
+//    appointmentButton.layer.borderWidth = 1.0;
+//    appointmentButton.layer.borderColor = [UIColor redColor].CGColor;
+//    appointmentButton.layer.masksToBounds = YES;
+//    [appointmentButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+//    [appointmentButton.titleLabel setFont:[UIFont systemFontOfSize:12.0]];
+//    [userInfoView addSubview:appointmentButton];
+//    [appointmentButton addTarget:self action:@selector(appointMentButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
     userInfoView.frame = CGRectMake(0, 0, SCREENWIDTH, 150);
 }
@@ -474,14 +535,58 @@
     return button;
 }
 
+- (void)setUid:(NSString *)uid {
+    _uid = uid;
+    [self configPageInfo];
+}
+
+///查询用户信息
+- (void)configPageInfo {
+    [ApiUtils queryUserInfoBy:self.uid onCompleteHandler:^(UserFollowListModel *userModel) {
+        self.nameLabel.text = [NSString stringWithFormat:@"您好,我是 %@",userModel.userNick];
+        NSString *gender = @"男";
+        if ([userModel.userSex isEqualToString:@"1"]) {}
+        else if ([userModel.userSex isEqualToString:@"2"]) {
+            gender = @"女";
+        } else {
+            gender = @"未知";
+        }
+        NSString *age = [NSString stringWithFormat:@"%@岁",userModel.userAge];
+        self.genderLabel.text = [NSString stringWithFormat:@"%@   %@",gender,age];
+        self.addressLabel.text = [NSString stringWithFormat:@"%@     %@",userModel.userCity,userModel.userProvince];
+        self.signLabel.text = userModel.userSign;
+//        NSArray *wallpapers = userModel.userPrivatephoto
+        NSString *imageName = userModel.userHeader ? userModel.userHeader : @"";
+        self.imageBannerView.imageURLStringsGroup = @[imageName] ;
+        
+    } errorHandler:^(NSString *responseErrorInfo) {
+        [self showHint:responseErrorInfo];
+    }];
+}
+
 - (void)filterButtonClick:(UIButton *)button
 {
     NSLog(@"button = %@",button);
 }
 - (IBAction)onFocus:(UIButton *)sender {
-    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [ApiUtils userFocusWithUserId:self.uid onComplete:^{
+        [self showHint:@"已关注"];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    } onError:^(NSString *responseErrorInfo) {
+        [self showHint:responseErrorInfo];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
 }
 - (IBAction)onContact:(UIButton *)sender {
+    [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    [ApiUtils sendAskingFor:self.uid tripId:@"" withCompleteHandler:^{
+        [self showHint:@"邀约成功"];
+        [MBProgressHUD hideHUDForView:self.view.window animated:YES];
+    } errorHandler:^(NSString *responseErrorInfo) {
+        [self showHint:responseErrorInfo];
+        [MBProgressHUD hideHUDForView:self.view.window animated:YES];
+    }];
 }
 
 
@@ -509,6 +614,7 @@
     if (!cell) {
         cell = [[HeBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier cellSize:cellSize];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.clipsToBounds = YES;
     }
     switch (row) {
         case 0:
@@ -545,6 +651,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 1) {
+        if (!_isCerificationed) {
+            return CGFLOAT_MIN;
+        }
         return 95;
     }
     return 150.0;

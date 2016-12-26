@@ -20,6 +20,7 @@
                 <outlet property="labelSelectViewHeightConstraint" destination="FkQ-wP-yer" id="rWl-hl-ayd"/>
                 <outlet property="noteInputField" destination="Jgr-Fu-aml" id="mJr-rt-aWV"/>
                 <outlet property="startTimeLabel" destination="722-x7-RZn" id="zGL-e1-6f5"/>
+                <outlet property="submitBtn" destination="4ho-0P-bwv" id="eHE-V2-ExH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -67,13 +68,6 @@
                                         <constraint firstAttribute="height" constant="1" id="KrW-Xv-3xv"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="722-x7-RZn">
-                                    <rect key="frame" x="10" y="131" width="98" height="41"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                    <state key="normal" title="出发时间">
-                                        <color key="titleColor" red="0.64698678255081177" green="0.64710038900375366" blue="0.64697962999343872" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AwG-HT-JeN">
                                     <rect key="frame" x="0.0" y="182" width="375" height="1"/>
                                     <color key="backgroundColor" red="0.87441444400000001" green="0.87456470730000002" blue="0.87440484760000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -145,6 +139,19 @@
                                             <integer key="value" value="3"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="onSubmit:" destination="-1" eventType="touchUpInside" id="qaY-eP-hjS"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="722-x7-RZn">
+                                    <rect key="frame" x="10" y="131" width="98" height="41"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                    <state key="normal" title="出发时间">
+                                        <color key="titleColor" red="0.64698678255081177" green="0.64710038900375366" blue="0.64697962999343872" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="onPickerTime:" destination="-1" eventType="touchUpInside" id="mr3-h0-7aE"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

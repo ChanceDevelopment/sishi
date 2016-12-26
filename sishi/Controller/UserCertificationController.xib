@@ -12,7 +12,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserCertificationController">
             <connections>
                 <outlet property="containerView" destination="9gK-jY-5Tl" id="QW9-IZ-s5p"/>
+                <outlet property="idCardInputField" destination="oIk-nx-7rt" id="8ta-c1-tPI"/>
                 <outlet property="inputViewContainer" destination="fEI-EL-MOE" id="0ZU-9V-QuL"/>
+                <outlet property="nameInputField" destination="yH8-7E-3gF" id="qd8-fS-gE2"/>
                 <outlet property="nextStepBtn" destination="w7m-Fp-1kd" id="uCe-wy-qjm"/>
                 <outlet property="tableView" destination="lCZ-aM-zXx" id="T7M-E9-5v2"/>
                 <outlet property="tableViewHeightConstraint" destination="Tvk-O6-sbg" id="jh3-cZ-wav"/>
@@ -104,6 +106,9 @@
                                     <state key="normal" title="下一步">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="onSubmit:" destination="-1" eventType="touchUpInside" id="j8k-5U-yKd"/>
+                                    </connections>
                                 </button>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lCZ-aM-zXx">
                                     <rect key="frame" x="15" y="161" width="345" height="128"/>

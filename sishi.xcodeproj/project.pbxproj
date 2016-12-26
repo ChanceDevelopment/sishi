@@ -64,6 +64,17 @@
 		A2C829C91E029F6F00645639 /* LabelSelectViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C829C81E029F6F00645639 /* LabelSelectViewModel.m */; };
 		A2FF4B601E0CECCA00A3739E /* SelectViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FF4B5F1E0CECCA00A3739E /* SelectViewContainer.m */; };
 		A2FF4B621E0CECE200A3739E /* SelectViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2FF4B611E0CECE200A3739E /* SelectViewContainer.xib */; };
+		A2FF4B661E0E105100A3739E /* NearbyUserListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FF4B651E0E105100A3739E /* NearbyUserListModel.m */; };
+		A2FF4B691E0E1DD600A3739E /* DynamicListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FF4B681E0E1DD600A3739E /* DynamicListModel.m */; };
+		A2FF4B6C1E0E438200A3739E /* TripListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FF4B6B1E0E438200A3739E /* TripListModel.m */; };
+		A2FF4B6F1E0E4AF300A3739E /* TripDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FF4B6E1E0E4AF300A3739E /* TripDetailModel.m */; };
+		A2FF4B721E0E53E100A3739E /* HobbyListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FF4B711E0E53E100A3739E /* HobbyListModel.m */; };
+		A2FF4B751E0FB19300A3739E /* FeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FF4B741E0FB19300A3739E /* FeedbackController.m */; };
+		A2FF4B781E0FD03100A3739E /* CommentLabelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FF4B771E0FD03100A3739E /* CommentLabelModel.m */; };
+		A2FF4B7B1E0FD23800A3739E /* CommentBetweenUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FF4B7A1E0FD23800A3739E /* CommentBetweenUsers.m */; };
+		A2FF4B7E1E0FD8F300A3739E /* ChatListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FF4B7D1E0FD8F300A3739E /* ChatListModel.m */; };
+		A2FF4B821E10C9F500A3739E /* ReleaseMoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FF4B801E10C9F500A3739E /* ReleaseMoodViewController.m */; };
+		A2FF4B831E10C9F500A3739E /* ReleaseMoodViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2FF4B811E10C9F500A3739E /* ReleaseMoodViewController.xib */; };
 		EA12F7EA1D65492B0085752A /* icon_cooperate.png in Resources */ = {isa = PBXBuildFile; fileRef = EA12F7E91D65492B0085752A /* icon_cooperate.png */; };
 		EA12F7EC1D654A950085752A /* icon_tips.png in Resources */ = {isa = PBXBuildFile; fileRef = EA12F7EB1D654A950085752A /* icon_tips.png */; };
 		EA12F7F11D6554F30085752A /* HeSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA12F7EF1D6554F30085752A /* HeSearchVC.m */; };
@@ -1092,6 +1103,27 @@
 		A2FF4B5E1E0CECCA00A3739E /* SelectViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectViewContainer.h; sourceTree = "<group>"; };
 		A2FF4B5F1E0CECCA00A3739E /* SelectViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectViewContainer.m; sourceTree = "<group>"; };
 		A2FF4B611E0CECE200A3739E /* SelectViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectViewContainer.xib; sourceTree = "<group>"; };
+		A2FF4B641E0E105100A3739E /* NearbyUserListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyUserListModel.h; sourceTree = "<group>"; };
+		A2FF4B651E0E105100A3739E /* NearbyUserListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyUserListModel.m; sourceTree = "<group>"; };
+		A2FF4B671E0E1DD600A3739E /* DynamicListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicListModel.h; sourceTree = "<group>"; };
+		A2FF4B681E0E1DD600A3739E /* DynamicListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicListModel.m; sourceTree = "<group>"; };
+		A2FF4B6A1E0E438200A3739E /* TripListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripListModel.h; sourceTree = "<group>"; };
+		A2FF4B6B1E0E438200A3739E /* TripListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripListModel.m; sourceTree = "<group>"; };
+		A2FF4B6D1E0E4AF300A3739E /* TripDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripDetailModel.h; sourceTree = "<group>"; };
+		A2FF4B6E1E0E4AF300A3739E /* TripDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripDetailModel.m; sourceTree = "<group>"; };
+		A2FF4B701E0E53E100A3739E /* HobbyListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HobbyListModel.h; sourceTree = "<group>"; };
+		A2FF4B711E0E53E100A3739E /* HobbyListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HobbyListModel.m; sourceTree = "<group>"; };
+		A2FF4B731E0FB19300A3739E /* FeedbackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackController.h; sourceTree = "<group>"; };
+		A2FF4B741E0FB19300A3739E /* FeedbackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackController.m; sourceTree = "<group>"; };
+		A2FF4B761E0FD03100A3739E /* CommentLabelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentLabelModel.h; sourceTree = "<group>"; };
+		A2FF4B771E0FD03100A3739E /* CommentLabelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentLabelModel.m; sourceTree = "<group>"; };
+		A2FF4B791E0FD23800A3739E /* CommentBetweenUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentBetweenUsers.h; sourceTree = "<group>"; };
+		A2FF4B7A1E0FD23800A3739E /* CommentBetweenUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentBetweenUsers.m; sourceTree = "<group>"; };
+		A2FF4B7C1E0FD8F200A3739E /* ChatListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListModel.h; sourceTree = "<group>"; };
+		A2FF4B7D1E0FD8F300A3739E /* ChatListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListModel.m; sourceTree = "<group>"; };
+		A2FF4B7F1E10C9F500A3739E /* ReleaseMoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReleaseMoodViewController.h; sourceTree = "<group>"; };
+		A2FF4B801E10C9F500A3739E /* ReleaseMoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReleaseMoodViewController.m; sourceTree = "<group>"; };
+		A2FF4B811E10C9F500A3739E /* ReleaseMoodViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReleaseMoodViewController.xib; sourceTree = "<group>"; };
 		EA12F7E91D65492B0085752A /* icon_cooperate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_cooperate.png; sourceTree = "<group>"; };
 		EA12F7EB1D654A950085752A /* icon_tips.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_tips.png; sourceTree = "<group>"; };
 		EA12F7EE1D6554F30085752A /* HeSearchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeSearchVC.h; sourceTree = "<group>"; };
@@ -2910,6 +2942,23 @@
 			path = AlertViewController;
 			sourceTree = "<group>";
 		};
+		A2FF4B631E0E100400A3739E /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				A2FF4B701E0E53E100A3739E /* HobbyListModel.h */,
+				A2FF4B711E0E53E100A3739E /* HobbyListModel.m */,
+				A2FF4B6D1E0E4AF300A3739E /* TripDetailModel.h */,
+				A2FF4B6E1E0E4AF300A3739E /* TripDetailModel.m */,
+				A2FF4B6A1E0E438200A3739E /* TripListModel.h */,
+				A2FF4B6B1E0E438200A3739E /* TripListModel.m */,
+				A2FF4B671E0E1DD600A3739E /* DynamicListModel.h */,
+				A2FF4B681E0E1DD600A3739E /* DynamicListModel.m */,
+				A2FF4B641E0E105100A3739E /* NearbyUserListModel.h */,
+				A2FF4B651E0E105100A3739E /* NearbyUserListModel.m */,
+			);
+			path = HomePage;
+			sourceTree = "<group>";
+		};
 		EA12F7E81D6549220085752A /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -2941,6 +2990,11 @@
 				A211A39F1E0A783E004C3331 /* UserCertificationController.h */,
 				A211A3A01E0A783E004C3331 /* UserCertificationController.m */,
 				A211A3A11E0A783E004C3331 /* UserCertificationController.xib */,
+				A2FF4B731E0FB19300A3739E /* FeedbackController.h */,
+				A2FF4B741E0FB19300A3739E /* FeedbackController.m */,
+				A2FF4B7F1E10C9F500A3739E /* ReleaseMoodViewController.h */,
+				A2FF4B801E10C9F500A3739E /* ReleaseMoodViewController.m */,
+				A2FF4B811E10C9F500A3739E /* ReleaseMoodViewController.xib */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
@@ -4850,6 +4904,11 @@
 		EA8DAE511D5A18E600487BF4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A2FF4B791E0FD23800A3739E /* CommentBetweenUsers.h */,
+				A2FF4B7A1E0FD23800A3739E /* CommentBetweenUsers.m */,
+				A2FF4B761E0FD03100A3739E /* CommentLabelModel.h */,
+				A2FF4B771E0FD03100A3739E /* CommentLabelModel.m */,
+				A2FF4B631E0E100400A3739E /* HomePage */,
 				A211A3A81E0BB64D004C3331 /* User */,
 				A211A3A41E0B7146004C3331 /* Login & Register */,
 				EA5F0AA11D64C14100F30729 /* LogActivityModel */,
@@ -4857,6 +4916,8 @@
 				EA8DAE531D5A18E600487BF4 /* HeSysbsModel.m */,
 				EA8DAE541D5A18E600487BF4 /* User.h */,
 				EA8DAE551D5A18E600487BF4 /* User.m */,
+				A2FF4B7C1E0FD8F200A3739E /* ChatListModel.h */,
+				A2FF4B7D1E0FD8F300A3739E /* ChatListModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6630,6 +6691,7 @@
 				EA2AC3961D60192300C57B45 /* newUserIcon.png in Resources */,
 				EA2AC32F1D5EC08400C57B45 /* HeChatVC.xib in Resources */,
 				A22149A71E03EBBD002D8F52 /* LICENSE in Resources */,
+				A2FF4B831E10C9F500A3739E /* ReleaseMoodViewController.xib in Resources */,
 				A211A3501E07C858004C3331 /* RegisterController.xib in Resources */,
 				EADF86651D621C900029DC4F /* group_joinpublicgroup@2x.png in Resources */,
 				EADF86661D621C900029DC4F /* group_participant_add@2x.png in Resources */,
@@ -6756,6 +6818,7 @@
 				EA8DAD261D5A18D000487BF4 /* DFTableViewNativeRefreshControl.m in Sources */,
 				EA8DAE371D5A18D000487BF4 /* UUDatePicker.m in Sources */,
 				EADF88651D62271A0029DC4F /* CreateGroupViewController.m in Sources */,
+				A2FF4B751E0FB19300A3739E /* FeedbackController.m in Sources */,
 				EA8DADC41D5A18D000487BF4 /* RACDynamicSequence.m in Sources */,
 				EA8DAD0C1D5A18D000487BF4 /* UILabel+Corner.m in Sources */,
 				EA8DAD111D5A18D000487BF4 /* DFBaseViewController.m in Sources */,
@@ -6849,6 +6912,7 @@
 				EA8DAD8C1D5A18D000487BF4 /* NSString+MLExpression.m in Sources */,
 				EA8DAD1F1D5A18D000487BF4 /* DFSandboxHelper.m in Sources */,
 				EADF87ED1D621E380029DC4F /* PSTGridLayoutInfo.m in Sources */,
+				A2FF4B781E0FD03100A3739E /* CommentLabelModel.m in Sources */,
 				EA8DADFF1D5A18D000487BF4 /* README.md in Sources */,
 				A211A39A1E0A6B77004C3331 /* SDCycleScrollView.m in Sources */,
 				EA8DADF41D5A18D000487BF4 /* UIGestureRecognizer+RACSignalSupport.m in Sources */,
@@ -6946,8 +7010,10 @@
 				EADF87DA1D621E380029DC4F /* EMSDWebImagePrefetcher.m in Sources */,
 				EADF858E1D621C820029DC4F /* XHMessageTextView.m in Sources */,
 				EA2AC36C1D6016F400C57B45 /* LeftController.m in Sources */,
+				A2FF4B691E0E1DD600A3739E /* DynamicListModel.m in Sources */,
 				EADF87BB1D621E380029DC4F /* MJRefreshFooter.m in Sources */,
 				EA8DAD8D1D5A18D000487BF4 /* NSString+MLLabel.m in Sources */,
+				A2FF4B7B1E0FD23800A3739E /* CommentBetweenUsers.m in Sources */,
 				EADF87EA1D621E380029DC4F /* PSTCollectionViewItemKey.m in Sources */,
 				EA8DAD391D5A18D000487BF4 /* i2KEPCBasePickerView.m in Sources */,
 				EA8DADB31D5A18D000487BF4 /* NSOrderedSet+RACSequenceAdditions.m in Sources */,
@@ -6963,6 +7029,7 @@
 				EADF88011D621E380029DC4F /* EaseEmotionManager.m in Sources */,
 				EA8DAEB91D5A18F200487BF4 /* split.c in Sources */,
 				EADF88871D6227620029DC4F /* RobotManager.m in Sources */,
+				A2FF4B721E0E53E100A3739E /* HobbyListModel.m in Sources */,
 				EA6DFF6C1D6B51FF0069F4ED /* REFrostedContainerViewController.m in Sources */,
 				EA8DAD9A1D5A18D000487BF4 /* SINavigationMenuView.m in Sources */,
 				EA8DADEB1D5A18D000487BF4 /* RACValueTransformer.m in Sources */,
@@ -6976,11 +7043,13 @@
 				EA8DACF51D5A18D000487BF4 /* UIProgressView+AFNetworking.m in Sources */,
 				EA8DACED1D5A18D000487BF4 /* AFURLSessionManager.m in Sources */,
 				EA8DADB91D5A18D000487BF4 /* NSUserDefaults+RACSupport.m in Sources */,
+				A2FF4B6F1E0E4AF300A3739E /* TripDetailModel.m in Sources */,
 				EA8DACF01D5A18D000487BF4 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				EA8DAD101D5A18D000487BF4 /* DFBaseTableViewController.m in Sources */,
 				EA5F0A721D64BFA400F30729 /* DFActivityDetailLineItem.m in Sources */,
 				EADF856F1D621C7B0029DC4F /* UIResponder+Router.m in Sources */,
 				EA5F0A791D64BFA400F30729 /* DFUserNewsActivityDetailLineItem.m in Sources */,
+				A2FF4B821E10C9F500A3739E /* ReleaseMoodViewController.m in Sources */,
 				EADF881C1D621E380029DC4F /* EaseChatBarMoreView.m in Sources */,
 				EADF88031D621E380029DC4F /* EaseConversationListViewController.m in Sources */,
 				EADF880D1D621E380029DC4F /* EaseMessageTimeCell.m in Sources */,
@@ -7185,6 +7254,7 @@
 				EADF883D1D6225EA0029DC4F /* AddFriendViewController.m in Sources */,
 				EADF85651D621C7B0029DC4F /* EMAlertView.m in Sources */,
 				EA8DADA31D5A18D000487BF4 /* LICENSE.md in Sources */,
+				A2FF4B661E0E105100A3739E /* NearbyUserListModel.m in Sources */,
 				EA5F0A631D64BFA400F30729 /* DFActivityCollectCellAdapter.m in Sources */,
 				EADF87D11D621E380029DC4F /* MWTapDetectingView.m in Sources */,
 				A2C829B41E027D0500645639 /* MASViewAttribute.m in Sources */,
@@ -7220,6 +7290,7 @@
 				EADF87F01D621E380029DC4F /* PSTGridLayoutSection.m in Sources */,
 				EADF87B31D621E380029DC4F /* EMVoiceConverter.mm in Sources */,
 				EA8DAEB31D5A18F200487BF4 /* mask.c in Sources */,
+				A2FF4B7E1E0FD8F300A3739E /* ChatListModel.m in Sources */,
 				EA8DAD641D5A18D000487BF4 /* MBProgressHUD.m in Sources */,
 				EA2AC3611D60160900C57B45 /* HeSlideMenuVC.m in Sources */,
 				EADF88101D621E380029DC4F /* EaseBubbleView+Image.m in Sources */,
@@ -7300,6 +7371,7 @@
 				EA8DADB21D5A18D000487BF4 /* NSObject+RACSelectorSignal.m in Sources */,
 				EA8DAD9F1D5A18D000487BF4 /* NYSegmentIndicator.m in Sources */,
 				EADF87B01D621E380029DC4F /* EMCDDeviceManagerBase.m in Sources */,
+				A2FF4B6C1E0E438200A3739E /* TripListModel.m in Sources */,
 				EADF88171D621E380029DC4F /* EaseChatToolbarItem.m in Sources */,
 				EADF88071D621E380029DC4F /* EaseUsersListViewController.m in Sources */,
 				EA8DADE31D5A18D000487BF4 /* RACSubscriptingAssignmentTrampoline.m in Sources */,
