@@ -1,37 +1,34 @@
 //
-//  UserCertificationController.m
+//  OwnerCertificationController.m
 //  sishi
 //
-//  Created by likeSo on 2016/12/21.
+//  Created by likeSo on 2016/12/27.
 //  Copyright © 2016年 Channce. All rights reserved.
 //
 
-#import "UserCertificationController.h"
+#import "OwnerCertificationController.h"
 #import "Masonry.h"
 #import "ApiUtils.h"
 
-static NSInteger kImageUpLoadMaxCount = 4;
-
-@interface UserCertificationController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface OwnerCertificationController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@property (weak, nonatomic) IBOutlet UIView *inputFieldContainer;
 @property (weak, nonatomic) IBOutlet UITextField *nameInputField;
+@property (weak, nonatomic) IBOutlet UITextField *phoneInputField;
+@property (weak, nonatomic) IBOutlet UITextField *carTypeInputField;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *nextStepBtn;
+
 /**
- *  图片数组
+ *  图片对象数组
  */
 @property(nonatomic,strong)NSMutableArray *imageArray;
-@property (weak, nonatomic) IBOutlet UITextField *idCardInputField;
+@property (weak, nonatomic) IBOutlet UIView *containerView;
+
 
 /**
  *  图片高度数组
  */
 @property(nonatomic,strong)NSMutableArray *imageHeightArray;
-
-
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIView *containerView;
-@property (weak, nonatomic) IBOutlet UIButton *nextStepBtn;
-@property (weak, nonatomic) IBOutlet UIView *inputViewContainer;
-
-
 
 /**
  *  位于tableView底部的"添加"按钮
@@ -42,7 +39,7 @@ static NSInteger kImageUpLoadMaxCount = 4;
 
 @end
 
-@implementation UserCertificationController
+@implementation OwnerCertificationController
 
 - (void)dealloc
 {
@@ -97,11 +94,11 @@ static NSInteger kImageUpLoadMaxCount = 4;
     self.nextStepBtn.layer.cornerRadius = 5;
     self.nextStepBtn.clipsToBounds = YES;
     self.tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
-    self.title = @"用户认证";
-    self.inputViewContainer.layer.cornerRadius = 7;
-    self.inputViewContainer.clipsToBounds = YES;
-    self.inputViewContainer.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    self.inputViewContainer.layer.borderWidth = 1.0;
+    self.title = @"车主认证";
+    self.inputFieldContainer.layer.cornerRadius = 7;
+    self.inputFieldContainer.clipsToBounds = YES;
+    self.inputFieldContainer.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.inputFieldContainer.layer.borderWidth = 1.0;
     
 }
 
@@ -167,7 +164,7 @@ static NSInteger kImageUpLoadMaxCount = 4;
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"确定要删除选中的照片吗" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     kWeakSelf;
     UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-       //删除图片
+        //删除图片
         [weakSelf removeImageAtIndex:indexPath.row];
         [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
     }];
@@ -179,7 +176,7 @@ static NSInteger kImageUpLoadMaxCount = 4;
 
 #pragma mark :- 添加图片按钮
 - (void)onAddImage:(UIButton *)btn {
-    if (self.imageArray.count >= kImageUpLoadMaxCount) {
+    if (self.imageArray.count >= 2) {
         [self showHint:@"您最多只能上传四张照片哦"];
         return;
     }
@@ -193,7 +190,7 @@ static NSInteger kImageUpLoadMaxCount = 4;
                                                              picker.delegate = self;
                                                              picker.allowsEditing = YES;
                                                              [weakSelf presentViewController:picker animated:YES completion:nil];
-    }];
+                                                         }];
     
     UIAlertAction *albumAction = [UIAlertAction actionWithTitle:@"选择照片" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
@@ -217,15 +214,15 @@ static NSInteger kImageUpLoadMaxCount = 4;
     [self addImage:editedImage];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
-- (IBAction)onSubmit:(UIButton *)sender {
+
+- (IBAction)onNext:(UIButton *)sender {
     if (!self.nameInputField.text.length) {
         [self showHint:@"请输入您的真实姓名"];
         return;
-    } else if (!self.idCardInputField.text.length || ![Tool isIDCardNumber:self.idCardInputField.text]) {
-        [self showHint:@"请输入真实有效的身份证号码"];
+    } else if (![Tool isMobileNumber:self.phoneInputField.text]) {
+        [self showHint:@"请输入您当前的手机号"];
         return;
-    }
-    if (self.imageArray.count != 4) {
+    } else if (self.imageArray.count != 2) {
         [self showHint:@"请添加足够的照片"];
         return;
     }
@@ -234,13 +231,26 @@ static NSInteger kImageUpLoadMaxCount = 4;
         [imageNameArray addObject:[Tool Base64StringFromUIImage:image]];
     }
     [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
-    [ApiUtils userProveWithTrueName:self.nameInputField.text idCard:self.idCardInputField.text privatePhoto:[imageNameArray componentsJoinedByString:@","] onCompleteHandler:^{
-        [MBProgressHUD hideHUDForView:self.view.window animated:YES];
-        [self showHint:@"认证提交成功"];
-        [self.navigationController popViewControllerAnimated:YES];
-    } errorHandler:^(NSString *responseErrorInfo) {
-        [MBProgressHUD hideHUDForView:self.view.window animated:YES];
+//    [ApiUtils userProveWithTrueName:self.nameInputField.text idCard:self.idCardInputField.text privatePhoto:[imageNameArray componentsJoinedByString:@","] onCompleteHandler:^{
+//        [MBProgressHUD hideHUDForView:self.view.window animated:YES];
+//        [self showHint:@"认证提交成功"];
+//        [self.navigationController popViewControllerAnimated:YES];
+//    } errorHandler:^(NSString *responseErrorInfo) {
+//        [MBProgressHUD hideHUDForView:self.view.window animated:YES];
+//        [self showHint:responseErrorInfo];
+//    }];
+    NSString *imageNames = [imageNameArray componentsJoinedByString:@","];
+    [ApiUtils userCarProveWithUserTrueName:self.nameInputField.text
+                                     phone:self.phoneInputField.text
+                                  carPhoto:imageNames
+                                   carType:self.carTypeInputField.text
+                                onComplete:^{
+                                    [MBProgressHUD hideHUDForView:self.view.window animated:YES];
+                                    [self showHint:@"认证资料提交成功"];
+                                    [self.navigationController popViewControllerAnimated:YES];
+    } onResponseError:^(NSString *responseErrorInfo) {
         [self showHint:responseErrorInfo];
+        [MBProgressHUD hideHUDForView:self.view.window animated:YES];
     }];
 }
 

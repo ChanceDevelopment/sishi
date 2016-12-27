@@ -12,7 +12,7 @@
 #import "AppDelegate.h"
 #import "EMSDK.h"
 
-@interface HeChatVC ()<UITableViewDelegate,UITableViewDataSource,EMChatManagerDelegate>
+@interface HeChatVC ()<UITableViewDelegate,UITableViewDataSource,EMChatManagerDelegate,EaseMessageViewControllerDelegate>
 @property(strong,nonatomic)IBOutlet UITableView *tableview;
 /**
  *  聊天数据源数组
@@ -57,21 +57,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
+    [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:dispatch_get_main_queue()];
     [self initializaiton];
     [self initView];
+    
+    self.navigationItem.title = @"会话";
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    [self reloadEaseMobConversations];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+//    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:33 / 255.0 green:208 / 255.0 blue:169 / 255.0 alpha:1];
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    [self.navigationController.navigationBar setBackgroundImage:[Tool buttonImageFromColor:[UIColor colorWithRed:33 / 255.0 green:208 / 255.0 blue:169 / 255.0 alpha:1] withImageSize:CGSizeMake(1, 1)] forBarMetrics:UIBarMetricsDefault];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+//    self.navigationController.navigationBar.shadowImage = nil;
+//    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
 }
 
 - (void)initializaiton
@@ -83,24 +90,29 @@
 {
     [super initView];
     
-    
     tableview.backgroundView = nil;
     tableview.backgroundColor = [UIColor whiteColor];
     tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     [Tool setExtraCellLineHidden:tableview];
-
+    
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self reloadEaseMobConversations];
 }
-
 
 #pragma mark :- 环信代理回调 
 - (void)didUpdateConversationList:(NSArray *)aConversationList {
-    [self.chatArray removeAllObjects];
-    [self.chatArray addObjectsFromArray:aConversationList];
+//    [self.chatArray removeAllObjects];
+//    [self.chatArray addObjectsFromArray:aConversationList];
+    [self reloadEaseMobConversations];
 }
 
 - (void)didReceiveMessages:(NSArray *)aMessages {
 //    [self.tableview reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+    [self reloadEaseMobConversations];
+}
+
+//////EaseUI回调
+- (void)messageViewController:(EaseMessageViewController *)viewController didSendMessageModel:(id<IMessageModel>)messageModel {
     [self reloadEaseMobConversations];
 }
 
@@ -111,9 +123,9 @@
     dispatch_queue_t loadMessageQueue = dispatch_queue_create("com.sishi.easemob.loadmessage", DISPATCH_QUEUE_CONCURRENT);
     dispatch_async(loadMessageQueue, ^{
         NSArray *conversations = [[EMClient sharedClient].chatManager getAllConversations];
-        [weakSelf.chatArray removeAllObjects];
-        [weakSelf.chatArray addObjectsFromArray:conversations];
         dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.chatArray removeAllObjects];
+            [weakSelf.chatArray addObjectsFromArray:conversations];
             [weakSelf.tableview reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
         });
     });
@@ -156,11 +168,13 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSInteger row = indexPath.row;
-    NSInteger section = indexPath.section;
+//    NSInteger row = indexPath.row;
+//    NSInteger section = indexPath.section;
     EMConversation *conversation = self.chatArray[indexPath.row];
+    
     ChatViewController *chatView = [[ChatViewController alloc] initWithConversationChatter:conversation.conversationId conversationType:EMConversationTypeChat];
     NSString *chatterName = @"";
+    chatView.delegate = self;
     if (conversation.latestMessage.direction == EMMessageDirectionSend) {
         chatterName = conversation.latestMessage.to;
     } else {

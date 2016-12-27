@@ -42,6 +42,11 @@
     return _imageList;
 }
 
+- (void)setImageLinkGroup:(NSArray<NSString *> *)imageLinkGroup {
+    _imageLinkGroup = imageLinkGroup;
+    [self reloadSections:[NSIndexSet indexSetWithIndex:0]];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
     layout.minimumLineSpacing = 5.0;

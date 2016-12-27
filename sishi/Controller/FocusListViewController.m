@@ -38,23 +38,23 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     self.navigationItem.title = @"我关注的";
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.tableView registerNib:[UINib nibWithNibName:@"FocusTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"FocusTableViewCell"];
     self.tableView.tableFooterView = [UIView new];
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(onHeaderRefresh:)];
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.tableView.mj_header beginRefreshing];
+    self.tableView.mj_header.automaticallyChangeAlpha = YES;
 }
 
 - (void)onHeaderRefresh:(MJRefreshNormalHeader *)header {
-//    [self showHudInView:self.view hint:@""];
     [ApiUtils queryMYFocusListWithResponseList:^(NSArray<UserFollowListModel *> *focusList) {
         [header endRefreshing];
         [self.focusUserList removeAllObjects];
         [self.focusUserList addObjectsFromArray:focusList];
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
     } onError:^(NSString *responseErrorInfo) {
-//        [self hideHud];
         [self showHint:responseErrorInfo];
         [header endRefreshing];
     }];

@@ -31,6 +31,9 @@
 		A211A3A71E0B730C004C3331 /* LoginUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A3A61E0B730C004C3331 /* LoginUserInfoModel.m */; };
 		A211A3AB1E0BB659004C3331 /* UserFollowListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A3AA1E0BB659004C3331 /* UserFollowListModel.m */; };
 		A211A3AE1E0BC3DF004C3331 /* UIViewController+UIImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A3AD1E0BC3DF004C3331 /* UIViewController+UIImagePickerController.m */; };
+		A2143DAB1E11FBF700D0C631 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A2143DAA1E11FBF700D0C631 /* MJRefresh.bundle */; };
+		A2143DB41E12519000D0C631 /* OwnerCertificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2143DB21E12519000D0C631 /* OwnerCertificationController.m */; };
+		A2143DB51E12519000D0C631 /* OwnerCertificationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2143DB31E12519000D0C631 /* OwnerCertificationController.xib */; };
 		A22149981E038E29002D8F52 /* ImageAdder.m in Sources */ = {isa = PBXBuildFile; fileRef = A22149971E038E29002D8F52 /* ImageAdder.m */; };
 		A221499B1E0390E2002D8F52 /* ImageAdderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A221499A1E0390E2002D8F52 /* ImageAdderViewCell.m */; };
 		A221499D1E03BCB7002D8F52 /* add_pho.png in Resources */ = {isa = PBXBuildFile; fileRef = A221499C1E03BCB7002D8F52 /* add_pho.png */; };
@@ -855,7 +858,6 @@
 		EADF87C31D621E380029DC4F /* MJRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = EADF86D01D621E380029DC4F /* MJRefreshGifHeader.m */; };
 		EADF87C41D621E380029DC4F /* MJRefreshNormalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = EADF86D21D621E380029DC4F /* MJRefreshNormalHeader.m */; };
 		EADF87C51D621E380029DC4F /* MJRefreshStateHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = EADF86D41D621E380029DC4F /* MJRefreshStateHeader.m */; };
-		EADF87C61D621E380029DC4F /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EADF86D51D621E380029DC4F /* MJRefresh.bundle */; };
 		EADF87C71D621E380029DC4F /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = EADF86D81D621E380029DC4F /* MJRefreshConst.m */; };
 		EADF87C81D621E380029DC4F /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = EADF86DA1D621E380029DC4F /* UIScrollView+MJExtension.m */; };
 		EADF87C91D621E380029DC4F /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = EADF86DC1D621E380029DC4F /* UIScrollView+MJRefresh.m */; };
@@ -1041,6 +1043,12 @@
 		A211A3AA1E0BB659004C3331 /* UserFollowListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFollowListModel.m; sourceTree = "<group>"; };
 		A211A3AC1E0BC3DF004C3331 /* UIViewController+UIImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+UIImagePickerController.h"; sourceTree = "<group>"; };
 		A211A3AD1E0BC3DF004C3331 /* UIViewController+UIImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+UIImagePickerController.m"; sourceTree = "<group>"; };
+		A2143DAA1E11FBF700D0C631 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
+		A2143DAF1E12002B00D0C631 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		A2143DB01E12002B00D0C631 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		A2143DB11E12519000D0C631 /* OwnerCertificationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OwnerCertificationController.h; sourceTree = "<group>"; };
+		A2143DB21E12519000D0C631 /* OwnerCertificationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OwnerCertificationController.m; sourceTree = "<group>"; };
+		A2143DB31E12519000D0C631 /* OwnerCertificationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OwnerCertificationController.xib; sourceTree = "<group>"; };
 		A22149961E038E29002D8F52 /* ImageAdder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAdder.h; sourceTree = "<group>"; };
 		A22149971E038E29002D8F52 /* ImageAdder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageAdder.m; sourceTree = "<group>"; };
 		A22149991E0390E2002D8F52 /* ImageAdderViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAdderViewCell.h; sourceTree = "<group>"; };
@@ -2432,7 +2440,6 @@
 		EADF86D21D621E380029DC4F /* MJRefreshNormalHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshNormalHeader.m; sourceTree = "<group>"; };
 		EADF86D31D621E380029DC4F /* MJRefreshStateHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshStateHeader.h; sourceTree = "<group>"; };
 		EADF86D41D621E380029DC4F /* MJRefreshStateHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshStateHeader.m; sourceTree = "<group>"; };
-		EADF86D51D621E380029DC4F /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		EADF86D61D621E380029DC4F /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		EADF86D71D621E380029DC4F /* MJRefreshConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshConst.h; sourceTree = "<group>"; };
 		EADF86D81D621E380029DC4F /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConst.m; sourceTree = "<group>"; };
@@ -2990,6 +2997,9 @@
 				A211A39F1E0A783E004C3331 /* UserCertificationController.h */,
 				A211A3A01E0A783E004C3331 /* UserCertificationController.m */,
 				A211A3A11E0A783E004C3331 /* UserCertificationController.xib */,
+				A2143DB11E12519000D0C631 /* OwnerCertificationController.h */,
+				A2143DB21E12519000D0C631 /* OwnerCertificationController.m */,
+				A2143DB31E12519000D0C631 /* OwnerCertificationController.xib */,
 				A2FF4B731E0FB19300A3739E /* FeedbackController.h */,
 				A2FF4B741E0FB19300A3739E /* FeedbackController.m */,
 				A2FF4B7F1E10C9F500A3739E /* ReleaseMoodViewController.h */,
@@ -5792,9 +5802,9 @@
 		EADF86B21D621E380029DC4F /* MJRefresh */ = {
 			isa = PBXGroup;
 			children = (
+				A2143DAA1E11FBF700D0C631 /* MJRefresh.bundle */,
 				EADF86B31D621E380029DC4F /* Base */,
 				EADF86BE1D621E380029DC4F /* Custom */,
-				EADF86D51D621E380029DC4F /* MJRefresh.bundle */,
 				EADF86D61D621E380029DC4F /* MJRefresh.h */,
 				EADF86D71D621E380029DC4F /* MJRefreshConst.h */,
 				EADF86D81D621E380029DC4F /* MJRefreshConst.m */,
@@ -6620,7 +6630,6 @@
 				EADF86331D621C900029DC4F /* chat_sender_audio_playing_002@2x.png in Resources */,
 				EAA790C81DEBDB7400443970 /* icon_setting.png in Resources */,
 				EA8DAECA1D5A18F300487BF4 /* zbar-help.html in Resources */,
-				EADF87C61D621E380029DC4F /* MJRefresh.bundle in Resources */,
 				EADF86151D621C900029DC4F /* call_out@2x.png in Resources */,
 				EA5F09DF1D64BC5100F30729 /* demo_nearBgImage.jpg in Resources */,
 				EADF86611D621C900029DC4F /* titleBar@2x.png in Resources */,
@@ -6629,6 +6638,7 @@
 				EA5F0A8E1D64BFA400F30729 /* LikeCmtBg@3x.png in Resources */,
 				EADF860C1D621C900029DC4F /* 114.png in Resources */,
 				EA8DAD931D5A18D000487BF4 /* arrow_down1@2x.png in Resources */,
+				A2143DAB1E11FBF700D0C631 /* MJRefresh.bundle in Resources */,
 				EAA790C01DEBDB7400443970 /* icon_invite.png in Resources */,
 				EA5F0A891D64BFA400F30729 /* AlbumShare@2x.png in Resources */,
 				EADF866C1D621C900029DC4F /* tabbar_chats.png in Resources */,
@@ -6702,6 +6712,7 @@
 				EAA790A21DEBDB0200443970 /* icon_delete.png in Resources */,
 				EAA790C31DEBDB7400443970 /* icon_my_location.png in Resources */,
 				EA8DAD4A1D5A18D000487BF4 /* LICENSE.txt in Resources */,
+				A2143DB51E12519000D0C631 /* OwnerCertificationController.xib in Resources */,
 				EA2AC3921D60192300C57B45 /* menuIcon.png in Resources */,
 				EADF86521D621C900029DC4F /* icon_030.gif in Resources */,
 				EAA790C71DEBDB7400443970 /* icon_setting_white.png in Resources */,
@@ -7134,6 +7145,7 @@
 				EA8DADCA1D5A18D000487BF4 /* RACEvent.m in Sources */,
 				EA5F0AA41D64C15500F30729 /* ActivityLogModel.m in Sources */,
 				EA8DADF51D5A18D000487BF4 /* UIImagePickerController+RACSignalSupport.m in Sources */,
+				A2143DB41E12519000D0C631 /* OwnerCertificationController.m in Sources */,
 				EA8DAD351D5A18D000487BF4 /* DFUserDefaultStorageService.m in Sources */,
 				EA8DADE61D5A18D000487BF4 /* RACTestScheduler.m in Sources */,
 				EADF88181D621E380029DC4F /* EaseImageView.m in Sources */,
@@ -7442,6 +7454,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				EA8DA96C1D5A171A00487BF4 /* Base */,
+				A2143DAF1E12002B00D0C631 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -7450,6 +7463,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				EA8DA9711D5A171A00487BF4 /* Base */,
+				A2143DB01E12002B00D0C631 /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -7461,6 +7475,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -7566,6 +7581,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -7612,6 +7628,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -7655,6 +7672,7 @@
 				CODE_SIGN_ENTITLEMENTS = "sishi/司事.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer: jun zhou (ZM3AW8VQ6N)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: jun zhou (ZM3AW8VQ6N)";
+				DEVELOPMENT_TEAM = E6CUH72B23;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7687,7 +7705,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.channce.sishi;
 				PRODUCT_NAME = "司事";
-				PROVISIONING_PROFILE = "04189e48-19ad-4bbf-aa2c-2195cd8e1e94";
+				PROVISIONING_PROFILE = "34b84f71-0ac6-405d-a22b-4168978b1f76";
 				PROVISIONING_PROFILE_SPECIFIER = 20160818_sishi_Release;
 			};
 			name = Debug;

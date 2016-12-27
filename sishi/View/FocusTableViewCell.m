@@ -46,6 +46,7 @@
 
 - (void)setModel:(UserFollowListModel *)model {
     _model = model;
+    
     [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],model.userHeader]] placeholderImage:[UIImage imageNamed:@"demo_nearBgImage.jpg"]];
     self.headImageView.clipsToBounds = YES;
     self.nameLabel.text = model.userNick;

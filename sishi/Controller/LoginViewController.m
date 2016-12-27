@@ -43,7 +43,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    self.navigationItem.title = @"登录";
     self.isDriver = YES;
     self.inputFieldContainer.layer.cornerRadius = 7;
     self.inputFieldContainer.clipsToBounds = YES;
@@ -80,9 +80,15 @@
                       }
                           if (!loginError) {
                               dispatch_async(dispatch_get_main_queue(), ^{
+                                  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                                  if (!weakSelf.isDriver) {//用户模式
+                                      [defaults setObject:@"1" forKey:kDefaultsUserJudge];
+                                  } else {//车主模式
+                                      [defaults setObject:@"0" forKey:kDefaultsUserJudge];
+                                  }
                                   [JPUSHService setTags:nil alias:userInfo.userId fetchCompletionHandle:nil];
                                   //保存登录信息
-                                  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                                  
                                   [defaults setObject:userInfo.userId forKey:USERIDKEY];
                         [defaults setObject:userInfo.userSex forKey:kDefaultsUserGender];
                         [defaults setDouble:userInfo.userPositionX forKey:kDefaultsUserLocationlongitude];

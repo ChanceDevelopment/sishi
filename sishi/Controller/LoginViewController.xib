@@ -31,10 +31,14 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="331"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxi-3c-zNX">
-                                    <rect key="frame" x="117.5" y="25" width="140" height="30"/>
+                                    <rect key="frame" x="82.5" y="25" width="210" height="30"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ifc-pb-8LE">
-                                            <rect key="frame" x="0.0" y="0.0" width="70" height="30"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="105" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="105" id="ZNK-j9-NQQ"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <state key="normal" title="  我是司机">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -43,7 +47,8 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bI0-Ro-EV3">
-                                            <rect key="frame" x="70" y="0.0" width="70" height="30"/>
+                                            <rect key="frame" x="105" y="0.0" width="105" height="30"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <state key="normal" title="  我是乘客">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>

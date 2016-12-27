@@ -23,6 +23,12 @@
 @property(strong,nonatomic)UIView *sectionHeaderView;
 @property(nonatomic,strong) NYSegmentedControl *segmentedControl;
 
+/**
+ *  -.-
+ */
+@property(nonatomic,strong)UIScrollView *scrollView;
+
+
 @end
 
 @implementation HeDynamicVC
@@ -172,19 +178,35 @@
     
    
 //    [self.view addSubview:sectionHeaderView];*/
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.titleView = sectionHeaderView;
+    CGFloat viewHeight = SCREENHEIGH - 49 - 64;
+    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, viewHeight)];
+    _scrollView.pagingEnabled = YES;
+    _scrollView.scrollEnabled = NO;
+    _scrollView.contentSize = CGSizeMake(SCREENWIDTH * 2, 0);
+    _scrollView.delaysContentTouches = NO;
+    [self.view addSubview:_scrollView];
+    
     
     logVC = [[HeLogTableVC alloc] init];
+    logVC.automaticallyAdjustsScrollViewInsets = NO;
+    logVC.view.frame = CGRectMake(SCREENWIDTH, 0, SCREENWIDTH, viewHeight);
     [self addChildViewController:logVC];
+    
+    
     realTimeVC = [[HeRealTimeTrendVC alloc] init];
+    realTimeVC.automaticallyAdjustsScrollViewInsets = NO;
     [self addChildViewController:realTimeVC];
     
+    realTimeVC.view.frame = CGRectMake(0, 0, SCREENWIDTH, viewHeight);
     
-    realTimeVC.view.frame = self.view.bounds;
-    logVC.view.frame = self.view.bounds;
-    self.currentVC = realTimeVC;
-    [self.view addSubview:logVC.view];
-    [self.view addSubview:realTimeVC.view];
+    [_scrollView addSubview:realTimeVC.view];
+    [_scrollView addSubview:logVC.view];
+    
+//    self.currentVC = realTimeVC;
+//    [self.view addSubview:logVC.view];
+//    [self.view addSubview:realTimeVC.view];
 }
 
 - (IBAction)distributeButtonClick:(id)sender
@@ -228,9 +250,9 @@
 }
 
 - (void)onSegment:(UIButton *) btn {
-    if ((btn.tag == 10000 && requestReply) || (btn.tag == 10001 && !requestReply)) {
-        return;
-    }
+//    if ((btn.tag == 10000 && requestReply) || (btn.tag == 10001 && !requestReply)) {
+//        return;
+//    }
     [btn setTitleColor:[UIColor colorWithRed:255 / 255.0 green:64 / 255.0 blue:74 / 255.0 alpha:1] forState:UIControlStateNormal];
     for (UIView *subView in self.navigationItem.titleView.subviews) {
         if ([subView isKindOfClass:[UIButton class]]) {
@@ -238,12 +260,17 @@
                 [(UIButton *)subView setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             }
     }
-    if (btn.tag == 10000) {//动态
-        [self replaceController:logVC newController:realTimeVC];
-        requestReply = YES;
+//    if (btn.tag == 10000) {//动态
+//        [self replaceController:logVC newController:realTimeVC];
+//        requestReply = YES;
+//    } else {
+//        [self replaceController:realTimeVC newController:logVC];
+//        requestReply = NO;
+//    }
+    if (btn.tag == 10000) {
+        [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     } else {
-        [self replaceController:realTimeVC newController:logVC];
-        requestReply = NO;
+        [self.scrollView setContentOffset:CGPointMake(SCREENWIDTH, 0) animated:YES];
     }
 }
 

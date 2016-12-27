@@ -88,6 +88,34 @@ NSString *const kUserFollowListModelUserId = @"userId";
 @synthesize userId = _userId;
 
 
+- (NSString *)userAge {//copy and paste
+    if (!_userAge || [_userAge isEqual:[NSNull null]]) {
+        return @"";
+    }
+    return _userAge;
+}
+
+- (NSString *)userProvince {
+    if (!_userProvince || [_userProvince isEqual:[NSNull null]]) {
+        return @"";
+    }
+    return _userProvince;
+}
+
+- (NSString *)userCity {
+    if (!_userCity  || [_userCity isEqual:[NSNull null]]) {
+        return @"";
+    }
+    return _userCity;
+}
+
+- (NSString *)userCredit {
+    if (!_userCredit  || [_userCredit isEqual:[NSNull null]]) {
+        return @"";
+    }
+    return _userCity;
+}
+
 + (instancetype)modelObjectWithDictionary:(NSDictionary *)dict
 {
     return [[self alloc] initWithDictionary:dict];

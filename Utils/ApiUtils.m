@@ -51,6 +51,9 @@ static AFHTTPSessionManager *sessionManager = nil;
                                            }
                                        } else if (responseError){
                                            NSString *errInfo = responseInfo[@"data"];
+                                           if (!errInfo || [errInfo isEqual:[NSNull null]]) {
+                                               errInfo = @"未知错误";
+                                           }
                                            NSLog(@"request api address %@ failured with response error %@",apiString,errInfo);
                                            responseError(errInfo);
                                        }
@@ -184,8 +187,8 @@ static AFHTTPSessionManager *sessionManager = nil;
 
 + (void)userCarProveWithUserTrueName:(NSString *)trueName phone:(NSString *)phone carPhoto:(NSString *)photo carType:(NSString *)carType onComplete:(ApiUtilsSuccessWithVoidResponse)completeHandler onResponseError:(ApiUtilsResponseError)errorHandler {
     NSString *api = [NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],@"Sexton/user/ carProve.action"];
-    NSString *uid = [[NSUserDefaults standardUserDefaults]stringForKey:USERIDKEY];
-    NSDictionary *parameters = @{@"userId":uid,@"userTrueName":trueName,@"userPhone":phone,@"userCarphoto":photo,@"userDriverphoet":carType};
+    
+    NSDictionary *parameters = @{@"userId":[Tool uid],@"userTrueName":trueName,@"userPhone":phone,@"userCarphoto":photo,@"userDriverphoet":carType};
     [ApiUtils POST:api parameters:parameters onResponseSuccess:^(NSDictionary<NSString *,id> *responseInfo) {
         if (completeHandler) {
             completeHandler();

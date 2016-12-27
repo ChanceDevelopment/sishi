@@ -123,9 +123,14 @@
  */
 @property(nonatomic,class,readonly)BOOL isCertificationed;
 
+/**
+ *  当前车主是否已认证
+ */
+@property(nonatomic,assign)BOOL isOwnerCertificationed;
+
 
 /**
- *   当前登录用户类型
+ *   当前登录用户类型  0车主1用户
  */
 @property(nonatomic,class,readonly)NSString *judge;
 

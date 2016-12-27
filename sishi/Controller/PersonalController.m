@@ -45,12 +45,13 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.nameLabel.text = [Tool defaultsForKey:kDefaultsUserNick];
-    
+    self.imageBanner.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
     [self configPageInfo];
 }
 
 - (void)onEdit:(UIBarButtonItem *)edit {
     UserInfoEditController *editController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"UserInfoEditController"];
+    editController.imageLinkgroup = self.imageBanner.imageURLStringsGroup;
     [self.navigationController pushViewController:editController animated:YES];
 }
 

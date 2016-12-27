@@ -85,9 +85,17 @@
     [self initView];
     
     self.filterBtn.layer.cornerRadius = 30;
-    self.filterBtn.clipsToBounds = YES;
+    self.filterBtn.layer.shadowOffset = CGSizeMake(2, 2);
+    
+//    self.filterBtn.layer.shadowRadius = 30.0;
+    self.filterBtn.layer.shadowOpacity = 1.0;
+    self.filterBtn.layer.shadowColor = [UIColor colorWithWhite:0.4 alpha:1].CGColor;
+    
     self.releaseBtn.layer.cornerRadius = 30;
-    self.releaseBtn.clipsToBounds = YES;
+    self.releaseBtn.layer.shadowOffset = CGSizeMake(2, 2);
+    self.releaseBtn.layer.shadowColor = [UIColor colorWithWhite:0.4 alpha:1].CGColor;
+    self.releaseBtn.layer.shadowOpacity = 1.0;
+//    self.releaseBtn.clipsToBounds = YES;
     self.releaseBtn.imageEdgeInsets = UIEdgeInsetsMake(30, 30, 30, 30);
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
 }

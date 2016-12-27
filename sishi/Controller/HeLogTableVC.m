@@ -137,10 +137,10 @@
     self.tableView.backgroundColor = [UIColor whiteColor];
     [Tool setExtraCellLineHidden:self.tableView];
     [self.view bringSubviewToFront:self.releaseBtn];
-    self.releaseBtn.layer.shadowOffset = CGSizeMake(5, 5);
-    self.releaseBtn.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.releaseBtn.layer.shadowOffset = CGSizeMake(2, 2);
+    self.releaseBtn.layer.shadowColor = [UIColor colorWithWhite:0.4 alpha:1].CGColor;
     self.releaseBtn.layer.shadowOpacity = 1.0;
-    self.releaseBtn.layer.shadowRadius = 30.0;
+//    self.releaseBtn.layer.shadowRadius = 30.0;
 }
 
 - (UIButton *)buttonWithTitle:(NSString *)buttonTitle frame:(CGRect)buttonFrame

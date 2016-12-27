@@ -13,6 +13,7 @@
 #import "UserCertificationController.h"
 #import "SelectViewContainer.h"
 #import "ApiUtils.h"
+#import "OwnerCertificationController.h"
 
 @interface UserInfoEditController ()<ImageAdderAddImageProtocol,UIPickerViewDelegate,UIPickerViewDataSource>
 @property (weak, nonatomic) IBOutlet UIButton *headImageBtn;
@@ -24,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *phoneInputField;
 @property (weak, nonatomic) IBOutlet UITextField *descInputField;
 @property (weak, nonatomic) IBOutlet ImageAdder *imageAdder;
+@property (weak, nonatomic) IBOutlet UILabel *authTypeLabel;
 @property (weak, nonatomic) IBOutlet ImageAdder *localImageAdder;
 /**
  *  已拥有照片的单元格高度
@@ -32,6 +34,11 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *adderHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIButton *completeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *authBtn;
+
+/**
+ *  车主认证
+ */
+@property(nonatomic,assign)BOOL isCertificationForDriver;
 
 /**
  *  性别
@@ -153,25 +160,10 @@
     return _birthdayPicker;
 }
 
-- (void)setImageLinkgroup:(NSArray<NSString *> *)imageLinkgroup {
-    _imageLinkgroup = imageLinkgroup;
-    NSMutableArray <NSString *>*imageLinkList = [NSMutableArray arrayWithCapacity:imageLinkgroup.count];
-    for (NSString *imageName in imageLinkgroup) {
-        NSString *name = imageName;
-        if (![name hasPrefix:@"http"] || ![name hasPrefix:@"HTTP"]) {
-            name = [NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],imageName];
-        }
-        [imageLinkList addObject:name];
-    }
-    
-    kWeakSelf;
-    self.localImageAdder.onChangeHeight = ^(CGFloat viewHeight) {
-        [weakSelf.tableView beginUpdates];
-        weakSelf.localImageAdderHeight = viewHeight + 15;
-        [weakSelf.tableView endUpdates];
-    };
-    self.localImageAdder.imageLinkGroup = imageLinkList;
-}
+//- (void)setImageLinkgroup:(NSArray<NSString *> *)imageLinkgroup {
+//    _imageLinkgroup = imageLinkgroup;
+//    
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -202,8 +194,32 @@
         [weakSelf.tableView endUpdates];
 //        [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:9 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
     };
-
+    
+    self.localImageAdder.onlyShow = YES;
+    self.localImageAdder.onChangeHeight = ^(CGFloat viewHeight) {
+        [weakSelf.tableView beginUpdates];
+        weakSelf.localImageAdderHeight = viewHeight + 15;
+        if (weakSelf.localImageAdderHeight <= 15) {
+            weakSelf.localImageAdderHeight = 55;
+        }
+        [weakSelf.tableView endUpdates];
+    };
+    
+//    NSMutableArray <NSString *>*imageLinkList = [NSMutableArray arrayWithCapacity:_imageLinkgroup.count];
+//    for (NSString *imageName in _imageLinkgroup) {
+//        NSString *name = imageName;
+//        if (![name hasPrefix:@"http"] || ![name hasPrefix:@"HTTP"]) {
+//            name = [NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],imageName];
+//        }
+//        [imageLinkList addObject:name];
+//    }
+    self.localImageAdder.imageLinkGroup = self.imageLinkgroup;
+    
+    
     self.imageAdder.imageAdderDelegate = self;
+    [self configPageInfo];
+    
+    self.tableView.tableFooterView = [UIView new];
 }
 
 - (void)configPageInfo {
@@ -215,7 +231,7 @@
     NSString *day = [Tool uBirthday];
     if (day.length) {
         NSString *month = [Tool uBirthMonth];
-        self.birthdayLabel.text = [NSString stringWithFormat:@"%@ 月 %@ 日",month,day];
+        self.birthdayLabel.text = [NSString stringWithFormat:@"%@ %@",month,day];
     }
     NSString *address = [Tool defaultsForKey:kDefaultsUserAddress];
     self.addressInputField.text = address;
@@ -224,6 +240,11 @@
     if ([Tool isCertificationed]) {
         self.authBtn.enabled = NO;
         [self.authBtn setTitle:@"已认证" forState:UIControlStateNormal];
+    }
+    self.gender = gender;
+    if ([[Tool judge] isEqual:@"0"]) {
+        self.authTypeLabel.text = @"车主认证";
+        self.isCertificationForDriver = YES;
     }
 }
 
@@ -235,7 +256,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-//    [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
 }
 
 #pragma mark :- 添加图片
@@ -285,7 +305,6 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:self.gender forKey:kDefaultsUserGender];
     [defaults setObject:self.phoneInputField.text forKey:kDefaultsUserPhone];
-//    [defaults setObject:[Tool base] forKey:kDefaultsUserHeaderImage];
     [defaults setObject:self.nickNameInputField.text forKey:kDefaultsUserNick];
 //    [defaults setObject:userInfo.userState forKey:kDefaultsUserJudge];
     [defaults setInteger:[self.ageInputField.text integerValue] forKey:kDefaultsUserAge];
@@ -300,6 +319,12 @@
 
 //点击认证 按钮
 - (IBAction)onAuth:(UIButton *)sender {
+    if (self.isCertificationForDriver) {//车主认证
+        OwnerCertificationController *ownerInfoEdit = [[OwnerCertificationController alloc]initWithNibName:@"OwnerCertificationController" bundle:[NSBundle mainBundle]];
+        
+        [self.navigationController pushViewController:ownerInfoEdit animated:YES];
+        return;
+    }
     UserCertificationController *authController = [[UserCertificationController alloc]initWithNibName:@"UserCertificationController" bundle:[NSBundle mainBundle]];
     authController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:authController animated:YES];
@@ -352,6 +377,7 @@
     } else if (indexPath.row == 11) {
         return 65;
     } else if (indexPath.row == 10) {
+        NSLog(@"已拥有图片 高度 %f",self.localImageAdderHeight);
         return self.localImageAdderHeight;
     }
     return 45;

@@ -42,7 +42,7 @@
 
 - (void)onHeaderRefresh:(MJRefreshNormalHeader *)header {
     
-    [ApiUtils queryTripListWithUser:[Tool uid] carOwnerIsend:@"4" onComplete:^(NSArray<TripListModel *> *response) {
+    [ApiUtils queryTripListWithUser:[Tool uid] carOwnerIsend:@"3" onComplete:^(NSArray<TripListModel *> *response) {
         [header endRefreshing];
     } errorHandler:^(NSString *responseErrorInfo) {
         [header endRefreshing];

@@ -21,6 +21,11 @@
 
 @implementation LabelSelectView
 
+- (void)dealloc
+{
+    [self removeObserver:self forKeyPath:@"contentSize"];
+}
+
 - (NSMutableArray<LabelSelectViewModel *> *)modelList {
     if (!_modelList) {
         _modelList = [NSMutableArray array];
@@ -54,22 +59,32 @@
     layout.minimumLineSpacing = 5;
     layout.minimumInteritemSpacing = 5;
     if (self = [super initWithFrame:frame collectionViewLayout:layout]) {
-        self.delegate = self;
-        self.dataSource = self;
-        self.scrollEnabled = NO;
-        [self registerClass:[LabelSelectViewCell class] forCellWithReuseIdentifier:@"LabelSelectViewCell"];
+        [self setupView];
     }
     return self;
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    [self setupView];
+}
+
+- (void)setupView {
     self.delegate = self;
     self.dataSource = self;
     self.scrollEnabled = NO;
     [self registerClass:[LabelSelectViewCell class] forCellWithReuseIdentifier:@"LabelSelectViewCell"];
+    [self addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
     [(UICollectionViewLeftAlignedLayout *)self.collectionViewLayout setMinimumLineSpacing:5];
     [(UICollectionViewLeftAlignedLayout *)self.collectionViewLayout setMinimumInteritemSpacing:5];
+}
+
+
+#pragma mark :- Obsever
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if (self.onChangeHeight) {
+        self.onChangeHeight(self.contentSize.height);
+    }
 }
 
 #pragma mark :- Utils

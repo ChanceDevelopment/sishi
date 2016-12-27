@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "ApiUtils.h"
 #import "SDCycleScrollView.h"
+#import "LabelSelectView.h"
 
 #define TextLineHeight 1.2f
 
@@ -34,14 +35,31 @@
 @property(nonatomic,strong)NSDictionary *titleAttributes;
 
 /**
+ *  标签View的高度
+ */
+@property(nonatomic,assign)CGFloat labelViewCellHeight;
+
+/**
  *  性别Label
  */
 @property(nonatomic,strong)UILabel *genderLabel;
+
+/**
+ *  标签展示View
+ */
+@property(nonatomic,strong)LabelSelectView *labelView;
+
 
 @property(strong,nonatomic)UILabel *addressLabel;
 @property(strong,nonatomic)UIImageView *userBGImage;
 
 @property(strong,nonatomic)UIView *userInfoView;
+
+/**
+ *  信任值View
+ */
+@property(nonatomic,strong)UILabel *trustValueLabel;
+
 
 /**
  *  是否已关注当前用户
@@ -122,6 +140,7 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self initializaiton];
+    self.labelViewCellHeight = 95;
     [self initView];
 }
 
@@ -396,33 +415,52 @@
     titleLabel.frame = CGRectMake(titleLabelX, titleLabelY, titleLabelW, titleLabelH);
     [commentView addSubview:titleLabel];
     
-    NSArray *array = @[@"非常有礼貌1",@"美女1",@"小清新1",@"斯文10086",@"美女1000",@"美女23"];
-    CGFloat labelX = 10;
-    CGFloat labelY = CGRectGetMaxY(titleLabel.frame) + 10;
-    CGFloat labelW = SCREENWIDTH - 2 * labelX;
-    CGFloat labelH = 30;
-    CGFloat labelDistanceX = 10;
-    CGFloat labelDistanceY = 5;
-    commentArray = [[NSMutableArray alloc] initWithArray:array];
-    for (NSInteger index = 0; index < [commentArray count]; index++) {
-        
-        NSString *title = commentArray[index];
-        CGRect frame = CGRectMake(labelX, labelY, labelW, labelH);
-        UILabel *marklabel = [self labelWithTitle:title frame:frame];
-        CGFloat width = SCREENWIDTH - labelX - 10;
-        if (marklabel.frame.size.width > width) {
-            labelX = 10;
-            labelY = labelY + labelH + labelDistanceY;
-        }
-        frame = marklabel.frame;
-        
-        frame.origin.x = labelX;
-        frame.origin.y = labelY;
-        
-        marklabel.frame = frame;
-        labelX = CGRectGetMaxX(marklabel.frame) + labelDistanceX;
-        [commentView addSubview:marklabel];
-    }
+//    NSArray *array = @[@"非常有礼貌1",@"美女1",@"小清新1",@"斯文10086",@"美女1000",@"美女23"];
+//    CGFloat labelX = 10;
+//    CGFloat labelY = CGRectGetMaxY(titleLabel.frame) + 10;
+//    CGFloat labelW = SCREENWIDTH - 2 * labelX;
+//    CGFloat labelH = 30;
+//    CGFloat labelDistanceX = 10;
+//    CGFloat labelDistanceY = 5;
+//    commentArray = [[NSMutableArray alloc] initWithArray:array];
+//    for (NSInteger index = 0; index < [commentArray count]; index++) {
+//        
+//        NSString *title = commentArray[index];
+//        CGRect frame = CGRectMake(labelX, labelY, labelW, labelH);
+//        UILabel *marklabel = [self labelWithTitle:title frame:frame];
+//        CGFloat width = SCREENWIDTH - labelX - 10;
+//        if (marklabel.frame.size.width > width) {
+//            labelX = 10;
+//            labelY = labelY + labelH + labelDistanceY;
+//        }
+//        frame = marklabel.frame;
+//        
+//        frame.origin.x = labelX;
+//        frame.origin.y = labelY;
+//        
+//        marklabel.frame = frame;
+//        labelX = CGRectGetMaxX(marklabel.frame) + labelDistanceX;
+//        [commentView addSubview:marklabel];
+//    }
+    CGFloat minx = CGRectGetMinX(titleLabel.frame);
+    self.labelView = [[LabelSelectView alloc]initWithFrame:CGRectMake(CGRectGetMinX(titleLabel.frame), CGRectGetMaxY(titleLabel.frame) + 10, SCREENWIDTH - (minx * 2), 35)];
+    self.labelView.userInteractionEnabled = NO;
+    self.labelView.labelFont = [UIFont systemFontOfSize:14];
+    self.labelView.backgroundColor = [UIColor whiteColor];
+    kWeakSelf;
+    self.labelView.onChangeHeight = ^(CGFloat viewHeight) {
+        [weakSelf.tableview beginUpdates];
+        weakSelf.labelViewCellHeight = viewHeight + 100;
+        CGRect originFrame = weakSelf.labelView.frame;
+        originFrame.size.height = viewHeight;
+        weakSelf.labelView.frame = originFrame;
+//        CGRect originCommentView = weakSelf.commentView.frame;
+//        originCommentView.size.height = weakSelf.labelViewCellHeight;
+//        weakSelf.commentView.frame = originFrame;
+        NSLog(@"will change view height to %f",weakSelf.labelViewCellHeight);
+        [weakSelf.tableview endUpdates];
+    };
+    [commentView addSubview:self.labelView];
     
     commentView.frame = CGRectMake(0, 0, SCREENWIDTH, 150);
 }
@@ -457,18 +495,18 @@
     CGFloat subTitleLabelY = CGRectGetMaxY(titleLabel.frame);
     CGFloat subTitleLabelH = 30;
     CGFloat subTitleLabelW = SCREENWIDTH - subTitleLabelX - 10;
-    UILabel *subTitleLabel = [[UILabel alloc] init];
-    subTitleLabel.textAlignment = NSTextAlignmentLeft;
-    subTitleLabel.backgroundColor = [UIColor clearColor];
-    subTitleLabel.text = @"信任值12分";
-    subTitleLabel.textAlignment = NSTextAlignmentLeft;
-    subTitleLabel.textColor = [UIColor blackColor];
-    subTitleLabel.font = [UIFont systemFontOfSize:18.0];
-    subTitleLabel.frame = CGRectMake(subTitleLabelX, subTitleLabelY, subTitleLabelW, subTitleLabelH);
-    [trustView addSubview:subTitleLabel];
+    self.trustValueLabel = [[UILabel alloc] init];
+    self.trustValueLabel.textAlignment = NSTextAlignmentLeft;
+    self.trustValueLabel.backgroundColor = [UIColor clearColor];
+    self.trustValueLabel.text = @"信任值12分";
+    self.trustValueLabel.textAlignment = NSTextAlignmentLeft;
+    self.trustValueLabel.textColor = [UIColor blackColor];
+    self.trustValueLabel.font = [UIFont systemFontOfSize:18.0];
+    self.trustValueLabel.frame = CGRectMake(subTitleLabelX, subTitleLabelY, subTitleLabelW, subTitleLabelH);
+    [trustView addSubview:self.trustValueLabel];
     
     CGFloat contentLabelX = CGRectGetMaxX(icon.frame) + 10;
-    CGFloat contentLabelY = CGRectGetMaxY(subTitleLabel.frame);
+    CGFloat contentLabelY = CGRectGetMaxY(self.trustValueLabel.frame);
     CGFloat contentLabelH = 30;
     CGFloat contentLabelW = SCREENWIDTH - subTitleLabelX - 10;
     UILabel *contentLabel = [[UILabel alloc] init];
@@ -543,7 +581,7 @@
 ///查询用户信息
 - (void)configPageInfo {
     [ApiUtils queryUserInfoBy:self.uid onCompleteHandler:^(UserFollowListModel *userModel) {
-        self.nameLabel.text = [NSString stringWithFormat:@"您好,我是 %@",userModel.userNick];
+        self.nameLabel.text = [NSString stringWithFormat:@"您好,我是%@",userModel.userNick];
         NSString *gender = @"男";
         if ([userModel.userSex isEqualToString:@"1"]) {}
         else if ([userModel.userSex isEqualToString:@"2"]) {
@@ -555,10 +593,12 @@
         self.genderLabel.text = [NSString stringWithFormat:@"%@   %@",gender,age];
         self.addressLabel.text = [NSString stringWithFormat:@"%@     %@",userModel.userCity,userModel.userProvince];
         self.signLabel.text = userModel.userSign;
-//        NSArray *wallpapers = userModel.userPrivatephoto
+
         NSString *imageName = userModel.userHeader ? userModel.userHeader : @"";
-        self.imageBannerView.imageURLStringsGroup = @[imageName] ;
+        self.imageBannerView.imageURLStringsGroup = @[imageName];
+        self.labelView.labelList = @[@"标签1",@"标签1",@"标签1",@"标签1",@"标签1",@"标签1",@"标签1",@"标签1",@"标签1",@"标签1"];
         
+        self.trustValueLabel.text = [NSString stringWithFormat:@"信任值%@分",userModel.userCredit];
     } errorHandler:^(NSString *responseErrorInfo) {
         [self showHint:responseErrorInfo];
     }];
@@ -580,12 +620,12 @@
 }
 - (IBAction)onContact:(UIButton *)sender {
     [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
-    [ApiUtils sendAskingFor:self.uid tripId:@"" withCompleteHandler:^{
+    [ApiUtils sendAskingFor:self.uid tripId:@" " withCompleteHandler:^{
+        [MBProgressHUD hideHUDForView:self.view.window animated:YES];
         [self showHint:@"邀约成功"];
-        [MBProgressHUD hideHUDForView:self.view.window animated:YES];
     } errorHandler:^(NSString *responseErrorInfo) {
-        [self showHint:responseErrorInfo];
         [MBProgressHUD hideHUDForView:self.view.window animated:YES];
+        [self showHint:responseErrorInfo];
     }];
 }
 
@@ -655,6 +695,8 @@
             return CGFLOAT_MIN;
         }
         return 95;
+    } else if (indexPath.row == 3){
+        return self.labelViewCellHeight;
     }
     return 150.0;
 }

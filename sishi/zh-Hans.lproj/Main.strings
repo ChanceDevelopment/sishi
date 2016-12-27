@@ -1,0 +1,72 @@
+
+/* Class = "UILabel"; text = "生日"; ObjectID = "04T-UK-K2W"; */
+"04T-UK-K2W.text" = "生日";
+
+/* Class = "UIButton"; normalTitle = "发送"; ObjectID = "0AK-3G-zxd"; */
+"0AK-3G-zxd.normalTitle" = "发送";
+
+/* Class = "UITextField"; placeholder = "请输入您的新昵称"; ObjectID = "4WC-C0-L58"; */
+"4WC-C0-L58.placeholder" = "请输入您的新昵称";
+
+/* Class = "UITextField"; placeholder = "输入您的年龄"; ObjectID = "6Cz-KW-8DK"; */
+"6Cz-KW-8DK.placeholder" = "输入您的年龄";
+
+/* Class = "UILabel"; text = "请选择"; ObjectID = "9GT-M9-T6B"; */
+"9GT-M9-T6B.text" = "请选择";
+
+/* Class = "UILabel"; text = "电话"; ObjectID = "KB5-yV-aq5"; */
+"KB5-yV-aq5.text" = "电话";
+
+/* Class = "UITextField"; placeholder = "请输入您的所在地点"; ObjectID = "QdO-qx-3Qo"; */
+"QdO-qx-3Qo.placeholder" = "请输入您的所在地点";
+
+/* Class = "UIButton"; normalTitle = "完成"; ObjectID = "R6J-rI-Blw"; */
+"R6J-rI-Blw.normalTitle" = "完成";
+
+/* Class = "UITextField"; placeholder = "请输入您的个人介绍"; ObjectID = "TWT-Oc-gyG"; */
+"TWT-Oc-gyG.placeholder" = "请输入您的个人介绍";
+
+/* Class = "UILabel"; text = "用户认证"; ObjectID = "UgH-MA-rfR"; */
+"UgH-MA-rfR.text" = "用户认证";
+
+/* Class = "UILabel"; text = "请选择生日"; ObjectID = "WEB-Uw-KXF"; */
+"WEB-Uw-KXF.text" = "请选择生日";
+
+/* Class = "UILabel"; text = "所在地"; ObjectID = "WRq-uL-PXj"; */
+"WRq-uL-PXj.text" = "所在地";
+
+/* Class = "UIButton"; normalTitle = "退出登录"; ObjectID = "cPq-sc-wiw"; */
+"cPq-sc-wiw.normalTitle" = "退出登录";
+
+/* Class = "UILabel"; text = "个人说明"; ObjectID = "cua-yC-sO4"; */
+"cua-yC-sO4.text" = "个人说明";
+
+/* Class = "UILabel"; text = "请输入您的反馈信息"; ObjectID = "few-XP-ofo"; */
+"few-XP-ofo.text" = "请输入您的反馈信息";
+
+/* Class = "UITextField"; placeholder = "请输入您的邮箱 (必填)"; ObjectID = "fyr-ki-hk3"; */
+"fyr-ki-hk3.placeholder" = "请输入您的邮箱 (必填)";
+
+/* Class = "UILabel"; text = "年龄"; ObjectID = "gBc-Hl-sio"; */
+"gBc-Hl-sio.text" = "年龄";
+
+/* Class = "UILabel"; text = "已拥有照片"; ObjectID = "gye-yx-RcN"; */
+"gye-yx-RcN.text" = "已拥有照片";
+
+/* Class = "UILabel"; text = "昵称"; ObjectID = "lCm-28-2Ww"; */
+"lCm-28-2Ww.text" = "昵称";
+
+/* Class = "UITextField"; placeholder = "请输入您的电话号码"; ObjectID = "oEs-04-sAl"; */
+"oEs-04-sAl.placeholder" = "请输入您的电话号码";
+
+/* Class = "UIButton"; normalTitle = "点击认证"; ObjectID = "phG-gv-dHw"; */
+"phG-gv-dHw.normalTitle" = "点击认证";
+
+/* Class = "UILabel"; text = "照片墙"; ObjectID = "qbB-Jl-33J"; */
+"qbB-Jl-33J.text" = "照片墙";
+
+/* Class = "UILabel"; text = "头像"; ObjectID = "t7l-lA-PBa"; */
+"t7l-lA-PBa.text" = "头像";
+
+/* Class = "UILabel"; text = "性别"; ObjectID = "vZs-ik-1Ei"; */
+"vZs-ik-1Ei.text" = "性别";

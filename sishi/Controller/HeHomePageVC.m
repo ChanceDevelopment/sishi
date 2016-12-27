@@ -200,6 +200,11 @@
     CGFloat latitude = userLocation.location.coordinate.latitude;
     [[NSUserDefaults standardUserDefaults]setDouble:longitude forKey:kDefaultsUserLocationlongitude];
     [[NSUserDefaults standardUserDefaults]setDouble:latitude forKey:kDefaultsUserLocationLatitude];
+    [ApiUtils updateUserPositionWithLongitude:longitude latitude:latitude onUpdateComplete:^{
+        NSLog(@"提交用户位置信息成功");
+    } errorHandler:^(NSString *responseErrorInfo) {
+        NSLog(@"提交用户位置信息失败%@",responseErrorInfo);
+    }];
 }
 
 /**
@@ -218,7 +223,7 @@
  */
 - (void)didFailToLocateUserWithError:(NSError *)error
 {
-    NSLog(@"location error");
+    NSLog(@"location error %@",error);
 }
 
 #pragma mark - BMKMapViewDelegate
