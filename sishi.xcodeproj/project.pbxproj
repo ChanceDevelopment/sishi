@@ -83,7 +83,6 @@
 		EA12F7F71D655EF90085752A /* icon_feedback.png in Resources */ = {isa = PBXBuildFile; fileRef = EA12F7F61D655EF90085752A /* icon_feedback.png */; };
 		EA12F7F91D655F110085752A /* icon_set_black.png in Resources */ = {isa = PBXBuildFile; fileRef = EA12F7F81D655F110085752A /* icon_set_black.png */; };
 		EA12F7FB1D655F1B0085752A /* icon_trip.png in Resources */ = {isa = PBXBuildFile; fileRef = EA12F7FA1D655F1B0085752A /* icon_trip.png */; };
-		EA12F7FF1D6586070085752A /* icon_change.png in Resources */ = {isa = PBXBuildFile; fileRef = EA12F7FE1D6586070085752A /* icon_change.png */; };
 		EA12F8081D6589E30085752A /* tabar_dynamic_icon_active@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA12F8001D6589E30085752A /* tabar_dynamic_icon_active@3x.png */; };
 		EA12F8091D6589E30085752A /* tabar_dynamic_icon_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA12F8011D6589E30085752A /* tabar_dynamic_icon_normal@3x.png */; };
 		EA12F80A1D6589E30085752A /* tabar_homepage_icon_active@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA12F8021D6589E30085752A /* tabar_homepage_icon_active@3x.png */; };
@@ -1134,7 +1133,6 @@
 		EA12F7F81D655F110085752A /* icon_set_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_set_black.png; sourceTree = "<group>"; };
 		EA12F7FA1D655F1B0085752A /* icon_trip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_trip.png; sourceTree = "<group>"; };
 		EA12F7FC1D655F440085752A /* icon_aboutus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_aboutus.png; sourceTree = "<group>"; };
-		EA12F7FE1D6586070085752A /* icon_change.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_change.png; sourceTree = "<group>"; };
 		EA12F8001D6589E30085752A /* tabar_dynamic_icon_active@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabar_dynamic_icon_active@3x.png"; sourceTree = "<group>"; };
 		EA12F8011D6589E30085752A /* tabar_dynamic_icon_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabar_dynamic_icon_normal@3x.png"; sourceTree = "<group>"; };
 		EA12F8021D6589E30085752A /* tabar_homepage_icon_active@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabar_homepage_icon_active@3x.png"; sourceTree = "<group>"; };
@@ -3171,7 +3169,6 @@
 				EAA7907C1DEBD90500443970 /* abc_ic_commit_search_api_mtrl_alpha.png */,
 				EAA790781DEBD81B00443970 /* icon_back_white.png */,
 				EA12F8191D66EA350085752A /* icon_add.png */,
-				EA12F7FE1D6586070085752A /* icon_change.png */,
 				EA2AC3731D60192300C57B45 /* boyIcon.png */,
 				EA2AC3741D60192300C57B45 /* commentIcon.png */,
 				EA2AC3751D60192300C57B45 /* comonDefaultImage.png */,
@@ -6518,7 +6515,6 @@
 				EADF86371D621C900029DC4F /* chat_sender_bg@2x.png in Resources */,
 				EADF86531D621C900029DC4F /* icon_030_cover.png in Resources */,
 				EADF86351D621C900029DC4F /* chat_sender_audio_playing_full@2x.png in Resources */,
-				EA12F7FF1D6586070085752A /* icon_change.png in Resources */,
 				EA12F7F71D655EF90085752A /* icon_feedback.png in Resources */,
 				EADF867B1D621C900029DC4F /* tabbarSelectBg@2x.png in Resources */,
 				EAA7909A1DEBDB0200443970 /* icon_add_white.png in Resources */,
@@ -7655,6 +7651,7 @@
 				CODE_SIGN_ENTITLEMENTS = "sishi/司事.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer: jun zhou (ZM3AW8VQ6N)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: jun zhou (ZM3AW8VQ6N)";
+				DEVELOPMENT_TEAM = E6CUH72B23;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7687,8 +7684,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.channce.sishi;
 				PRODUCT_NAME = "司事";
-				PROVISIONING_PROFILE = "04189e48-19ad-4bbf-aa2c-2195cd8e1e94";
-				PROVISIONING_PROFILE_SPECIFIER = 20160818_sishi_Release;
+				PROVISIONING_PROFILE = "6767c2e4-d97e-4c53-940f-3acf7a8cc0d6";
+				PROVISIONING_PROFILE_SPECIFIER = 20161019_sishi_Development;
 			};
 			name = Debug;
 		};
