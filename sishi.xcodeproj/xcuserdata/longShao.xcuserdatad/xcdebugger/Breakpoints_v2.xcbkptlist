@@ -52,22 +52,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "sishi/Controller/HeRealTimeTrendVC.m"
-            timestampString = "504526509.985744"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "304"
-            endingLineNumber = "304"
-            landmarkName = "-egoRefreshTableHeaderDidTriggerRefresh:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "sishi/Controller/HeChatVC.m"
             timestampString = "504523245.275504"
             startingColumnNumber = "9223372036854775807"
@@ -92,6 +76,54 @@
             endingLineNumber = "106"
             landmarkName = "-didUpdateConversationList:"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "sishi/Controller/MyTripListController.m"
+            timestampString = "504582555.546449"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "-onHeaderRefresh:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[MyTripListController onHeaderRefresh:]"
+                  moduleName = "&#x53f8;&#x4e8b;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/longShao/Projects/sishi/sishi/Controller/MyTripListController.m"
+                  timestampString = "504587416.735835"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "50">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__40-[MyTripListController onHeaderRefresh:]_block_invoke"
+                  moduleName = "&#x53f8;&#x4e8b;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/longShao/Projects/sishi/sishi/Controller/MyTripListController.m"
+                  timestampString = "504587416.737992"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

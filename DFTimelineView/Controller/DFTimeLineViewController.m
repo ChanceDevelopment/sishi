@@ -162,7 +162,7 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"_items = %@, row = %ld",_items,indexPath.row);
+//    NSLog(@"_items = %@, row = %ld",_items,indexPath.row);
     DFBaseLineItem *item = nil;
     @try {
         item = [_items objectAtIndex:indexPath.row];

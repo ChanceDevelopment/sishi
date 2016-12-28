@@ -71,7 +71,7 @@
 //    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:33 / 255.0 green:208 / 255.0 blue:169 / 255.0 alpha:1];
     self.navigationController.navigationBar.translucent = YES;
     self.navigationController.navigationBar.shadowImage = [UIImage new];
-    [self.navigationController.navigationBar setBackgroundImage:[Tool buttonImageFromColor:[UIColor colorWithRed:33 / 255.0 green:208 / 255.0 blue:169 / 255.0 alpha:1] withImageSize:CGSizeMake(1, 1)] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundImage:[Tool buttonImageFromColor:[UIColor colorWithRed:44 / 255.0 green:213 / 255.0 blue:184 / 255.0 alpha:1] withImageSize:CGSizeMake(1, 1)] forBarMetrics:UIBarMetricsDefault];
     
 }
 

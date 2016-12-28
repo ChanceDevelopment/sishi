@@ -45,6 +45,10 @@
 		A22149AF1E03F39A002D8F52 /* FocusListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A22149AE1E03F39A002D8F52 /* FocusListViewController.m */; };
 		A22149B31E03F426002D8F52 /* FocusTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A22149B11E03F426002D8F52 /* FocusTableViewCell.m */; };
 		A22149B41E03F426002D8F52 /* FocusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A22149B21E03F426002D8F52 /* FocusTableViewCell.xib */; };
+		A2A79C131E13536800172852 /* TripOnGoingController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A79C111E13536800172852 /* TripOnGoingController.m */; };
+		A2A79C141E13536800172852 /* TripOnGoingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A79C121E13536800172852 /* TripOnGoingController.xib */; };
+		A2A79C181E135B6000172852 /* AskingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A79C161E135B6000172852 /* AskingTableViewCell.m */; };
+		A2A79C191E135B6000172852 /* AskingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A79C171E135B6000172852 /* AskingTableViewCell.xib */; };
 		A2C829891E024E1700645639 /* HeRealTimeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C829871E024E1700645639 /* HeRealTimeDetailController.m */; };
 		A2C8298A1E024E1700645639 /* HeRealTimeDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2C829881E024E1700645639 /* HeRealTimeDetailController.xib */; };
 		A2C829911E0264E500645639 /* ImageBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C829901E0264E500645639 /* ImageBannerView.m */; };
@@ -1066,6 +1070,12 @@
 		A22149B01E03F426002D8F52 /* FocusTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FocusTableViewCell.h; sourceTree = "<group>"; };
 		A22149B11E03F426002D8F52 /* FocusTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FocusTableViewCell.m; sourceTree = "<group>"; };
 		A22149B21E03F426002D8F52 /* FocusTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FocusTableViewCell.xib; sourceTree = "<group>"; };
+		A2A79C101E13536800172852 /* TripOnGoingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripOnGoingController.h; sourceTree = "<group>"; };
+		A2A79C111E13536800172852 /* TripOnGoingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripOnGoingController.m; sourceTree = "<group>"; };
+		A2A79C121E13536800172852 /* TripOnGoingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripOnGoingController.xib; sourceTree = "<group>"; };
+		A2A79C151E135B6000172852 /* AskingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskingTableViewCell.h; sourceTree = "<group>"; };
+		A2A79C161E135B6000172852 /* AskingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskingTableViewCell.m; sourceTree = "<group>"; };
+		A2A79C171E135B6000172852 /* AskingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AskingTableViewCell.xib; sourceTree = "<group>"; };
 		A2C829861E024E1700645639 /* HeRealTimeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeRealTimeDetailController.h; sourceTree = "<group>"; };
 		A2C829871E024E1700645639 /* HeRealTimeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeRealTimeDetailController.m; sourceTree = "<group>"; };
 		A2C829881E024E1700645639 /* HeRealTimeDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeRealTimeDetailController.xib; sourceTree = "<group>"; };
@@ -3223,6 +3233,9 @@
 				EA4FA2AB1D6C1E6F00099DCC /* HeJourneySuccessVC.h */,
 				EA4FA2AC1D6C1E6F00099DCC /* HeJourneySuccessVC.m */,
 				EA4FA2AD1D6C1E6F00099DCC /* HeJourneySuccessVC.xib */,
+				A2A79C101E13536800172852 /* TripOnGoingController.h */,
+				A2A79C111E13536800172852 /* TripOnGoingController.m */,
+				A2A79C121E13536800172852 /* TripOnGoingController.xib */,
 			);
 			name = Journey;
 			sourceTree = "<group>";
@@ -3541,6 +3554,9 @@
 				A22149B01E03F426002D8F52 /* FocusTableViewCell.h */,
 				A22149B11E03F426002D8F52 /* FocusTableViewCell.m */,
 				A22149B21E03F426002D8F52 /* FocusTableViewCell.xib */,
+				A2A79C151E135B6000172852 /* AskingTableViewCell.h */,
+				A2A79C161E135B6000172852 /* AskingTableViewCell.m */,
+				A2A79C171E135B6000172852 /* AskingTableViewCell.xib */,
 			);
 			name = Dynamic;
 			sourceTree = "<group>";
@@ -6681,6 +6697,7 @@
 				EADF866A1D621C900029DC4F /* nav_createGroup@2x.png in Resources */,
 				EA5F0A841D64BFA400F30729 /* AlbumOperateMore@2x.png in Resources */,
 				EADF86541D621C900029DC4F /* icon_035.gif in Resources */,
+				A2A79C191E135B6000172852 /* AskingTableViewCell.xib in Resources */,
 				EA6DFF5B1D6B41540069F4ED /* HeUserCenterVC.xib in Resources */,
 				EA2AC3181D5EBF5300C57B45 /* HeLoginVC.xib in Resources */,
 				EA2AC3981D60192300C57B45 /* scanIcon.png in Resources */,
@@ -6727,6 +6744,7 @@
 				EADF86681D621C900029DC4F /* groupPrivateHeader@2x.png in Resources */,
 				EA8DAD2F1D5A18D000487BF4 /* refresh@2x.png in Resources */,
 				A2C8298A1E024E1700645639 /* HeRealTimeDetailController.xib in Resources */,
+				A2A79C141E13536800172852 /* TripOnGoingController.xib in Resources */,
 				EADF86391D621C900029DC4F /* icon_002_cover.png in Resources */,
 				EAA790C11DEBDB7400443970 /* icon_message_black.png in Resources */,
 				EADF86631D621C900029DC4F /* group_header@2x.png in Resources */,
@@ -7125,6 +7143,7 @@
 				EA8DAD891D5A18D000487BF4 /* NSAttributedString+MLExpression.m in Sources */,
 				EA8DAD611D5A18D000487BF4 /* KxMenu.m in Sources */,
 				A211A3541E07CD55004C3331 /* RegisterCompleteionInfo.m in Sources */,
+				A2A79C181E135B6000172852 /* AskingTableViewCell.m in Sources */,
 				EA5F0A911D64BFA400F30729 /* DFActivityDetailLineCell.m in Sources */,
 				EA6DFF731D6B53880069F4ED /* DEMONavigationController.m in Sources */,
 				A2C829B21E027D0500645639 /* MASConstraintMaker.m in Sources */,
@@ -7406,6 +7425,7 @@
 				A2C829BE1E02972300645639 /* TripEditController.m in Sources */,
 				EA8DAD8B1D5A18D000487BF4 /* NSMutableAttributedString+MLLabel.m in Sources */,
 				EA8DAD161D5A18D000487BF4 /* JSBadgeView.m in Sources */,
+				A2A79C131E13536800172852 /* TripOnGoingController.m in Sources */,
 				EA5F0A661D64BFA400F30729 /* DFBaseLineCellAdapter.m in Sources */,
 				EA8DADDF1D5A18D000487BF4 /* RACStream.m in Sources */,
 				EA8DAD5E1D5A18D000487BF4 /* CHANGELOG.md in Sources */,

@@ -129,7 +129,7 @@ typedef void(^ApiUtilsSuccessWithResponseList)(NSArray *responseList);
 
 + (void)viewAskedPeopleWithCarOwnerId:(NSString *)ownerId onCompleteHandler:(void(^)(UserFollowListModel *userInfo))completeHandler errorHandler:(ApiUtilsResponseError)errorHandler;
 
-+ (void)filterUserWithTripId:(NSString *)tripId carUserLike:(NSString *)carUserLike  gender:(NSString *)gender userJudge:(NSString *)judge longitude:(CGFloat)longitude latitude:(CGFloat)latitude  startIndex:(NSInteger)startIndex onResponseList:(void(^)(NSArray *))responseList errorHandler:(ApiUtilsResponseError)errorHandler;
++ (void)filterUserWithTripId:(NSString *)tripId carUserLike:(NSString *)carUserLike  gender:(NSString *)gender userJudge:(NSString *)judge longitude:(CGFloat)longitude latitude:(CGFloat)latitude  startIndex:(NSInteger)startIndex onResponseList:(void(^)(NSArray <UserFollowListModel *>*))responseList errorHandler:(ApiUtilsResponseError)errorHandler;
 
 
 + (void)queryAllTripCanTakeWithFilterType:(NSString *)filterRule identity:(NSString *)identity onResponseInfo:(void(^)(NSArray <TripListModel *>*))completeHandler errorHandler:(ApiUtilsResponseError)errorHandler;

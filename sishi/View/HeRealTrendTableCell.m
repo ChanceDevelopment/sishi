@@ -93,6 +93,9 @@
         contentLabel.font = [UIFont systemFontOfSize:17.0];
         contentLabel.text = @"正在行车，尚未发出邀请";
         [bgView addSubview:contentLabel];
+        
+        UILongPressGestureRecognizer *longpress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(onLongPress:)];
+        [self.contentView addGestureRecognizer:longpress];
     }
     return self;
 }
@@ -113,5 +116,12 @@
     CGContextSetStrokeColorWithColor(context, ([UIColor clearColor]).CGColor);
     CGContextStrokeRect(context, CGRectMake(0, rect.size.height, rect.size.width, 1));
 }
+
+- (void)onLongPress:(UILongPressGestureRecognizer *)gesture {
+    if (self.onLongPress) {
+        self.onLongPress(self.model);
+    }
+}
+
 
 @end

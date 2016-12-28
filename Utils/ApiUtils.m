@@ -20,8 +20,8 @@ static AFHTTPSessionManager *sessionManager = nil;
 @implementation ApiUtils
 
 + (NSString *)baseUrl {
-    return @"http://118.178.131.215:8088/";
-//    return @"http://192.168.0.119:8080/";
+//    return @"http://118.178.131.215:8088/";
+    return @"http://192.168.0.119:8080/";
 }
 
 + (AFHTTPSessionManager *)defaultSessionManager {
@@ -477,12 +477,22 @@ static AFHTTPSessionManager *sessionManager = nil;
     }];
 }
 
-+ (void)filterUserWithTripId:(NSString *)tripId carUserLike:(NSString *)carUserLike gender:(NSString *)gender userJudge:(NSString *)judge longitude:(CGFloat)longitude latitude:(CGFloat)latitude startIndex:(NSInteger)startIndex onResponseList:(void (^)(NSArray *))responseList errorHandler:(ApiUtilsResponseError)errorHandler {
++ (void)filterUserWithTripId:(NSString *)tripId carUserLike:(NSString *)carUserLike gender:(NSString *)gender userJudge:(NSString *)judge longitude:(CGFloat)longitude latitude:(CGFloat)latitude startIndex:(NSInteger)startIndex onResponseList:(void (^)(NSArray <UserFollowListModel *>*))responseList errorHandler:(ApiUtilsResponseError)errorHandler {
     NSString *api = [NSString stringWithFormat:@"%@Sexton/caruserlike.action",[ApiUtils baseUrl]];
     NSDictionary *parameters = @{@"userId":[Tool uid],@"carOwnerId":tripId,@"carUserLike":carUserLike,@"sex":gender,@"userJudge":judge,@"userPositionX":@(longitude),@"userPositionY":@(latitude),@"number":@(startIndex)};
     [ApiUtils POST:api parameters:parameters onResponseSuccess:^(NSDictionary<NSString *,id> *responseInfo) {
         NSArray *responseJSON = responseInfo[@"json"];
-        
+        if (!responseJSON || [responseJSON isEqual:[NSNull null]]) {
+            responseJSON = [NSArray array];
+        }
+        NSMutableArray <UserFollowListModel *>*userModelList = [NSMutableArray arrayWithCapacity:responseJSON.count];
+        for (NSDictionary *mapper in responseJSON) {
+            UserFollowListModel *userModel = [UserFollowListModel modelObjectWithDictionary:mapper];
+            [userModelList addObject:userModel];
+        }
+        if (responseList) {
+            responseList([NSArray arrayWithArray:userModelList]);
+        }
     } onResponseError:^(NSString *errorInfo) {
         if (errorHandler) {
             errorHandler(errorInfo);
@@ -492,13 +502,14 @@ static AFHTTPSessionManager *sessionManager = nil;
 
 
 + (void)queryAllTripCanTakeWithFilterType:(NSString *)filterRule identity:(NSString *)identity onResponseInfo:(void (^)(NSArray<TripListModel *> *))completeHandler errorHandler:(ApiUtilsResponseError)errorHandler {
-    NSString *api = [NSString stringWithFormat:@"%@Sexton/ CaruserInfo.action",[ApiUtils baseUrl]];
-    NSDictionary *parameters = @{@"carUserSort":filterRule,@"identity":identity};
+    NSString *api = [NSString stringWithFormat:@"%@Sexton/CaruserInfo.action",[ApiUtils baseUrl]];
+    NSDictionary *parameters = @{@"carUserSort":filterRule,@"identity":identity,@"carUserid":[Tool uid]};
     [ApiUtils POST:api parameters:parameters onResponseSuccess:^(NSDictionary<NSString *,id> *responseInfo) {
         NSArray *responseJSON = responseInfo[@"json"];
         NSMutableArray *userlist = [NSMutableArray arrayWithCapacity:responseJSON.count];
         for (NSDictionary *mapper in responseJSON) {
             TripListModel *tripUserModel = [TripListModel modelObjectWithDictionary:mapper];
+            tripUserModel.isWaitOtherTake = YES;
             [userlist addObject:tripUserModel];
         }
         if (completeHandler) {

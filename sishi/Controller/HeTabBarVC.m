@@ -32,6 +32,11 @@
 @synthesize logVC;
 @synthesize currentSnapShot;
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -42,6 +47,8 @@
     [self getActivityTypeAddress];
     [self autoLogin];
     [self setupSubviews];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onChangeLoginType:) name:kNotificationUserChangeState object:nil];
     
 }
 
@@ -54,6 +61,10 @@
 //        CustomNavigationController *navigator = [[CustomNavigationController alloc]initWithRootViewController:login];
 //        [self presentViewController:navigator animated:YES completion:nil];
     }
+}
+
+- (void)onChangeLoginType:(NSNotification *)note {
+    self.selectedIndex = 0;
 }
 
 //后台自动登录

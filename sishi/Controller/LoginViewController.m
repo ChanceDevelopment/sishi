@@ -74,7 +74,7 @@
                       dispatch_async(dispatch_get_global_queue(0, 0), ^{
                       BOOL isAuthlogin = [EMClient sharedClient].options.isAutoLogin;
                       EMError *loginError = nil;
-                      if (!isAuthlogin) {
+                      if (!isAuthlogin || ![EMClient sharedClient].isLoggedIn) {//自动登录未开启或者当前没有登录,则进行登录
                           loginError =  [[EMClient sharedClient]loginWithUsername:userInfo.userPhone password:weakSelf.passwordInputField.text];
                           [[EMClient sharedClient].options setIsAutoLogin:YES];
                       }
@@ -96,7 +96,7 @@
                         [defaults setObject:userInfo.userPhone forKey:kDefaultsUserPhone];
                         [defaults setObject:userInfo.userHeader forKey:kDefaultsUserHeaderImage];
                         [defaults setObject:userInfo.userNick forKey:kDefaultsUserNick];
-                        [defaults setObject:userInfo.userState forKey:kDefaultsUserJudge];
+                        
                       [defaults setObject:userInfo.userAge forKey:kDefaultsUserAge];
                       [defaults setObject:userInfo.userAddress forKey:kDefaultsUserAddress];
                       [defaults setObject:userInfo.userSign forKey:kDefaultsUserSign];

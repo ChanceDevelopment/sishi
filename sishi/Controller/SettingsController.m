@@ -42,11 +42,24 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)onLogout:(UIButton *)sender {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERIDKEY];
-    [[NSUserDefaults standardUserDefaults]synchronize];
-//    [self.navigationController popViewControllerAnimated:YES];
-    [[NSNotificationCenter defaultCenter]postNotificationName:KNOTIFICATION_LOGINCHANGE object:nil];
-    [JPUSHService setTags:nil alias:@"" fetchCompletionHandle:nil];
+    kWeakSelf;
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"确认退出当前登录账户吗" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"退出" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+       EMError *error = [[EMClient sharedClient]logout:YES];
+        if (!error) {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERIDKEY];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+            [[NSNotificationCenter defaultCenter]postNotificationName:KNOTIFICATION_LOGINCHANGE object:nil];
+            [JPUSHService setTags:nil alias:@"" fetchCompletionHandle:nil];
+        } else {
+            NSLog(@"退出登录失败 %@",error.errorDescription);
+            [weakSelf showHint:@"请重试"];
+        }
+    }];
+    [alertController addAction:cancelAction];
+    [alertController addAction:confirmAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 //    [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
 //    HeLoginVC *loginVC = [[HeLoginVC alloc] init];
 //    CustomNavigationController *loginNav = [[CustomNavigationController alloc] initWithRootViewController:loginVC];

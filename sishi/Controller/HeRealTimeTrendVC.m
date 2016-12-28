@@ -15,6 +15,7 @@
 #import "MJRefresh.h"
 #import "ApiUtils.h"
 #import "HeDistributeInviteVC.h"
+#import "AskingTableViewCell.h"
 
 #define TextLineHeight 1.2f
 
@@ -113,9 +114,13 @@
     tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(onHeaderRefresh:)];
+    [tableview.mj_header beginRefreshing];
     
     [Tool setExtraCellLineHidden:tableview];
     [self pullUpUpdate];
+    
+//    [self.tableview registerClass:[HeRealTrendTableCell class] forCellReuseIdentifier:@"HeContestantTableCellIndentifier"];
+    [self.tableview registerNib:[UINib nibWithNibName:@"AskingTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"AskingTableViewCell"];
     
 //    sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 40)];
 //    sectionHeaderView.backgroundColor = [UIColor colorWithWhite:237.0 / 255.0 alpha:1.0];
@@ -145,6 +150,20 @@
         [self.dataSource addObjectsFromArray:tripList];
         [tableview reloadData];
         [header endRefreshing];
+    } errorHandler:^(NSString *responseErrorInfo) {
+        [self showHint:responseErrorInfo];
+        [header endRefreshing];
+    }];
+//    [ApiUtils ]
+    
+    [ApiUtils queryAllTripCanTakeWithFilterType:@"0"
+                                       identity:[Tool judge]
+                                 onResponseInfo:^(NSArray<TripListModel *> *tripListModel) {
+//                                 NSLog(@"trip response info %@ ",tripListModel);
+                                     [self.dataSource removeAllObjects];
+                                     [self.dataSource addObjectsFromArray:tripListModel];
+                                     [self.tableview reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                                     [header endRefreshing];
     } errorHandler:^(NSString *responseErrorInfo) {
         [self showHint:responseErrorInfo];
         [header endRefreshing];
@@ -337,27 +356,77 @@
     NSInteger row = indexPath.row;
     
     static NSString *cellIndentifier = @"HeContestantTableCellIndentifier";
+    static NSString *takeUserCellIdentifier = @"AskingTableViewCell";
     CGSize cellSize = [tableView rectForRowAtIndexPath:indexPath].size;
-    
-    
-    HeRealTrendTableCell *cell  = [tableView cellForRowAtIndexPath:indexPath];
-    if (!cell) {
-        cell = [[HeRealTrendTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier cellSize:cellSize];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    TripListModel *tripList = self.dataSource[row];
+//    NSString *reuseId = cellIndentifier;
+    if (!tripList.isWaitOtherTake) {
+        HeRealTrendTableCell *cell = [tableview dequeueReusableCellWithIdentifier:cellIndentifier];
+        if (!cell) {
+            cell = [[HeRealTrendTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier cellSize:cellSize];
+        }
+        return  cell;
+    } else {
+        return [tableview dequeueReusableCellWithIdentifier:takeUserCellIdentifier forIndexPath:indexPath];
     }
     
-    return cell;
+//    UITableViewCell *cell  = [tableView cellForRowAtIndexPath:indexPath];
+//    if (!cell) {
+//        if (!tripList.isWaitOtherTake) {
+//            cell = [[HeRealTrendTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseId cellSize:cellSize];
+//        } else {
+//            cell = [[AskingTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseId];
+//        }
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    }
+//    
+//    return cell;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    TripListModel *tripModel = self.dataSource[indexPath.row];
+    if (tripModel.isWaitOtherTake) {
+        return tripModel.itemHeight;
+    }
     return 120;
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(HeRealTrendTableCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    cell.model = self.dataSource[indexPath.row];
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    //HeRealTrendTableCell
+    kWeakSelf;
+    if ([cell isKindOfClass:[HeRealTrendTableCell class] ]) {
+        HeRealTrendTableCell *realTrendCell = (HeRealTrendTableCell *)cell;
+        realTrendCell.model = self.dataSource[indexPath.row];
+        realTrendCell.onLongPress = ^(TripListModel *tripModel) {
+            //长按操作
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否现在开始行程?" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消行程" style:UIAlertActionStyleDefault handler:nil];
+            UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"进入行程" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+               //进入行程页面
+                
+            }];
+            [weakSelf presentViewController:alertController animated:YES completion:nil];
+        };
+    } else if ([cell isKindOfClass:[AskingTableViewCell class]]) {
+        AskingTableViewCell *askingCell = (AskingTableViewCell *)cell;
+        askingCell.tripModel = self.dataSource[indexPath.row];
+        askingCell.onContact = ^(TripListModel *model) {
+//            [ApiUtils sendAskingFor:model.userId
+//                             tripId:model.carOwnerId
+//                    withCompleteHandler:^{
+//                        [weakSelf showHint:@"邀约成功"];
+//            } errorHandler:^(NSString *responseErrorInfo) {
+//                [weakSelf showHint:responseErrorInfo];
+//            }];
+            [ApiUtils acceptTripWithTripId:model.carOwnerId onCompleteHandler:^{
+                [weakSelf showHint:@"接取成功"];
+            } errorHandler:^(NSString *responseErrorInfo) {
+                [weakSelf showHint:responseErrorInfo];
+            }];
+        };
+    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -365,18 +434,13 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSInteger row = indexPath.row;
     NSInteger section = indexPath.section;
-    HeRealTimeDetailController *detailController = [[HeRealTimeDetailController alloc] initWithNibName:@"HeRealTimeDetailController" bundle:[NSBundle mainBundle]];
-    detailController.hidesBottomBarWhenPushed = YES;
-    detailController.title = @"详情内容";
-    [self.navigationController pushViewController:detailController animated:YES];
     
+    TripListModel *tripModel = self.dataSource[row];
+        HeRealTimeDetailController *detailController = [[HeRealTimeDetailController alloc] initWithNibName:@"HeRealTimeDetailController" bundle:[NSBundle mainBundle]];
+        detailController.hidesBottomBarWhenPushed = YES;
+        detailController.title = @"详情内容";
+        [self.navigationController pushViewController:detailController animated:YES];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 /*
  #pragma mark - Navigation
  

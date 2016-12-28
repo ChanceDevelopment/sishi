@@ -134,22 +134,27 @@
     if (!self.destinationInputField.text.length) {
         [self showHint:@"请先输入目的地"];
         return;
-    } else if (!self.getInCarInputField.text.length) {
-        [self showHint:@"请输入上车地点"];
-        return;
-    } else if (!self.datePicker.date) {
-        [self showHint:@"请先选择出发时间"];
-        return;
-    } else if (!self.labelSelectView.selectedLabelList.count ) {
-        [self showHint:@"请选择标签"];
-        return;
-    } else if (!self.noteInputField.text.length) {
-        [self showHint:@"请先填写完整信息"];
-        return;
-    } else if (!self.imageAdder.imageList.count) {
-        [self showHint:@"请先添加照片"];
-        return;
     }
+//    else if (!self.getInCarInputField.text.length) {
+//        [self showHint:@"请输入上车地点"];
+//        return;
+//    }
+//    else if (!self.datePicker.date) {
+//        [self showHint:@"请先选择出发时间"];
+//        return;
+//    }
+//    else if (!self.labelSelectView.selectedLabelList.count ) {
+//        [self showHint:@"请选择标签"];
+//        return;
+//    }
+//    else if (!self.noteInputField.text.length) {
+//        [self showHint:@"请先填写完整信息"];
+//        return;
+//    }
+//    else if (!self.imageAdder.imageList.count) {
+//        [self showHint:@"请先添加照片"];
+//        return;
+//    }
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     CGFloat longitude = [[NSUserDefaults standardUserDefaults]doubleForKey:kDefaultsUserLocationlongitude];
     CGFloat latitude = [[NSUserDefaults standardUserDefaults]doubleForKey:kDefaultsUserLocationLatitude];

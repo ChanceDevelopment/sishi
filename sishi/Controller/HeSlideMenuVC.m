@@ -259,6 +259,7 @@
         [[NSNotificationCenter defaultCenter]postNotificationName:kNotificationUserChangeState object:nil];
         [NSUserDefaults standardUserDefaults];
         [MBProgressHUD hideHUDForView:self.view.window animated:YES];
+        [self showHint:[NSString stringWithFormat:@"%@模式",state == 0 ? @"车主" : @"用户"]];
     } errorHandler:^(NSString *responseErrorInfo) {
         [self showHint:responseErrorInfo];
         [MBProgressHUD hideHUDForView:self.view.window animated:YES];

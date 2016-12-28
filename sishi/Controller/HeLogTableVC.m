@@ -132,8 +132,8 @@
     //设置头部
     [self setHeader];
     self.tableView.backgroundView = nil;
-    self.tableView.refreshControl = nil;
-    [self.tableView.refreshControl addTarget:self action:@selector(onRefreshHeader:) forControlEvents:UIControlEventValueChanged];
+//    self.tableView.refreshControl = nil;
+//    [self.tableView.refreshControl addTarget:self action:@selector(onRefreshHeader:) forControlEvents:UIControlEventValueChanged];
     self.tableView.backgroundColor = [UIColor whiteColor];
     [Tool setExtraCellLineHidden:self.tableView];
     [self.view bringSubviewToFront:self.releaseBtn];

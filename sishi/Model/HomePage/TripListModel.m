@@ -65,6 +65,38 @@ NSString *const kTripListModelUserId = @"userId";
     return [[self alloc] initWithDictionary:dict];
 }
 
+- (void)setIsWaitOtherTake:(BOOL)isWaitOtherTake {
+    _isWaitOtherTake = isWaitOtherTake;
+    CGFloat toplineDistance = 70.f;
+    CGFloat padding = 30.0;
+    UIFont *labelFont = [UIFont systemFontOfSize:14];
+    CGFloat itemWidth  =SCREENWIDTH - 20;
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:labelFont,NSFontAttributeName, nil];
+    
+    NSString *nickName = [NSString stringWithFormat:@"%@发起一条邀约",self.userNick];
+    CGSize nickSize = [nickName boundingRectWithSize:CGSizeMake(itemWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+    
+    NSString *destinationName = [NSString stringWithFormat:@"目的地 : %@",self.carOwnerStopplace];
+    CGSize destinationSize = [destinationName boundingRectWithSize:CGSizeMake(itemWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+    
+    NSString *goTimeString = [NSString stringWithFormat:@"时间 : %@",self.goTimeDescription];
+    CGSize goTimeStringSize = [goTimeString boundingRectWithSize:CGSizeMake(itemWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+    
+    NSString *stopPlaceString = [NSString stringWithFormat:@"出发地 : %@",self.carOwnerStartplace
+                                 ];
+    CGSize stopPlaceSize = [stopPlaceString boundingRectWithSize:CGSizeMake(itemWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+    
+    NSString *wishLabelString =  [NSString stringWithFormat:@"期待邀约的Ta : %@",self.carUserLike];
+    CGSize wishLabelSize = [wishLabelString boundingRectWithSize:CGSizeMake(itemWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+    
+    NSString *noteLabelString =  [NSString stringWithFormat:@"备注 : %@",self.carOwnerNote];
+    CGSize labelSize = [noteLabelString boundingRectWithSize:CGSizeMake(itemWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+    self.itemHeight = toplineDistance + padding + nickSize.height + destinationSize.height + goTimeStringSize.height + stopPlaceSize.height + wishLabelSize.height + labelSize.height;
+}
+
+
+#pragma mark :- Setters
+
 - (instancetype)initWithDictionary:(NSDictionary *)dict
 {
     self = [super init];
@@ -99,6 +131,13 @@ NSString *const kTripListModelUserId = @"userId";
     
 }
 
+- (void)setCarUserGotime:(double)carUserGotime {
+    _carUserGotime = carUserGotime;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    formatter.dateFormat = @"yyyy/MM/dd HH:mm";
+    NSDate *date =[NSDate dateWithTimeIntervalSince1970:carUserGotime / 1000];
+    self.goTimeDescription = [formatter stringFromDate:date];
+}
 - (NSDictionary *)dictionaryRepresentation
 {
     NSMutableDictionary *mutableDict = [NSMutableDictionary dictionary];

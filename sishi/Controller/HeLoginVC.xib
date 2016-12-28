@@ -36,7 +36,7 @@
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="欢迎来到司事" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQ6-kO-X2z">
                                     <rect key="frame" x="10" y="150" width="159" height="32"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -102,13 +102,13 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注册账号即表示我同意 司事 的" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ur5-eU-XDu" customClass="TTTAttributedLabel">
-                                    <rect key="frame" x="15" y="616" width="345" height="21"/>
+                                    <rect key="frame" x="15" y="620" width="345" height="17"/>
                                     <fontDescription key="fontDescription" name=".PingFangSC-Regular" family=".PingFang SC" pointSize="17"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" red="0.0" green="0.62186408039999996" blue="0.55781888960000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.0" green="0.61960784313725492" blue="0.55781888960000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="DiK-vW-74p" firstAttribute="leading" secondItem="arl-Ls-TMd" secondAttribute="leading" id="7gI-cV-Gbu"/>
                                 <constraint firstItem="DiK-vW-74p" firstAttribute="top" secondItem="arl-Ls-TMd" secondAttribute="bottom" constant="15" id="JKq-4q-vWG"/>

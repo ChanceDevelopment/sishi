@@ -49,7 +49,7 @@
     NSString *judge = [[Tool judge] isEqualToString:@"0"] ? @"1" : @"0";
     CGFloat longitude = [[NSUserDefaults standardUserDefaults]doubleForKey:kDefaultsUserLocationlongitude];
     CGFloat latitude = [[NSUserDefaults standardUserDefaults] doubleForKey:kDefaultsUserLocationLatitude];
-    [ApiUtils filterUserWithTripId:@"" carUserLike:self.hobbyList gender:@"0" userJudge:judge longitude:longitude latitude:latitude startIndex:0 onResponseList:^(NSArray *responseList) {
+    [ApiUtils filterUserWithTripId:@"" carUserLike:self.hobbyList gender:@"0" userJudge:judge longitude:longitude latitude:latitude startIndex:0 onResponseList:^(NSArray <UserFollowListModel *>*responseList) {
         
     } errorHandler:^(NSString *responseErrorInfo) {
         
