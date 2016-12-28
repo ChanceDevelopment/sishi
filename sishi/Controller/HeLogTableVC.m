@@ -185,6 +185,9 @@
                                }
                                item.srcImages = imageLinkArray;
                                item.thumbImages = imageLinkArray;
+                               item.width = SCREENWIDTH;
+                               item.height = 300;
+                               
                                [self addItem:item];
                                
                            }
@@ -417,11 +420,13 @@
                                        [imageLinkArray addObject:newimageName];
                                    }
                                }
-                               if (imageLinkArray.count == 1) {
-                                   [imageLinkArray addObject:@""];
-                               }
+//                               if (imageLinkArray.count == 1) {
+//                                   [imageLinkArray addObject:@""];
+//                               }
                                item.srcImages = imageLinkArray;
                                item.thumbImages = imageLinkArray;
+                               item.width = SCREENWIDTH;
+                               item.height = 300;
                                [self addItem:item];
                                
                            }
@@ -595,7 +600,8 @@
             textImageItem.srcImages = model.link;
             
             textImageItem.thumbImages = model.thumbLink;
-            
+            textImageItem.width = SCREENWIDTH;
+            textImageItem.height = 300;
             textImageItem.location = model.activityTownName;
             textImageItem.ts = [Tool convertStringToTimesp:model.createTime] * 1000;
             
@@ -663,7 +669,6 @@
         //日记
         DFTextImageLineItem *textImageItem = [[DFTextImageLineItem alloc] init];
         textImageItem.itemId = model.activityid;
-        
         textImageItem.itemType = LineItemTypeTextImage;
         textImageItem.userId = model.creator.userID;
         textImageItem.userAvatar = model.creator.headurl;
@@ -675,6 +680,9 @@
         textImageItem.srcImages = model.link;
         
         textImageItem.thumbImages = model.thumbLink;
+        
+        textImageItem.width = SCREENWIDTH;
+        textImageItem.height = 300;
         
         textImageItem.location = model.activityTownName;
         textImageItem.ts = [Tool convertStringToTimesp:model.createTime] * 1000;
@@ -1034,6 +1042,8 @@
                                }
                                item.srcImages = imageLinkArray;
                                item.thumbImages = imageLinkArray;
+                               item.width = SCREENWIDTH;
+                               item.height = 300;
                                [self addItem:item];
                                
                            }

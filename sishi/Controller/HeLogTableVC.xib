@@ -22,12 +22,11 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TDG-CM-fzm">
                     <rect key="frame" x="290" y="582" width="60" height="60"/>
-                    <color key="backgroundColor" red="0.99840146299999999" green="0.34669867160000001" blue="0.35690140720000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="CsR-1V-DGT"/>
                         <constraint firstAttribute="width" constant="60" id="RRP-xt-cnJ"/>
                     </constraints>
-                    <state key="normal" title="发布"/>
+                    <state key="normal" image="icon_myedit.png"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                             <integer key="value" value="30"/>
@@ -45,4 +44,7 @@
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="icon_myedit.png" width="192" height="192"/>
+    </resources>
 </document>
