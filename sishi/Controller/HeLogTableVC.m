@@ -618,7 +618,6 @@
     }
     
     
-    
     if (updateOption == 1) {
         [self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:0.3];
         
