@@ -33,6 +33,19 @@
     return _modelList;
 }
 
+//遍历标签列表,找到某一标签则删除该标签
+- (void)removeLabelWithName:(NSString *)labelName {
+    NSMutableArray <NSString *>* labelNameList = [NSMutableArray arrayWithArray:self.labelList];
+    for (int i = 0; i < self.labelList.count; i ++) {
+        NSString *indexLabelName = self.labelList[i];
+        if ([indexLabelName isEqualToString:labelName]) {
+            [labelNameList removeObjectAtIndex:i];
+            self.labelList = [NSArray arrayWithArray:labelNameList];
+            break;
+        }
+    }
+}
+
 
 - (NSArray<NSString *> *)selectedLabelList {
     NSMutableArray <NSString *>* labelList = [NSMutableArray array];
@@ -132,8 +145,18 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self.modelList objectAtIndex:indexPath.row].selected = ![self.modelList objectAtIndex:indexPath.row].isSelected;
+    BOOL isSelected = ![self.modelList objectAtIndex:indexPath.row].isSelected;
+    [self.modelList objectAtIndex:indexPath.row].selected = isSelected;
     [self reloadItemsAtIndexPaths:@[indexPath]];
+    if (isSelected) {
+        if (self.labelViewDelegate && [self.labelViewDelegate respondsToSelector:@selector(labelView:didAddLabelName:)]) {
+            [self.labelViewDelegate labelView:self didAddLabelName:self.labelList[indexPath.item]];//通知代理选中该下标下的标签
+        }
+    } else {
+        if (self.labelViewDelegate && [self.labelViewDelegate respondsToSelector:@selector(labelView:didRemoveLabelName:)]) {
+            [self.labelViewDelegate labelView:self didRemoveLabelName:self.labelList[indexPath.item]];
+        }
+    }
 }
 
 /*

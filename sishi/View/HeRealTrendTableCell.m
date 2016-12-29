@@ -28,19 +28,25 @@
     _model = model;
     [self.headImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],model.userHeader]]];
     self.timeLabel.text = model.carEndtime;
-//    self.contentLabel.text = model.dynamicContent;
+    if (!model.isOnGoing) {
+        self.contentLabel.text = @"已邀约,等待行程开始";
+    } else {
+        self.contentLabel.text = @"正在行车,行程已开始";
+    }
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier cellSize:(CGSize)cellsize
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier cellSize:cellsize];
     if (self) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         CGFloat bgX = 10;
         CGFloat bgY = 10;
         CGFloat bgW = SCREENWIDTH - 2 * bgX;
         CGFloat bgH = cellsize.height - 2 * bgY;
         bgView = [[UIView alloc] initWithFrame:CGRectMake(bgX, bgY, bgW, bgH)];
         bgView.backgroundColor = UIColorFromRGB(0xeeeeee);
+        bgView.userInteractionEnabled = NO;
         bgView.layer.masksToBounds = YES;
         bgView.layer.cornerRadius = 5.0;
         [self addSubview:bgView];
@@ -94,6 +100,7 @@
         contentLabel.text = @"正在行车，尚未发出邀请";
         [bgView addSubview:contentLabel];
         
+        
         UILongPressGestureRecognizer *longpress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(onLongPress:)];
         [self.contentView addGestureRecognizer:longpress];
     }
@@ -118,8 +125,10 @@
 }
 
 - (void)onLongPress:(UILongPressGestureRecognizer *)gesture {
-    if (self.onLongPress) {
-        self.onLongPress(self.model);
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        if (self.onLongPress) {
+            self.onLongPress(self.model);
+        }   
     }
 }
 

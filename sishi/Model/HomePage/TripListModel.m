@@ -67,8 +67,8 @@ NSString *const kTripListModelUserId = @"userId";
 
 - (void)setIsWaitOtherTake:(BOOL)isWaitOtherTake {
     _isWaitOtherTake = isWaitOtherTake;
-    CGFloat toplineDistance = 70.f;
-    CGFloat padding = 30.0;
+    CGFloat toplineDistance = 70.f;//顶部间距
+    CGFloat padding = 40.0;//控件高度总间距
     UIFont *labelFont = [UIFont systemFontOfSize:14];
     CGFloat itemWidth  =SCREENWIDTH - 20;
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:labelFont,NSFontAttributeName, nil];
@@ -128,6 +128,20 @@ NSString *const kTripListModelUserId = @"userId";
     }
     
     return self;
+    
+}
+
+
+- (BOOL)isOnGoing {
+    return self.carOwnerIsend == 0;
+}
+
+- (void)setIsOnGoing:(BOOL)isOnGoing {
+    if (isOnGoing) {
+            self.carOwnerIsend = 0;
+    } else {
+        self.carOwnerIsend = -1;
+    }
     
 }
 

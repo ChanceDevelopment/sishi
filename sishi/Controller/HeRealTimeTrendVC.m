@@ -16,6 +16,7 @@
 #import "ApiUtils.h"
 #import "HeDistributeInviteVC.h"
 #import "AskingTableViewCell.h"
+#import "TripOnGoingController.h"
 
 #define TextLineHeight 1.2f
 
@@ -111,13 +112,17 @@
     [super initView];
     tableview.backgroundView = nil;
     tableview.backgroundColor = [UIColor whiteColor];
-    tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(onHeaderRefresh:)];
     [tableview.mj_header beginRefreshing];
     
     [Tool setExtraCellLineHidden:tableview];
     [self pullUpUpdate];
+    
+    if ([self.tableview respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.tableview setSeparatorInset:UIEdgeInsetsZero];
+    }
     
 //    [self.tableview registerClass:[HeRealTrendTableCell class] forCellReuseIdentifier:@"HeContestantTableCellIndentifier"];
     [self.tableview registerNib:[UINib nibWithNibName:@"AskingTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"AskingTableViewCell"];
@@ -145,30 +150,31 @@
 
 
 - (void)onHeaderRefresh:(MJRefreshNormalHeader *)header {
+    //72ab4fed1ebb48f8a0b36ec82762fad4
+    //72ab4fed1ebb48f8a0b36ec82762fad4
     [ApiUtils queryRealtimeTripInfoWithCompleteHandler:^(NSArray<TripListModel *> *tripList) {
         [self.dataSource removeAllObjects];
         [self.dataSource addObjectsFromArray:tripList];
-        [tableview reloadData];
-        [header endRefreshing];
+//        [tableview reloadData];
+//        [header endRefreshing];
+        [ApiUtils queryAllTripCanTakeWithFilterType:@"0"//当请求完成已经邀约的数据之后再开始请求可邀约的数据
+                                           identity:[Tool judge]
+                                     onResponseInfo:^(NSArray<TripListModel *> *tripListModel) {
+                                         //                                     [self.dataSource removeAllObjects];
+                                         [self.dataSource addObjectsFromArray:tripListModel];
+                                         [self.tableview reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                                         [header endRefreshing];
+                                     } errorHandler:^(NSString *responseErrorInfo) {
+                                         [self showHint:responseErrorInfo];
+                                         [header endRefreshing];
+                                     }];
+        
     } errorHandler:^(NSString *responseErrorInfo) {
         [self showHint:responseErrorInfo];
         [header endRefreshing];
     }];
     
-//    [ApiUtils ]
-    
-    [ApiUtils queryAllTripCanTakeWithFilterType:@"0"
-                                       identity:[Tool judge]
-                                 onResponseInfo:^(NSArray<TripListModel *> *tripListModel) {
-//                                 NSLog(@"trip response info %@ ",tripListModel);
-                                     [self.dataSource removeAllObjects];
-                                     [self.dataSource addObjectsFromArray:tripListModel];
-                                     [self.tableview reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-                                     [header endRefreshing];
-    } errorHandler:^(NSString *responseErrorInfo) {
-        [self showHint:responseErrorInfo];
-        [header endRefreshing];
-    }];
+   
 }
 
 - (UIButton *)buttonWithTitle:(NSString *)buttonTitle frame:(CGRect)buttonFrame
@@ -406,8 +412,25 @@
             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消行程" style:UIAlertActionStyleDefault handler:nil];
             UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"进入行程" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                //进入行程页面
+                if (tripModel.isOnGoing) {
+                    TripOnGoingController *onGoingController = [[TripOnGoingController alloc]initWithNibName:@"TripOnGoingController" bundle:[NSBundle mainBundle]];
+                    onGoingController.tripId = tripModel.carOwnerId;
+                    [self.navigationController pushViewController:onGoingController animated:YES];
+                    return ;
+                }
                 
+                [ApiUtils startTripWithTripId:tripModel.carOwnerId onCompleteHandler:^{
+                        TripOnGoingController *onGoingController = [[TripOnGoingController alloc]initWithNibName:@"TripOnGoingController" bundle:[NSBundle mainBundle]];
+                    onGoingController.tripId = tripModel.carOwnerId;
+                    tripModel.isOnGoing = YES;
+                        [self.navigationController pushViewController:onGoingController animated:YES];
+                    //进入行程详情
+                } errorHandler:^(NSString *responseErrorInfo) {
+                    [weakSelf showHint:responseErrorInfo];
+                }];
             }];
+            [alertController addAction:cancelAction];
+            [alertController addAction:confirmAction];
             [weakSelf presentViewController:alertController animated:YES completion:nil];
         };
     } else if ([cell isKindOfClass:[AskingTableViewCell class]]) {
@@ -441,6 +464,10 @@
         detailController.hidesBottomBarWhenPushed = YES;
         detailController.title = @"详情内容";
         [self.navigationController pushViewController:detailController animated:YES];
+    
+    //测试内容
+//    TripOnGoingController *onGoingController = [[TripOnGoingController alloc]initWithNibName:@"TripOnGoingController" bundle:[NSBundle mainBundle]];
+//    [self.navigationController pushViewController:onGoingController animated:YES];
 }
 /*
  #pragma mark - Navigation

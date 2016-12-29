@@ -67,6 +67,7 @@ BMKMapManager* _mapManager;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    
      EMOptions *options = [EMOptions optionsWithAppkey:EASEMOBKEY];
     [[EMClient sharedClient]initializeSDKWithOptions:options];
     [self initialization];

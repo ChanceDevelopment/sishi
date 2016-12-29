@@ -51,6 +51,15 @@
 		A2A79C191E135B6000172852 /* AskingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A79C171E135B6000172852 /* AskingTableViewCell.xib */; };
 		A2A79C1F1E13C4D600172852 /* CommentLabelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A79C1E1E13C4D600172852 /* CommentLabelModel.m */; };
 		A2A79C221E13C4FD00172852 /* UserCommentLabelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A79C211E13C4FD00172852 /* UserCommentLabelModel.m */; };
+		A2A79C261E14AB9000172852 /* NearbyTravelUserListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A79C241E14AB9000172852 /* NearbyTravelUserListController.m */; };
+		A2A79C271E14AB9000172852 /* NearbyTravelUserListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A79C251E14AB9000172852 /* NearbyTravelUserListController.xib */; };
+		A2A79C2E1E14F2F500172852 /* EvaluationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A79C2C1E14F2F500172852 /* EvaluationViewController.m */; };
+		A2A79C2F1E14F2F500172852 /* EvaluationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A79C2D1E14F2F500172852 /* EvaluationViewController.xib */; };
+		A2A79C361E15014D00172852 /* HCSStarRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A79C331E15014D00172852 /* HCSStarRatingView.m */; };
+		A2A79C371E15014D00172852 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = A2A79C341E15014D00172852 /* LICENSE */; };
+		A2A79C381E15014D00172852 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A2A79C351E15014D00172852 /* README.md */; };
+		A2A79C3C1E15016E00172852 /* CompaintsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A79C3A1E15016E00172852 /* CompaintsController.m */; };
+		A2A79C3D1E15016E00172852 /* CompaintsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A79C3B1E15016E00172852 /* CompaintsController.xib */; };
 		A2C829891E024E1700645639 /* HeRealTimeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C829871E024E1700645639 /* HeRealTimeDetailController.m */; };
 		A2C8298A1E024E1700645639 /* HeRealTimeDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2C829881E024E1700645639 /* HeRealTimeDetailController.xib */; };
 		A2C829911E0264E500645639 /* ImageBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C829901E0264E500645639 /* ImageBannerView.m */; };
@@ -1083,6 +1092,19 @@
 		A2A79C1E1E13C4D600172852 /* CommentLabelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentLabelModel.m; sourceTree = "<group>"; };
 		A2A79C201E13C4FD00172852 /* UserCommentLabelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCommentLabelModel.h; sourceTree = "<group>"; };
 		A2A79C211E13C4FD00172852 /* UserCommentLabelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCommentLabelModel.m; sourceTree = "<group>"; };
+		A2A79C231E14AB9000172852 /* NearbyTravelUserListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyTravelUserListController.h; sourceTree = "<group>"; };
+		A2A79C241E14AB9000172852 /* NearbyTravelUserListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyTravelUserListController.m; sourceTree = "<group>"; };
+		A2A79C251E14AB9000172852 /* NearbyTravelUserListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearbyTravelUserListController.xib; sourceTree = "<group>"; };
+		A2A79C2B1E14F2F400172852 /* EvaluationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvaluationViewController.h; sourceTree = "<group>"; };
+		A2A79C2C1E14F2F500172852 /* EvaluationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvaluationViewController.m; sourceTree = "<group>"; };
+		A2A79C2D1E14F2F500172852 /* EvaluationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EvaluationViewController.xib; sourceTree = "<group>"; };
+		A2A79C321E15014D00172852 /* HCSStarRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCSStarRatingView.h; sourceTree = "<group>"; };
+		A2A79C331E15014D00172852 /* HCSStarRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCSStarRatingView.m; sourceTree = "<group>"; };
+		A2A79C341E15014D00172852 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		A2A79C351E15014D00172852 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		A2A79C391E15016E00172852 /* CompaintsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompaintsController.h; sourceTree = "<group>"; };
+		A2A79C3A1E15016E00172852 /* CompaintsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompaintsController.m; sourceTree = "<group>"; };
+		A2A79C3B1E15016E00172852 /* CompaintsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompaintsController.xib; sourceTree = "<group>"; };
 		A2C829861E024E1700645639 /* HeRealTimeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeRealTimeDetailController.h; sourceTree = "<group>"; };
 		A2C829871E024E1700645639 /* HeRealTimeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeRealTimeDetailController.m; sourceTree = "<group>"; };
 		A2C829881E024E1700645639 /* HeRealTimeDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeRealTimeDetailController.xib; sourceTree = "<group>"; };
@@ -2890,6 +2912,25 @@
 			path = UICollectionViewLeftAlignedLayout;
 			sourceTree = "<group>";
 		};
+		A2A79C301E15014D00172852 /* HCSStarRatingView */ = {
+			isa = PBXGroup;
+			children = (
+				A2A79C311E15014D00172852 /* HCSStarRatingView */,
+				A2A79C341E15014D00172852 /* LICENSE */,
+				A2A79C351E15014D00172852 /* README.md */,
+			);
+			path = HCSStarRatingView;
+			sourceTree = "<group>";
+		};
+		A2A79C311E15014D00172852 /* HCSStarRatingView */ = {
+			isa = PBXGroup;
+			children = (
+				A2A79C321E15014D00172852 /* HCSStarRatingView.h */,
+				A2A79C331E15014D00172852 /* HCSStarRatingView.m */,
+			);
+			path = HCSStarRatingView;
+			sourceTree = "<group>";
+		};
 		A2C8298B1E02648A00645639 /* BannerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3020,6 +3061,9 @@
 				A2FF4B7F1E10C9F500A3739E /* ReleaseMoodViewController.h */,
 				A2FF4B801E10C9F500A3739E /* ReleaseMoodViewController.m */,
 				A2FF4B811E10C9F500A3739E /* ReleaseMoodViewController.xib */,
+				A2A79C231E14AB9000172852 /* NearbyTravelUserListController.h */,
+				A2A79C241E14AB9000172852 /* NearbyTravelUserListController.m */,
+				A2A79C251E14AB9000172852 /* NearbyTravelUserListController.xib */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
@@ -3277,6 +3321,12 @@
 				EA12F81B1D66EB100085752A /* HeDistributeInviteVC.h */,
 				EA12F81C1D66EB100085752A /* HeDistributeInviteVC.m */,
 				EA12F81D1D66EB100085752A /* HeDistributeInviteVC.xib */,
+				A2A79C2B1E14F2F400172852 /* EvaluationViewController.h */,
+				A2A79C2C1E14F2F500172852 /* EvaluationViewController.m */,
+				A2A79C2D1E14F2F500172852 /* EvaluationViewController.xib */,
+				A2A79C391E15016E00172852 /* CompaintsController.h */,
+				A2A79C3A1E15016E00172852 /* CompaintsController.m */,
+				A2A79C3B1E15016E00172852 /* CompaintsController.xib */,
 			);
 			name = Dynamic;
 			sourceTree = "<group>";
@@ -4957,6 +5007,7 @@
 		EA8DAE581D5A18F200487BF4 /* ThirdPartySDK */ = {
 			isa = PBXGroup;
 			children = (
+				A2A79C301E15014D00172852 /* HCSStarRatingView */,
 				A211A3851E0A6B77004C3331 /* SDCycleScrollView */,
 				A211A3481E07B984004C3331 /* TTTAttributedLabel */,
 				A22149A11E03EBBD002D8F52 /* UICollectionViewLeftAlignedLayout */,
@@ -6507,6 +6558,7 @@
 				EA8DAE1A1D5A18D000487BF4 /* SVProgressHUD.bundle in Resources */,
 				EA8DACEE1D5A18D000487BF4 /* LICENSE in Resources */,
 				EADF864E1D621C900029DC4F /* icon_027.gif in Resources */,
+				A2A79C371E15014D00172852 /* LICENSE in Resources */,
 				EA2AC3951D60192300C57B45 /* newPasswordIcon.png in Resources */,
 				EADF86311D621C900029DC4F /* chat_sender_audio_playing_000@2x.png in Resources */,
 				EA12F7F91D655F110085752A /* icon_set_black.png in Resources */,
@@ -6585,6 +6637,7 @@
 				EA2AC34A1D5EC24700C57B45 /* tabar_recommend_icon_normal@2x.png in Resources */,
 				EADF86221D621C900029DC4F /* chat_location_detail_disclosureHL.png in Resources */,
 				EA2AC32A1D5EC01000C57B45 /* HeBaseTableViewCell.xib in Resources */,
+				A2A79C3D1E15016E00172852 /* CompaintsController.xib in Resources */,
 				EA12F8091D6589E30085752A /* tabar_dynamic_icon_normal@3x.png in Resources */,
 				EADF86231D621C900029DC4F /* chat_location_detail_disclosureHL@2x.png in Resources */,
 				EADF863E1D621C900029DC4F /* icon_012.gif in Resources */,
@@ -6643,6 +6696,7 @@
 				EADF86201D621C900029DC4F /* chat_location_detail_disclosure.png in Resources */,
 				EA12F80F1D6589E30085752A /* tabar_user_icon_normal@3x.png in Resources */,
 				EA5F0A801D64BFA400F30729 /* AlbumComment@2x.png in Resources */,
+				A2A79C271E14AB9000172852 /* NearbyTravelUserListController.xib in Resources */,
 				EA2AC3711D60177300C57B45 /* HeInfoMenuVC.xib in Resources */,
 				EA8DAD631D5A18D000487BF4 /* MBProgressHUD.bundle in Resources */,
 				EA8DAD471D5A18D000487BF4 /* grayArrow@2x.png in Resources */,
@@ -6827,6 +6881,7 @@
 				EA8DAE011D5A18D000487BF4 /* sharemore_pic@2x.png in Resources */,
 				EA5F0A8C1D64BFA400F30729 /* Like@3x.png in Resources */,
 				EA8DAD291D5A18D000487BF4 /* back-arrow@2x.png in Resources */,
+				A2A79C2F1E14F2F500172852 /* EvaluationViewController.xib in Resources */,
 				EA12F80A1D6589E30085752A /* tabar_homepage_icon_active@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6924,6 +6979,7 @@
 				EADF87CB1D621E380029DC4F /* MWCaptionView.m in Sources */,
 				A211A34F1E07C858004C3331 /* RegisterController.m in Sources */,
 				EA8DADF31D5A18D000487BF4 /* UIDatePicker+RACSignalSupport.m in Sources */,
+				A2A79C381E15014D00172852 /* README.md in Sources */,
 				EA5F09D21D64A53900F30729 /* HeDynamicVC.m in Sources */,
 				EADF87D31D621E380029DC4F /* DACircularProgressView.m in Sources */,
 				EADF88681D62271A0029DC4F /* GroupSettingViewController.m in Sources */,
@@ -7020,6 +7076,7 @@
 				EA8DADEC1D5A18D000487BF4 /* UIActionSheet+RACSignalSupport.m in Sources */,
 				EADF883C1D6225EA0029DC4F /* AddFriendCell.m in Sources */,
 				EA8DAEB21D5A18F200487BF4 /* bitstream.c in Sources */,
+				A2A79C2E1E14F2F500172852 /* EvaluationViewController.m in Sources */,
 				EA4FA2A41D6C1E1000099DCC /* HeJourneyEndVC.m in Sources */,
 				EA6DFF7C1D6B54000069F4ED /* DEMOSecondViewController.m in Sources */,
 				EA8DADDD1D5A18D000487BF4 /* RACSignalProvider.d in Sources */,
@@ -7189,6 +7246,7 @@
 				A211A3981E0A6B77004C3331 /* TAPageControl.m in Sources */,
 				EA8DAE4E1D5A18DF00487BF4 /* NSData+ASE128.m in Sources */,
 				A2C829B81E027D0500645639 /* View+MASAdditions.m in Sources */,
+				A2A79C361E15014D00172852 /* HCSStarRatingView.m in Sources */,
 				EADF856B1D621C7B0029DC4F /* SRSlimeView.m in Sources */,
 				EA8DAD621D5A18D000487BF4 /* MBProgressHUD+Add.m in Sources */,
 				EADF87DF1D621E380029DC4F /* UIImage+EMMultiFormat.m in Sources */,
@@ -7294,6 +7352,7 @@
 				EA8DA9E01D5A18BB00487BF4 /* NSDateFormatter+Category.m in Sources */,
 				EADF883D1D6225EA0029DC4F /* AddFriendViewController.m in Sources */,
 				EADF85651D621C7B0029DC4F /* EMAlertView.m in Sources */,
+				A2A79C261E14AB9000172852 /* NearbyTravelUserListController.m in Sources */,
 				EA8DADA31D5A18D000487BF4 /* LICENSE.md in Sources */,
 				A2FF4B661E0E105100A3739E /* NearbyUserListModel.m in Sources */,
 				EA5F0A631D64BFA400F30729 /* DFActivityCollectCellAdapter.m in Sources */,
@@ -7376,6 +7435,7 @@
 				EA8DAD511D5A18D000487BF4 /* GTMBase64.m in Sources */,
 				EA5F0A781D64BFA400F30729 /* DFUserActivityLineItem.m in Sources */,
 				EA2AC3171D5EBF5300C57B45 /* HeLoginVC.m in Sources */,
+				A2A79C3C1E15016E00172852 /* CompaintsController.m in Sources */,
 				EA8DAD3C1D5A18D000487BF4 /* i2KEPCMultiComponentPickerView.m in Sources */,
 				EA8DA9641D5A171A00487BF4 /* main.m in Sources */,
 				EA8DACE61D5A18D000487BF4 /* AFHTTPRequestOperationManager.m in Sources */,

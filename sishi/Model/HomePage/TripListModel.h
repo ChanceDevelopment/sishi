@@ -30,6 +30,12 @@
 @property (nonatomic, strong) NSString *carAccess;
 @property (nonatomic, strong) NSString *carOwnerCreatetime;
 @property (nonatomic, strong) NSString *carOwnerStopplace;
+
+/**
+ *  当前行程是否已开启
+ */
+@property(nonatomic,assign)BOOL isOnGoing;//当前行程是否已开启
+
 /**
  *  出发时间 字符串描述文本
  */

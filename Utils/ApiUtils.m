@@ -20,8 +20,8 @@ static AFHTTPSessionManager *sessionManager = nil;
 @implementation ApiUtils
 
 + (NSString *)baseUrl {
-    return @"http://118.178.131.215:8088/";
-//    return @"http://192.168.0.119:8080/";
+//    return @"http://118.178.131.215:8088/";
+    return @"http://192.168.0.119:8080/";
 }
 
 + (AFHTTPSessionManager *)defaultSessionManager {
@@ -524,7 +524,7 @@ static AFHTTPSessionManager *sessionManager = nil;
 
 + (void)queryRealtimeTripInfoWithCompleteHandler:(void (^)(NSArray <TripListModel *>*))completeHandler errorHandler:(ApiUtilsResponseError)errorHandler {
     NSString *api = [NSString stringWithFormat:@"%@Sexton/CaruserInfoNow.action",[ApiUtils baseUrl]];
-    [ApiUtils POST:api parameters:@{@"carUsrid":[Tool uid]} onResponseSuccess:^(NSDictionary<NSString *,id> *responseInfo) {
+    [ApiUtils POST:api parameters:@{@"carUserid":[Tool uid]} onResponseSuccess:^(NSDictionary<NSString *,id> *responseInfo) {
         NSArray *responseJSON = responseInfo[@"json"];
         NSMutableArray *tripList = [NSMutableArray arrayWithCapacity:responseJSON.count];
         for (NSDictionary *mapper in responseJSON) {

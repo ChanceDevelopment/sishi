@@ -28,7 +28,7 @@
 }
 
 - (void)setupView {
-    self.title = @"XXXXXXX";
+    self.navigationItem.title = @"";
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 

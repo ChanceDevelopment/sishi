@@ -13,5 +13,8 @@
  发表 心情 界面
  */
 @interface ReleaseMoodViewController : UIViewController
-
+/**
+ *  行程Id
+ */
+@property(nonatomic,copy)NSString *tripId;
 @end

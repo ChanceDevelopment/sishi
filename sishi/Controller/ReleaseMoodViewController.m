@@ -89,7 +89,8 @@
     NSString *imageNames = [imageNameList componentsJoinedByString:@","];
     CGFloat longitude = [[NSUserDefaults standardUserDefaults]doubleForKey:kDefaultsUserLocationlongitude];
     CGFloat latitude = [[NSUserDefaults standardUserDefaults]doubleForKey:kDefaultsUserLocationLatitude];
-    [ApiUtils publishNewDynamicWithContent:self.textView.text position_x:longitude position_y:latitude tripid:@"" wallurl:imageNames onCompleteHandler:^{
+    NSString *tripId = self.tripId ? self.tripId : @"";
+    [ApiUtils publishNewDynamicWithContent:self.textView.text position_x:longitude position_y:latitude tripid:tripId wallurl:imageNames onCompleteHandler:^{
         [MBProgressHUD hideHUDForView:self.view.window animated:YES];
         [self showHint:@"发布成功"];
         [self.navigationController popViewControllerAnimated:YES];

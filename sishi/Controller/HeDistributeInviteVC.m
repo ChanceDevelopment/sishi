@@ -14,6 +14,7 @@
 #import "ImageAdder.h"
 #import "SelectViewContainer.h"
 #import "ApiUtils.h"
+#import "NearbyTravelUserListController.h"
 
 #define TextLineHeight 1.2f
 
@@ -56,6 +57,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"发布新行程";
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self setupView];
 }
 
@@ -155,6 +157,7 @@
 //        [self showHint:@"请先添加照片"];
 //        return;
 //    }
+    //发布完成之后先查询是否存在附近的等待出行的
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     CGFloat longitude = [[NSUserDefaults standardUserDefaults]doubleForKey:kDefaultsUserLocationlongitude];
     CGFloat latitude = [[NSUserDefaults standardUserDefaults]doubleForKey:kDefaultsUserLocationLatitude];
@@ -169,13 +172,20 @@
     NSDictionary *tripInfo = [ApiUtils tripInfoWithUserGoTime:userGoTime wishTarget:wishTarget  ownerImage:imageNameListString startPlace:self.getInCarInputField.text stopPlace:self.destinationInputField.text tripNote:self.noteInputField.text tripType:@"1" tripState:@"1" receiverId:@"" longitude:longitude latitude:latitude carOwnerState:@"1"];
     [ApiUtils publishNewTripWithTripInfo:tripInfo completeHandler:^{
         [MBProgressHUD hideHUDForView:self.view.window animated:YES];
-        NSLog(@"发布成功");
-        [self showHint:@"发布成功"];
-        [self.navigationController popViewControllerAnimated:YES];
+//        NSLog(@"发布成功");
+//        [self showHint:@"发布成功"];
+//        [self.navigationController popViewControllerAnimated:YES];
+        NearbyTravelUserListController *nearbyUserList = [[NearbyTravelUserListController alloc]initWithNibName:@"NearbyTravelUserListController" bundle:[NSBundle mainBundle]];
+        nearbyUserList.hobbys = [self.labelSelectView.selectedLabelList componentsJoinedByString:@","];
+        [self.navigationController pushViewController:nearbyUserList animated:YES];
     } errorHandler:^(NSString *responseErrorInfo) {
         [self showHint:responseErrorInfo];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
-    
 }
+
+- (void)queryNearbyUserList {
+   
+}
+
 @end

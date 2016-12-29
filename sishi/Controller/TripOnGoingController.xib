@@ -13,7 +13,7 @@
             <connections>
                 <outlet property="addBtn" destination="kzx-lF-UHv" id="FTT-2h-VZx"/>
                 <outlet property="leftBtn" destination="Ivv-gO-O91" id="c3P-iB-xJO"/>
-                <outlet property="mapView" destination="aIJ-T7-PwV" id="msD-dW-7Tv"/>
+                <outlet property="mapView" destination="AAm-Xj-fet" id="ou1-0u-28h"/>
                 <outlet property="rightBtn" destination="9du-hh-GgH" id="I0j-Uj-3po"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -23,9 +23,10 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="aIJ-T7-PwV">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AAm-Xj-fet" customClass="BMKMapView">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                </mapView>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kzx-lF-UHv">
                     <rect key="frame" x="155.5" y="577" width="65" height="65"/>
                     <constraints>
@@ -33,8 +34,11 @@
                         <constraint firstAttribute="width" constant="65" id="BOH-XR-4Yx"/>
                     </constraints>
                     <state key="normal" image="icon_add.png"/>
+                    <connections>
+                        <action selector="onPostMood:" destination="-1" eventType="touchUpInside" id="HNj-Rq-Iu3"/>
+                    </connections>
                 </button>
-                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5m-FD-yPT">
+                <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5m-FD-yPT">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="行程已开启 !" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAK-zG-gSf">
@@ -50,40 +54,47 @@
                                 <constraint firstAttribute="width" constant="1" id="FEq-cu-VUX"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9du-hh-GgH">
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9du-hh-GgH">
                             <rect key="frame" x="193" y="20" width="60" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="6mC-VY-YU5"/>
                                 <constraint firstAttribute="width" constant="60" id="juV-Rr-WHT"/>
                             </constraints>
-                            <state key="normal" title="Button"/>
+                            <state key="normal" image="icon_002.gif"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AnT-Ru-bAu">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AnT-Ru-bAu">
                             <rect key="frame" x="10" y="10" width="35" height="35"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="35" id="0sc-zX-Ua4"/>
                                 <constraint firstAttribute="width" constant="35" id="zVY-Gn-ggs"/>
                             </constraints>
-                            <state key="normal" title="Button"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="结束">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
                             <connections>
                                 <action selector="onExit:" destination="-1" eventType="touchUpInside" id="OUt-Rm-HT6"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcp-bc-xii">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcp-bc-xii">
                             <rect key="frame" x="330" y="10" width="35" height="35"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="35" id="RZA-Gp-Oii"/>
                                 <constraint firstAttribute="width" constant="35" id="pYc-JF-bB5"/>
                             </constraints>
-                            <state key="normal" title="Button"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="返回"/>
+                            <connections>
+                                <action selector="onBack:" destination="-1" eventType="touchUpInside" id="sOy-12-m0j"/>
+                            </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ivv-gO-O91">
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ivv-gO-O91">
                             <rect key="frame" x="122" y="20" width="60" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="60" id="7Ha-1J-NVE"/>
                                 <constraint firstAttribute="height" constant="60" id="d5e-M0-CzK"/>
                             </constraints>
-                            <state key="normal" title="Button"/>
+                            <state key="normal" image="icon_002.gif"/>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.40387445690000001" green="0.40394866470000002" blue="0.4038697779" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -109,18 +120,19 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="a5m-FD-yPT" secondAttribute="trailing" id="8ht-51-auJ"/>
                 <constraint firstAttribute="bottom" secondItem="kzx-lF-UHv" secondAttribute="bottom" constant="25" id="C2o-bM-OWc"/>
-                <constraint firstAttribute="bottom" secondItem="aIJ-T7-PwV" secondAttribute="bottom" id="CLl-nX-uRW"/>
-                <constraint firstItem="aIJ-T7-PwV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Cgg-LU-sVe"/>
                 <constraint firstItem="a5m-FD-yPT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="KZ9-tu-koX"/>
-                <constraint firstAttribute="trailing" secondItem="aIJ-T7-PwV" secondAttribute="trailing" id="Lu0-6d-ekd"/>
                 <constraint firstItem="kzx-lF-UHv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Vjm-V9-KaG"/>
-                <constraint firstItem="aIJ-T7-PwV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="n7Q-qy-gTw"/>
+                <constraint firstAttribute="trailing" secondItem="AAm-Xj-fet" secondAttribute="trailing" id="Xt6-6F-Mqe"/>
+                <constraint firstItem="AAm-Xj-fet" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hLK-8P-CRK"/>
                 <constraint firstItem="a5m-FD-yPT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="oGB-Pe-sfT"/>
+                <constraint firstAttribute="bottom" secondItem="AAm-Xj-fet" secondAttribute="bottom" id="rpe-BT-Gtj"/>
+                <constraint firstItem="AAm-Xj-fet" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="xHi-lo-FNn"/>
             </constraints>
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>
     </objects>
     <resources>
+        <image name="icon_002.gif" width="150" height="150"/>
         <image name="icon_add.png" width="192" height="192"/>
     </resources>
 </document>
