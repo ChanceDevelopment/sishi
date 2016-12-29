@@ -18,6 +18,7 @@
 #import "CommentLabelModel.h"
 #import "CommentBetweenUsers.h"
 #import "TripListModel.h"
+#import "UserCommentLabelModel.h"
 
 typedef void(^ApiUtilsSuccessWithVoidResponse)(void);
 
@@ -175,10 +176,15 @@ typedef void(^ApiUtilsSuccessWithResponseList)(NSArray *responseList);
 
 + (void)complaintsFor:(NSString *)targetUserId content:(NSString *)content complain:(NSInteger)complain completeHandler:(ApiUtilsSuccessWithVoidResponse)completeHandler errorHandler:(ApiUtilsResponseError)errorHandler;
 
++ (void)queryWallPicsForUser:(NSString *)uid withCompleteHandler:(void(^)(NSArray <NSString *>*))completeHandler errorHandler:(ApiUtilsResponseError)errorHandler;
 
+//获取当前用户照片墙
 + (void)getMyWallPicsWithCompleteHandler:(void(^)(NSArray <NSString *>*responseImages))completeHandler errorHandler:(ApiUtilsResponseError)errorHandler;
 
 + (void)uploadWallPaperWithImageName:(NSString *)imageName onComplete:(ApiUtilsSuccessWithVoidResponse)completeHandler errorHandler:(ApiUtilsResponseError)errorHandler;
 
 + (void)deleteWallImageWithImageName:(NSString *)imageName onComplete:(ApiUtilsSuccessWithVoidResponse)completeHandler errorHandler:(ApiUtilsResponseError)errorHandler;
+
+///查询评价以及给出该评价的数量
++ (void)queryCommentLabelsForUser:(NSString *)uid withCompleteHandler:(void(^)(NSArray <UserCommentLabelModel *>*labels))completeHandler errorHandler:(ApiUtilsResponseError)errorHandler;
 @end

@@ -154,6 +154,7 @@
         [self showHint:responseErrorInfo];
         [header endRefreshing];
     }];
+    
 //    [ApiUtils ]
     
     [ApiUtils queryAllTripCanTakeWithFilterType:@"0"

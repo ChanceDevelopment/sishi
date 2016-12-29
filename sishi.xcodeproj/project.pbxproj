@@ -49,6 +49,8 @@
 		A2A79C141E13536800172852 /* TripOnGoingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A79C121E13536800172852 /* TripOnGoingController.xib */; };
 		A2A79C181E135B6000172852 /* AskingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A79C161E135B6000172852 /* AskingTableViewCell.m */; };
 		A2A79C191E135B6000172852 /* AskingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A79C171E135B6000172852 /* AskingTableViewCell.xib */; };
+		A2A79C1F1E13C4D600172852 /* CommentLabelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A79C1E1E13C4D600172852 /* CommentLabelModel.m */; };
+		A2A79C221E13C4FD00172852 /* UserCommentLabelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A79C211E13C4FD00172852 /* UserCommentLabelModel.m */; };
 		A2C829891E024E1700645639 /* HeRealTimeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C829871E024E1700645639 /* HeRealTimeDetailController.m */; };
 		A2C8298A1E024E1700645639 /* HeRealTimeDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2C829881E024E1700645639 /* HeRealTimeDetailController.xib */; };
 		A2C829911E0264E500645639 /* ImageBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C829901E0264E500645639 /* ImageBannerView.m */; };
@@ -77,7 +79,6 @@
 		A2FF4B6F1E0E4AF300A3739E /* TripDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FF4B6E1E0E4AF300A3739E /* TripDetailModel.m */; };
 		A2FF4B721E0E53E100A3739E /* HobbyListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FF4B711E0E53E100A3739E /* HobbyListModel.m */; };
 		A2FF4B751E0FB19300A3739E /* FeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FF4B741E0FB19300A3739E /* FeedbackController.m */; };
-		A2FF4B781E0FD03100A3739E /* CommentLabelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FF4B771E0FD03100A3739E /* CommentLabelModel.m */; };
 		A2FF4B7B1E0FD23800A3739E /* CommentBetweenUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FF4B7A1E0FD23800A3739E /* CommentBetweenUsers.m */; };
 		A2FF4B7E1E0FD8F300A3739E /* ChatListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FF4B7D1E0FD8F300A3739E /* ChatListModel.m */; };
 		A2FF4B821E10C9F500A3739E /* ReleaseMoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FF4B801E10C9F500A3739E /* ReleaseMoodViewController.m */; };
@@ -1076,6 +1077,10 @@
 		A2A79C151E135B6000172852 /* AskingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskingTableViewCell.h; sourceTree = "<group>"; };
 		A2A79C161E135B6000172852 /* AskingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskingTableViewCell.m; sourceTree = "<group>"; };
 		A2A79C171E135B6000172852 /* AskingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AskingTableViewCell.xib; sourceTree = "<group>"; };
+		A2A79C1D1E13C4D600172852 /* CommentLabelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentLabelModel.h; sourceTree = "<group>"; };
+		A2A79C1E1E13C4D600172852 /* CommentLabelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentLabelModel.m; sourceTree = "<group>"; };
+		A2A79C201E13C4FD00172852 /* UserCommentLabelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCommentLabelModel.h; sourceTree = "<group>"; };
+		A2A79C211E13C4FD00172852 /* UserCommentLabelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCommentLabelModel.m; sourceTree = "<group>"; };
 		A2C829861E024E1700645639 /* HeRealTimeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeRealTimeDetailController.h; sourceTree = "<group>"; };
 		A2C829871E024E1700645639 /* HeRealTimeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeRealTimeDetailController.m; sourceTree = "<group>"; };
 		A2C829881E024E1700645639 /* HeRealTimeDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeRealTimeDetailController.xib; sourceTree = "<group>"; };
@@ -1132,8 +1137,6 @@
 		A2FF4B711E0E53E100A3739E /* HobbyListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HobbyListModel.m; sourceTree = "<group>"; };
 		A2FF4B731E0FB19300A3739E /* FeedbackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackController.h; sourceTree = "<group>"; };
 		A2FF4B741E0FB19300A3739E /* FeedbackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackController.m; sourceTree = "<group>"; };
-		A2FF4B761E0FD03100A3739E /* CommentLabelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentLabelModel.h; sourceTree = "<group>"; };
-		A2FF4B771E0FD03100A3739E /* CommentLabelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentLabelModel.m; sourceTree = "<group>"; };
 		A2FF4B791E0FD23800A3739E /* CommentBetweenUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentBetweenUsers.h; sourceTree = "<group>"; };
 		A2FF4B7A1E0FD23800A3739E /* CommentBetweenUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentBetweenUsers.m; sourceTree = "<group>"; };
 		A2FF4B7C1E0FD8F200A3739E /* ChatListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListModel.h; sourceTree = "<group>"; };
@@ -4929,8 +4932,10 @@
 			children = (
 				A2FF4B791E0FD23800A3739E /* CommentBetweenUsers.h */,
 				A2FF4B7A1E0FD23800A3739E /* CommentBetweenUsers.m */,
-				A2FF4B761E0FD03100A3739E /* CommentLabelModel.h */,
-				A2FF4B771E0FD03100A3739E /* CommentLabelModel.m */,
+				A2A79C1D1E13C4D600172852 /* CommentLabelModel.h */,
+				A2A79C1E1E13C4D600172852 /* CommentLabelModel.m */,
+				A2A79C201E13C4FD00172852 /* UserCommentLabelModel.h */,
+				A2A79C211E13C4FD00172852 /* UserCommentLabelModel.m */,
 				A2FF4B631E0E100400A3739E /* HomePage */,
 				A211A3A81E0BB64D004C3331 /* User */,
 				A211A3A41E0B7146004C3331 /* Login & Register */,
@@ -6937,7 +6942,6 @@
 				EA8DAD8C1D5A18D000487BF4 /* NSString+MLExpression.m in Sources */,
 				EA8DAD1F1D5A18D000487BF4 /* DFSandboxHelper.m in Sources */,
 				EADF87ED1D621E380029DC4F /* PSTGridLayoutInfo.m in Sources */,
-				A2FF4B781E0FD03100A3739E /* CommentLabelModel.m in Sources */,
 				EA8DADFF1D5A18D000487BF4 /* README.md in Sources */,
 				A211A39A1E0A6B77004C3331 /* SDCycleScrollView.m in Sources */,
 				EA8DADF41D5A18D000487BF4 /* UIGestureRecognizer+RACSignalSupport.m in Sources */,
@@ -6978,6 +6982,7 @@
 				A2C829BA1E027D0500645639 /* README.md in Sources */,
 				EA8DACFE1D5A18D000487BF4 /* ASIHTTPRequest.m in Sources */,
 				EA5F0AA81D64C6D700F30729 /* HeRealTimeTrendVC.m in Sources */,
+				A2A79C221E13C4FD00172852 /* UserCommentLabelModel.m in Sources */,
 				EADF87D81D621E380029DC4F /* EMSDWebImageDownloaderOperation.m in Sources */,
 				EADF87DB1D621E380029DC4F /* MKAnnotationView+EMWebCache.m in Sources */,
 				EA5F0A9F1D64BFA400F30729 /* DFBaseUserLineCell.m in Sources */,
@@ -7274,6 +7279,7 @@
 				EADF87F51D621E380029DC4F /* EaseUserModel.m in Sources */,
 				EADF88751D62275A0029DC4F /* ChatroomDetailViewController.m in Sources */,
 				EADF87DE1D621E380029DC4F /* UIImage+EMGIF.m in Sources */,
+				A2A79C1F1E13C4D600172852 /* CommentLabelModel.m in Sources */,
 				EADF87F41D621E380029DC4F /* EaseMessageModel.m in Sources */,
 				EADF880C1D621E380029DC4F /* EaseMessageCell.m in Sources */,
 				EA8DAE421D5A18D000487BF4 /* YLImageView.m in Sources */,

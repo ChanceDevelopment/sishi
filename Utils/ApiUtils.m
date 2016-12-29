@@ -21,7 +21,7 @@ static AFHTTPSessionManager *sessionManager = nil;
 
 + (NSString *)baseUrl {
 //    return @"http://118.178.131.215:8088/";
-    return @"http://192.168.0.119:8080/";
+    return @"http://192.168.0.119:8080/";//测试用
 }
 
 + (AFHTTPSessionManager *)defaultSessionManager {
@@ -766,20 +766,27 @@ static AFHTTPSessionManager *sessionManager = nil;
 }
 
 
-
-+ (void)getMyWallPicsWithCompleteHandler:(void(^)(NSArray <NSString *>*responseImages))completeHandler errorHandler:(ApiUtilsResponseError)errorHandler {
++ (void)queryWallPicsForUser:(NSString *)uid withCompleteHandler:(void (^)(NSArray<NSString *> *))completeHandler errorHandler:(ApiUtilsResponseError)errorHandler {
     NSString *api = [NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],@"Sexton/user/GetPaperWallPic.action"];
-    [ApiUtils POST:api parameters:@{@"userId":[Tool uid]} onResponseSuccess:^(NSDictionary<NSString *,id> *responseInfo) {
+    [ApiUtils POST:api parameters:@{@"userId":uid} onResponseSuccess:^(NSDictionary<NSString *,id> *responseInfo) {
         NSString *responseImageNames = responseInfo[@"json"];
         NSArray *imageNames = [responseImageNames componentsSeparatedByString:@","];
+        NSMutableArray *imageLinks = [NSMutableArray arrayWithCapacity:imageNames.count];
+        for (NSString *imageName in imageNames) {
+            [imageLinks addObject:[NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],imageName]];
+        }
         if (completeHandler) {
-            completeHandler(imageNames);
+            completeHandler([NSArray arrayWithArray:imageLinks]);
         }
     } onResponseError:^(NSString *errorInfo) {
         if (errorHandler) {
             errorHandler(errorInfo);
         }
     }];
+}
+
++ (void)getMyWallPicsWithCompleteHandler:(void(^)(NSArray <NSString *>*responseImages))completeHandler errorHandler:(ApiUtilsResponseError)errorHandler {
+    [ApiUtils queryWallPicsForUser:[Tool uid] withCompleteHandler:completeHandler errorHandler:errorHandler];
 }
 
 + (void)uploadWallPaperWithImageName:(NSString *)imageName onComplete:(ApiUtilsSuccessWithVoidResponse)completeHandler errorHandler:(ApiUtilsResponseError)errorHandler {
@@ -800,6 +807,30 @@ static AFHTTPSessionManager *sessionManager = nil;
     [ApiUtils POST:api parameters:@{@"userId":[Tool uid],@"delPic":imageName} onResponseSuccess:^(NSDictionary<NSString *,id> *responseInfo) {
         if (completeHandler) {
             completeHandler();
+        }
+    } onResponseError:^(NSString *errorInfo) {
+        if (errorHandler) {
+            errorHandler(errorInfo);
+        }
+    }];
+}
+
++ (void)queryCommentLabelsForUser:(NSString *)uid withCompleteHandler:(void (^)(NSArray <UserCommentLabelModel *>*))completeHandler errorHandler:(ApiUtilsResponseError)errorHandler {
+    NSString *api = [NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],@"Sexton/user/QueryEvaluateInfo.action"];
+    [ApiUtils POST:api parameters:@{@"evaluateUserCar":uid} onResponseSuccess:^(NSDictionary<NSString *,id> *responseInfo) {
+        NSDictionary *responseJSONObject = responseInfo[@"json"];
+        NSString *jsonString = responseJSONObject[@"evaluateLabelid"];
+        NSDictionary *evaluateLabelid = [NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
+        NSMutableArray <UserCommentLabelModel *>*labelModels = [NSMutableArray arrayWithCapacity:evaluateLabelid.count];
+        for (NSString *key in evaluateLabelid) {//key就是评价的内容
+            NSInteger commentCount = [evaluateLabelid[key] integerValue];//评价数量
+            UserCommentLabelModel *labelModel = [UserCommentLabelModel new];
+            labelModel.labelName = key;
+            labelModel.count = commentCount;
+            [labelModels addObject:labelModel];
+        }
+        if (completeHandler) {
+            completeHandler([NSArray arrayWithArray:labelModels]);
         }
     } onResponseError:^(NSString *errorInfo) {
         if (errorHandler) {

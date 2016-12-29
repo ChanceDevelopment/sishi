@@ -35,6 +35,8 @@
         [self.labelName mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(2, 2, 2, 2));
         }];
+        
+        
     }
     return self;
 }

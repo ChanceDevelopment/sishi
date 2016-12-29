@@ -42,11 +42,16 @@
 
 - (void)onHeaderRefresh:(MJRefreshNormalHeader *)header {
     
-    [ApiUtils queryTripListWithUser:[Tool uid] carOwnerIsend:@"3" onComplete:^(NSArray<TripListModel *> *response) {
-        [header endRefreshing];
+//    [ApiUtils queryTripListWithUser:[Tool uid] carOwnerIsend:@"3" onComplete:^(NSArray<TripListModel *> *response) {
+//        [header endRefreshing];
+//    } errorHandler:^(NSString *responseErrorInfo) {
+//        [header endRefreshing];
+//        [self showHint:responseErrorInfo];
+//    }];
+    [ApiUtils queryRealtimeTripInfoWithCompleteHandler:^(NSArray<TripListModel *> *tripList) {
+        
     } errorHandler:^(NSString *responseErrorInfo) {
-        [header endRefreshing];
-        [self showHint:responseErrorInfo];
+        
     }];
 }
 

@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 typedef void(^ImageAdderCellOnDeleteImageCallBack) ();
 
+typedef void(^ImageAdderCellOnLongPressCallback)();
+
 
 @interface ImageAdderViewCell : UICollectionViewCell
 /**
@@ -25,6 +27,11 @@ typedef void(^ImageAdderCellOnDeleteImageCallBack) ();
  *  删除图片回调
  */
 @property(nonatomic,copy)ImageAdderCellOnDeleteImageCallBack onRemoveImage;
+
+/**
+ *  长按某一下标时回调
+ */
+@property(nonatomic,copy)ImageAdderCellOnLongPressCallback onLongPress;
 
 
 - (instancetype)initWithFrame:(CGRect)frame;

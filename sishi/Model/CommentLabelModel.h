@@ -1,7 +1,7 @@
 //
 //  CommentLabelModel.h
 //
-//  Created by likeSo  on 2016/12/25
+//  Created by 龙少  on 2016/12/28
 //  Copyright (c) 2016 __MyCompanyName__. All rights reserved.
 //
 

@@ -10,6 +10,7 @@
 #import "SDCycleScrollView.h"
 #import "UserInfoEditController.h"
 #import "ApiUtils.h"
+#import "LabelSelectView.h"
 
 @interface PersonalController ()
 @property (weak, nonatomic) IBOutlet SDCycleScrollView *imageBanner;
@@ -27,6 +28,8 @@
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UILabel *ageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *signLabel;
+@property (weak, nonatomic) IBOutlet LabelSelectView *labelView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *labelViewHeightConstraint;
 
 @end
 
@@ -47,6 +50,13 @@
     self.nameLabel.text = [Tool defaultsForKey:kDefaultsUserNick];
     self.imageBanner.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
     [self configPageInfo];
+    
+    self.labelView.labelFont = [UIFont systemFontOfSize:14];
+    kWeakSelf;
+    self.labelView.onChangeHeight = ^(CGFloat height) {
+        weakSelf.labelViewHeightConstraint.constant = height;
+        [weakSelf.containerView layoutIfNeeded];
+    };
 }
 
 - (void)onEdit:(UIBarButtonItem *)edit {
@@ -56,17 +66,36 @@
 }
 
 - (void)configPageInfo {
-    [ApiUtils queryCurrentUserInfoWithCompleteHander:^(UserFollowListModel*responseInfo) {
-        NSArray *imageNameList = [responseInfo.userHeader componentsSeparatedByString:@","];
-        NSMutableArray *imageLinkList = [NSMutableArray arrayWithCapacity:imageNameList.count];
-        for (NSString *imageName in imageNameList) {
-            if ([imageName hasPrefix:@"http"] || [imageName hasPrefix:@"HTTP"]) {
-                [imageLinkList addObject:imageName];
-            } else {
-                [imageLinkList addObject:[NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],imageName]];
-            }
+    //查询个人评价信息
+    [ApiUtils queryCommentLabelsForUser:[Tool uid] withCompleteHandler:^(NSArray<UserCommentLabelModel *> *labels) {
+        NSMutableArray *titleList = [NSMutableArray arrayWithCapacity:labels.count];
+        for (UserCommentLabelModel *model in labels) {
+            [titleList addObject:model.labelName];
         }
-        self.imageBanner.imageURLStringsGroup = imageLinkList;
+        
+        self.labelView.labelList = [NSArray arrayWithArray:titleList];
+    } errorHandler:^(NSString *responseErrorInfo) {
+        
+    }];
+    
+    [ApiUtils getMyWallPicsWithCompleteHandler:^(NSArray<NSString *> *responseImages) {//查询照片墙
+        self.imageBanner.imageURLStringsGroup = responseImages;
+    } errorHandler:^(NSString *responseErrorInfo) {
+        [self showHint:responseErrorInfo];
+    }];
+    
+    ///查询用户个人信息
+    [ApiUtils queryCurrentUserInfoWithCompleteHander:^(UserFollowListModel*responseInfo) {
+//        NSArray *imageNameList = [responseInfo.userHeader componentsSeparatedByString:@","];
+//        NSMutableArray *imageLinkList = [NSMutableArray arrayWithCapacity:imageNameList.count];
+//        for (NSString *imageName in imageNameList) {
+//            if ([imageName hasPrefix:@"http"] || [imageName hasPrefix:@"HTTP"]) {
+//                [imageLinkList addObject:imageName];
+//            } else {
+//                [imageLinkList addObject:[NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],imageName]];
+//            }
+//        }
+//        self.imageBanner.imageURLStringsGroup = imageLinkList;
         NSString *gender = responseInfo.userSex;
         if ([gender isEqualToString:@"1"]) {
             self.sexLabel.text = @"男";
@@ -75,7 +104,6 @@
         } else {
             self.sexLabel.text = @"";
         }
-        
         self.ageLabel.text = [NSString stringWithFormat:@"%@",responseInfo.userAge];
         self.signLabel.text = responseInfo.userSign;
         

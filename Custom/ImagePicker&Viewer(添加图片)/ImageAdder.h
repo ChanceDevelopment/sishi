@@ -27,6 +27,9 @@ typedef void (^ImageAdderOnChangeViewHeightCallBack) (CGFloat viewheight);
 - (void)imageAdder:(ImageAdder *)imageAdder didSelectImageInStringList:(NSArray <NSString *>*)stringList atIndex:(NSUInteger)index;
 
 - (void)imageAdder:(ImageAdder *)imageAdder willRemoveImageInList:(NSArray <UIImage *>*)imageList atIndex:(NSUInteger)index;
+
+//当长按某下标图片时
+- (void)imageAdder:(ImageAdder *)imageAdder longPressAtIndexPathRow:(NSUInteger)index;
 @end
 
 /**

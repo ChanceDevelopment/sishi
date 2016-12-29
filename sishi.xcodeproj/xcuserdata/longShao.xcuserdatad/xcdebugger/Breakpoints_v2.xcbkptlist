@@ -84,46 +84,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "sishi/Controller/MyTripListController.m"
-            timestampString = "504582555.546449"
+            filePath = "Utils/ApiUtils.m"
+            timestampString = "504613435.475972"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "-onHeaderRefresh:"
+            startingLineNumber = "825"
+            endingLineNumber = "825"
+            landmarkName = "+queryCommentLabelsForUser:withCompleteHandler:errorHandler:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[MyTripListController onHeaderRefresh:]"
-                  moduleName = "&#x53f8;&#x4e8b;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/longShao/Projects/sishi/sishi/Controller/MyTripListController.m"
-                  timestampString = "504587416.735835"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "50">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__40-[MyTripListController onHeaderRefresh:]_block_invoke"
-                  moduleName = "&#x53f8;&#x4e8b;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/longShao/Projects/sishi/sishi/Controller/MyTripListController.m"
-                  timestampString = "504587416.737992"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "16">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

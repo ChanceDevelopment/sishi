@@ -43,4 +43,5 @@ typedef void(^LabelSelectViewViewHeightChangeCallBack)(CGFloat viewHeight);
  */
 - (CGFloat)labelViewHeightForLabels:(NSArray <NSString *>*)labels targetRectWidth:(CGFloat)rectWidth;
 
+
 @end

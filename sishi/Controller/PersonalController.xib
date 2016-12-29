@@ -18,6 +18,8 @@
                 <outlet property="containerView" destination="x9g-2u-Y96" id="RAr-NA-3P0"/>
                 <outlet property="hobbyBtn" destination="oTJ-1O-vZf" id="O4x-6d-lU9"/>
                 <outlet property="imageBanner" destination="z0q-Tw-the" id="Xqc-de-cNJ"/>
+                <outlet property="labelView" destination="yu0-Df-Lzj" id="KTk-Se-FpW"/>
+                <outlet property="labelViewHeightConstraint" destination="ZVo-9P-gOF" id="Zn4-xQ-KNG"/>
                 <outlet property="nameLabel" destination="1BG-BR-QVT" id="ehs-7d-tKu"/>
                 <outlet property="sexLabel" destination="cu1-bi-H3e" id="8bd-AA-XWd"/>
                 <outlet property="signLabel" destination="8yV-Vc-BzZ" id="ycN-WN-nMU"/>
