@@ -20,8 +20,8 @@ static AFHTTPSessionManager *sessionManager = nil;
 @implementation ApiUtils
 
 + (NSString *)baseUrl {
-//    return @"http://118.178.131.215:8088/";
-    return @"http://192.168.0.119:8080/";//测试用
+    return @"http://118.178.131.215:8088/";
+//    return @"http://192.168.0.119:8080/";
 }
 
 + (AFHTTPSessionManager *)defaultSessionManager {

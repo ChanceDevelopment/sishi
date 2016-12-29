@@ -159,6 +159,8 @@
 		EA2AC39E1D60192300C57B45 /* user_placeholder_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2AC3871D60192300C57B45 /* user_placeholder_icon.png */; };
 		EA2AC39F1D60192300C57B45 /* wechatIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2AC3881D60192300C57B45 /* wechatIcon.png */; };
 		EA2AC3A01D60192300C57B45 /* weiboIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2AC3891D60192300C57B45 /* weiboIcon.png */; };
+		EA4583CD1E1414C3003F34DE /* icon_myedit.png in Resources */ = {isa = PBXBuildFile; fileRef = EA4583CC1E1414C3003F34DE /* icon_myedit.png */; };
+		EA4583CF1E1415AE003F34DE /* icon_myfilter.png in Resources */ = {isa = PBXBuildFile; fileRef = EA4583CE1E1415AE003F34DE /* icon_myfilter.png */; };
 		EA4FA29A1D6C1DCA00099DCC /* HeLaunchJourneyUserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4FA2981D6C1DCA00099DCC /* HeLaunchJourneyUserVC.m */; };
 		EA4FA29B1D6C1DCA00099DCC /* HeLaunchJourneyUserVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4FA2991D6C1DCA00099DCC /* HeLaunchJourneyUserVC.xib */; };
 		EA4FA29F1D6C1DF600099DCC /* HeJourneyUserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4FA29D1D6C1DF600099DCC /* HeJourneyUserVC.m */; };
@@ -1234,6 +1236,8 @@
 		EA2AC3871D60192300C57B45 /* user_placeholder_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_placeholder_icon.png; sourceTree = "<group>"; };
 		EA2AC3881D60192300C57B45 /* wechatIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wechatIcon.png; sourceTree = "<group>"; };
 		EA2AC3891D60192300C57B45 /* weiboIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weiboIcon.png; sourceTree = "<group>"; };
+		EA4583CC1E1414C3003F34DE /* icon_myedit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_myedit.png; sourceTree = "<group>"; };
+		EA4583CE1E1415AE003F34DE /* icon_myfilter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_myfilter.png; sourceTree = "<group>"; };
 		EA4FA2971D6C1DCA00099DCC /* HeLaunchJourneyUserVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeLaunchJourneyUserVC.h; sourceTree = "<group>"; };
 		EA4FA2981D6C1DCA00099DCC /* HeLaunchJourneyUserVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeLaunchJourneyUserVC.m; sourceTree = "<group>"; };
 		EA4FA2991D6C1DCA00099DCC /* HeLaunchJourneyUserVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeLaunchJourneyUserVC.xib; sourceTree = "<group>"; };
@@ -5285,6 +5289,8 @@
 		EAA790861DEBDA4A00443970 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				EA4583CE1E1415AE003F34DE /* icon_myfilter.png */,
+				EA4583CC1E1414C3003F34DE /* icon_myedit.png */,
 				EAA790871DEBDB0200443970 /* ic_sexton.png */,
 				EAA790881DEBDB0200443970 /* icon_aboutus.png */,
 				EAA790891DEBDB0200443970 /* icon_add_pics.png */,
@@ -6613,6 +6619,7 @@
 				EA4FA29B1D6C1DCA00099DCC /* HeLaunchJourneyUserVC.xib in Resources */,
 				EA2AC38A1D60192300C57B45 /* boyIcon.png in Resources */,
 				A211A3661E0A618E004C3331 /* PersonalController.xib in Resources */,
+				EA4583CD1E1414C3003F34DE /* icon_myedit.png in Resources */,
 				EAA790971DEBDB0200443970 /* ic_sexton.png in Resources */,
 				EADF86701D621C900029DC4F /* tabbar_contacts.png in Resources */,
 				EADF862D1D621C900029DC4F /* chat_receiver_audio_playing003@2x.png in Resources */,
@@ -6621,6 +6628,7 @@
 				EA8DAD431D5A18D000487BF4 /* blueArrow@2x.png in Resources */,
 				EA8DA96F1D5A171A00487BF4 /* Assets.xcassets in Resources */,
 				EA8DAE3F1D5A18D000487BF4 /* LICENSE in Resources */,
+				EA4583CF1E1415AE003F34DE /* icon_myfilter.png in Resources */,
 				EA2AC3481D5EC24700C57B45 /* tabar_discover_icon_normal@2x.png in Resources */,
 				EADF865E1D621C900029DC4F /* delete@2x.png in Resources */,
 				EA8DA9FB1D5A18C700487BF4 /* HeTabBarVC.xib in Resources */,
@@ -7727,8 +7735,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.channce.sishi;
 				PRODUCT_NAME = "司事";
-				PROVISIONING_PROFILE = "34b84f71-0ac6-405d-a22b-4168978b1f76";
-				PROVISIONING_PROFILE_SPECIFIER = 20160818_sishi_Release;
+				PROVISIONING_PROFILE = "6767c2e4-d97e-4c53-940f-3acf7a8cc0d6";
+				PROVISIONING_PROFILE_SPECIFIER = 20161019_sishi_Development;
 			};
 			name = Debug;
 		};
