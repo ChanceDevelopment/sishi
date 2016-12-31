@@ -138,6 +138,14 @@
 {
     [super initView];
 //    self.navigationController.navigationBarHidden = YES;
+    
+    
+    self.postButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15);
+    self.postButton.layer.cornerRadius = 30;
+    self.postButton.layer.shadowOffset = CGSizeMake(2, 2);
+    self.postButton.layer.shadowColor = [UIColor colorWithWhite:0.4 alpha:1].CGColor;
+    self.postButton.layer.shadowOpacity = 1.0;
+    
     [Tool setExtraCellLineHidden:tableview];
     tableview.backgroundColor = [UIColor whiteColor];
     
@@ -279,8 +287,8 @@
     cell.onContactAction = ^(HeNearByTableCell *targetCell) {
         [MBProgressHUD showHUDAddedTo:weakSelf.view.window animated:YES];
         [ApiUtils sendAskingFor:nearbyModel.userId tripId:@" " withCompleteHandler:^{
-            [weakSelf showHint:@"已发出邀约"];
             [MBProgressHUD hideHUDForView:weakSelf.view.window animated:YES];
+            [weakSelf showHint:@"已发出邀约"];
         } errorHandler:^(NSString *responseErrorInfo) {
             [MBProgressHUD hideHUDForView:self.view.window animated:YES];
             [weakSelf showHint:responseErrorInfo];
@@ -290,27 +298,42 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSInteger section = indexPath.section;
-    NSInteger row = indexPath.row;
+//    NSInteger section = indexPath.section;
+//    NSInteger row = indexPath.row;
     return 220;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 30.0;
+    return 65;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 30)];
     header.backgroundColor = [UIColor whiteColor];
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:header.bounds];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textColor = [UIColor blackColor];
     titleLabel.font = [UIFont boldSystemFontOfSize:24.0];
     NSString *uNick = [Tool defaultsForKey:kDefaultsUserNick];
-    titleLabel.text  = [NSString stringWithFormat:@"   %@  您好 !",uNick];
+    titleLabel.text  = [NSString stringWithFormat:@"%@  您好 !",uNick];
     [header addSubview:titleLabel];
+    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(@10);
+        make.top.equalTo(@5);
+    }];
+    
+    NSString *isUser = [[Tool judge] isEqualToString:@"0"] ? @"用户" : @"车主";
+    UILabel *loginTypeLabel = [[UILabel alloc]init];
+    loginTypeLabel.text = [NSString stringWithFormat:@"附近%@",isUser];
+    loginTypeLabel.font = [UIFont systemFontOfSize:14];
+    loginTypeLabel.textColor = [UIColor colorWithWhite:0.3 alpha:1];
+    [header addSubview:loginTypeLabel];
+    [loginTypeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(titleLabel);
+        make.top.equalTo(titleLabel.mas_bottom).offset(5);
+    }];
     
     return header;
 }
@@ -366,6 +389,10 @@
     HeDistributeInviteVC *distributeVC = [[HeDistributeInviteVC alloc] init];
     distributeVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:distributeVC animated:YES];
+    
+}
+- (IBAction)onLongPress:(UILongPressGestureRecognizer *)sender {
+    [self.postButton resignFirstResponder];//取消按钮的被点击状态
 }
 
 /*

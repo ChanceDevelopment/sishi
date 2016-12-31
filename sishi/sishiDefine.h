@@ -188,6 +188,9 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 //图片加载出错的时候默认图
 #define DEFAULTERRORIMAGE @"errorImage"
 
+///默认红色按钮的颜色值
+#define kColorDefaultRed [UIColor colorWithRed:255 / 255.0 green:90 / 255.0 blue:95 / 255.0 alpha:1]
+
 //登录的广播
 #define LOGINSTATEKEY @"loginStateKey"
 #define LOGINOUTKEY   @"loginOut"       //退出登录

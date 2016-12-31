@@ -108,6 +108,14 @@ NSString *const kTripDetailModelCarEndtime = @"carEndtime";
     
 }
 
+- (void)setCarUserGotime:(double)carUserGotime {
+    _carUserGotime = carUserGotime;
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:carUserGotime / 1000];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm";
+    self.startDate = [dateFormatter stringFromDate:date];
+}
+
 - (NSDictionary *)dictionaryRepresentation
 {
     NSMutableDictionary *mutableDict = [NSMutableDictionary dictionary];

@@ -74,7 +74,7 @@
 {
     [super initializaiton];
     titledataSource = @[@"搜索",@"我的行程",@"设置",@"关于我们",@"向我们反馈",@"我关注的人",@"邀请我的好友"];
-    dataSource = @[@"icon_search",@"icon_trip",@"icon_set_black",@"icon_aboutus",@"icon_feedback",@"",@""];
+    dataSource = @[@"icon_search",@"icon_trip",@"icon_set_black",@"icon_aboutus",@"icon_feedback",@"icon_collection.png",@"icon_invite.png"];
 }
 
 - (void)loadDataFromLocal

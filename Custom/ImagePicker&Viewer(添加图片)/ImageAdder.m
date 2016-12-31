@@ -123,6 +123,12 @@
         } else {
             ImageAdderViewCell *imageCell = (ImageAdderViewCell *)cell;
             imageCell.imageLink = self.imageLinkGroup[indexPath.item];
+            kWeakSelf;
+            imageCell.onLongPress = ^{
+                if (weakSelf.imageAdderDelegate && [self.imageAdderDelegate respondsToSelector:@selector(imageAdder:longPressAtIndexPathRow:)]) {
+                    [weakSelf.imageAdderDelegate imageAdder:weakSelf longPressAtIndexPathRow:indexPath.item];
+                }
+            };
         }
     }
 }

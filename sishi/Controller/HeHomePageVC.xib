@@ -51,13 +51,21 @@
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5m1-Ov-cmT">
                     <rect key="frame" x="295" y="582" width="60" height="60"/>
+                    <color key="backgroundColor" red="1" green="0.34651726484298706" blue="0.35638773441314697" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="aMC-l6-6gM"/>
                         <constraint firstAttribute="width" constant="60" id="nen-BL-SB2"/>
                     </constraints>
-                    <state key="normal" backgroundImage="icon_add.png"/>
+                    <state key="normal" image="icon_send.png"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="30"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="onPost:" destination="-1" eventType="touchUpInside" id="Ct5-tn-dn3"/>
+                        <outletCollection property="gestureRecognizers" destination="54p-oC-pCa" appends="YES" id="3kX-Bt-lW6"/>
                     </connections>
                 </button>
             </subviews>
@@ -104,8 +112,13 @@
                 </mask>
             </variation>
         </view>
+        <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="54p-oC-pCa">
+            <connections>
+                <action selector="onLongPress:" destination="-1" id="mxH-cl-aZn"/>
+            </connections>
+        </pongPressGestureRecognizer>
     </objects>
     <resources>
-        <image name="icon_add.png" width="192" height="192"/>
+        <image name="icon_send.png" width="57" height="51"/>
     </resources>
 </document>

@@ -26,6 +26,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *counterLabel;
 
 /**
+ *  最多可添加的标签数量
+ */
+@property(nonatomic,assign)NSUInteger maximumLabelCount;
+
+/**
  *  评价标签列表
  */
 @property(nonatomic,strong)NSArray <CommentLabelModel *>*commentLabelModelList;
@@ -75,14 +80,22 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-//    [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
+    [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
 }
 
 - (void)setupView {
+    self.maximumLabelCount = 2;
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
     self.labelSelectView.labelViewDelegate = self;
     self.labelSelectView.labelFont = [UIFont systemFontOfSize:13];
     self.labelShowView.labelFont = [UIFont systemFontOfSize:13];
+    self.labelShowView.layer.cornerRadius = 2;
+    self.labelShowView.layer.borderWidth = 1.0;
+    
+    self.labelShowView.layer.borderColor = kColorDefaultRed.CGColor;
     UIButton *complaintsBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    complaintsBtn.frame = CGRectMake(0, 0, 44, 44);
     [complaintsBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     complaintsBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [complaintsBtn setTitle:@"投诉" forState:UIControlStateNormal];
@@ -99,7 +112,7 @@
         NSString *gender = [userModel.userSex isEqualToString:@"1"] ? @"男" : @"女";
         self.genderLabel.text = self.genderLabel.text = gender;
         [self.hobbyBtn setTitle:[NSString stringWithFormat:@"爱好 %@",userModel.userCredit] forState:UIControlStateNormal];
-        NSURL *userImageUrl = [NSURL URLWithString:userModel.userHeader];
+        NSURL *userImageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],userModel.userHeader]];
         [self.headerBtn sd_setImageWithURL:userImageUrl forState:UIControlStateNormal];
     } errorHandler:^(NSString *responseErrorInfo) {
         [self showHint:@"获取个人信息出现错误"];
@@ -111,7 +124,7 @@
         for (CommentLabelModel *labelModel in commentLabelList) {
             [labelNameList addObject:labelModel.labelContent];
         }
-        
+        self.labelSelectView.labelList = [NSArray arrayWithArray:labelNameList];
     } errorHandler:^(NSString *responseErrorInfo) {
         [self showHint:@"获取评论标签列表失败"];
     }];
@@ -129,7 +142,6 @@
 
 - (void)onComplaint:(UIButton *)btn {
     //投诉,进入投诉页面
-//    [ApiUtils complaintsFor:self.evaluateUserId content:<#(NSString *)#> complain:<#(NSInteger)#> completeHandler:<#^(void)completeHandler#> errorHandler:<#^(NSString *responseErrorInfo)errorHandler#>]
     CompaintsController *complaintController = [[CompaintsController alloc]initWithNibName:@"CompaintsController" bundle:[NSBundle mainBundle]];
     complaintController.complaintId = self.evaluateUserId;
     [self.navigationController pushViewController:complaintController animated:YES];
@@ -144,6 +156,7 @@
         [labelNameList addObject:labelName];
         self.labelShowView.labelList = [NSArray arrayWithArray:labelNameList];
         [self.selectedLabelList addObject:[self labelIdWithName:labelName]];
+        self.counterLabel.text = [NSString stringWithFormat:@"还可以添加%lu个标签",self.maximumLabelCount - self.labelSelectView.selectedLabelList.count];
     }
 }
 
@@ -151,6 +164,7 @@
     if (labelView == self.labelSelectView) {
         [self.labelShowView removeLabelWithName:labelName];
         [self.selectedLabelList removeObject:[self labelIdWithName:labelName]];
+        self.counterLabel.text = [NSString stringWithFormat:@"还可以添加%lu个标签",self.maximumLabelCount - self.labelSelectView.selectedLabelList.count];
     }
 }
 

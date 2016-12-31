@@ -74,9 +74,11 @@
                       dispatch_async(dispatch_get_global_queue(0, 0), ^{
                       BOOL isAuthlogin = [EMClient sharedClient].options.isAutoLogin;
                       EMError *loginError = nil;
-                      if (!isAuthlogin || ![EMClient sharedClient].isLoggedIn) {//自动登录未开启或者当前没有登录,则进行登录
+                      if (!isAuthlogin) {//自动登录未开启则进行登录
                           loginError =  [[EMClient sharedClient]loginWithUsername:userInfo.userPhone password:weakSelf.passwordInputField.text];
-                          [[EMClient sharedClient].options setIsAutoLogin:YES];
+                          if (!loginError) {
+                              [[EMClient sharedClient].options setIsAutoLogin:YES];   
+                          }
                       }
                           if (!loginError) {
                               dispatch_async(dispatch_get_main_queue(), ^{

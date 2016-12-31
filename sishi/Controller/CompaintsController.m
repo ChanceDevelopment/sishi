@@ -31,7 +31,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(onTextViewTextChanged:) name:UITextViewTextDidChangeNotification object:nil];
-    
+    self.navigationItem.title = @"投诉";
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
 }
 
 - (void)onTextViewTextChanged:(NSNotification *)note {

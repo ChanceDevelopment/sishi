@@ -15,7 +15,7 @@
 #import "ApiUtils.h"
 #import "OwnerCertificationController.h"
 
-@interface UserInfoEditController ()<ImageAdderAddImageProtocol,UIPickerViewDelegate,UIPickerViewDataSource>
+@interface UserInfoEditController ()<ImageAdderAddImageProtocol,UIPickerViewDelegate,UIPickerViewDataSource,ImageAdderAddImageProtocol>
 @property (weak, nonatomic) IBOutlet UIButton *headImageBtn;
 @property (weak, nonatomic) IBOutlet UITextField *nickNameInputField;
 @property (weak, nonatomic) IBOutlet UILabel *genderLabel;
@@ -94,6 +94,10 @@
  */
 @property(nonatomic,strong)NSArray <NSArray <NSString *>*>* dayArray;
 
+/**
+ *  即将被删除的图片文件名
+ */
+@property(nonatomic,strong)NSMutableArray *imageNamesWillRemove;
 
 
 @end
@@ -102,6 +106,13 @@
 
 - (NSArray<NSString *> *)genderSelectList {
     return @[@"男",@"女"];
+}
+
+- (NSMutableArray *)imageNamesWillRemove {
+    if (!_imageNamesWillRemove) {
+        _imageNamesWillRemove = [NSMutableArray array];
+    }
+    return _imageNamesWillRemove;
 }
 
 - (void)setGender:(NSString *)gender {
@@ -182,7 +193,8 @@
     if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
         self.tableView.separatorInset = UIEdgeInsetsZero;
     }
-    self.localImageAdder.onlyShow = YES;
+//    self.localImageAdder.onlyShow = YES;
+    self.localImageAdder.contentInset = UIEdgeInsetsMake(10, 0, 0, 0);
     self.completeBtn.layer.cornerRadius = 5;
     self.completeBtn.clipsToBounds = YES;
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0);
@@ -195,10 +207,12 @@
 //        [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:9 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
     };
     
+    
     self.localImageAdder.onlyShow = YES;
+    self.localImageAdder.imageAdderDelegate = self;
     self.localImageAdder.onChangeHeight = ^(CGFloat viewHeight) {
         [weakSelf.tableView beginUpdates];
-        weakSelf.localImageAdderHeight = viewHeight + 15;
+        weakSelf.localImageAdderHeight = viewHeight + 25;
         if (weakSelf.localImageAdderHeight <= 15) {
             weakSelf.localImageAdderHeight = 55;
         }
@@ -220,6 +234,13 @@
     [self configPageInfo];
     
     self.tableView.tableFooterView = [UIView new];
+}
+
+#pragma mark :- 长按
+- (void)imageAdder:(ImageAdder *)imageAdder longPressAtIndexPathRow:(NSUInteger)index {
+//    NSLog(@"image name at image link group %@ will be removed ",self.imageAdder.imageLinkGroup[index]);
+    NSString *imageLink = [imageAdder.imageLinkGroup objectAtIndex:index];
+//    NSString *imageName = imageLink
 }
 
 - (void)configPageInfo {

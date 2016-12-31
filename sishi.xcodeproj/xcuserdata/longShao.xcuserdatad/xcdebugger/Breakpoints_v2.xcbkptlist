@@ -53,11 +53,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "sishi/Controller/HeChatVC.m"
-            timestampString = "504523245.275504"
+            timestampString = "504780756.34351"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "-didReceiveMessages:"
             landmarkType = "7">
          </BreakpointContent>
@@ -69,11 +69,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "sishi/Controller/HeChatVC.m"
-            timestampString = "504523245.275504"
+            timestampString = "504780756.34351"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
             landmarkName = "-didUpdateConversationList:"
             landmarkType = "7">
          </BreakpointContent>
@@ -92,6 +92,27 @@
             endingLineNumber = "820"
             landmarkName = "+queryCommentLabelsForUser:withCompleteHandler:errorHandler:"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = "UIViewAlertForUnsatisfiableConstraints"
+            moduleName = "">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "UIViewAlertForUnsatisfiableConstraints"
+                  moduleName = "UIKit"
+                  usesParentBreakpointCondition = "Yes"
+                  offsetFromSymbolStart = "0">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -15,10 +15,12 @@
 #import "SelectViewContainer.h"
 #import "ApiUtils.h"
 #import "NearbyTravelUserListController.h"
+#import <BaiduMapAPI_Location/BMKLocationService.h>
+#import <BaiduMapAPI_Search/BMKGeocodeSearch.h>
 
 #define TextLineHeight 1.2f
 
-@interface HeDistributeInviteVC ()<ImageAdderAddImageProtocol,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface HeDistributeInviteVC ()<ImageAdderAddImageProtocol,UINavigationControllerDelegate,UIImagePickerControllerDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UITextField *destinationInputField;
 @property (weak, nonatomic) IBOutlet UITextField *getInCarInputField;
@@ -29,6 +31,18 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *labelSelectViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageAdderHeightConstraint;
+
+/**
+ *  定位管理器
+ */
+@property(nonatomic,strong)BMKLocationService *locationManager;
+
+/**
+ *  逆地理编码管理器
+ */
+@property(nonatomic,strong)BMKGeoCodeSearch *regeoCodeManager;
+
+
 
 /**
  *  兴趣爱好数组
@@ -43,6 +57,21 @@
 @end
 
 @implementation HeDistributeInviteVC
+- (BMKLocationService *)locationManager {
+    if (!_locationManager) {
+        _locationManager = [[BMKLocationService alloc]init];
+        _locationManager.delegate = self;
+    }
+    return _locationManager;
+}
+
+- (BMKGeoCodeSearch *)regeoCodeManager {
+    if (!_regeoCodeManager) {
+        _regeoCodeManager = [[BMKGeoCodeSearch alloc]init];
+        _regeoCodeManager.delegate = self;
+    }
+    return _regeoCodeManager;
+}
 
 - (UIDatePicker *)datePicker {
     if (!_datePicker) {
@@ -172,9 +201,6 @@
     NSDictionary *tripInfo = [ApiUtils tripInfoWithUserGoTime:userGoTime wishTarget:wishTarget  ownerImage:imageNameListString startPlace:self.getInCarInputField.text stopPlace:self.destinationInputField.text tripNote:self.noteInputField.text tripType:@"1" tripState:@"1" receiverId:@"" longitude:longitude latitude:latitude carOwnerState:@"1"];
     [ApiUtils publishNewTripWithTripInfo:tripInfo completeHandler:^{
         [MBProgressHUD hideHUDForView:self.view.window animated:YES];
-//        NSLog(@"发布成功");
-//        [self showHint:@"发布成功"];
-//        [self.navigationController popViewControllerAnimated:YES];
         NearbyTravelUserListController *nearbyUserList = [[NearbyTravelUserListController alloc]initWithNibName:@"NearbyTravelUserListController" bundle:[NSBundle mainBundle]];
         nearbyUserList.hobbys = [self.labelSelectView.selectedLabelList componentsJoinedByString:@","];
         [self.navigationController pushViewController:nearbyUserList animated:YES];
@@ -182,6 +208,27 @@
         [self showHint:responseErrorInfo];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
+}
+- (IBAction)onLocate:(UIButton *)sender {//获取当前位置
+    [self.locationManager startUserLocationService];
+}
+
+
+#pragma mark :- BaiduMap Location Manager Delegate 
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation {
+    [self.locationManager stopUserLocationService];
+    //进行逆地理编码
+    CLLocation *location = userLocation.location;
+    BMKReverseGeoCodeOption *reverseOption = [[BMKReverseGeoCodeOption alloc]init];
+    reverseOption.reverseGeoPoint = location.coordinate;
+    
+    self.regeoCodeManager.delegate = self;
+    [self.regeoCodeManager reverseGeoCode:reverseOption];
+}
+
+#pragma mark :- BMKReverseGeoCodeDelegate 
+- (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error {
+    self.getInCarInputField.text = result.address;
 }
 
 - (void)queryNearbyUserList {

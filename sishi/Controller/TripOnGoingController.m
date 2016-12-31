@@ -19,6 +19,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *rightBtn;
 @property (weak, nonatomic) IBOutlet UIButton *leftBtn;
 
+/**
+ *  行程详情Model
+ */
+@property(nonatomic,strong)TripDetailModel *detailModel;
+
+
 @end
 
 @implementation TripOnGoingController
@@ -44,7 +50,7 @@
     //查询行程详情
     [ApiUtils viewTripInfoWithTripId:self.tripId
                      completeHandler:^(TripDetailModel *detailModel) {
-//                         NSLog(@"query trip detail info with response info %@",detailModel);
+                         self.detailModel  = detailModel;
                          NSString *getHeaderImage = [NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],detailModel.getHeader];
                          [self.leftBtn sd_setImageWithURL:[NSURL URLWithString:getHeaderImage] forState:UIControlStateNormal];
                          
@@ -119,6 +125,7 @@
 - (IBAction)onPostMood:(UIButton *)sender {
     ReleaseMoodViewController *moodController = [[ReleaseMoodViewController alloc]initWithNibName:@"ReleaseMoodViewController" bundle:[NSBundle mainBundle]];
     moodController.tripId = self.tripId;
+    moodController.tripModel = self.detailModel;
     [self.navigationController pushViewController:moodController animated:YES];
 }
 

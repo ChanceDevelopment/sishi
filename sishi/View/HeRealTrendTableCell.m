@@ -26,7 +26,7 @@
 
 - (void)setModel:(TripListModel *)model {
     _model = model;
-    [self.headImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],model.userHeader]]];
+    [self.headImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],model.userHeader] ] placeholderImage:[UIImage imageNamed:DEFAULTERRORIMAGE]];
     self.timeLabel.text = model.carEndtime;
     if (!model.isOnGoing) {
         self.contentLabel.text = @"已邀约,等待行程开始";

@@ -121,7 +121,6 @@
 		EA2AC3291D5EC01000C57B45 /* HeBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2AC3271D5EC01000C57B45 /* HeBaseTableViewCell.m */; };
 		EA2AC32A1D5EC01000C57B45 /* HeBaseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2AC3281D5EC01000C57B45 /* HeBaseTableViewCell.xib */; };
 		EA2AC32E1D5EC08400C57B45 /* HeChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2AC32C1D5EC08400C57B45 /* HeChatVC.m */; };
-		EA2AC32F1D5EC08400C57B45 /* HeChatVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2AC32D1D5EC08400C57B45 /* HeChatVC.xib */; };
 		EA2AC3381D5EC22000C57B45 /* NavBarIOS7_white.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2AC3341D5EC22000C57B45 /* NavBarIOS7_white.png */; };
 		EA2AC3391D5EC22000C57B45 /* NavBarIOS7.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2AC3351D5EC22000C57B45 /* NavBarIOS7.png */; };
 		EA2AC33A1D5EC22000C57B45 /* navigationBar_back_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2AC3361D5EC22000C57B45 /* navigationBar_back_icon.png */; };
@@ -1206,7 +1205,6 @@
 		EA2AC3281D5EC01000C57B45 /* HeBaseTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeBaseTableViewCell.xib; sourceTree = "<group>"; };
 		EA2AC32B1D5EC08400C57B45 /* HeChatVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeChatVC.h; sourceTree = "<group>"; };
 		EA2AC32C1D5EC08400C57B45 /* HeChatVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeChatVC.m; sourceTree = "<group>"; };
-		EA2AC32D1D5EC08400C57B45 /* HeChatVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeChatVC.xib; sourceTree = "<group>"; };
 		EA2AC3341D5EC22000C57B45 /* NavBarIOS7_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBarIOS7_white.png; sourceTree = "<group>"; };
 		EA2AC3351D5EC22000C57B45 /* NavBarIOS7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBarIOS7.png; sourceTree = "<group>"; };
 		EA2AC3361D5EC22000C57B45 /* navigationBar_back_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationBar_back_icon.png; sourceTree = "<group>"; };
@@ -3142,7 +3140,6 @@
 			children = (
 				EA2AC32B1D5EC08400C57B45 /* HeChatVC.h */,
 				EA2AC32C1D5EC08400C57B45 /* HeChatVC.m */,
-				EA2AC32D1D5EC08400C57B45 /* HeChatVC.xib */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -6779,7 +6776,6 @@
 				A2FF4B621E0CECE200A3739E /* SelectViewContainer.xib in Resources */,
 				EADF866F1D621C900029DC4F /* tabbar_chatsHL@2x.png in Resources */,
 				EA2AC3961D60192300C57B45 /* newUserIcon.png in Resources */,
-				EA2AC32F1D5EC08400C57B45 /* HeChatVC.xib in Resources */,
 				A22149A71E03EBBD002D8F52 /* LICENSE in Resources */,
 				A2FF4B831E10C9F500A3739E /* ReleaseMoodViewController.xib in Resources */,
 				A211A3501E07C858004C3331 /* RegisterController.xib in Resources */,

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "TripDetailModel.h"
 
 /**
  发表 心情 界面
@@ -17,4 +17,10 @@
  *  行程Id
  */
 @property(nonatomic,copy)NSString *tripId;
+
+/**
+ *  详情界面model
+ */
+@property(nonatomic,strong)TripDetailModel *tripModel;
+
 @end

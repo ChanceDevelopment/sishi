@@ -83,8 +83,7 @@
 + (UIImage *)snapshot:(UIView *)view;
 
 
-
-
++ (NSString*)weekdayStringFromDate:(NSDate*)inputDate;
 
 
 

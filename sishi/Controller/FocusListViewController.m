@@ -99,11 +99,11 @@
     cell.onContact = ^(UserFollowListModel *userModel) {
         [MBProgressHUD showHUDAddedTo:weakSelf.view.window animated:YES];
         [ApiUtils sendAskingFor:userModel.userId tripId:@"" withCompleteHandler:^{
+            [MBProgressHUD hideHUDForView:weakSelf.view.window animated:YES];
             [weakSelf showHint:@"成功邀约"];
-            [MBProgressHUD hideHUDForView:weakSelf.view.window animated:YES];
         } errorHandler:^(NSString *responseErrorInfo) {
-            [self showHint:responseErrorInfo];
             [MBProgressHUD hideHUDForView:weakSelf.view.window animated:YES];
+            [self showHint:responseErrorInfo];
         }];
     };
 }

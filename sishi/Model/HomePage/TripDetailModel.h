@@ -22,6 +22,11 @@
 @property (nonatomic, assign) double carOwnerCreatetime;
 @property (nonatomic, strong) NSString *carOwnerStopplace;
 @property (nonatomic, assign) double carUserGotime;
+/**
+ *  出发时间 字符串格式化描述
+ */
+@property(nonatomic,strong)NSString *startDate;
+
 @property (nonatomic, strong) NSString *carOwnerStartplace;
 @property (nonatomic, strong) NSString *carUserid;
 @property (nonatomic, strong) NSString *carIdentityWas;

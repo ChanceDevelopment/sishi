@@ -30,18 +30,23 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Efw-Dm-ign">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="422.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="473"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F3G-qi-Yt2">
+                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F3G-qi-Yt2">
                                     <rect key="frame" x="10" y="35" width="65" height="65"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="65" id="k2A-iC-tDR"/>
                                         <constraint firstAttribute="width" constant="65" id="mBo-8d-EvE"/>
                                     </constraints>
                                     <state key="normal" image="icon_002.gif"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <real key="value" value="32.5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XXX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvw-ni-aiy">
-                                    <rect key="frame" x="85" y="35" width="32" height="19.5"/>
+                                    <rect key="frame" x="85" y="35" width="32" height="20"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -60,7 +65,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mkj-R6-czJ">
-                                    <rect key="frame" x="235" y="127.5" width="130" height="1"/>
+                                    <rect key="frame" x="235" y="128" width="130" height="1"/>
                                     <color key="backgroundColor" red="0.65482908490000002" green="0.65494394300000003" blue="0.65482187270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="Hzc-rr-FDN"/>
@@ -89,16 +94,18 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aOt-IF-QQ3">
                                     <rect key="frame" x="328" y="212" width="37" height="27"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                    <state key="normal" title="换一批"/>
+                                    <state key="normal" title="换一批">
+                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
                                     <connections>
                                         <action selector="onChangeResource:" destination="-1" eventType="touchUpInside" id="QgX-cp-pkO"/>
                                     </connections>
                                 </button>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Lio-gs-uMr" customClass="LabelSelectView">
-                                    <rect key="frame" x="10" y="249" width="355" height="35"/>
+                                    <rect key="frame" x="10" y="249" width="355" height="85"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="35" id="m0l-P2-CcD"/>
+                                        <constraint firstAttribute="height" constant="85" id="m0l-P2-CcD"/>
                                     </constraints>
                                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="KiA-fv-zHc">
                                         <size key="itemSize" width="50" height="50"/>
@@ -108,13 +115,13 @@
                                     </collectionViewFlowLayout>
                                 </collectionView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="还可以添加2个标签" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J7O-iK-Azh">
-                                    <rect key="frame" x="268" y="294" width="97" height="13.5"/>
+                                    <rect key="frame" x="268" y="344" width="97" height="14"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                     <color key="textColor" red="0.86657208200000002" green="0.86672115329999999" blue="0.86656266449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J2W-fM-2au">
-                                    <rect key="frame" x="25" y="352.5" width="325" height="45"/>
+                                    <rect key="frame" x="25" y="403" width="325" height="45"/>
                                     <color key="backgroundColor" red="1" green="0.3465172648" blue="0.35638773439999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="1ec-pb-EKz"/>
@@ -128,7 +135,7 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="男" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKT-Um-w72">
-                                    <rect key="frame" x="122" y="35" width="13.5" height="16"/>
+                                    <rect key="frame" x="122" y="35" width="14" height="16"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" red="0.86657208200000002" green="0.86672115329999999" blue="0.86656266449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>

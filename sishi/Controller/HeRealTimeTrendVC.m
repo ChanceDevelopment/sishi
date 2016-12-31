@@ -98,7 +98,7 @@
     self.releaseBtn.layer.shadowColor = [UIColor colorWithWhite:0.4 alpha:1].CGColor;
     self.releaseBtn.layer.shadowOpacity = 1.0;
 //    self.releaseBtn.clipsToBounds = YES;
-    self.releaseBtn.imageEdgeInsets = UIEdgeInsetsMake(30, 30, 30, 30);
+//    self.releaseBtn.imageEdgeInsets = UIEdgeInsetsMake(30, 30, 30, 30);
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
@@ -462,6 +462,7 @@
     TripListModel *tripModel = self.dataSource[row];
         HeRealTimeDetailController *detailController = [[HeRealTimeDetailController alloc] initWithNibName:@"HeRealTimeDetailController" bundle:[NSBundle mainBundle]];
         detailController.hidesBottomBarWhenPushed = YES;
+    detailController.tripId = tripModel.carOwnerId;
         detailController.title = @"详情内容";
         [self.navigationController pushViewController:detailController animated:YES];
     

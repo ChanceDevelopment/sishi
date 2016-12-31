@@ -27,6 +27,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.imageView = [[UIImageView alloc]initWithFrame:CGRectZero];
+        self.imageView.userInteractionEnabled = YES;
         self.imageView.layer.cornerRadius = 5;
         self.imageView.clipsToBounds = YES;
         self.imageView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
@@ -34,6 +35,9 @@
         [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.contentView);
         }];
+        
+        UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(onLongPress:)];
+        [self.imageView addGestureRecognizer:longPressGesture];
         
         self.deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.deleteBtn setTitle:@"删除" forState:UIControlStateNormal];
@@ -61,6 +65,14 @@
 //    }
     NSURL *imageUrl = [NSURL URLWithString:imageLink];
     [self.imageView sd_setImageWithURL:imageUrl];
+}
+
+- (void)onLongPress:(UILongPressGestureRecognizer *)gesture {
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        if (self.onLongPress) {
+            self.onLongPress();
+        }
+    }
 }
 
 - (void)onRemoveImage:(UIButton *)btn {

@@ -704,7 +704,7 @@ static AFHTTPSessionManager *sessionManager = nil;
 
 + (void)submitEvaluateUser:(NSString *)targetUserId tripId:(NSString *)tripId labels:(NSString *)labels onComplete:(ApiUtilsSuccessWithVoidResponse)comleteHandler errorHandler:(ApiUtilsResponseError)errorHandler {
     NSString *api = [NSString stringWithFormat:@"%@Sexton/user/SubmitEvaluate.action",[ApiUtils baseUrl]];
-    NSDictionary *parameters = @{@"evaluateUser":[Tool uid],@"tripid":tripId,@"evaluateUserCar":targetUserId,@"evaluateLabelid":labels,@"evaluateMark":@""};
+    NSDictionary *parameters = @{@"evaluateUser":[Tool uid],@"tripId":tripId,@"evaluateUserCar":targetUserId,@"evaluateLabelid":labels,@"evaluateMark":@""};
     [ApiUtils POST:api parameters:parameters onResponseSuccess:^(NSDictionary<NSString *,id> *responseInfo) {
         if (comleteHandler) {
             comleteHandler();

@@ -15,11 +15,18 @@
 /**
  *  当前页面数据源
  */
-@property(nonatomic,copy)NSMutableArray *dataList;
+@property(nonatomic,copy)NSMutableArray <TripListModel *>*dataList;
 @end
 
 @implementation MyTripListController
 
+
+- (NSMutableArray<TripListModel *> *)dataList {
+    if (!_dataList) {
+        _dataList = [NSMutableArray array];
+    }
+    return _dataList;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -49,9 +56,14 @@
 //        [self showHint:responseErrorInfo];
 //    }];
     [ApiUtils queryRealtimeTripInfoWithCompleteHandler:^(NSArray<TripListModel *> *tripList) {
-        
+//        NSLog(@"%@",tripList);
+        [header endRefreshing];
+        [self.dataList removeAllObjects];
+        [self.dataList addObjectsFromArray:tripList];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
     } errorHandler:^(NSString *responseErrorInfo) {
-        
+        [header endRefreshing];
+        [self showHint:responseErrorInfo];
     }];
 }
 
@@ -92,6 +104,15 @@
     }
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(HeRealTrendTableCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    TripListModel *tripModel = self.dataList[indexPath.row];
+    cell.model = tripModel;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 /*

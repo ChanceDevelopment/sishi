@@ -36,7 +36,7 @@
                         <constraint firstAttribute="height" constant="60" id="229-ee-Auc"/>
                         <constraint firstAttribute="width" constant="60" id="ZkU-B8-ncz"/>
                     </constraints>
-                    <state key="normal" image="icon_myedit.png" backgroundImage="icon_myedit.png"/>
+                    <state key="normal" image="icon_myedit.png"/>
                     <connections>
                         <action selector="onReleaseAction:" destination="-1" eventType="touchUpInside" id="Niw-Xk-ZEG"/>
                     </connections>

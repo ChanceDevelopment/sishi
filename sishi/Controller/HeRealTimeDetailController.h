@@ -10,5 +10,9 @@
 
 /// 首页 动态列表 详情页面
 @interface HeRealTimeDetailController : UIViewController
+/**
+ *  行程Id
+ */
+@property(nonatomic,strong)NSString *tripId;
 
 @end

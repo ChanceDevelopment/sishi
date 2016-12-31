@@ -29,7 +29,7 @@
 #import <SMS_SDK/SMSSDK.h>
 #import "WXApi.h"
 
-@interface AppDelegate ()<WXApiDelegate>
+@interface AppDelegate ()<WXApiDelegate,EMChatManagerDelegate,EMClientDelegate>
 @property(strong,nonatomic)HeSlideMenuVC *menuController;
 
 @end
@@ -43,6 +43,26 @@ BMKMapManager* _mapManager;
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+#pragma mark :- Easemob Delegate
+- (void)didAutoLoginWithError:(EMError *)aError {
+    NSLog(@"easemob auto login with error %@",aError);
+}
+
+- (void)didConnectionStateChanged:(EMConnectionState)aConnectionState {
+//    NSLog(@"easemob connect state changed to ")
+    switch (aConnectionState) {
+        case EMConnectionConnected:
+            NSLog(@"easemob connect success");
+            break;
+        case EMConnectionDisconnected:
+            NSLog(@"easemob disconnect");
+            break;
+            
+        default:
+            break;
+    }
 }
 
 
@@ -69,7 +89,12 @@ BMKMapManager* _mapManager;
     
     
      EMOptions *options = [EMOptions optionsWithAppkey:EASEMOBKEY];
-    [[EMClient sharedClient]initializeSDKWithOptions:options];
+   EMError *initError = [[EMClient sharedClient]initializeSDKWithOptions:options];
+    if (initError) {
+        NSLog(@"init easemob with error %@",initError);
+    }
+    [[EMClient sharedClient] addDelegate:self delegateQueue:nil];
+    
     [self initialization];
     [self initShareSDK];
     [self umengTrack];
