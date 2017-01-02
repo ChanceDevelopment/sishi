@@ -75,7 +75,7 @@
         
         self.labelView.labelList = [NSArray arrayWithArray:titleList];
     } errorHandler:^(NSString *responseErrorInfo) {
-        
+        [self showHint:@"获取评价信息出错"];
     }];
     
     [ApiUtils getMyWallPicsWithCompleteHandler:^(NSArray<NSString *> *responseImages) {//查询照片墙
@@ -86,16 +86,6 @@
     
     ///查询用户个人信息
     [ApiUtils queryCurrentUserInfoWithCompleteHander:^(UserFollowListModel*responseInfo) {
-//        NSArray *imageNameList = [responseInfo.userHeader componentsSeparatedByString:@","];
-//        NSMutableArray *imageLinkList = [NSMutableArray arrayWithCapacity:imageNameList.count];
-//        for (NSString *imageName in imageNameList) {
-//            if ([imageName hasPrefix:@"http"] || [imageName hasPrefix:@"HTTP"]) {
-//                [imageLinkList addObject:imageName];
-//            } else {
-//                [imageLinkList addObject:[NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],imageName]];
-//            }
-//        }
-//        self.imageBanner.imageURLStringsGroup = imageLinkList;
         NSString *gender = responseInfo.userSex;
         if ([gender isEqualToString:@"1"]) {
             self.sexLabel.text = @"男";

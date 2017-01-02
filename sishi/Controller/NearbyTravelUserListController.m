@@ -9,6 +9,7 @@
 #import "NearbyTravelUserListController.h"
 #import "MJRefresh.h"
 #import "ApiUtils.h"
+#import "Masonry.h"
 
 @interface NearbyTravelUserListController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -23,6 +24,12 @@
  */
 @property(nonatomic,assign)NSUInteger startIndex;
 
+/**
+ *  占位Label
+ */
+@property(nonatomic,strong)UILabel *placeholderLabel;
+
+
 @end
 
 @implementation NearbyTravelUserListController
@@ -32,6 +39,18 @@
         self.users = [NSMutableArray array];
     }
     return _users;
+}
+
+- (UILabel *)placeholderLabel {
+    if (!_placeholderLabel) {
+        _placeholderLabel = [[UILabel alloc]init];
+        _placeholderLabel.hidden = YES;
+        _placeholderLabel.text = @"暂无附近用户";
+        _placeholderLabel.font = [UIFont systemFontOfSize:28];
+        _placeholderLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1];
+        _placeholderLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _placeholderLabel;
 }
 
 //- (void)setNearbyUserList:(NSArray<UserFollowListModel *> *)nearbyUserList {
@@ -74,6 +93,18 @@
     });
     self.tableView.tableFooterView = [UIView new];
     [self.tableView.mj_header beginRefreshing];
+    
+    [self.tableView addSubview:self.placeholderLabel];
+    [self.placeholderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.tableView);
+    }];
+    
+}
+
+
+- (void)reloadDataList {
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+    self.placeholderLabel.hidden = self.users.count;
 }
 
 - (void)onHeaderRefresh:(MJRefreshNormalHeader *)header {
@@ -84,7 +115,7 @@
         self.startIndex = 0;
         [self.users removeAllObjects];
         [self.users addObjectsFromArray:userModelList];
-        [self.tableView reloadData];
+        [self reloadDataList];
         [header endRefreshing];
     } errorHandler:^(NSString *responseErrorInfo) {
         [self showHint:responseErrorInfo];
@@ -101,7 +132,7 @@
         [self.users removeAllObjects];
         self.startIndex += 1;
         [self.users addObjectsFromArray:userModelList];
-        [self.tableView reloadData];
+        [self reloadDataList];
     } errorHandler:^(NSString *responseErrorInfo) {
         [self showHint:responseErrorInfo];
         [footer endRefreshing];

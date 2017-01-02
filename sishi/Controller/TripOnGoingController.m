@@ -52,7 +52,7 @@
                      completeHandler:^(TripDetailModel *detailModel) {
                          self.detailModel  = detailModel;
                          NSString *getHeaderImage = [NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],detailModel.getHeader];
-                         [self.leftBtn sd_setImageWithURL:[NSURL URLWithString:getHeaderImage] forState:UIControlStateNormal];
+                         [self.leftBtn sd_setImageWithURL:[NSURL URLWithString:getHeaderImage] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:DEFAULTERRORIMAGE]];
                          
                          NSString *setHeaderImage = [NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],detailModel.setHeader];
                          [self.rightBtn sd_setImageWithURL:[NSURL URLWithString:setHeaderImage] forState:UIControlStateNormal];

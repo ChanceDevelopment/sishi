@@ -76,4 +76,6 @@ typedef void (^ImageAdderOnChangeViewHeightCallBack) (CGFloat viewheight);
 
 - (void)appendImage:(UIImage *)imageToAppend;
 
+- (void)removeImageAtIndex:(NSUInteger)index;
+
 @end

@@ -200,7 +200,7 @@
     NSString *imageNameListString = [userImageNameList componentsJoinedByString:@","];
     NSDictionary *tripInfo = [ApiUtils tripInfoWithUserGoTime:userGoTime wishTarget:wishTarget  ownerImage:imageNameListString startPlace:self.getInCarInputField.text stopPlace:self.destinationInputField.text tripNote:self.noteInputField.text tripType:@"1" tripState:@"1" receiverId:@"" longitude:longitude latitude:latitude carOwnerState:@"1"];
     [ApiUtils publishNewTripWithTripInfo:tripInfo completeHandler:^{
-        [MBProgressHUD hideHUDForView:self.view.window animated:YES];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         NearbyTravelUserListController *nearbyUserList = [[NearbyTravelUserListController alloc]initWithNibName:@"NearbyTravelUserListController" bundle:[NSBundle mainBundle]];
         nearbyUserList.hobbys = [self.labelSelectView.selectedLabelList componentsJoinedByString:@","];
         [self.navigationController pushViewController:nearbyUserList animated:YES];

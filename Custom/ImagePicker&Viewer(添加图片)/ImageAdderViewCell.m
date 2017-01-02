@@ -40,13 +40,17 @@
         [self.imageView addGestureRecognizer:longPressGesture];
         
         self.deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self.deleteBtn setTitle:@"删除" forState:UIControlStateNormal];
+        self.deleteBtn.backgroundColor = [UIColor redColor];
         self.deleteBtn.titleLabel.font = [UIFont systemFontOfSize:11];
+        self.deleteBtn.layer.cornerRadius = 7.5;
+        self.deleteBtn.clipsToBounds = YES;
+        [self.deleteBtn setImage:[UIImage imageNamed:@"icon_delete"] forState:UIControlStateNormal];
         [self.deleteBtn addTarget:self action:@selector(onRemoveImage:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.deleteBtn];
         [self.deleteBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.contentView).offset(10);
-            make.right.equalTo(self.contentView).offset(-10);
+            make.top.equalTo(self.contentView).offset(5);
+            make.right.equalTo(self.contentView).offset(-5);
+            make.size.mas_equalTo(CGSizeMake(15, 15));
         }];
     }
     return self;

@@ -49,6 +49,9 @@
     self.inputFieldContainer.clipsToBounds = YES;
     self.inputFieldContainer.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.inputFieldContainer.layer.borderWidth = 1.0;
+    
+    [self.driverBtn setBackgroundImage:[Tool buttonImageFromColor:[UIColor colorWithWhite:0.5 alpha:1] withImageSize:CGSizeMake(1, 1)] forState:UIControlStateHighlighted];
+    [self.passengerBtn  setBackgroundImage:[Tool buttonImageFromColor:[UIColor colorWithWhite:0.5 alpha:1] withImageSize:CGSizeMake(1, 1)] forState:UIControlStateHighlighted];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -14,6 +14,7 @@
 #import "SelectViewContainer.h"
 #import "ApiUtils.h"
 #import "OwnerCertificationController.h"
+#import "UIButton+EMWebCache.h"
 
 @interface UserInfoEditController ()<ImageAdderAddImageProtocol,UIPickerViewDelegate,UIPickerViewDataSource,ImageAdderAddImageProtocol>
 @property (weak, nonatomic) IBOutlet UIButton *headImageBtn;
@@ -239,11 +240,30 @@
 #pragma mark :- 长按
 - (void)imageAdder:(ImageAdder *)imageAdder longPressAtIndexPathRow:(NSUInteger)index {
 //    NSLog(@"image name at image link group %@ will be removed ",self.imageAdder.imageLinkGroup[index]);
-    NSString *imageLink = [imageAdder.imageLinkGroup objectAtIndex:index];
-//    NSString *imageName = imageLink
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"确认要删除图片吗" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSString *imageLink = [imageAdder.imageLinkGroup objectAtIndex:index];
+        NSRange baseUrlRange = [imageLink rangeOfString:[ApiUtils baseUrl]];
+        NSString *imageName = [imageLink substringWithRange:NSMakeRange(baseUrlRange.length, imageLink.length - baseUrlRange.length)];
+        [self.imageNamesWillRemove addObject:imageName];
+        [self.localImageAdder removeImageAtIndex:index];
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:confirmAction];
+    [alertController addAction:cancelAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+    
 }
 
 - (void)configPageInfo {
+    kWeakSelf;
+    NSString *userImageLink = [[NSUserDefaults standardUserDefaults] stringForKey:kDefaultsUserHeaderImage];
+    [self.headImageBtn sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],userImageLink]]forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:DEFAULTERRORIMAGE]  completed:^(UIImage *image, NSError *error, EMSDImageCacheType cacheType, NSURL *imageURL) {
+        weakSelf.headImage = image;
+    }];
     NSString *userNick = [Tool defaultsForKey:kDefaultsUserNick];
     self.nickNameInputField.text = userNick;
     NSString *gender = [Tool uGender];
@@ -327,6 +347,7 @@
     [defaults setObject:self.gender forKey:kDefaultsUserGender];
     [defaults setObject:self.phoneInputField.text forKey:kDefaultsUserPhone];
     [defaults setObject:self.nickNameInputField.text forKey:kDefaultsUserNick];
+
 //    [defaults setObject:userInfo.userState forKey:kDefaultsUserJudge];
     [defaults setInteger:[self.ageInputField.text integerValue] forKey:kDefaultsUserAge];
     [defaults setObject:self.addressInputField.text forKey:kDefaultsUserAddress];

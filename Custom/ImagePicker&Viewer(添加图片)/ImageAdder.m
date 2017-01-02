@@ -150,6 +150,13 @@
     [self.imageList addObject:imageToAppend];
     [self reloadSections:[NSIndexSet indexSetWithIndex:0]];
 }
+
+- (void)removeImageAtIndex:(NSUInteger)index {
+    NSMutableArray *imageLinkList = [NSMutableArray arrayWithArray:self.imageLinkGroup];
+    [imageLinkList removeObjectAtIndex:index];
+    self.imageLinkGroup = [NSArray arrayWithArray:imageLinkList];
+    [self reloadSections:[NSIndexSet indexSetWithIndex:0]];
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

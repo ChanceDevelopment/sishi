@@ -10,12 +10,19 @@
 #import "HeRealTrendTableCell.h"
 #import "ApiUtils.h"
 #import "MJRefresh.h"
+#import "Masonry.h"
 
 @interface MyTripListController ()
 /**
  *  当前页面数据源
  */
 @property(nonatomic,copy)NSMutableArray <TripListModel *>*dataList;
+
+/**
+ *  占位Label
+ */
+@property(nonatomic,strong)UILabel *placeholderLabel;
+
 @end
 
 @implementation MyTripListController
@@ -27,6 +34,19 @@
     }
     return _dataList;
 }
+
+- (UILabel *)placeholderLabel {
+    if (!_placeholderLabel) {
+        _placeholderLabel = [[UILabel alloc]init];
+        _placeholderLabel.hidden = YES;
+        _placeholderLabel.text = @"当前暂无行程";
+        _placeholderLabel.font = [UIFont systemFontOfSize:28];
+        _placeholderLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1];
+        _placeholderLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _placeholderLabel;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -45,6 +65,17 @@
         footer.automaticallyChangeAlpha = YES;
         footer;
     });
+    
+    [self.tableView addSubview:self.placeholderLabel];
+    [self.placeholderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.tableView);
+    }];
+    [self.tableView.mj_header beginRefreshing];
+}
+
+- (void)reloadDataList {
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+    self.placeholderLabel.hidden = self.dataList.count;
 }
 
 - (void)onHeaderRefresh:(MJRefreshNormalHeader *)header {
@@ -60,7 +91,7 @@
         [header endRefreshing];
         [self.dataList removeAllObjects];
         [self.dataList addObjectsFromArray:tripList];
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+        [self reloadDataList];
     } errorHandler:^(NSString *responseErrorInfo) {
         [header endRefreshing];
         [self showHint:responseErrorInfo];

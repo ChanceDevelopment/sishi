@@ -124,11 +124,11 @@
     userImage.frame = CGRectMake(headX, headY, headW, headH);
     [userInfoView addSubview:userImage];
     NSString *imageString = [Tool defaultsForKey:kDefaultsUserHeaderImage];
-    if ([imageString hasPrefix:@"http"] || [imageString hasPrefix:@"HTTP"]) {
-        [userImage sd_setImageWithURL:[NSURL URLWithString:imageString]];
-    } else {
-        [userImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],imageString]]];
-    }
+//    if ([imageString hasPrefix:@"http"] || [imageString hasPrefix:@"HTTP"]) {
+//        [userImage sd_setImageWithURL:[NSURL URLWithString:imageString]];
+//    } else {
+//        [userImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],imageString]]];
+//    }
     
     NSString *username = [Tool defaultsForKey:kDefaultsUserNick];
     UIFont *textFont = [UIFont systemFontOfSize:20.0];
@@ -142,13 +142,14 @@
     nameLabel.text = username;
     nameLabel.textAlignment = NSTextAlignmentLeft;
     nameLabel.textColor = [UIColor blackColor];
-    nameLabel.font = textFont;
-    nameLabel.frame = CGRectMake(nameLabelX, nameLabelY, nameLabelW, nameLabelH);
+    nameLabel.font = [UIFont systemFontOfSize:24];
+    nameLabel.frame = CGRectMake(nameLabelX, nameLabelY, kScaleOfScreenWidth(100), 25);
     [userInfoView addSubview:nameLabel];
     
     
+    
     CGFloat maxWidth = nameLabelW;
-    CGSize textSize = [MLLinkLabel getViewSizeByString:username maxWidth:maxWidth font:textFont lineHeight:TextLineHeight lines:0];
+    CGSize textSize = [MLLinkLabel getViewSizeByString:username maxWidth:maxWidth font:[UIFont systemFontOfSize:24] lineHeight:TextLineHeight lines:0];
     CGRect frame = nameLabel.frame;
     frame.size.width = textSize.width;
     nameLabel.frame = frame;
@@ -162,8 +163,8 @@
     markLabel.backgroundColor = [UIColor clearColor];
     markLabel.text = @"未认证";
     markLabel.textAlignment = NSTextAlignmentLeft;
-    markLabel.textColor = [UIColor redColor];
-    markLabel.font = textFont;
+    markLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1];
+    markLabel.font = [UIFont systemFontOfSize:12];
     markLabel.frame = CGRectMake(signLabelX, signLabelY, signLabelW, signLabelH);
     [userInfoView addSubview:markLabel];
     
@@ -178,7 +179,7 @@
     phoneLabel.text = [Tool defaultsForKey:kDefaultsUserPhone];
     phoneLabel.textAlignment = NSTextAlignmentLeft;
     phoneLabel.textColor = [UIColor grayColor];
-    phoneLabel.font = textFont;
+    phoneLabel.font = [UIFont systemFontOfSize:12];
     phoneLabel.frame = CGRectMake(phoneLabelX, phoneLabelY, phoneLabelW, phoneLabelH);
     [userInfoView addSubview:phoneLabel];
     
@@ -235,8 +236,27 @@
 //    [narvigationBar pushNavigationItem:navitem animated:NO];
 
     
-    
+    [self queryUserInfo];
 }
+
+- (void)queryUserInfo {//查询个人信息并配置
+    [ApiUtils queryUserInfoBy:[Tool uid]
+            onCompleteHandler:^(UserFollowListModel *userModel) {
+                NSLog(@"%@",userModel);
+                NSString *userHeaderImage = userModel.userHeader;
+                if (userHeaderImage) {
+                    [[NSUserDefaults standardUserDefaults]setObject:userHeaderImage forKey:kDefaultsUserHeaderImage];
+                }
+                NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],userHeaderImage]];
+                [self.userImage sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:DEFAULTERRORIMAGE]];
+                self.nameLabel.text = userModel.userNick;
+                self.phoneLabel.text = userModel.userPhone;
+                
+    } errorHandler:^(NSString *responseErrorInfo) {
+        
+    }];
+}
+
 
 - (void)onChangeUserInfo:(NSNotification *)note {
     NSString *imageLink = [Tool defaultsForKey:kDefaultsUserHeaderImage];

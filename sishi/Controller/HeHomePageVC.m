@@ -35,6 +35,12 @@
  */
 @property(nonatomic,strong)NSMutableArray *nearbyUserList;
 
+/**
+ *  占位Label
+ */
+@property(nonatomic,strong)UILabel *placeholderLabel;
+
+
 @end
 
 @implementation HeHomePageVC
@@ -46,6 +52,20 @@
     }
     return _nearbyUserList;
 }
+
+- (UILabel *)placeholderLabel {
+    if (!_placeholderLabel) {
+        _placeholderLabel = [[UILabel alloc]init];
+        _placeholderLabel.hidden = YES;
+        NSString *judge = [[Tool judge] isEqualToString:@"0"] ? @"车主" : @"用户";
+        _placeholderLabel.text = [NSString stringWithFormat:@"暂无附近%@",judge];
+        _placeholderLabel.font = [UIFont systemFontOfSize:28];
+        _placeholderLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1];
+        _placeholderLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _placeholderLabel;
+}
+
 @synthesize tableview;
 @synthesize dataSource;
 @synthesize menuButton;
@@ -76,7 +96,13 @@
     [self initView];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
     [[NSNotificationCenter defaultCenter]addObserverForName:kNotificationUserChangeState object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
-        [self.tableview reloadData];
+        [self reloadDataList];
+        NSString *judge = [[Tool judge] isEqualToString:@"0"] ? @"车主" : @"用户";
+        self.placeholderLabel.text = [NSString stringWithFormat:@"暂无附近%@",judge];
+    }];
+    [self.tableview addSubview:self.placeholderLabel];
+    [self.placeholderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.tableview);
     }];
 }
 
@@ -163,6 +189,11 @@
 }
 
 
+- (void)reloadDataList {
+    [self.tableview reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+    self.placeholderLabel.hidden = self.nearbyUserList.count;
+}
+
 - (void)onHeaderRefresh:(MJRefreshNormalHeader *)header {
     NSString *gender = [[NSUserDefaults standardUserDefaults]stringForKey:kDefaultsUserGender];
     CGFloat longitude = [[NSUserDefaults standardUserDefaults]doubleForKey:kDefaultsUserLocationlongitude];
@@ -171,7 +202,7 @@
         [header endRefreshing];
         [self.nearbyUserList removeAllObjects];
         [self.nearbyUserList addObjectsFromArray:nearby];
-        [self.tableview reloadData];
+        [self reloadDataList];
     } errorHandler:^(NSString *responseErrorInfo) {
         [header endRefreshing];
         [self showHint:responseErrorInfo ];

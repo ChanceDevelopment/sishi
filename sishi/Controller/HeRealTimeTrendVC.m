@@ -30,6 +30,11 @@
 @property(strong,nonatomic)EGORefreshTableHeaderView *refreshHeaderView;
 @property(strong,nonatomic)EGORefreshTableFootView *refreshFooterView;
 @property(assign,nonatomic)NSInteger pageNo;
+/**
+ *  占位Label
+ */
+@property(nonatomic,strong)UILabel *placeholderLabel;
+
 
 /**
  *  发布 按钮
@@ -50,6 +55,20 @@
 @synthesize refreshFooterView;
 @synthesize refreshHeaderView;
 @synthesize pageNo;
+
+
+- (UILabel *)placeholderLabel {
+    if (!_placeholderLabel) {
+        _placeholderLabel = [[UILabel alloc]init];
+        _placeholderLabel.hidden = YES;
+//        NSString *judge = [[Tool judge] isEqualToString:@"0"] ? @"车主" : @"用户";
+        _placeholderLabel.text = @"暂无新动态";
+        _placeholderLabel.font = [UIFont systemFontOfSize:28];
+        _placeholderLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1];
+        _placeholderLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _placeholderLabel;
+}
 
 
 - (NSMutableArray *)dataSource {
@@ -100,6 +119,10 @@
 //    self.releaseBtn.clipsToBounds = YES;
 //    self.releaseBtn.imageEdgeInsets = UIEdgeInsetsMake(30, 30, 30, 30);
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.tableview addSubview:self.placeholderLabel];
+    [self.placeholderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.tableview);
+    }];
 }
 
 - (void)initializaiton
@@ -148,6 +171,11 @@
     
 }
 
+- (void)reloadDataList {
+    [self.tableview reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+    self.placeholderLabel.hidden = self.dataSource.count;
+}
+
 
 - (void)onHeaderRefresh:(MJRefreshNormalHeader *)header {
     //72ab4fed1ebb48f8a0b36ec82762fad4
@@ -162,7 +190,7 @@
                                      onResponseInfo:^(NSArray<TripListModel *> *tripListModel) {
                                          //                                     [self.dataSource removeAllObjects];
                                          [self.dataSource addObjectsFromArray:tripListModel];
-                                         [self.tableview reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                                         [self reloadDataList];
                                          [header endRefreshing];
                                      } errorHandler:^(NSString *responseErrorInfo) {
                                          [self showHint:responseErrorInfo];

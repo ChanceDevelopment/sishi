@@ -11,12 +11,19 @@
 #import "MJRefresh.h"
 #import "ApiUtils.h"
 #import "UIViewController+HUD.h"
+#import "Masonry.h"
 
 @interface FocusListViewController ()
 /**
  *  关注用户列表
  */
 @property(nonatomic,copy)NSMutableArray <UserFollowListModel *>*focusUserList;
+
+/**
+ *  占位Label
+ */
+@property(nonatomic,strong)UILabel *placeholderLabel;
+
 /**
  *  当前分页页数
  */
@@ -32,6 +39,19 @@
     return _focusUserList;
 }
 
+- (UILabel *)placeholderLabel {
+    if (!_placeholderLabel) {
+        _placeholderLabel = [[UILabel alloc]init];
+        _placeholderLabel.hidden = YES;
+        _placeholderLabel.text = @"您还没有已关注的用户";
+        _placeholderLabel.font = [UIFont systemFontOfSize:28];
+        _placeholderLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1];
+        _placeholderLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _placeholderLabel;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.pageIndex = 0;
@@ -46,6 +66,17 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.tableView.mj_header beginRefreshing];
     self.tableView.mj_header.automaticallyChangeAlpha = YES;
+    
+    [self.tableView addSubview:self.placeholderLabel];
+    [self.placeholderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.tableView);
+    }];
+    [self.tableView.mj_header beginRefreshing];
+}
+
+- (void)reloadDataList {
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+    self.placeholderLabel.hidden = self.focusUserList.count;
 }
 
 - (void)onHeaderRefresh:(MJRefreshNormalHeader *)header {
@@ -53,7 +84,7 @@
         [header endRefreshing];
         [self.focusUserList removeAllObjects];
         [self.focusUserList addObjectsFromArray:focusList];
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+        [self reloadDataList];
     } onError:^(NSString *responseErrorInfo) {
         [self showHint:responseErrorInfo];
         [header endRefreshing];
