@@ -38,7 +38,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="105" id="ZNK-j9-NQQ"/>
                                             </constraints>
-                                            <state key="normal" title="  我是司机" image="icon_dot_login_selected.png">
+                                            <state key="normal" title="  我是司机">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
@@ -47,7 +47,7 @@
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bI0-Ro-EV3">
                                             <rect key="frame" x="105" y="0.0" width="105" height="30"/>
-                                            <state key="normal" title="  我是乘客" image="icon_dot_login_unselect.png">
+                                            <state key="normal" title="  我是乘客">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
@@ -181,8 +181,4 @@
             <point key="canvasLocation" x="33.5" y="103.5"/>
         </view>
     </objects>
-    <resources>
-        <image name="icon_dot_login_selected.png" width="64" height="64"/>
-        <image name="icon_dot_login_unselect.png" width="64" height="64"/>
-    </resources>
 </document>

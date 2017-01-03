@@ -37,11 +37,13 @@
     self.navigationItem.title = @"搜索结果";
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
+    self.pageIndex = 0;
     self.tableView.tableFooterView = [UIView new];
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(onHeaderRefresh:)];
-    
+    self.tableView.mj_footer = [MJRefreshAutoStateFooter footerWithRefreshingTarget:self refreshingAction:@selector(onFooterLoadMore:)];
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)onHeaderRefresh:(MJRefreshNormalHeader *)header {
@@ -50,10 +52,24 @@
     CGFloat longitude = [[NSUserDefaults standardUserDefaults]doubleForKey:kDefaultsUserLocationlongitude];
     CGFloat latitude = [[NSUserDefaults standardUserDefaults] doubleForKey:kDefaultsUserLocationLatitude];
     [ApiUtils filterUserWithTripId:@"" carUserLike:self.hobbyList gender:@"0" userJudge:judge longitude:longitude latitude:latitude startIndex:0 onResponseList:^(NSArray <UserFollowListModel *>*responseList) {
+        self.pageIndex = 0;
         [header endRefreshing];
     } errorHandler:^(NSString *responseErrorInfo) {
         [self showHint:responseErrorInfo];
         [header endRefreshing];
+    }];
+}
+
+- (void)onFooterLoadMore:(MJRefreshAutoStateFooter *)footer {
+    NSString *judge = [[Tool judge] isEqualToString:@"0"] ? @"1" : @"0";
+    CGFloat longitude = [[NSUserDefaults standardUserDefaults]doubleForKey:kDefaultsUserLocationlongitude];
+    CGFloat latitude = [[NSUserDefaults standardUserDefaults] doubleForKey:kDefaultsUserLocationLatitude];
+    [ApiUtils filterUserWithTripId:@"" carUserLike:self.hobbyList gender:@"0" userJudge:judge longitude:longitude latitude:latitude startIndex:self.pageIndex + 1 onResponseList:^(NSArray <UserFollowListModel *>*responseList) {
+        self.pageIndex += 1;
+        [footer endRefreshing];
+    } errorHandler:^(NSString *responseErrorInfo) {
+        [self showHint:responseErrorInfo];
+        [footer endRefreshing];
     }];
 }
 

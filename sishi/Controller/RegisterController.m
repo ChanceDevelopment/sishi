@@ -41,6 +41,10 @@
     self.inputFieldContainerView.clipsToBounds = YES;
     self.inputFieldContainerView.layer.borderWidth = 1;
     self.inputFieldContainerView.layer.borderColor = [UIColor colorWithRed:225 / 255.0 green:225 / 255.0 blue:225 / 255.0 alpha:1].CGColor;
+    NSMutableAttributedString *attributedUnderLineText = [[NSMutableAttributedString alloc]initWithString:[self.verificationBtn titleForState:UIControlStateNormal]];
+    [attributedUnderLineText addAttribute:NSUnderlineStyleAttributeName value:@(NSUnderlineStyleSingle) range:NSMakeRange(0, attributedUnderLineText.string.length)];
+    [attributedUnderLineText addAttribute:NSForegroundColorAttributeName value:kColorDefaultRed range:NSMakeRange(0, attributedUnderLineText.string.length)];
+    [_verificationBtn setAttributedTitle:attributedUnderLineText forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {

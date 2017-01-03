@@ -11,7 +11,7 @@
 /**
  用于展示"选择照片"/"拍摄照片"弹窗的picker
  */
-@interface UIViewController (UIImagePickerController)<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface UIViewController (UIImagePickerController)<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
 
 /**
  *  标识符,每次调用pickImage时都会被刷新
@@ -20,5 +20,6 @@
 
 - (void)pickImage:(NSString *)identifier;
 
+//重写此方法用于接收选择图片之后的回调
 - (void)finishPickWithImage:(UIImage *)image identifier:(NSString *)identifier;
 @end

@@ -16,7 +16,7 @@
 #import "OwnerCertificationController.h"
 #import "UIButton+EMWebCache.h"
 
-@interface UserInfoEditController ()<ImageAdderAddImageProtocol,UIPickerViewDelegate,UIPickerViewDataSource,ImageAdderAddImageProtocol>
+@interface UserInfoEditController ()<ImageAdderAddImageProtocol,UIPickerViewDelegate,UIPickerViewDataSource,ImageAdderAddImageProtocol,UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *headImageBtn;
 @property (weak, nonatomic) IBOutlet UITextField *nickNameInputField;
 @property (weak, nonatomic) IBOutlet UILabel *genderLabel;
@@ -240,23 +240,40 @@
 #pragma mark :- 长按
 - (void)imageAdder:(ImageAdder *)imageAdder longPressAtIndexPathRow:(NSUInteger)index {
 //    NSLog(@"image name at image link group %@ will be removed ",self.imageAdder.imageLinkGroup[index]);
-    
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"确认要删除图片吗" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSString *imageLink = [imageAdder.imageLinkGroup objectAtIndex:index];
-        NSRange baseUrlRange = [imageLink rangeOfString:[ApiUtils baseUrl]];
-        NSString *imageName = [imageLink substringWithRange:NSMakeRange(baseUrlRange.length, imageLink.length - baseUrlRange.length)];
-        [self.imageNamesWillRemove addObject:imageName];
-        [self.localImageAdder removeImageAtIndex:index];
-    }];
-    
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-    [alertController addAction:confirmAction];
-    [alertController addAction:cancelAction];
-    [self presentViewController:alertController animated:YES completion:nil];
-    
-    
+    if ([Tool isSystemAvailableOnVersion:11]) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"确认要删除图片吗" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSString *imageLink = [imageAdder.imageLinkGroup objectAtIndex:index];
+            NSRange baseUrlRange = [imageLink rangeOfString:[ApiUtils baseUrl]];
+            NSString *imageName = [imageLink substringWithRange:NSMakeRange(baseUrlRange.length, imageLink.length - baseUrlRange.length)];
+            [self.imageNamesWillRemove addObject:imageName];
+            [self.localImageAdder removeImageAtIndex:index];
+        }];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        [alertController addAction:confirmAction];
+        [alertController addAction:cancelAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+    } else {
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"确认要删除图片吗" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"删除", nil];
+        alertView.tag = 10000 + index;
+        [alertView show];
+    }
 }
+
+#pragma mark :- UIAlertViewDelegate 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        return;
+    }
+    NSUInteger index = alertView.tag - 10000;
+    NSString *imageLink = [self.localImageAdder.imageLinkGroup objectAtIndex:index];
+    NSRange baseUrlRange = [imageLink rangeOfString:[ApiUtils baseUrl]];
+    NSString *imageName = [imageLink substringWithRange:NSMakeRange(baseUrlRange.length, imageLink.length - baseUrlRange.length)];
+    [self.imageNamesWillRemove addObject:imageName];
+    [self.localImageAdder removeImageAtIndex:index];
+}
+
 
 - (void)configPageInfo {
     kWeakSelf;

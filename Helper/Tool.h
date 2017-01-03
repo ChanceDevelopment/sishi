@@ -85,8 +85,8 @@
 
 + (NSString*)weekdayStringFromDate:(NSDate*)inputDate;
 
-
-
+//判断当前系统版本是否高于或等于传入的版本号
++ (BOOL)isSystemAvailableOnVersion:(CGFloat)version;
 
 
 #pragma mark :- User Login State Utils

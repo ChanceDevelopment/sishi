@@ -20,7 +20,7 @@
 
 #define TextLineHeight 1.2f
 
-@interface HeDistributeInviteVC ()<ImageAdderAddImageProtocol,UINavigationControllerDelegate,UIImagePickerControllerDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>
+@interface HeDistributeInviteVC ()<ImageAdderAddImageProtocol,UINavigationControllerDelegate,UIImagePickerControllerDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UITextField *destinationInputField;
 @property (weak, nonatomic) IBOutlet UITextField *getInCarInputField;
@@ -76,9 +76,8 @@
 - (UIDatePicker *)datePicker {
     if (!_datePicker) {
         _datePicker = [[UIDatePicker alloc]initWithFrame:CGRectZero];
-        _datePicker.minimumDate = [NSDate date];
-        _datePicker.datePickerMode = UIDatePickerModeDateAndTime;
         
+        _datePicker.datePickerMode = UIDatePickerModeDateAndTime;
     }
     return _datePicker;
 }
@@ -121,25 +120,50 @@
 
 #pragma mark :- ImageAdder Delegate
 - (void)imageAdder:(ImageAdder *)imageAdder addImageWithImageList:(NSArray<UIImage *> *)imageList {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"选择图片打开方式" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"拍照上传" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    if ([Tool isSystemAvailableOnVersion:11.0]) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"选择图片打开方式" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"拍照上传" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
+            imagePicker.delegate = self;
+            imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self.navigationController presentViewController:imagePicker animated:YES completion:nil];
+        }];
+        [alertController addAction:cameraAction];
+        
+        UIAlertAction *albumAction = [UIAlertAction actionWithTitle:@"选择照片" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
+            imagePicker.delegate = self;
+            imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            imagePicker.allowsEditing = YES;
+            [self.navigationController presentViewController:imagePicker animated:YES completion:nil];
+        }];
+        [alertController addAction:albumAction];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+        [self presentViewController:alertController animated:YES completion:nil];
+    } else {//UIAlertView
+//        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"选择照片打开方式" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"拍照上传",@"选择照片", nil];
+//        [alertView show];
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"选择照片打开方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照上传",@"选择照片", nil];
+        [actionSheet showInView:self.view];
+    }
+}
+
+#pragma mark :- UIAlertViewDelegate 
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex == 0) {
         UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
         imagePicker.delegate = self;
         imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        imagePicker.allowsEditing = YES;
         [self.navigationController presentViewController:imagePicker animated:YES completion:nil];
-    }];
-    [alertController addAction:cameraAction];
-    
-    UIAlertAction *albumAction = [UIAlertAction actionWithTitle:@"选择照片" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    } else if (buttonIndex == 1){
         UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
         imagePicker.delegate = self;
         imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         imagePicker.allowsEditing = YES;
         [self.navigationController presentViewController:imagePicker animated:YES completion:nil];
-    }];
-    [alertController addAction:albumAction];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-    [self presentViewController:alertController animated:YES completion:nil];
+    }
 }
 
 #pragma mark :- UIImagePickerDelegate
@@ -159,6 +183,7 @@
         NSString *dateString = [formatter stringFromDate:date];
         [weakSelf.startTimeLabel setTitle:dateString forState:UIControlStateNormal];
     };
+    self.datePicker.minimumDate = [[NSDate date] dateByAddingMinutes:5];//设置可选择的最小时间为5分钟后
     [container showWithContentView:self.datePicker withTitle:@"请选择出发时间"];
 }
 - (IBAction)onSubmit:(UIButton *)sender {

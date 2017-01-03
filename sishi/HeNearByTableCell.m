@@ -72,8 +72,8 @@
         [self.upvoteButton addTarget:self action:@selector(onUpvote:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.upvoteButton];
         [self.upvoteButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.bgImage);
-            make.right.equalTo(self.bgImage).offset(-20);
+            make.top.equalTo(self.bgImage).offset(5);
+            make.right.equalTo(self.bgImage).offset(-30);
             make.size.mas_equalTo(CGSizeMake(25, 25));
         }];
         
@@ -171,7 +171,11 @@
     self.nameLabel.text = model.userNick;
     [self.headImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],model.userHeader]] placeholderImage:[UIImage imageNamed:DEFAULTERRORIMAGE]];
     self.tipLabel.text = model.userSign;
-    
+    if (model.isUpvoted) {
+         [self.upvoteButton setImage:[UIImage imageNamed:@"icon_follow_red.png"] forState:UIControlStateNormal];
+    } else {
+        [self.upvoteButton setImage:[UIImage imageNamed:@"icon_follow_white.png"] forState:UIControlStateNormal];
+    }
 }
 
 - (void)onTapUserHead:(UITapGestureRecognizer *)tap {
@@ -185,7 +189,18 @@
 }
 
 - (void)onUpvote:(UIButton *)btn {
-    
+    if (!self.model.isUpvoted) {//点赞
+        [ApiUtils userFocusWithUserId:self.model.userId onComplete:^{
+            [btn setImage:[UIImage imageNamed:@"icon_follow_red.png"] forState:UIControlStateNormal];
+            self.model.isUpvoted = YES;
+        } onError:nil];
+        
+    } else {//取消点赞
+        [ApiUtils removeFocusOnUser:self.model.userId onComplete:^{
+            [btn setImage:[UIImage imageNamed:@"icon_follow_white.png"] forState:UIControlStateNormal];
+            self.model.isUpvoted = NO;
+        } errorHandler:nil];
+    }
 }
 
 @end

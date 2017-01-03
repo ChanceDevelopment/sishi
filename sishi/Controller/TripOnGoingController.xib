@@ -38,7 +38,7 @@
                         <action selector="onPostMood:" destination="-1" eventType="touchUpInside" id="HNj-Rq-Iu3"/>
                     </connections>
                 </button>
-                <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5m-FD-yPT">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5m-FD-yPT">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="行程已开启 !" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAK-zG-gSf">
@@ -54,7 +54,7 @@
                                 <constraint firstAttribute="width" constant="1" id="FEq-cu-VUX"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9du-hh-GgH">
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9du-hh-GgH">
                             <rect key="frame" x="193" y="20" width="60" height="60"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -89,7 +89,7 @@
                                 <action selector="onBack:" destination="-1" eventType="touchUpInside" id="sOy-12-m0j"/>
                             </connections>
                         </button>
-                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ivv-gO-O91">
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ivv-gO-O91">
                             <rect key="frame" x="122" y="20" width="60" height="60"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -99,7 +99,7 @@
                             <state key="normal" image="icon_002.gif"/>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.40387445690000001" green="0.40394866470000002" blue="0.4038697779" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.40387445690000001" green="0.40394866470000002" blue="0.4038697779" alpha="0.69501294095092025" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="9du-hh-GgH" firstAttribute="leading" secondItem="ahb-Ba-r6M" secondAttribute="trailing" constant="5" id="0vH-3i-0Zd"/>
                         <constraint firstAttribute="height" constant="128" id="8yA-5O-ixm"/>

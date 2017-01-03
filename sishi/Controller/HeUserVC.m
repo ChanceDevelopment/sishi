@@ -580,6 +580,17 @@
 
 ///查询用户信息
 - (void)configPageInfo {
+    [ApiUtils queryCommentLabelsForUser:self.uid
+                    withCompleteHandler:^(NSArray<UserCommentLabelModel *> *labels) {
+                        NSMutableArray <NSString *>*labelList = [NSMutableArray arrayWithCapacity:labels.count];
+                        for (UserCommentLabelModel *model in labels) {
+                            [labelList addObject:model.labelName];
+                        }
+                        self.labelView.labelList = [NSArray arrayWithArray:labelList];
+    } errorHandler:^(NSString *responseErrorInfo) {
+        [self showHint:responseErrorInfo];
+    }];
+        
     [ApiUtils queryUserInfoBy:self.uid onCompleteHandler:^(UserFollowListModel *userModel) {
         self.nameLabel.text = [NSString stringWithFormat:@"您好,我是%@",userModel.userNick];
         NSString *gender = @"男";
@@ -596,7 +607,7 @@
 
         NSString *imageName = userModel.userHeader ? userModel.userHeader : @"";
         self.imageBannerView.imageURLStringsGroup = @[imageName];
-        self.labelView.labelList = @[@"标签1",@"标签1",@"标签1",@"标签1",@"标签1",@"标签1",@"标签1",@"标签1",@"标签1",@"标签1"];
+//        self.labelView.labelList = @[@"标签1",@"标签1",@"标签1",@"标签1",@"标签1",@"标签1",@"标签1",@"标签1",@"标签1",@"标签1"];
         
         self.trustValueLabel.text = [NSString stringWithFormat:@"信任值%@分",userModel.userCredit];
     } errorHandler:^(NSString *responseErrorInfo) {

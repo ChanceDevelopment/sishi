@@ -24,6 +24,12 @@
 @property (nonatomic, strong) NSString *hxId;
 @property (nonatomic, strong) NSString *userSex;
 
+
+/**
+ *  是否进行过点赞操作
+ */
+@property(nonatomic,assign)BOOL isUpvoted;
+
 + (instancetype)modelObjectWithDictionary:(NSDictionary *)dict;
 - (instancetype)initWithDictionary:(NSDictionary *)dict;
 - (NSDictionary *)dictionaryRepresentation;

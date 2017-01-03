@@ -113,6 +113,7 @@
     _mapView.showsUserLocation = NO;//先关闭显示的定位图层
     _mapView.userTrackingMode = BMKUserTrackingModeNone;//设置定位的状态
     _mapView.showsUserLocation = YES;//显示定位图层
+    _mapView.gesturesEnabled = NO;
     
 //    UIViewController *rootVC = ((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
 //    UIImage *image = [Tool snapshot:rootVC.view];
@@ -155,14 +156,14 @@
 
 - (void)initializaiton
 {
-    [super initializaiton];
+//    [super initializaiton];
     _locService = [[BMKLocationService alloc]init];
     dataSource = [[NSMutableArray alloc] initWithCapacity:0];
 }
 
 - (void)initView
 {
-    [super initView];
+//    [super initView];
 //    self.navigationController.navigationBarHidden = YES;
     
     

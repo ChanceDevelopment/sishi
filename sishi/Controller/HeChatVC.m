@@ -12,8 +12,11 @@
 #import "AppDelegate.h"
 #import "EMSDK.h"
 #import "Masonry.h"
+#import "MJRefresh.h"
+#import "InvitationSentCell.h"
+#import "InvitationReceivedCell.h"
 
-@interface HeChatVC ()<UITableViewDelegate,UITableViewDataSource,EMChatManagerDelegate,EaseMessageViewControllerDelegate>
+@interface HeChatVC ()<UITableViewDelegate,UITableViewDataSource,EMChatManagerDelegate,EaseMessageViewControllerDelegate,EaseMessageViewControllerDataSource>
 @property(strong,nonatomic) UITableView *tableview;
 /**
  *  系统消息列表界面
@@ -34,6 +37,12 @@
  */
 @property(nonatomic,strong)NSMutableArray <EMConversation *>*chatArray;
 
+/**
+ *  占位Label
+ */
+@property(nonatomic,strong)UILabel *placeholderLabel;
+
+
 @end
 
 @implementation HeChatVC
@@ -45,6 +54,18 @@
         _chatArray = [NSMutableArray array];
     }
     return _chatArray;
+}
+
+- (UILabel *)placeholderLabel {
+    if (!_placeholderLabel) {
+        _placeholderLabel = [[UILabel alloc]init];
+        _placeholderLabel.text = @"暂无聊天消息";
+        _placeholderLabel.font = [UIFont systemFontOfSize:28];
+        _placeholderLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1];
+        _placeholderLabel.textAlignment = NSTextAlignmentCenter;
+        _placeholderLabel.hidden  = YES;
+    }
+    return _placeholderLabel;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -129,6 +150,13 @@
 //        make.left.bottom.top.equalTo(self.tableContainerView);
 //        make.width.equalTo(@(SCREENWIDTH));
 //    }];
+    
+    self.tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(onHeaderRefresh:)];
+    
+    [self.tableview addSubview:self.placeholderLabel];
+    [self.placeholderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.tableview);
+    }];
 
     self.systemMessageTableView = [[UITableView alloc]initWithFrame:CGRectMake(SCREENWIDTH, 0, SCREENWIDTH, viewHeight)];
     self.systemMessageTableView.delegate = self;
@@ -145,6 +173,17 @@
 //        make.bottom.equalTo(self.tableContainerView);
 //        
 //    }];
+}
+
+- (void)onHeaderRefresh:(MJRefreshNormalHeader *)header {
+    [self reloadDataList];
+    [header endRefreshing];
+}
+
+
+- (void)reloadDataList {
+    [self.tableview reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+    self.placeholderLabel.hidden = self.chatArray.count;
 }
 
 
@@ -213,7 +252,8 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf.chatArray removeAllObjects];
             [weakSelf.chatArray addObjectsFromArray:conversations];
-            [weakSelf.tableview reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+//            [weakSelf.tableview reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+            [weakSelf reloadDataList];
         });
     });
 }
@@ -271,6 +311,8 @@
         EMConversation *conversation = self.chatArray[indexPath.row];
         
         ChatViewController *chatView = [[ChatViewController alloc] initWithConversationChatter:conversation.conversationId conversationType:EMConversationTypeChat];
+        chatView.delegate = self;
+        chatView.dataSource = self;
         NSString *chatterName = @"";
         chatView.delegate = self;
         if (conversation.latestMessage.direction == EMMessageDirectionSend) {
@@ -307,6 +349,21 @@
         cell.titleLabel.text = otherPeopleName;
     }
 }
+
+#pragma mark :- 环信自定义消息
+
+- (CGFloat)messageViewController:(EaseMessageViewController *)viewController heightForMessageModel:(id<IMessageModel>)messageModel withCellWidth:(CGFloat)cellWidth {
+    return 180;
+}
+
+//- (id<IMessageModel>)messageViewController:(EaseMessageViewController *)viewController modelForMessage:(EMMessage *)message {
+//    return nil;
+//}
+
+- (UITableViewCell *)messageViewController:(UITableView *)tableView cellForMessageModel:(id<IMessageModel>)messageModel {
+    return [[InvitationSentCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"reuseId"];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

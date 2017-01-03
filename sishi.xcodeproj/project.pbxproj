@@ -19,6 +19,11 @@
 		A201BE4E1E1A631300276430 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A201BE4D1E1A631300276430 /* libsqlite3.0.tbd */; };
 		A201BE501E1A636000276430 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A201BE4F1E1A636000276430 /* Security.framework */; };
 		A201BE521E1A638600276430 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A201BE511E1A638600276430 /* CoreTelephony.framework */; };
+		A201BE541E1B3BD600276430 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A201BE531E1B3BD600276430 /* mapapi.bundle */; };
+		A201BE7E1E1BA9A800276430 /* InvitationSentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A201BE7C1E1BA9A700276430 /* InvitationSentCell.m */; };
+		A201BE7F1E1BA9A800276430 /* InvitationSentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A201BE7D1E1BA9A700276430 /* InvitationSentCell.xib */; };
+		A201BE831E1BA9CE00276430 /* InvitationReceivedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A201BE811E1BA9CE00276430 /* InvitationReceivedCell.m */; };
+		A201BE841E1BA9CE00276430 /* InvitationReceivedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A201BE821E1BA9CE00276430 /* InvitationReceivedCell.xib */; };
 		A211A34B1E07B98C004C3331 /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A34A1E07B98C004C3331 /* TTTAttributedLabel.m */; };
 		A211A34F1E07C858004C3331 /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A34D1E07C858004C3331 /* RegisterController.m */; };
 		A211A3501E07C858004C3331 /* RegisterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A211A34E1E07C858004C3331 /* RegisterController.xib */; };
@@ -1030,6 +1035,13 @@
 		A201BE4D1E1A631300276430 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		A201BE4F1E1A636000276430 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A201BE511E1A638600276430 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		A201BE531E1B3BD600276430 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = mapapi.bundle; path = BaiduMapAPI_Map.framework/Resources/mapapi.bundle; sourceTree = "<group>"; };
+		A201BE7B1E1BA9A700276430 /* InvitationSentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitationSentCell.h; sourceTree = "<group>"; };
+		A201BE7C1E1BA9A700276430 /* InvitationSentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationSentCell.m; sourceTree = "<group>"; };
+		A201BE7D1E1BA9A700276430 /* InvitationSentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvitationSentCell.xib; sourceTree = "<group>"; };
+		A201BE801E1BA9CE00276430 /* InvitationReceivedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitationReceivedCell.h; sourceTree = "<group>"; };
+		A201BE811E1BA9CE00276430 /* InvitationReceivedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationReceivedCell.m; sourceTree = "<group>"; };
+		A201BE821E1BA9CE00276430 /* InvitationReceivedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvitationReceivedCell.xib; sourceTree = "<group>"; };
 		A211A3491E07B98C004C3331 /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
 		A211A34A1E07B98C004C3331 /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
 		A211A34C1E07C858004C3331 /* RegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterController.h; sourceTree = "<group>"; };
@@ -2831,6 +2843,7 @@
 		A201BE381E1A5EF800276430 /* BaiduMap_v3.2.1 */ = {
 			isa = PBXGroup;
 			children = (
+				A201BE531E1B3BD600276430 /* mapapi.bundle */,
 				A201BE391E1A5EF800276430 /* BaiduMapAPI_Base.framework */,
 				A201BE3A1E1A5EF800276430 /* BaiduMapAPI_Cloud.framework */,
 				A201BE3B1E1A5EF800276430 /* BaiduMapAPI_Location.framework */,
@@ -3644,6 +3657,12 @@
 			children = (
 				EA5F0AAF1D64D3BE00F30729 /* HeChatTableCell.h */,
 				EA5F0AB01D64D3BE00F30729 /* HeChatTableCell.m */,
+				A201BE7B1E1BA9A700276430 /* InvitationSentCell.h */,
+				A201BE7C1E1BA9A700276430 /* InvitationSentCell.m */,
+				A201BE7D1E1BA9A700276430 /* InvitationSentCell.xib */,
+				A201BE801E1BA9CE00276430 /* InvitationReceivedCell.h */,
+				A201BE811E1BA9CE00276430 /* InvitationReceivedCell.m */,
+				A201BE821E1BA9CE00276430 /* InvitationReceivedCell.xib */,
 			);
 			name = Chat;
 			sourceTree = "<group>";
@@ -6592,6 +6611,7 @@
 				EADF866E1D621C900029DC4F /* tabbar_chatsHL.png in Resources */,
 				EA8DAD401D5A18D000487BF4 /* blackArrow.png in Resources */,
 				EAA790BD1DEBDB7400443970 /* icon_follow.png in Resources */,
+				A201BE541E1B3BD600276430 /* mapapi.bundle in Resources */,
 				EA5F0A881D64BFA400F30729 /* AlbumOperateMoreViewBkg@2x.png in Resources */,
 				EADF86421D621C900029DC4F /* icon_018.gif in Resources */,
 				EA8DAEC51D5A18F200487BF4 /* ShareSDK.bundle in Resources */,
@@ -6709,6 +6729,7 @@
 				EA8DA9FB1D5A18C700487BF4 /* HeTabBarVC.xib in Resources */,
 				EADF862A1D621C900029DC4F /* chat_receiver_audio_playing000@2x.png in Resources */,
 				EA2AC3991D60192300C57B45 /* searchIcon.png in Resources */,
+				A201BE841E1BA9CE00276430 /* InvitationReceivedCell.xib in Resources */,
 				EA8DAD371D5A18D000487BF4 /* down_dark.png in Resources */,
 				EA2AC31F1D5EBFC400C57B45 /* HeUserVC.xib in Resources */,
 				EA8DAEC31D5A18F200487BF4 /* README.txt in Resources */,
@@ -6814,6 +6835,7 @@
 				EAA790C31DEBDB7400443970 /* icon_my_location.png in Resources */,
 				EA8DAD4A1D5A18D000487BF4 /* LICENSE.txt in Resources */,
 				A2143DB51E12519000D0C631 /* OwnerCertificationController.xib in Resources */,
+				A201BE7F1E1BA9A800276430 /* InvitationSentCell.xib in Resources */,
 				EA2AC3921D60192300C57B45 /* menuIcon.png in Resources */,
 				EADF86521D621C900029DC4F /* icon_030.gif in Resources */,
 				EAA790C71DEBDB7400443970 /* icon_setting_white.png in Resources */,
@@ -7216,6 +7238,7 @@
 				EADF87FD1D621E380029DC4F /* EaseMessageReadManager.m in Sources */,
 				EA8DAE351D5A18D000487BF4 /* UIButton+Bootstrap.m in Sources */,
 				EA8DADD51D5A18D000487BF4 /* RACReplaySubject.m in Sources */,
+				A201BE7E1E1BA9A800276430 /* InvitationSentCell.m in Sources */,
 				EADF88641D62271A0029DC4F /* ContactView.m in Sources */,
 				EA8DADCF1D5A18D000487BF4 /* RACKVOProxy.m in Sources */,
 				EADF87D41D621E380029DC4F /* EMSDImageCache.m in Sources */,
@@ -7397,6 +7420,7 @@
 				EADF87FE1D621E380029DC4F /* EaseEmoji.m in Sources */,
 				EADF881B1D621E380029DC4F /* EaseFacialView.m in Sources */,
 				A211A35D1E07E636004C3331 /* SearchResultController.m in Sources */,
+				A201BE831E1BA9CE00276430 /* InvitationReceivedCell.m in Sources */,
 				EA5F0A771D64BFA400F30729 /* DFUserActivityDetailLineItem.m in Sources */,
 				EA6DFF791D6B53B90069F4ED /* DEMOHomeViewController.m in Sources */,
 				EA8DADFC1D5A18D000487BF4 /* UITableViewHeaderFooterView+RACSignalSupport.m in Sources */,

@@ -37,7 +37,7 @@
                         <sections>
                             <tableViewSection id="3Yw-jE-zWI">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="93" id="wzK-7o-uaZ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="93" id="wzK-7o-uaZ">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="93"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wzK-7o-uaZ" id="XzB-LH-jj1">

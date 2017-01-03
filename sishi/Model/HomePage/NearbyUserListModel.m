@@ -49,6 +49,18 @@ NSString *const kNearbyUserListModelUserSex = @"userSex";
     return [[self alloc] initWithDictionary:dict];
 }
 
+- (BOOL)isUpvoted {
+    return [self.followState isEqualToString:@"1"];
+}
+
+- (void)setIsUpvoted:(BOOL)isUpvoted {
+    if (isUpvoted) {
+        self.followState = @"1";
+    } else {
+        self.followState = @"0";
+    }
+}
+
 - (instancetype)initWithDictionary:(NSDictionary *)dict
 {
     self = [super init];

@@ -9,8 +9,9 @@
 #import "OwnerCertificationController.h"
 #import "Masonry.h"
 #import "ApiUtils.h"
+#import "UIViewController+UIImagePickerController.h"
 
-@interface OwnerCertificationController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface OwnerCertificationController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UIView *inputFieldContainer;
 @property (weak, nonatomic) IBOutlet UITextField *nameInputField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneInputField;
@@ -161,51 +162,95 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"确定要删除选中的照片吗" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    kWeakSelf;
-    UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        //删除图片
-        [weakSelf removeImageAtIndex:indexPath.row];
-        [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
-    }];
-    
-    [alertController addAction:confirmAction];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-    [self presentViewController:alertController animated:YES completion:nil];
+    if ([Tool isSystemAvailableOnVersion:11]) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"确定要删除选中的照片吗 ?" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        kWeakSelf;
+        UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            //删除图片
+            [weakSelf removeImageAtIndex:indexPath.row];
+            [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }];
+        
+        [alertController addAction:confirmAction];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+        [self presentViewController:alertController animated:YES completion:nil];
+    } else {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"确定要删除选中的照片吗 ?" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"确定", nil];
+        actionSheet.tag = 10000 + indexPath.row;
+        [actionSheet showInView:self.view];
+    }
+}
+
+#pragma mark :- UIActionSheetDelegate 
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (actionSheet.tag < 10000) {//选择照片
+        
+        if (buttonIndex == 0) {//拍摄
+            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            picker.delegate = self;
+            picker.allowsEditing = YES;
+            [self presentViewController:picker animated:YES completion:nil];
+        } else if(buttonIndex == 1) {//选择
+            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            picker.delegate = self;
+            picker.allowsEditing = YES;
+            [self presentViewController:picker animated:YES completion:nil];
+        }
+        
+        return;
+    }
+    NSUInteger imageIndex = actionSheet.tag - 10000;
+    if (buttonIndex == 0) {
+        [self removeImageAtIndex:imageIndex];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
 }
 
 #pragma mark :- 添加图片按钮
 - (void)onAddImage:(UIButton *)btn {
     if (self.imageArray.count >= 2) {
-        [self showHint:@"您最多只能上传四张照片哦"];
+        [self showHint:@"您最多只能上传两张照片哦"];
         return;
     }
-    kWeakSelf;
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择照片打开方式" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"现在拍摄"
-                                                           style:UIAlertActionStyleDefault
-                                                         handler:^(UIAlertAction * _Nonnull action) {
-                                                             UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-                                                             picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-                                                             picker.delegate = self;
-                                                             picker.allowsEditing = YES;
-                                                             [weakSelf presentViewController:picker animated:YES completion:nil];
-                                                         }];
+    if ([Tool isSystemAvailableOnVersion:11]) {
+        kWeakSelf;
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择照片打开方式" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"现在拍摄"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * _Nonnull action) {
+                                                                 UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+                                                                 picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                                                                 picker.delegate = self;
+                                                                 picker.allowsEditing = YES;
+                                                                 [weakSelf presentViewController:picker animated:YES completion:nil];
+                                                             }];
+        UIAlertAction *albumAction = [UIAlertAction actionWithTitle:@"选择照片" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            picker.delegate = self;
+            picker.allowsEditing = YES;
+            [weakSelf presentViewController:picker animated:YES completion:nil];
+        }];
+        
+        [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+        
+        [alertController addAction:cameraAction];
+        [alertController addAction:albumAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+    } else {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"请选择照片打开方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"现在拍摄",@"选择照片", nil];
+        [actionSheet showInView:self.view];
+    }
     
-    UIAlertAction *albumAction = [UIAlertAction actionWithTitle:@"选择照片" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        picker.delegate = self;
-        picker.allowsEditing = YES;
-        [weakSelf presentViewController:picker animated:YES completion:nil];
-    }];
-    
-    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-    
-    [alertController addAction:cameraAction];
-    [alertController addAction:albumAction];
-    [self presentViewController:alertController animated:YES completion:nil];
-    
+//    [self pickImage:@"owner"];
+}
+
+- (void)finishPickWithImage:(UIImage *)image identifier:(NSString *)identifier {
+    if ([identifier isEqualToString:identifier]) {
+        [self addImage:image];
+    }
 }
 
 #pragma mark :- UIImagePickerControllerDelegate

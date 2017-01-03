@@ -204,6 +204,10 @@
     
 }
 
++ (BOOL)isSystemAvailableOnVersion:(CGFloat)version {
+    return version <= [[[UIDevice currentDevice]systemVersion]doubleValue];
+}
+
 
 
 + (void)canceliClouldBackup

@@ -20,7 +20,7 @@
 
 #define TextLineHeight 1.2f
 
-@interface HeRealTimeTrendVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface HeRealTimeTrendVC ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 {
     BOOL requestReply; //是否已经完成
 }
@@ -436,30 +436,36 @@
         realTrendCell.model = self.dataSource[indexPath.row];
         realTrendCell.onLongPress = ^(TripListModel *tripModel) {
             //长按操作
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否现在开始行程?" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消行程" style:UIAlertActionStyleDefault handler:nil];
-            UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"进入行程" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-               //进入行程页面
-                if (tripModel.isOnGoing) {
-                    TripOnGoingController *onGoingController = [[TripOnGoingController alloc]initWithNibName:@"TripOnGoingController" bundle:[NSBundle mainBundle]];
-                    onGoingController.tripId = tripModel.carOwnerId;
-                    [self.navigationController pushViewController:onGoingController animated:YES];
-                    return ;
-                }
-                
-                [ApiUtils startTripWithTripId:tripModel.carOwnerId onCompleteHandler:^{
+            if ([Tool isSystemAvailableOnVersion:11.0]) {
+                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否现在开始行程?" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消行程" style:UIAlertActionStyleDefault handler:nil];
+                UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"进入行程" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    //进入行程页面
+                    if (tripModel.isOnGoing) {
                         TripOnGoingController *onGoingController = [[TripOnGoingController alloc]initWithNibName:@"TripOnGoingController" bundle:[NSBundle mainBundle]];
-                    onGoingController.tripId = tripModel.carOwnerId;
-                    tripModel.isOnGoing = YES;
+                        onGoingController.tripId = tripModel.carOwnerId;
                         [self.navigationController pushViewController:onGoingController animated:YES];
-                    //进入行程详情
-                } errorHandler:^(NSString *responseErrorInfo) {
-                    [weakSelf showHint:responseErrorInfo];
+                        return ;
+                    }
+                    
+                    [ApiUtils startTripWithTripId:tripModel.carOwnerId onCompleteHandler:^{
+                        TripOnGoingController *onGoingController = [[TripOnGoingController alloc]initWithNibName:@"TripOnGoingController" bundle:[NSBundle mainBundle]];
+                        onGoingController.tripId = tripModel.carOwnerId;
+                        tripModel.isOnGoing = YES;
+                        [self.navigationController pushViewController:onGoingController animated:YES];
+                        //进入行程详情
+                    } errorHandler:^(NSString *responseErrorInfo) {
+                        [weakSelf showHint:responseErrorInfo];
+                    }];
                 }];
-            }];
-            [alertController addAction:cancelAction];
-            [alertController addAction:confirmAction];
-            [weakSelf presentViewController:alertController animated:YES completion:nil];
+                [alertController addAction:cancelAction];
+                [alertController addAction:confirmAction];
+                [weakSelf presentViewController:alertController animated:YES completion:nil];
+            } else {// UIAlertView
+                UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"是否现在开始行程 ?" delegate:self cancelButtonTitle:nil otherButtonTitles:@"取消行程",@"进入行程", nil];
+                alertView.tag = 10000 + indexPath.row;//记录被点击的model的下标
+                [alertView show];
+            }
         };
     } else if ([cell isKindOfClass:[AskingTableViewCell class]]) {
         AskingTableViewCell *askingCell = (AskingTableViewCell *)cell;
@@ -498,6 +504,35 @@
 //    TripOnGoingController *onGoingController = [[TripOnGoingController alloc]initWithNibName:@"TripOnGoingController" bundle:[NSBundle mainBundle]];
 //    [self.navigationController pushViewController:onGoingController animated:YES];
 }
+
+
+#pragma mark :- UIAlertViewDelegate 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSUInteger index = alertView.tag - 10000;
+    kWeakSelf;
+    
+    if (buttonIndex == 1) {
+        //进入行程页面
+        TripListModel *tripModel = self.dataSource[index];
+        if (tripModel.isOnGoing) {
+            TripOnGoingController *onGoingController = [[TripOnGoingController alloc]initWithNibName:@"TripOnGoingController" bundle:[NSBundle mainBundle]];
+            onGoingController.tripId = tripModel.carOwnerId;
+            [self.navigationController pushViewController:onGoingController animated:YES];
+            return ;
+        }
+        
+        [ApiUtils startTripWithTripId:tripModel.carOwnerId onCompleteHandler:^{
+            TripOnGoingController *onGoingController = [[TripOnGoingController alloc]initWithNibName:@"TripOnGoingController" bundle:[NSBundle mainBundle]];
+            onGoingController.tripId = tripModel.carOwnerId;
+            tripModel.isOnGoing = YES;
+            [self.navigationController pushViewController:onGoingController animated:YES];
+            //进入行程详情
+        } errorHandler:^(NSString *responseErrorInfo) {
+            [weakSelf showHint:responseErrorInfo];
+        }];
+    }
+}
+
 /*
  #pragma mark - Navigation
  

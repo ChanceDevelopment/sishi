@@ -40,7 +40,7 @@
     self.rightBtn.layer.borderWidth = 1.0;
     self.rightBtn.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    
+    self.mapView.userTrackingMode = BMKUserTrackingModeFollow;
     self.mapView.showsUserLocation = YES;
     self.mapView.gesturesEnabled = YES;
     [self configPageInfo];
