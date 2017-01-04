@@ -62,7 +62,10 @@
         NSString *uname = note.userInfo[@"uname"];
         NSString *password = note.userInfo[@"password"];
         [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-        [weakSelf onLogin:nil];
+        LoginViewController *login = [[LoginViewController alloc]initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
+        login.uname = uname;
+        login.password = password;
+        [weakSelf.navigationController pushViewController:login animated:YES];
     }];
     
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]initWithString:@"注册账号即表示我同意 司事 的服务条款、支付服务条款、隐私政策、退款政策和司机保障计划条款"];
@@ -131,6 +134,7 @@
 }
 - (IBAction)onLogin:(UIButton *)sender {
     LoginViewController *login = [[LoginViewController alloc]initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
+    
     [self.navigationController pushViewController:login animated:YES];
     
 }

@@ -50,6 +50,9 @@
     self.inputFieldContainer.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.inputFieldContainer.layer.borderWidth = 1.0;
     
+    self.phoneInputField.text = self.uname;
+    self.passwordInputField.text = self.password;
+    
     [self.driverBtn setBackgroundImage:[Tool buttonImageFromColor:[UIColor colorWithWhite:0.5 alpha:1] withImageSize:CGSizeMake(1, 1)] forState:UIControlStateHighlighted];
     [self.passengerBtn  setBackgroundImage:[Tool buttonImageFromColor:[UIColor colorWithWhite:0.5 alpha:1] withImageSize:CGSizeMake(1, 1)] forState:UIControlStateHighlighted];
 }
@@ -78,7 +81,7 @@
                       BOOL isAuthlogin = [EMClient sharedClient].options.isAutoLogin;
                       EMError *loginError = nil;
                       if (!isAuthlogin) {//自动登录未开启则进行登录
-                          loginError =  [[EMClient sharedClient]loginWithUsername:userInfo.userPhone password:weakSelf.passwordInputField.text];
+                          loginError =  [[EMClient sharedClient]loginWithUsername:userInfo.userId password:weakSelf.passwordInputField.text];
                           if (!loginError) {
                               [[EMClient sharedClient].options setIsAutoLogin:YES];   
                           }

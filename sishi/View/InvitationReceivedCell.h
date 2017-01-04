@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ChatInvitationMessageModel.h"
+#import "EaseUI.h"
 
 /**
  已接收到的邀约列表
  */
 @interface InvitationReceivedCell : UITableViewCell
+
 
 @end

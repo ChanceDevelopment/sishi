@@ -44,7 +44,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)onLogout:(UIButton *)sender {
-    if ([Tool isSystemAvailableOnVersion:11]) {
+    if ([Tool isSystemAvailableOnVersion:8]) {
         kWeakSelf;
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"确认退出当前登录账户吗" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];

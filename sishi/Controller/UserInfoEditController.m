@@ -240,7 +240,7 @@
 #pragma mark :- 长按
 - (void)imageAdder:(ImageAdder *)imageAdder longPressAtIndexPathRow:(NSUInteger)index {
 //    NSLog(@"image name at image link group %@ will be removed ",self.imageAdder.imageLinkGroup[index]);
-    if ([Tool isSystemAvailableOnVersion:11]) {
+    if ([Tool isSystemAvailableOnVersion:8]) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"确认要删除图片吗" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             NSString *imageLink = [imageAdder.imageLinkGroup objectAtIndex:index];

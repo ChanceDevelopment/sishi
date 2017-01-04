@@ -15,6 +15,7 @@
 #import "MJRefresh.h"
 #import "InvitationSentCell.h"
 #import "InvitationReceivedCell.h"
+#import "RDVTabBarItem.h"
 
 @interface HeChatVC ()<UITableViewDelegate,UITableViewDataSource,EMChatManagerDelegate,EaseMessageViewControllerDelegate,EaseMessageViewControllerDataSource>
 @property(strong,nonatomic) UITableView *tableview;
@@ -176,13 +177,14 @@
 }
 
 - (void)onHeaderRefresh:(MJRefreshNormalHeader *)header {
-    [self reloadDataList];
+//    [self reloadDataList];
+    [self reloadEaseMobConversations];
     [header endRefreshing];
 }
 
 
 - (void)reloadDataList {
-    [self.tableview reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableview reloadData];
     self.placeholderLabel.hidden = self.chatArray.count;
 }
 
@@ -218,6 +220,11 @@
     
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self reloadEaseMobConversations];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    ((RDVTabBarItem *)self.rdv_tabBarItem).badgeValue = nil;
 }
 
 #pragma mark :- 环信代理回调 
@@ -289,9 +296,7 @@
     } else {
         return [tableView dequeueReusableCellWithIdentifier:@"reuseId"];
     }
-    
 }
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -303,7 +308,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    HeChatTableCell *chatCell = [tableview cellForRowAtIndexPath:indexPath];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 //    NSInteger row = indexPath.row;
 //    NSInteger section = indexPath.section;
@@ -315,12 +320,12 @@
         chatView.dataSource = self;
         NSString *chatterName = @"";
         chatView.delegate = self;
-        if (conversation.latestMessage.direction == EMMessageDirectionSend) {
-            chatterName = conversation.latestMessage.to;
-        } else {
-            chatterName = conversation.latestMessage.from;
-        }
-        chatView.title = chatterName;
+//        if (conversation.latestMessage.direction == EMMessageDirectionSend) {
+//            chatterName = conversation.latestMessage.to;
+//        } else {
+//            chatterName = conversation.latestMessage.from;
+//        }
+        chatView.title = chatCell.titleLabel.text;
         chatView.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:chatView animated:YES];
     }
@@ -333,16 +338,20 @@
         EMMessageBody *messageBody = lastestMessage.body;
         EMMessageDirection direction = lastestMessage.direction;
         NSString *otherPeopleName = nil;
+        
         if (direction == EMMessageDirectionSend) {
-            otherPeopleName = lastestMessage.to;
+            otherPeopleName = lastestMessage.ext[kEaseMobExtMessageGetterUserNick];
         } else {
-            otherPeopleName = lastestMessage.from;
+            otherPeopleName = lastestMessage.ext[kEaseMobExtMessageSetterUserNick];
         }
         if ([messageBody isKindOfClass:[EMImageMessageBody class]]) {
             cell.contentLabel.text = @"[图片]";
         } else if ([messageBody isKindOfClass:[EMTextMessageBody class]]) {
             EMTextMessageBody *textMessage = (EMTextMessageBody *)messageBody;
             cell.contentLabel.text = textMessage.text;
+            if (lastestMessage.ext && [lastestMessage.ext objectForKey:kEaseMobExtMessageTripId]) {
+                cell.contentLabel.text = @"[邀约消息]";
+            }
         } else if ([messageBody isKindOfClass:[EMVoiceMessageBody class]]) {
             cell.contentLabel.text = @"[语音]";
         }

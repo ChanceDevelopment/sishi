@@ -19,6 +19,8 @@
 #import "CommentBetweenUsers.h"
 #import "TripListModel.h"
 #import "UserCommentLabelModel.h"
+#import "EMClient.h"
+#import "ChatInvitationMessageModel.h"
 
 typedef void(^ApiUtilsSuccessWithVoidResponse)(void);
 
@@ -51,7 +53,7 @@ typedef void(^ApiUtilsSuccessWithResponseList)(NSArray *responseList);
 + (void)userRegisterWithNickName:(NSString *)nickName
                            uName:(NSString *)userName
                              psw:(NSString *)psw
-                      onResponse:(ApiUtilsSuccessWithVoidResponse)response
+                      onResponse:(void(^)(NSString *userId))response
                      onRequestError:(ApiUtilsResponseError)errorHandler;
 
 
@@ -100,7 +102,7 @@ typedef void(^ApiUtilsSuccessWithResponseList)(NSArray *responseList);
 + (void)queryNearbyUserWithUserGender:(NSString *)gender longitude:(CGFloat)longitude latitude:(CGFloat)latitude startIndex:(NSInteger)startIndex onResponse:(void(^)(NSArray <NearbyUserListModel *>*nearby))completeHandler errorHandler:(ApiUtilsResponseError)errorHandler;
 
 
-+ (void)sendAskingFor:(NSString *)uid tripId:(NSString *)tripId withCompleteHandler:(ApiUtilsSuccessWithVoidResponse)completeHandler errorHandler:(ApiUtilsResponseError)errorHandler;
++ (void)sendAskingFor:(NSString *)uid tripId:(NSString *)tripId askingName:(NSString *)targetName askingHeaderImage:(NSString *)targetImage withCompleteHandler:(ApiUtilsSuccessWithVoidResponse)completeHandler errorHandler:(ApiUtilsResponseError)errorHandler;
 
 + (void)queryMyAskingListWithCompleteHandler:(void(^)(NSArray <NSObject *>* dataList))completeHandler errorHandler:(ApiUtilsResponseError)errorHandler;
 

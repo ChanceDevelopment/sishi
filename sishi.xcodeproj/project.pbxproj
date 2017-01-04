@@ -21,9 +21,7 @@
 		A201BE521E1A638600276430 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A201BE511E1A638600276430 /* CoreTelephony.framework */; };
 		A201BE541E1B3BD600276430 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A201BE531E1B3BD600276430 /* mapapi.bundle */; };
 		A201BE7E1E1BA9A800276430 /* InvitationSentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A201BE7C1E1BA9A700276430 /* InvitationSentCell.m */; };
-		A201BE7F1E1BA9A800276430 /* InvitationSentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A201BE7D1E1BA9A700276430 /* InvitationSentCell.xib */; };
 		A201BE831E1BA9CE00276430 /* InvitationReceivedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A201BE811E1BA9CE00276430 /* InvitationReceivedCell.m */; };
-		A201BE841E1BA9CE00276430 /* InvitationReceivedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A201BE821E1BA9CE00276430 /* InvitationReceivedCell.xib */; };
 		A211A34B1E07B98C004C3331 /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A34A1E07B98C004C3331 /* TTTAttributedLabel.m */; };
 		A211A34F1E07C858004C3331 /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = A211A34D1E07C858004C3331 /* RegisterController.m */; };
 		A211A3501E07C858004C3331 /* RegisterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A211A34E1E07C858004C3331 /* RegisterController.xib */; };
@@ -77,6 +75,7 @@
 		A2A79C381E15014D00172852 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A2A79C351E15014D00172852 /* README.md */; };
 		A2A79C3C1E15016E00172852 /* CompaintsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A79C3A1E15016E00172852 /* CompaintsController.m */; };
 		A2A79C3D1E15016E00172852 /* CompaintsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A79C3B1E15016E00172852 /* CompaintsController.xib */; };
+		A2AB95F11E1C8C4F00FB037B /* ChatInvitationMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AB95F01E1C8C4F00FB037B /* ChatInvitationMessageModel.m */; };
 		A2C829891E024E1700645639 /* HeRealTimeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C829871E024E1700645639 /* HeRealTimeDetailController.m */; };
 		A2C8298A1E024E1700645639 /* HeRealTimeDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2C829881E024E1700645639 /* HeRealTimeDetailController.xib */; };
 		A2C829911E0264E500645639 /* ImageBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C829901E0264E500645639 /* ImageBannerView.m */; };
@@ -1038,10 +1037,8 @@
 		A201BE531E1B3BD600276430 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = mapapi.bundle; path = BaiduMapAPI_Map.framework/Resources/mapapi.bundle; sourceTree = "<group>"; };
 		A201BE7B1E1BA9A700276430 /* InvitationSentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitationSentCell.h; sourceTree = "<group>"; };
 		A201BE7C1E1BA9A700276430 /* InvitationSentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationSentCell.m; sourceTree = "<group>"; };
-		A201BE7D1E1BA9A700276430 /* InvitationSentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvitationSentCell.xib; sourceTree = "<group>"; };
 		A201BE801E1BA9CE00276430 /* InvitationReceivedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitationReceivedCell.h; sourceTree = "<group>"; };
 		A201BE811E1BA9CE00276430 /* InvitationReceivedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationReceivedCell.m; sourceTree = "<group>"; };
-		A201BE821E1BA9CE00276430 /* InvitationReceivedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvitationReceivedCell.xib; sourceTree = "<group>"; };
 		A211A3491E07B98C004C3331 /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
 		A211A34A1E07B98C004C3331 /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
 		A211A34C1E07C858004C3331 /* RegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterController.h; sourceTree = "<group>"; };
@@ -1132,6 +1129,8 @@
 		A2A79C391E15016E00172852 /* CompaintsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompaintsController.h; sourceTree = "<group>"; };
 		A2A79C3A1E15016E00172852 /* CompaintsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompaintsController.m; sourceTree = "<group>"; };
 		A2A79C3B1E15016E00172852 /* CompaintsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompaintsController.xib; sourceTree = "<group>"; };
+		A2AB95EF1E1C8C4F00FB037B /* ChatInvitationMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatInvitationMessageModel.h; sourceTree = "<group>"; };
+		A2AB95F01E1C8C4F00FB037B /* ChatInvitationMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatInvitationMessageModel.m; sourceTree = "<group>"; };
 		A2C829861E024E1700645639 /* HeRealTimeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeRealTimeDetailController.h; sourceTree = "<group>"; };
 		A2C829871E024E1700645639 /* HeRealTimeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeRealTimeDetailController.m; sourceTree = "<group>"; };
 		A2C829881E024E1700645639 /* HeRealTimeDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeRealTimeDetailController.xib; sourceTree = "<group>"; };
@@ -2989,6 +2988,15 @@
 			path = HCSStarRatingView;
 			sourceTree = "<group>";
 		};
+		A2AB95EE1E1C8C0D00FB037B /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				A2AB95EF1E1C8C4F00FB037B /* ChatInvitationMessageModel.h */,
+				A2AB95F01E1C8C4F00FB037B /* ChatInvitationMessageModel.m */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
 		A2C8298B1E02648A00645639 /* BannerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3659,10 +3667,8 @@
 				EA5F0AB01D64D3BE00F30729 /* HeChatTableCell.m */,
 				A201BE7B1E1BA9A700276430 /* InvitationSentCell.h */,
 				A201BE7C1E1BA9A700276430 /* InvitationSentCell.m */,
-				A201BE7D1E1BA9A700276430 /* InvitationSentCell.xib */,
 				A201BE801E1BA9CE00276430 /* InvitationReceivedCell.h */,
 				A201BE811E1BA9CE00276430 /* InvitationReceivedCell.m */,
-				A201BE821E1BA9CE00276430 /* InvitationReceivedCell.xib */,
 			);
 			name = Chat;
 			sourceTree = "<group>";
@@ -5025,6 +5031,7 @@
 		EA8DAE511D5A18E600487BF4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A2AB95EE1E1C8C0D00FB037B /* Chat */,
 				A2FF4B791E0FD23800A3739E /* CommentBetweenUsers.h */,
 				A2FF4B7A1E0FD23800A3739E /* CommentBetweenUsers.m */,
 				A2A79C1D1E13C4D600172852 /* CommentLabelModel.h */,
@@ -6729,7 +6736,6 @@
 				EA8DA9FB1D5A18C700487BF4 /* HeTabBarVC.xib in Resources */,
 				EADF862A1D621C900029DC4F /* chat_receiver_audio_playing000@2x.png in Resources */,
 				EA2AC3991D60192300C57B45 /* searchIcon.png in Resources */,
-				A201BE841E1BA9CE00276430 /* InvitationReceivedCell.xib in Resources */,
 				EA8DAD371D5A18D000487BF4 /* down_dark.png in Resources */,
 				EA2AC31F1D5EBFC400C57B45 /* HeUserVC.xib in Resources */,
 				EA8DAEC31D5A18F200487BF4 /* README.txt in Resources */,
@@ -6835,7 +6841,6 @@
 				EAA790C31DEBDB7400443970 /* icon_my_location.png in Resources */,
 				EA8DAD4A1D5A18D000487BF4 /* LICENSE.txt in Resources */,
 				A2143DB51E12519000D0C631 /* OwnerCertificationController.xib in Resources */,
-				A201BE7F1E1BA9A800276430 /* InvitationSentCell.xib in Resources */,
 				EA2AC3921D60192300C57B45 /* menuIcon.png in Resources */,
 				EADF86521D621C900029DC4F /* icon_030.gif in Resources */,
 				EAA790C71DEBDB7400443970 /* icon_setting_white.png in Resources */,
@@ -6963,6 +6968,7 @@
 				EA8DACE51D5A18D000487BF4 /* AFHTTPRequestOperation.m in Sources */,
 				A211A3971E0A6B77004C3331 /* TADotView.m in Sources */,
 				EADF886D1D62271A0029DC4F /* SearchMessageViewController.m in Sources */,
+				A2AB95F11E1C8C4F00FB037B /* ChatInvitationMessageModel.m in Sources */,
 				EA8DADC61D5A18D000487BF4 /* RACEagerSequence.m in Sources */,
 				EA6DFF6F1D6B51FF0069F4ED /* UIView+REFrostedViewController.m in Sources */,
 				EA8DAEB81D5A18F200487BF4 /* rscode.c in Sources */,

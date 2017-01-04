@@ -205,7 +205,7 @@
 }
 
 + (BOOL)isSystemAvailableOnVersion:(CGFloat)version {
-    return version <= [[[UIDevice currentDevice]systemVersion]doubleValue];
+    return version <= [[[UIDevice currentDevice] systemVersion] doubleValue];
 }
 
 

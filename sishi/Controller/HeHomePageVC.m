@@ -191,7 +191,7 @@
 
 
 - (void)reloadDataList {
-    [self.tableview reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableview reloadData];
     self.placeholderLabel.hidden = self.nearbyUserList.count;
 }
 
@@ -318,7 +318,7 @@
     cell.model = nearbyModel;
     cell.onContactAction = ^(HeNearByTableCell *targetCell) {
         [MBProgressHUD showHUDAddedTo:weakSelf.view.window animated:YES];
-        [ApiUtils sendAskingFor:nearbyModel.userId tripId:@" " withCompleteHandler:^{
+        [ApiUtils sendAskingFor:nearbyModel.userId tripId:@" " askingName:nearbyModel.userNick askingHeaderImage:nearbyModel.userHeader withCompleteHandler:^{
             [MBProgressHUD hideHUDForView:weakSelf.view.window animated:YES];
             [weakSelf showHint:@"已发出邀约"];
         } errorHandler:^(NSString *responseErrorInfo) {

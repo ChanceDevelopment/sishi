@@ -45,7 +45,7 @@
         [self showHint:@"请输入您的昵称"];
         return;
     }
-    kWeakSelf;
+//    kWeakSelf;
 //    [ApiUtils userRegisterWithNickName:self.nickNameInputField.text
 //                                 uName:self.phoneNumber
 //                                   psw:self.passwordInputField.text
@@ -55,29 +55,31 @@
 //        [weakSelf showHint:responseErrorInfo];
 //    }];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    dispatch_async(dispatch_queue_create("com.sishi.easemob.register", DISPATCH_QUEUE_SERIAL), ^{
-       EMError *loginError =  [[EMClient sharedClient]registerWithUsername:weakSelf.phoneNumber password:weakSelf.passwordInputField.text];
-        dispatch_async(dispatch_get_main_queue(), ^{
-           [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-        });
-        if (!loginError) {
+//    dispatch_async(dispatch_queue_create("com.sishi.easemob.register", DISPATCH_QUEUE_SERIAL), ^{
+//       EMError *loginError =  [[EMClient sharedClient]registerWithUsername:weakSelf.phoneNumber password:weakSelf.passwordInputField.text];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//           [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+//        });
+//        if (!loginError) {
             [ApiUtils userRegisterWithNickName:self.nickNameInputField.text
                                          uName:self.phoneNumber
                                            psw:self.passwordInputField.text
-                                    onResponse:^{
-                                        [[NSNotificationCenter defaultCenter]postNotificationName:USERREGISTERSUCCESSKEY object:nil userInfo:@{@"uname":self.phoneNumber,@"password":self.passwordInputField.text}];
+                                    onResponse:^(NSString *userId){
+                                        [self registerEaseMobWithUserName:userId];
                                     } onRequestError:^(NSString *responseErrorInfo) {//注册失败
-                                        dispatch_async(dispatch_get_main_queue(), ^{
-                                            [weakSelf showHint:responseErrorInfo];
-                                        });
+//                                        dispatch_async(dispatch_get_main_queue(), ^{
+                                        [MBProgressHUD hideHUDForView:self.view.window animated:YES];
+                                            [self showHint:responseErrorInfo];
+                                        
+//                                        });
                                     }];
-        } else {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                    [weakSelf showHint:loginError.errorDescription];
-            });
-            
-        }
-    });
+//        } else {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                    [weakSelf showHint:loginError.errorDescription];
+//            });
+//            
+//        }
+//    });
 //    [[EMClient sharedClient] asyncRegisterWithUsername:self.phoneNumber
 //                                             password:self.passwordInputField.text
 //                                              success:^{
@@ -97,6 +99,23 @@
 //        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
 //    }];
 
+}
+
+
+- (void)registerEaseMobWithUserName:(NSString *)userName {
+    kWeakSelf;
+    dispatch_queue_t easemobRegisterQueue = dispatch_queue_create("com.sishi.easemob.register", DISPATCH_QUEUE_SERIAL);
+    dispatch_async(easemobRegisterQueue, ^{
+         EMError *loginError =  [[EMClient sharedClient]registerWithUsername:userName password:weakSelf.passwordInputField.text];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+            if (!loginError) {
+                [[NSNotificationCenter defaultCenter]postNotificationName:USERREGISTERSUCCESSKEY object:nil userInfo:@{@"uname":weakSelf.phoneNumber,@"password":self.passwordInputField.text}];
+            } else {
+                [weakSelf showHint:@"注册聊天服务器时出错"];
+            }
+        });
+    });
 }
 
 /*

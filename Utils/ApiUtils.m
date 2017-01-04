@@ -68,15 +68,16 @@ static AFHTTPSessionManager *sessionManager = nil;
 + (void)userRegisterWithNickName:(NSString *)nickName
                            uName:(NSString *)userName
                              psw:(NSString *)psw
-                      onResponse:(ApiUtilsSuccessWithVoidResponse)response
+                      onResponse:(void(^)(NSString *userId))response
                   onRequestError:(ApiUtilsResponseError)errorHandler {
     NSString *registerApi = [NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],@"Sexton/user/createNewUser.action"];
     
     [ApiUtils POST:registerApi
             parameters:@{@"userNick":nickName,@"userName":userName,@"userPwd":psw}
             onResponseSuccess:^(NSDictionary<NSString *,id> *responseInfo) {
+                NSString *userId = [responseInfo objectForKey:@"json"];//用户Id
                 if (response) {
-                    response();
+                    response(userId);
                 }
     } onResponseError:^(NSString *errorInfo) {
         if (errorHandler) {
@@ -283,12 +284,29 @@ static AFHTTPSessionManager *sessionManager = nil;
     }];
 }
 
-+ (void)sendAskingFor:(NSString *)uid tripId:(NSString *)tripId withCompleteHandler:(ApiUtilsSuccessWithVoidResponse)completeHandler errorHandler:(ApiUtilsResponseError)errorHandler {
++ (void)sendAskingFor:(NSString *)uid tripId:(NSString *)tripId askingName:(NSString *)targetName askingHeaderImage:(NSString *)targetImage withCompleteHandler:(ApiUtilsSuccessWithVoidResponse)completeHandler errorHandler:(ApiUtilsResponseError)errorHandler {
+    //发送邀约
     NSString *api = [NSString stringWithFormat:@"%@Sexton/ask/setAskingforPeople.action",[ApiUtils baseUrl]];
     NSDictionary *parameters = @{@"userId":[Tool uid],@"askingUserId":uid,@"asktripId":tripId};
     [ApiUtils POST:api
                 parameters:parameters
                 onResponseSuccess:^(NSDictionary<NSString *,id> *responseInfo) {
+                    //发送环信消息
+                    EMTextMessageBody *messageBody = [[EMTextMessageBody alloc]initWithText:@""];
+                    NSString *from = [[EMClient sharedClient] currentUsername];
+                    
+                    NSDictionary *ext = @{@"puter_id":[Tool uid],
+                                                        @"ureceiver_id":uid,
+                                                        @"tripId":tripId,
+                                                        @"puter_nick":[Tool defaultsForKey:kDefaultsUserNick],
+                                                        @"puter_header":[Tool defaultsForKey:kDefaultsUserHeaderImage],
+                                                          kEaseMobExtMessageGetterUserNick:targetName,
+                                                            kEaseMobExtMessageGetterUserImage:targetImage};
+                    
+                    EMMessage *message = [[EMMessage alloc]initWithConversationID:nil from:from to:uid body:messageBody ext:ext];
+                    [[EMClient sharedClient].chatManager asyncSendMessage:message progress:nil completion:^(EMMessage *message, EMError *error) {
+                        NSLog(@"send asking message with complete error %@",error);
+                    }];
                     if (completeHandler) {
                         completeHandler();
                     }

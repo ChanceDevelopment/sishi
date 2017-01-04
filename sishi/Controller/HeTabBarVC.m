@@ -18,6 +18,7 @@
 #import "DEMOMenuViewController.h"
 #import "DEMOHomeViewController.h"
 #import "HeLoginVC.h"
+#import "EMClient.h"
 
 @interface HeTabBarVC ()
 
@@ -154,6 +155,23 @@
     
     [self setViewControllers:@[homeNav,chatNav,dynamicNav,userNav]];
     [self customizeTabBarForController];
+    
+    [self checkUnReadMessage];
+}
+
+
+- (void)checkUnReadMessage {
+    BOOL hasUnReadMessage = NO;
+    NSArray <EMConversation *>* conversations = [[EMClient sharedClient].chatManager loadAllConversationsFromDB];
+    for (EMConversation *conversation in conversations) {
+        if (conversation.unreadMessagesCount >= 1) {
+            hasUnReadMessage = YES;
+            break;
+        }
+    }
+   ((RDVTabBarItem *) [[self.tabBar items] objectAtIndex:1]).badgeValue = @" ";
+    ((RDVTabBarItem *) [[self.tabBar items] objectAtIndex:1]).badgeTextFont = [UIFont systemFontOfSize:2];
+    
 }
 
 //设置底部的tabbar

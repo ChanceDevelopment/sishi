@@ -436,7 +436,7 @@
         realTrendCell.model = self.dataSource[indexPath.row];
         realTrendCell.onLongPress = ^(TripListModel *tripModel) {
             //长按操作
-            if ([Tool isSystemAvailableOnVersion:11.0]) {
+            if ([Tool isSystemAvailableOnVersion:8]) {
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否现在开始行程?" preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消行程" style:UIAlertActionStyleDefault handler:nil];
                 UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"进入行程" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

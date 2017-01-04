@@ -110,6 +110,34 @@
 
 #define kDefaultsUserLocationLatitude @"kDefaultsUserLocationLatitude"
 
+
+///////////////////////////////////
+//环信消息拓展定义
+#define kEaseMobExtMessageTripId @"kEaseMobExtMessageTripId"
+
+
+///消息发送者,昵称
+#define kEaseMobExtMessageSetterUserNick @"puter_nick"
+
+///消息发送者,id
+#define kEaseMobExtMessageSetterUserId @"puter_id"
+
+///消息发送者,头像
+#define kEaseMobExtMessageSetterUserImage @"puter_header"
+
+///消息接收者,昵称
+#define kEaseMobExtMessageGetterUserNick @"receiver_nick"
+
+///消息接收者,id
+#define kEaseMobExtMessageGetterUserId @"ureceiver_id"
+
+///消息接收者,头像
+#define kEaseMobExtMessageGetterUserImage @"receiver_header"
+
+///////////////////////////////////
+
+
+
 ///////////////////////////////////
 
 

@@ -120,7 +120,7 @@
 
 #pragma mark :- ImageAdder Delegate
 - (void)imageAdder:(ImageAdder *)imageAdder addImageWithImageList:(NSArray<UIImage *> *)imageList {
-    if ([Tool isSystemAvailableOnVersion:11.0]) {
+    if ([Tool isSystemAvailableOnVersion:8]) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"选择图片打开方式" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"拍照上传" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];

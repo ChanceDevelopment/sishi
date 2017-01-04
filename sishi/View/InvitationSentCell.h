@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ChatInvitationMessageModel.h"
+#import "EaseUI.h"
 
 
 ///邀约 单元格 我发送的
 @interface InvitationSentCell : UITableViewCell
+
 
 @end

@@ -23,6 +23,13 @@
 @property(strong,nonatomic)IBOutlet UITableView *tableview;
 @property(strong,nonatomic)UIView *sectionHeaderView;
 
+
+/**
+ *  详情Model
+ */
+@property(nonatomic,strong)UserFollowListModel *userModel;
+
+
 /**
  *  图片轮播图
  */
@@ -592,6 +599,7 @@
     }];
         
     [ApiUtils queryUserInfoBy:self.uid onCompleteHandler:^(UserFollowListModel *userModel) {
+        self.userModel = userModel;
         self.nameLabel.text = [NSString stringWithFormat:@"您好,我是%@",userModel.userNick];
         NSString *gender = @"男";
         if ([userModel.userSex isEqualToString:@"1"]) {}
@@ -631,7 +639,7 @@
 }
 - (IBAction)onContact:(UIButton *)sender {
     [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
-    [ApiUtils sendAskingFor:self.uid tripId:@" " withCompleteHandler:^{
+    [ApiUtils sendAskingFor:self.uid tripId:@" " askingName:self.nameLabel.text askingHeaderImage:self.userModel.userHeader withCompleteHandler:^{
         [MBProgressHUD hideHUDForView:self.view.window animated:YES];
         [self showHint:@"邀约成功"];
     } errorHandler:^(NSString *responseErrorInfo) {

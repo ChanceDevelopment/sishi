@@ -20,6 +20,9 @@
 #import "ChatDemoHelper.h"
 #import "EMChooseViewController.h"
 #import "ContactSelectionViewController.h"
+#import "InvitationSentCell.h"
+#import "ChatInvitationMessageModel.h"
+#import "InvitationReceivedCell.h"
 
 @interface ChatViewController ()<UIAlertViewDelegate,EMClientDelegate, EMChooseViewDelegate>
 {
@@ -43,6 +46,10 @@
     self.showRefreshHeader = YES;
     self.delegate = self;
     self.dataSource = self;
+    self.tableView.backgroundColor = [UIColor colorWithRed:239 / 255.0 green:235 / 255.0 blue:239 / 255.0 alpha:1];
+//    [self.tableView registerNib:[UINib nibWithNibName:@"InvitationSentCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"InvitationSentCell"];
+    
+    [EaseBaseMessageCell appearance].nameLabel.hidden = YES;
     
     [self _setupBarButtonItem];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteAllMessages:) name:KNOTIFICATIONNAME_DELETEALLMESSAGE object:nil];
@@ -95,6 +102,7 @@
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
+    [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
     if (self.conversation.type == EMConversationTypeGroupChat) {
         NSDictionary *ext = self.conversation.ext;
         if ([[ext objectForKey:@"subject"] length])
@@ -165,13 +173,13 @@
 - (BOOL)messageViewController:(EaseMessageViewController *)viewController
    didLongPressRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    id object = [self.dataArray objectAtIndex:indexPath.row];
-    if (![object isKindOfClass:[NSString class]]) {
-        EaseMessageCell *cell = (EaseMessageCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-        [cell becomeFirstResponder];
-        self.menuIndexPath = indexPath;
-        [self showMenuViewController:cell.bubbleView andIndexPath:indexPath messageType:cell.model.bodyType];
-    }
+//    id object = [self.dataArray objectAtIndex:indexPath.row];
+//    if (![object isKindOfClass:[NSString class]]) {
+//        EaseMessageCell *cell = (EaseMessageCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+//        [cell becomeFirstResponder];
+//        self.menuIndexPath = indexPath;
+//        [self showMenuViewController:cell.bubbleView andIndexPath:indexPath messageType:cell.model.bodyType];
+//    }
     return YES;
 }
 
@@ -259,7 +267,47 @@
 
 - (id<IMessageModel>)messageViewController:(EaseMessageViewController *)viewController
                            modelForMessage:(EMMessage *)message
-{
+{//获取EMMessage消息内容,如果是邀约信息则构建ChatInviteMessageModel
+    NSDictionary *messageExtension = message.ext;
+    if (messageExtension && [messageExtension objectForKey:@"tripId"]) {//如果存在消息拓展并且拓展中存在tripId
+        ChatInvitationMessageModel *messageModel = [[ChatInvitationMessageModel alloc]initWithMessage:message];
+        
+        NSString *invitationDate = [messageExtension objectForKey:@"setOutTime"];
+        messageModel.invitationDate = invitationDate ? invitationDate : @"";
+        
+        NSString *stopPlace = [messageExtension objectForKey:@"destination"];
+        messageModel.stopPlace = stopPlace ? stopPlace : @"";
+        
+        NSString *startPlace = [messageExtension objectForKey:@"whereByCar"];
+        messageModel.startPlace = startPlace ? startPlace : startPlace;
+        
+        NSString *note = [messageExtension objectForKey:@"note"];
+        messageModel.note = note ? note : @"";
+        
+        NSString *tripId = [messageExtension objectForKey:@"tripid"];
+        messageModel.tripId = tripId ? tripId : @"";
+        
+        NSString *setterNickName = [messageExtension objectForKey:@"puter_nick"];
+        messageModel.setterNickName = setterNickName ? setterNickName : @"";
+        
+        NSString *setterId = [messageExtension objectForKey:@"puter_id"];
+        messageModel.setterId = setterId ? setterId : @"";
+        
+        NSString *setter_header = [messageExtension objectForKey:@"puter_header"];
+        messageModel.setterHeaderImage = setter_header ? setter_header : @"";
+        
+        NSString *getter_header = [messageExtension objectForKey:@"receiver_header"];
+        messageModel.getterHeaderImage = getter_header ? getter_header : @"";
+        
+        NSString *getter_nick = [messageExtension objectForKey:@"receiver_nick"];
+        messageModel.getterNickName = getter_nick ? getter_nick : @"";
+        
+        NSString *getter_id = [messageExtension objectForKey:@"ureceiver_id"];
+        messageModel.getterId = getter_id ? getter_id : @"";
+        
+        return messageModel;
+    }
+    
     id<IMessageModel> model = nil;
     model = [[EaseMessageModel alloc] initWithMessage:message];
     model.avatarImage = [UIImage imageNamed:@"EaseUIResource.bundle/user"];
@@ -270,6 +318,32 @@
     }
     model.failImageName = @"imageDownloadFail";
     return model;
+//    return [ChatInvitationMessageModel new];
+    return nil;
+}
+
+//- (CGFloat)messageViewController:(EaseMessageViewController *)viewController heightForMessageModel:(id<IMessageModel>)messageModel withCellWidth:(CGFloat)cellWidth {
+//    return messageModel.cellHeight;
+//}
+
+- (UITableViewCell *)messageViewController:(UITableView *)tableView cellForMessageModel:(id<IMessageModel>)messageModel {
+    if ([messageModel isKindOfClass:[ChatInvitationMessageModel class]]) {
+        ChatInvitationMessageModel *chatModel = (ChatInvitationMessageModel *)messageModel;
+        if (chatModel.isSentFromMe) {
+            InvitationSentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InvitationSentCell"];
+            if (!cell) {
+                cell = [[InvitationSentCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"InvitationSentCell"];
+            }
+            return cell;
+        } else {//我接收的消息
+            InvitationReceivedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InvitationReceivedCell"];
+            if (!cell) {
+                cell = [[InvitationReceivedCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"InvitationReceivedCell"];
+            }
+            return cell;
+        }
+    }
+    return nil;
 }
 
 - (NSArray*)emotionFormessageViewController:(EaseMessageViewController *)viewController

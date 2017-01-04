@@ -23,7 +23,7 @@
 - (void)pickImage:(NSString *)identifier {
     self.identifier = identifier;
     
-    if ([Tool isSystemAvailableOnVersion:11]) {
+    if ([Tool isSystemAvailableOnVersion:8]) {
         UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
         imagePicker.delegate = self;
         imagePicker.allowsEditing = YES;

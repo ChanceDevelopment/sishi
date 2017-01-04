@@ -13,11 +13,17 @@
 #import "EvaluationViewController.h"
 #import "UIButton+EMWebCache.h"
 
-@interface TripOnGoingController ()<BMKMapViewDelegate>
+@interface TripOnGoingController ()<BMKMapViewDelegate,BMKLocationServiceDelegate>
 @property (weak, nonatomic) IBOutlet BMKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UIButton *addBtn;
 @property (weak, nonatomic) IBOutlet UIButton *rightBtn;
 @property (weak, nonatomic) IBOutlet UIButton *leftBtn;
+
+/**
+ *  百度定位服务
+ */
+@property(nonatomic,strong)BMKLocationService *locationService;
+
 
 /**
  *  行程详情Model
@@ -29,19 +35,35 @@
 
 @implementation TripOnGoingController
 
+- (void)dealloc {
+    self.locationService.delegate = nil;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.leftBtn.layer.cornerRadius = 30.0;
     self.leftBtn.layer.borderWidth = 1.0;
     self.leftBtn.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.leftBtn.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    
+    self.locationService = [[BMKLocationService alloc]init];
+    self.locationService.delegate = self;
+    self.locationService.distanceFilter = kCLLocationAccuracyBest;
+    [self.locationService startUserLocationService];
     
     self.rightBtn.layer.cornerRadius = 30.0;
     self.rightBtn.layer.borderWidth = 1.0;
+    self.rightBtn.imageView.contentMode = UIViewContentModeScaleAspectFill;
     self.rightBtn.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    self.mapView.userTrackingMode = BMKUserTrackingModeFollow;
-    self.mapView.showsUserLocation = YES;
+//    self.mapView.userTrackingMode = BMKUserTrackingModeFollow;
+//    self.mapView.showsUserLocation = YES;
+    
+    self.mapView.showsUserLocation = NO;//先关闭显示的定位图层
+    self.mapView.userTrackingMode = BMKUserTrackingModeFollow;//设置定位的状态
+    self.mapView.showsUserLocation = YES;//显示定位图层
+    
     self.mapView.gesturesEnabled = YES;
     [self configPageInfo];
 }
@@ -77,6 +99,14 @@
     
 }
 
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation {
+    [self.locationService stopUserLocationService];
+    [self.mapView updateLocationData:userLocation];
+    
+    BMKCoordinateRegion region = {userLocation.location.coordinate,{30,30}};
+    [self.mapView setRegion:region animated:YES];
+    self.mapView.zoomLevel = 20.0;
+}
 
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -99,10 +129,27 @@
     [super viewDidAppear:animated];
     self.mapView.delegate = nil;
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+#pragma mark :- MapViewDataSource
+- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id<BMKAnnotation>)annotation {
+    if ([annotation isKindOfClass:[BMKPointAnnotation class]]) {
+        BMKPinAnnotationView *pinView = (BMKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"BMKPinAnnotationView"];
+        if (!pinView) {
+            pinView = [[BMKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"BMKPinAnnotationView"];
+        }
+        pinView.pinColor = BMKPinAnnotationColorPurple;
+        pinView.animatesDrop = YES;
+        return pinView;
+        
+    }
+    return nil;
 }
+
+
+
+#pragma mark :- MapViewDelegate
+
+
 - (IBAction)onExit:(UIButton *)sender {
     BOOL isDriver = [[Tool judge] isEqualToString:@"0"];
     if (!isDriver) {

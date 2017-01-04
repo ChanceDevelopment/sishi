@@ -162,7 +162,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if ([Tool isSystemAvailableOnVersion:11]) {
+    if ([Tool isSystemAvailableOnVersion:8]) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"确定要删除选中的照片吗 ?" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         kWeakSelf;
         UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
@@ -214,7 +214,7 @@
         [self showHint:@"您最多只能上传两张照片哦"];
         return;
     }
-    if ([Tool isSystemAvailableOnVersion:11]) {
+    if ([Tool isSystemAvailableOnVersion:8]) {
         kWeakSelf;
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择照片打开方式" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"现在拍摄"
