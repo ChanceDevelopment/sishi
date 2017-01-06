@@ -209,6 +209,16 @@
 }
 
 
++ (NSString *)distanceFormatWithDistance:(long)distance {
+    NSMutableString *distanceFormat = [NSMutableString string];
+    if (distance < 1000) {//小于1公里,直接显示米数
+        [distanceFormat appendFormat:@"%@", [NSString stringWithFormat:@"%ld 米",distance]];
+    } else if (distance >= 1000) {//大于一公里,显示公里数
+        [distanceFormat appendFormat:@"%@",[NSString stringWithFormat:@"%ld 公里",distance / 1000]];
+    }
+    return [NSString stringWithString:distanceFormat];
+}
+
 
 + (void)canceliClouldBackup
 {
@@ -810,7 +820,7 @@
 
 + (NSString*)weekdayStringFromDate:(NSDate*)inputDate {
     
-    NSArray *weekdays = [NSArray arrayWithObjects: [NSNull null], @"周日", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六", nil];
+    NSArray *weekdays = [NSArray arrayWithObjects: [NSNull null], @"星期日", @"星期一", @"星期二", @"星期三", @"星期四", @"星期五", @"星期六", nil];
     
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     

@@ -174,6 +174,7 @@
     
 }
 - (IBAction)onPickerTime:(UIButton *)sender {
+    [self.view resignFirstResponder];
     SelectViewContainer *container = [SelectViewContainer defaultContainerView];
     kWeakSelf;
     container.onConfirm = ^(){

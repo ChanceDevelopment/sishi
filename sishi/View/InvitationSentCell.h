@@ -15,4 +15,9 @@
 @interface InvitationSentCell : UITableViewCell
 
 
+/**
+ *  聊天Model
+ */
+@property(nonatomic,strong)ChatInvitationMessageModel *chatModel;
+
 @end

@@ -11,6 +11,7 @@
 #import "ApiUtils.h"
 #import "MJRefresh.h"
 #import "Masonry.h"
+#import "HeRealTimeDetailController.h"
 
 @interface MyTripListController ()
 /**
@@ -55,6 +56,8 @@
 //    [self.tableView registerClass:[HeRealTrendTableCell class] forCellReuseIdentifier:@"HeRealTrendTableCell"];
     self.tableView.tableFooterView = [[UIView alloc]init];
     self.navigationItem.title = @"我的行程列表";
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -80,14 +83,7 @@
 
 - (void)onHeaderRefresh:(MJRefreshNormalHeader *)header {
     
-//    [ApiUtils queryTripListWithUser:[Tool uid] carOwnerIsend:@"3" onComplete:^(NSArray<TripListModel *> *response) {
-//        [header endRefreshing];
-//    } errorHandler:^(NSString *responseErrorInfo) {
-//        [header endRefreshing];
-//        [self showHint:responseErrorInfo];
-//    }];
     [ApiUtils queryRealtimeTripInfoWithCompleteHandler:^(NSArray<TripListModel *> *tripList) {
-//        NSLog(@"%@",tripList);
         [header endRefreshing];
         [self.dataList removeAllObjects];
         [self.dataList addObjectsFromArray:tripList];
@@ -144,6 +140,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    HeRealTimeDetailController
+    TripListModel *tripModel = self.dataList[indexPath.row];
+    HeRealTimeDetailController *detailController = [[HeRealTimeDetailController alloc] initWithNibName:@"HeRealTimeDetailController" bundle:[NSBundle mainBundle]];
+    detailController.tripId = tripModel.carOwnerId;
+    detailController.title = @"详情内容";
+    detailController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:detailController animated:YES];
 }
 
 /*

@@ -13,6 +13,7 @@
 #import <SMS_SDK/SMSSDK.h>
 #import "WXApi.h"
 #import "JPUSHService.h"
+#import "NSString+change.h"
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *passengerBtn;
@@ -76,7 +77,6 @@
                              psw:self.passwordInputField.text
                        loginType:self.isDriver ? @"0" : @"1"
                   onResponseInfo:^(LoginUserInfoModel *userInfo) {
-                      
                       dispatch_async(dispatch_get_global_queue(0, 0), ^{
                       BOOL isAuthlogin = [EMClient sharedClient].options.isAutoLogin;
                       EMError *loginError = nil;
@@ -88,37 +88,18 @@
                       }
                           if (!loginError) {
                               dispatch_async(dispatch_get_main_queue(), ^{
-                                  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                                  if (!weakSelf.isDriver) {//用户模式
-                                      [defaults setObject:@"1" forKey:kDefaultsUserJudge];
-                                  } else {//车主模式
-                                      [defaults setObject:@"0" forKey:kDefaultsUserJudge];
-                                  }
-                                  [JPUSHService setTags:nil alias:userInfo.userId fetchCompletionHandle:nil];
-                                  //保存登录信息
-                                  
-                                  [defaults setObject:userInfo.userId forKey:USERIDKEY];
-                        [defaults setObject:userInfo.userSex forKey:kDefaultsUserGender];
-                        [defaults setDouble:userInfo.userPositionX forKey:kDefaultsUserLocationlongitude];
-                        [defaults setDouble:userInfo.userPositionY forKey:kDefaultsUserLocationLatitude];
-                        [defaults setObject:userInfo.userPhone forKey:kDefaultsUserPhone];
-                        [defaults setObject:userInfo.userHeader forKey:kDefaultsUserHeaderImage];
-                        [defaults setObject:userInfo.userNick forKey:kDefaultsUserNick];
-                        
-                      [defaults setObject:userInfo.userAge forKey:kDefaultsUserAge];
-                      [defaults setObject:userInfo.userAddress forKey:kDefaultsUserAddress];
-                      [defaults setObject:userInfo.userSign forKey:kDefaultsUserSign];
-                      [defaults setObject:userInfo.userDaty forKey:kDefaultsUserBirthday];
-                      [defaults setObject:userInfo.userMouth forKey:kDefaultsUserBirthMonth];
-                      [defaults setBool:[userInfo.userPass isEqualToString:@"1"] forKey:kDefaultsUserHaveCerificationed];
-                                  [defaults synchronize];
+                                  [weakSelf saveLocalLoginUserInfo:userInfo];
                                   [weakSelf hideHud];
                       [[NSNotificationCenter defaultCenter]postNotificationName:KNOTIFICATION_LOGINCHANGE object:nil];
                               });
                           } else {
                               dispatch_async(dispatch_get_main_queue(), ^{
-                                  [weakSelf hideHud];
-                                  [weakSelf showHint:@"聊天服务登录异常"];
+                                  if (loginError.code == EMErrorUserNotFound) {//由于当前用户不存在登录失败
+                                   [weakSelf registerEasemobWithUserName:userInfo.userId loginResponseInfo:userInfo];//登录环信失败,注册用户
+                                  } else {
+                                      [weakSelf hideHud];
+                                      [weakSelf showHint:@"聊天服务登录异常"];
+                                  }
                                   NSLog(@"login easemob with error %@",loginError.errorDescription);
                               });
                           }
@@ -129,6 +110,66 @@
         [weakSelf hideHud];
     }];
 }
+
+///注册环信并重新登录
+- (void)registerEasemobWithUserName:(NSString *)uName loginResponseInfo:(LoginUserInfoModel *)userInfo {
+    kWeakSelf;
+    dispatch_queue_t easemobRegisterQueue = dispatch_queue_create("com.sishi.easemob.register", DISPATCH_QUEUE_SERIAL);
+    dispatch_async(easemobRegisterQueue, ^{//注册环信
+        NSString *password = [uName md516BitLower];
+        EMError *registerError = [[EMClient sharedClient] registerWithUsername:uName password:password];
+        if (!registerError) {///注册成功,登录环信
+            EMError *loginError = [[EMClient sharedClient] loginWithUsername:uName password:password];
+            if (!loginError) {//登录成功
+                [EMClient sharedClient].options.isAutoLogin = YES;
+                dispatch_async(dispatch_get_main_queue(), ^{//进入主线程保存数据,页面返回
+                    [weakSelf saveLocalLoginUserInfo:userInfo];
+                      [[NSNotificationCenter defaultCenter]postNotificationName:KNOTIFICATION_LOGINCHANGE object:nil];
+                });
+            } else {//登录环信失败
+                [MBProgressHUD hideHUDForView:self.view.window animated:YES];
+                [self showHint:@"登录聊天服务失败"];
+                NSLog(@"环信注册成功,但是登录失败%@",loginError);
+            }
+        } else {
+            [MBProgressHUD hideHUDForView:self.view.window animated:YES];
+            [self showHint:@"聊天服务器连接失败"];
+            NSLog(@"环信用户注册失败%@",registerError);
+        }
+    });
+}
+
+
+
+- (void)saveLocalLoginUserInfo:(LoginUserInfoModel *)userInfo {
+    //保存已登录的用户信息
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (!self.isDriver) {//用户模式
+        [defaults setObject:@"1" forKey:kDefaultsUserJudge];
+    } else {//车主模式
+        [defaults setObject:@"0" forKey:kDefaultsUserJudge];
+    }
+    [JPUSHService setTags:nil alias:userInfo.userId fetchCompletionHandle:nil];
+    //保存登录信息
+    
+    [defaults setObject:userInfo.userId forKey:USERIDKEY];
+    [defaults setObject:userInfo.userSex forKey:kDefaultsUserGender];
+    [defaults setDouble:userInfo.userPositionX forKey:kDefaultsUserLocationlongitude];
+    [defaults setDouble:userInfo.userPositionY forKey:kDefaultsUserLocationLatitude];
+    [defaults setObject:userInfo.userPhone forKey:kDefaultsUserPhone];
+    [defaults setObject:userInfo.userHeader forKey:kDefaultsUserHeaderImage];
+    [defaults setObject:userInfo.userNick forKey:kDefaultsUserNick];
+    
+    [defaults setObject:userInfo.userAge forKey:kDefaultsUserAge];
+    [defaults setObject:userInfo.userAddress forKey:kDefaultsUserAddress];
+    [defaults setObject:userInfo.userSign forKey:kDefaultsUserSign];
+    [defaults setObject:userInfo.userDaty forKey:kDefaultsUserBirthday];
+    [defaults setObject:userInfo.userMouth forKey:kDefaultsUserBirthMonth];
+    [defaults setBool:[userInfo.userPass isEqualToString:@"1"] forKey:kDefaultsUserHaveCerificationed];
+    [defaults synchronize];
+}
+
 
 - (IBAction)onPassenger:(UIButton *)sender {
     self.isDriver = NO;

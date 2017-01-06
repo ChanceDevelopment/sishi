@@ -39,7 +39,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "UIImageView+EMWebCache.h"
 #import "MLLinkLabel.h"
-
+#import "ApiUtils.h"
 #import "ChatDemoUIDefine.h"
 #import "EMAlertView.h"
 #import "TTGlobalUICommon.h"

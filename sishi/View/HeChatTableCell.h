@@ -12,5 +12,8 @@
 @property(strong,nonatomic)UIImageView *headImage;
 @property(strong,nonatomic)UILabel *titleLabel;
 @property(strong,nonatomic)UILabel *contentLabel;
-
+/**
+ *  未读消息数目
+ */
+@property(nonatomic,assign)NSUInteger unReadMessageCount;
 @end

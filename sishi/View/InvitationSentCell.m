@@ -8,6 +8,8 @@
 
 #import "InvitationSentCell.h"
 #import "Masonry.h"
+#import "UIButton+EMWebCache.h"
+#import "ApiUtils.h"
 
 @interface InvitationSentCell ()
 /**
@@ -64,6 +66,9 @@
         self.headerImage.layer.cornerRadius = 22.5;
         self.headerImage.clipsToBounds = YES;
         [self.headerImage setImage:[UIImage imageNamed:DEFAULTERRORIMAGE] forState:UIControlStateNormal];
+        NSString *uImage = [Tool defaultsForKey:kDefaultsUserHeaderImage];
+        NSString *imageUri = [NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],uImage];
+        [self.headerImage sd_setImageWithURL:[NSURL URLWithString:imageUri] forState:UIControlStateNormal];
         self.headerImage.imageView.contentMode = UIViewContentModeScaleAspectFill;
         [self.contentView addSubview:self.headerImage];
         [self.headerImage mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -184,6 +189,11 @@
 //    UIBezierPath *shapePath = [UIBezierPath bezierPathWithRect:self.bgView.bounds];
 //    [shapePath moveToPoint:CGPointMake(halfWidth, 0)];
 //    [shapePath addLineToPoint:CGPointMake(bgWidth - radiusWidth - clipsWidth, 0)];
+    
+}
+
+- (void)setChatModel:(ChatInvitationMessageModel *)chatModel {
+    _chatModel = chatModel;
     
 }
 

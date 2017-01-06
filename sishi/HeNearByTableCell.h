@@ -12,6 +12,7 @@
 
 @class HeNearByTableCell;
 typedef void(^NearbyTableViewCellCallBack)(HeNearByTableCell *targetCell);
+typedef void(^NearbyTableViewCellOnTapHeaderCallback)(NearbyUserListModel *nearbyModel);
 
 
 @interface HeNearByTableCell : HeBaseTableViewCell
@@ -40,5 +41,10 @@ typedef void(^NearbyTableViewCellCallBack)(HeNearByTableCell *targetCell);
  *  点击 "约他" 按钮 回调
  */
 @property(nonatomic,copy)NearbyTableViewCellCallBack onContactAction;
+
+/**
+ *  点击用户头像 回调
+ */
+@property(nonatomic,copy)NearbyTableViewCellOnTapHeaderCallback onTapUserHeader;
 
 @end

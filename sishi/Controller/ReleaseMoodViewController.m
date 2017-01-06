@@ -46,7 +46,7 @@
     CGFloat heightConstant = willShareTripInfo ? 150 : 50;
     self.shareViewHeightConstraint.constant = heightConstant;
     [UIView animateWithDuration:0.2 animations:^{
-        [self.containerView layoutIfNeeded];
+        [self.nameContainerView layoutIfNeeded];
     }];
 }
 

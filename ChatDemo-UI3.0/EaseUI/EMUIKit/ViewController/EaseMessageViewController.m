@@ -1723,6 +1723,17 @@
         message.chatType = EMChatTypeChatRoom;
     }
     
+    //配置ext信息
+//    NSDictionary *ext = @{@"puter_id":[Tool uid],
+//                          @"ureceiver_id":self.chatterUserId,
+//                          @"tripId":self.tripId,
+//                          @"puter_nick":[Tool defaultsForKey:kDefaultsUserNick],
+//                          @"puter_header":[Tool defaultsForKey:kDefaultsUserHeaderImage],
+//                          kEaseMobExtMessageGetterUserNick:self.chatterName,
+//                          kEaseMobExtMessageGetterUserImage:self.chatterHeaderImage};
+//    NSMutableDictionary *appendExt  = [[NSMutableDictionary alloc]initWithDictionary:message.ext ? message.ext : @{}];
+//    [appendExt addEntriesFromDictionary:ext];
+//    message.ext = [NSDictionary dictionaryWithDictionary:appendExt];
     [self addMessageToDataSource:message
                         progress:nil];
     

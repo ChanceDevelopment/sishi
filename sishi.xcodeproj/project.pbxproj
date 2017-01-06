@@ -60,6 +60,11 @@
 		A22149AF1E03F39A002D8F52 /* FocusListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A22149AE1E03F39A002D8F52 /* FocusListViewController.m */; };
 		A22149B31E03F426002D8F52 /* FocusTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A22149B11E03F426002D8F52 /* FocusTableViewCell.m */; };
 		A22149B41E03F426002D8F52 /* FocusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A22149B21E03F426002D8F52 /* FocusTableViewCell.xib */; };
+		A243AC9E1E1DEDD300FF03A9 /* NSDictionary+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = A243AC9D1E1DEDD200FF03A9 /* NSDictionary+Utils.m */; };
+		A243ACA21E1E3B7E00FF03A9 /* MapUserAnnotationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A243ACA11E1E3B7E00FF03A9 /* MapUserAnnotationModel.m */; };
+		A243ACA61E1E3DCB00FF03A9 /* MapUserAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = A243ACA51E1E3DCB00FF03A9 /* MapUserAnnotationView.m */; };
+		A243ACA91E1F85F400FF03A9 /* icon_share.png in Resources */ = {isa = PBXBuildFile; fileRef = A243ACA71E1F85F400FF03A9 /* icon_share.png */; };
+		A243ACAA1E1F85F400FF03A9 /* icon_stop_trip.png in Resources */ = {isa = PBXBuildFile; fileRef = A243ACA81E1F85F400FF03A9 /* icon_stop_trip.png */; };
 		A2A79C131E13536800172852 /* TripOnGoingController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A79C111E13536800172852 /* TripOnGoingController.m */; };
 		A2A79C141E13536800172852 /* TripOnGoingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A79C121E13536800172852 /* TripOnGoingController.xib */; };
 		A2A79C181E135B6000172852 /* AskingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A79C161E135B6000172852 /* AskingTableViewCell.m */; };
@@ -1106,6 +1111,14 @@
 		A22149B01E03F426002D8F52 /* FocusTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FocusTableViewCell.h; sourceTree = "<group>"; };
 		A22149B11E03F426002D8F52 /* FocusTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FocusTableViewCell.m; sourceTree = "<group>"; };
 		A22149B21E03F426002D8F52 /* FocusTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FocusTableViewCell.xib; sourceTree = "<group>"; };
+		A243AC9C1E1DEDD200FF03A9 /* NSDictionary+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Utils.h"; sourceTree = "<group>"; };
+		A243AC9D1E1DEDD200FF03A9 /* NSDictionary+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Utils.m"; sourceTree = "<group>"; };
+		A243ACA01E1E3B7E00FF03A9 /* MapUserAnnotationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapUserAnnotationModel.h; sourceTree = "<group>"; };
+		A243ACA11E1E3B7E00FF03A9 /* MapUserAnnotationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapUserAnnotationModel.m; sourceTree = "<group>"; };
+		A243ACA41E1E3DCB00FF03A9 /* MapUserAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapUserAnnotationView.h; sourceTree = "<group>"; };
+		A243ACA51E1E3DCB00FF03A9 /* MapUserAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapUserAnnotationView.m; sourceTree = "<group>"; };
+		A243ACA71E1F85F400FF03A9 /* icon_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_share.png; sourceTree = "<group>"; };
+		A243ACA81E1F85F400FF03A9 /* icon_stop_trip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_stop_trip.png; sourceTree = "<group>"; };
 		A2A79C101E13536800172852 /* TripOnGoingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripOnGoingController.h; sourceTree = "<group>"; };
 		A2A79C111E13536800172852 /* TripOnGoingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripOnGoingController.m; sourceTree = "<group>"; };
 		A2A79C121E13536800172852 /* TripOnGoingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripOnGoingController.xib; sourceTree = "<group>"; };
@@ -2969,6 +2982,33 @@
 			path = UICollectionViewLeftAlignedLayout;
 			sourceTree = "<group>";
 		};
+		A243AC9A1E1DED8F00FF03A9 /* Extenxsions */ = {
+			isa = PBXGroup;
+			children = (
+				A243AC9C1E1DEDD200FF03A9 /* NSDictionary+Utils.h */,
+				A243AC9D1E1DEDD200FF03A9 /* NSDictionary+Utils.m */,
+			);
+			path = Extenxsions;
+			sourceTree = "<group>";
+		};
+		A243AC9F1E1E3B2B00FF03A9 /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				A243ACA01E1E3B7E00FF03A9 /* MapUserAnnotationModel.h */,
+				A243ACA11E1E3B7E00FF03A9 /* MapUserAnnotationModel.m */,
+			);
+			path = MapView;
+			sourceTree = "<group>";
+		};
+		A243ACA31E1E3DB100FF03A9 /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				A243ACA41E1E3DCB00FF03A9 /* MapUserAnnotationView.h */,
+				A243ACA51E1E3DCB00FF03A9 /* MapUserAnnotationView.m */,
+			);
+			path = MapView;
+			sourceTree = "<group>";
+		};
 		A2A79C301E15014D00172852 /* HCSStarRatingView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3227,6 +3267,8 @@
 		EA2AC3301D5EC1E300C57B45 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				A243ACA71E1F85F400FF03A9 /* icon_share.png */,
+				A243ACA81E1F85F400FF03A9 /* icon_stop_trip.png */,
 				EAA790C91DEBDD5F00443970 /* Login */,
 				EAA790861DEBDA4A00443970 /* Setting */,
 				EA12F7F31D655EC20085752A /* Search */,
@@ -3696,6 +3738,7 @@
 		EA8DA9561D5A171A00487BF4 = {
 			isa = PBXGroup;
 			children = (
+				A243AC9A1E1DED8F00FF03A9 /* Extenxsions */,
 				A211A35E1E0A14FB004C3331 /* Utils */,
 				EA6DFF5E1D6B51FF0069F4ED /* REFrostedViewController */,
 				EA5F09E51D64BFA400F30729 /* DFTimelineView */,
@@ -5031,6 +5074,7 @@
 		EA8DAE511D5A18E600487BF4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A243AC9F1E1E3B2B00FF03A9 /* MapView */,
 				A2AB95EE1E1C8C0D00FB037B /* Chat */,
 				A2FF4B791E0FD23800A3739E /* CommentBetweenUsers.h */,
 				A2FF4B7A1E0FD23800A3739E /* CommentBetweenUsers.m */,
@@ -5268,6 +5312,7 @@
 		EA8DAECE1D5A18FA00487BF4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A243ACA31E1E3DB100FF03A9 /* MapView */,
 				EA4FA2B01D6C21F200099DCC /* Journey */,
 				EA5F0AAE1D64D3A200F30729 /* Chat */,
 				EA5F0AAA1D64C74B00F30729 /* Dynamic */,
@@ -6767,6 +6812,7 @@
 				EADF860C1D621C900029DC4F /* 114.png in Resources */,
 				EA8DAD931D5A18D000487BF4 /* arrow_down1@2x.png in Resources */,
 				A2143DAB1E11FBF700D0C631 /* MJRefresh.bundle in Resources */,
+				A243ACA91E1F85F400FF03A9 /* icon_share.png in Resources */,
 				EAA790C01DEBDB7400443970 /* icon_invite.png in Resources */,
 				EA5F0A891D64BFA400F30729 /* AlbumShare@2x.png in Resources */,
 				EADF866C1D621C900029DC4F /* tabbar_chats.png in Resources */,
@@ -6845,6 +6891,7 @@
 				EADF86521D621C900029DC4F /* icon_030.gif in Resources */,
 				EAA790C71DEBDB7400443970 /* icon_setting_white.png in Resources */,
 				EADF861F1D621C900029DC4F /* chat_location_annotation_someone@2x.png in Resources */,
+				A243ACAA1E1F85F400FF03A9 /* icon_stop_trip.png in Resources */,
 				EAA790981DEBDB0200443970 /* icon_aboutus.png in Resources */,
 				EA8DAEC91D5A18F300487BF4 /* zbar-back.png in Resources */,
 				EADF86561D621C900029DC4F /* icon_040.gif in Resources */,
@@ -7396,8 +7443,10 @@
 				EADF87DE1D621E380029DC4F /* UIImage+EMGIF.m in Sources */,
 				A2A79C1F1E13C4D600172852 /* CommentLabelModel.m in Sources */,
 				EADF87F41D621E380029DC4F /* EaseMessageModel.m in Sources */,
+				A243ACA21E1E3B7E00FF03A9 /* MapUserAnnotationModel.m in Sources */,
 				EADF880C1D621E380029DC4F /* EaseMessageCell.m in Sources */,
 				EA8DAE421D5A18D000487BF4 /* YLImageView.m in Sources */,
+				A243ACA61E1E3DCB00FF03A9 /* MapUserAnnotationView.m in Sources */,
 				EA8DA9E01D5A18BB00487BF4 /* NSDateFormatter+Category.m in Sources */,
 				EADF883D1D6225EA0029DC4F /* AddFriendViewController.m in Sources */,
 				EADF85651D621C7B0029DC4F /* EMAlertView.m in Sources */,
@@ -7486,6 +7535,7 @@
 				EA5F0A781D64BFA400F30729 /* DFUserActivityLineItem.m in Sources */,
 				EA2AC3171D5EBF5300C57B45 /* HeLoginVC.m in Sources */,
 				A2A79C3C1E15016E00172852 /* CompaintsController.m in Sources */,
+				A243AC9E1E1DEDD300FF03A9 /* NSDictionary+Utils.m in Sources */,
 				EA8DAD3C1D5A18D000487BF4 /* i2KEPCMultiComponentPickerView.m in Sources */,
 				EA8DA9641D5A171A00487BF4 /* main.m in Sources */,
 				EA8DACE61D5A18D000487BF4 /* AFHTTPRequestOperationManager.m in Sources */,

@@ -9,7 +9,8 @@
 #ifndef sishiDefine_h
 #define sishiDefine_h
 
-
+///默认每次请求的返回值是10个
+#define kDataResponseLength 10
 
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double ) 568 ) < DBL_EPSILON )
 #define ALBUMNAME @"SiShiDocument"
@@ -65,8 +66,10 @@
 //极光推送的key
 #define JPUSHAPPKEY @"4c03d089a8e25d2f1c193ca8"
 //shareSDK的key
-#define SHARESDKKEY @"15eb8c9d7d534"
-#define SHARESDKAPPSECRET @"dacf079a7e60b30120a97690d154f113"
+//#define SHARESDKKEY @"15eb8c9d7d534"
+//#define SHARESDKAPPSECRET @"dacf079a7e60b30120a97690d154f113"
+#define SHARESDKKEY @"15eb8705dd456"
+#define SHARESDKAPPSECRET @"043a2d769552f98550c1d883f4fc68ff"
 
 #define SHARESDKSMSKEY @"e85925a8eb1a"
 #define SHARESDKSMSAPPSECRET @"d96120d4a619a057e3c6845529e213d9"
@@ -113,7 +116,7 @@
 
 ///////////////////////////////////
 //环信消息拓展定义
-#define kEaseMobExtMessageTripId @"kEaseMobExtMessageTripId"
+#define kEaseMobExtMessageTripId @"tripId"
 
 
 ///消息发送者,昵称

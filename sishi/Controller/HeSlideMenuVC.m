@@ -372,14 +372,15 @@
         {
             NSMutableDictionary *shareParas = [NSMutableDictionary dictionary];
             [shareParas SSDKSetupShareParamsByText:@"司事,约你一路同行" images:nil url:[NSURL URLWithString:@"baidu.com"] title:@"司事" type:SSDKContentTypeAuto];
-//         [ShareSDK share:SSDKPlatformTypeSinaWeibo | SSDKPlatformSubTypeWechatSession | SSDKPlatformSubTypeWechatTimeline parameters:shareParas onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
-//             NSLog(@"share state %lu",(unsigned long)state);
-//         }];
+            [shareParas SSDKSetupQQParamsByText:@"司事,约你一路同行" title:@"司事" url:[NSURL URLWithString:@"http://www.baidu.com"] thumbImage:nil image:nil type:SSDKContentTypeAuto forPlatformSubType:SSDKPlatformSubTypeQZone];
             
            [ShareSDK showShareActionSheet:self.view
                                                                                        items:nil
                                                                                  shareParams:shareParas
                                                                          onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
+                                                                             if (error) {
+                                                                                 NSLog(@"share sdk response error %@",error);
+                                                                             }
                                                                              switch (state) {
                                                                                  case SSDKResponseStateSuccess:
                                                                                      NSLog(@"分享成功");
@@ -391,8 +392,6 @@
                                                                                      break;
                                                                              }
           }];
-            
-//            [shareActionSheet showInView:self.view];
             break;
         }
         default:

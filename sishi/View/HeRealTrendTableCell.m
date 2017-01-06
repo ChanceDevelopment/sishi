@@ -27,7 +27,9 @@
 - (void)setModel:(TripListModel *)model {
     _model = model;
     [self.headImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],model.userHeader] ] placeholderImage:[UIImage imageNamed:DEFAULTERRORIMAGE]];
-    self.timeLabel.text = model.carEndtime;
+    NSDate *date =[NSDate dateWithTimeIntervalSince1970:model.carUserGotime / 1000];
+    NSString *weekday = [Tool weekdayStringFromDate:date];
+    self.timeLabel.text = [NSString stringWithFormat:@"%@ %@",model.goTimeDescription,weekday];
     if (!model.isOnGoing) {
         self.contentLabel.text = @"已邀约,等待行程开始";
     } else {
@@ -67,11 +69,11 @@
         CGFloat titleX = CGRectGetMaxX(headImage.frame) + 10;
         CGFloat titleY = headY;
         CGFloat titleW = SCREENWIDTH - titleX - headX;
-        CGFloat titleH = 40;
+        CGFloat titleH = 25;
         
         titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(titleX, titleY, titleW, titleH)];
         titleLabel.backgroundColor = [UIColor clearColor];
-        titleLabel.textColor = [UIColor redColor];
+        titleLabel.textColor = [UIColor darkGrayColor];
         titleLabel.font = [UIFont systemFontOfSize:20.0];
         titleLabel.text = @"我的实时状态";
         [bgView addSubview:titleLabel];
@@ -97,7 +99,7 @@
         contentLabel.backgroundColor = [UIColor clearColor];
         contentLabel.textColor = [UIColor grayColor];
         contentLabel.font = [UIFont systemFontOfSize:17.0];
-        contentLabel.text = @"正在行车，尚未发出邀请";
+//        contentLabel.text = @"正在行车，尚未发出邀请"
         [bgView addSubview:contentLabel];
         
         

@@ -20,6 +20,7 @@
 #import "HeDistributeInviteVC.h"
 #import "MJRefresh.h"
 #import "ApiUtils.h"
+#import "MJPhotoBrowser.h"
 
 @interface HeHomePageVC ()<SelectIndexPathProtocol>
 @property(weak,nonatomic)IBOutlet UITableView *tableview;
@@ -39,6 +40,11 @@
  *  占位Label
  */
 @property(nonatomic,strong)UILabel *placeholderLabel;
+
+/**
+ *  当前数据 分页数
+ */
+@property(nonatomic,assign)NSUInteger pageIndex;
 
 
 @end
@@ -109,11 +115,13 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
+    
     [_locService startUserLocationService];
     _mapView.showsUserLocation = NO;//先关闭显示的定位图层
-    _mapView.userTrackingMode = BMKUserTrackingModeNone;//设置定位的状态
+    _mapView.userTrackingMode = BMKUserTrackingModeFollow;//设置定位的状态
+    _mapView.zoomLevel = 18;
     _mapView.showsUserLocation = YES;//显示定位图层
-    _mapView.gesturesEnabled = NO;
+//    _mapView.gesturesEnabled = NO;
     
 //    UIViewController *rootVC = ((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
 //    UIImage *image = [Tool snapshot:rootVC.view];
@@ -127,6 +135,7 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
      [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
     [_mapView viewWillAppear];
     _mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
     _locService.delegate = self;
@@ -187,6 +196,13 @@
         header;
     });
     [self.tableview.mj_header beginRefreshing];
+    
+    self.tableview.mj_footer = ({
+        MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(onFooterLoadMore:)];
+        footer.automaticallyHidden = YES;
+        footer.automaticallyChangeAlpha = YES;
+        footer;
+    });
 }
 
 
@@ -200,6 +216,12 @@
     CGFloat longitude = [[NSUserDefaults standardUserDefaults]doubleForKey:kDefaultsUserLocationlongitude];
     CGFloat latitude = [[NSUserDefaults standardUserDefaults]doubleForKey:kDefaultsUserLocationLatitude];
     [ApiUtils queryNearbyUserWithUserGender:[gender isEqualToString:@"1"] ? @"2" : @"1" longitude:longitude latitude:latitude startIndex:0 onResponse:^(NSArray<NearbyUserListModel *> *nearby) {
+        if (nearby.count < kDataResponseLength) {
+            [self.tableview.mj_footer endRefreshingWithNoMoreData];
+        } else {
+            self.tableview.mj_footer.state = MJRefreshStateIdle;
+        }
+        self.pageIndex = 0;
         [header endRefreshing];
         [self.nearbyUserList removeAllObjects];
         [self.nearbyUserList addObjectsFromArray:nearby];
@@ -209,6 +231,27 @@
         [self showHint:responseErrorInfo ];
     }];
 }
+- (void)onFooterLoadMore:(MJRefreshAutoNormalFooter *)footer {
+    NSString *gender = [[NSUserDefaults standardUserDefaults]stringForKey:kDefaultsUserGender];
+    CGFloat longitude = [[NSUserDefaults standardUserDefaults]doubleForKey:kDefaultsUserLocationlongitude];
+    CGFloat latitude = [[NSUserDefaults standardUserDefaults]doubleForKey:kDefaultsUserLocationLatitude];
+    [ApiUtils queryNearbyUserWithUserGender:[gender isEqualToString:@"1"] ? @"2" : @"1" longitude:longitude latitude:latitude startIndex:self.pageIndex + 1 onResponse:^(NSArray<NearbyUserListModel *> *nearby) {
+        if (nearby.count) {
+         self.pageIndex += 1;
+        }
+        if (nearby.count < kDataResponseLength) {
+            [footer endRefreshingWithNoMoreData];
+        }
+        [footer endRefreshing];
+        [self.nearbyUserList addObjectsFromArray:nearby];
+        [self reloadDataList];
+    } errorHandler:^(NSString *responseErrorInfo) {
+        [footer endRefreshing];
+        [self showHint:responseErrorInfo ];
+    }];
+}
+
+
 - (void)showLeft:(id)sender
 {
     [self routerEventWithName:@"showLeft" userInfo:nil];
@@ -225,7 +268,7 @@
     BMKCoordinateRegion region = BMKCoordinateRegionMake(userLocation.location.coordinate, span);
     [_mapView setRegion:region animated:YES];
     
-    NSLog(@"heading is %@",userLocation.heading);
+//    NSLog(@"heading is %@",userLocation.heading);
 }
 
 /**
@@ -236,6 +279,8 @@
 {
     //    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
     [_mapView updateLocationData:userLocation];
+    _mapView.showsUserLocation = YES;
+    [_locService stopUserLocationService];
     CGFloat longitude = userLocation.location.coordinate.longitude;
     CGFloat latitude = userLocation.location.coordinate.latitude;
     [[NSUserDefaults standardUserDefaults]setDouble:longitude forKey:kDefaultsUserLocationlongitude];
@@ -318,13 +363,39 @@
     cell.model = nearbyModel;
     cell.onContactAction = ^(HeNearByTableCell *targetCell) {
         [MBProgressHUD showHUDAddedTo:weakSelf.view.window animated:YES];
-        [ApiUtils sendAskingFor:nearbyModel.userId tripId:@" " askingName:nearbyModel.userNick askingHeaderImage:nearbyModel.userHeader withCompleteHandler:^{
+        [ApiUtils sendAskingFor:nearbyModel.userId tripId:@" " withCompleteHandler:^{
             [MBProgressHUD hideHUDForView:weakSelf.view.window animated:YES];
             [weakSelf showHint:@"已发出邀约"];
         } errorHandler:^(NSString *responseErrorInfo) {
             [MBProgressHUD hideHUDForView:self.view.window animated:YES];
             [weakSelf showHint:responseErrorInfo];
         }];
+    };
+    cell.onTapUserHeader = ^(NearbyUserListModel *nearbyModel) {
+        HeUserVC *userVC = [[HeUserVC alloc] init];
+        userVC.hasFocused = nearbyModel.isUpvoted;
+        
+        userVC.onExit = ^(BOOL hasFocused){//获取页面退出时的点赞状态并赋值给model
+            nearbyModel.isUpvoted = hasFocused;
+            [weakSelf.tableview reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        };
+        
+        userVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:userVC animated:YES];
+        userVC.uid = nearbyModel.userId;
+    };
+    cell.bgImage.onTapImage = ^(NSArray <NSString *>*imageLinkGroup,NSUInteger selectIndex){
+        MJPhotoBrowser *imageBrowser = [[MJPhotoBrowser alloc]init];
+        NSMutableArray <MJPhoto *>*photos = [NSMutableArray arrayWithCapacity:imageLinkGroup.count];
+        for (NSString *imageLink in imageLinkGroup) {
+            MJPhoto *photo = [[MJPhoto alloc]init];
+            photo.url = [NSURL URLWithString:imageLink];
+            [photos addObject:photo];
+        }
+        
+        imageBrowser.photos = photos;
+        imageBrowser.currentPhotoIndex = selectIndex;
+        [imageBrowser show];
     };
 }
 
@@ -373,10 +444,18 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSInteger row = indexPath.row;
-    NSInteger section = indexPath.section;
+//    NSInteger row = indexPath.row;
+//    NSInteger section = indexPath.section;
     NearbyUserListModel *nearbyModel = self.nearbyUserList[indexPath.row];
     HeUserVC *userVC = [[HeUserVC alloc] init];
+    userVC.hasFocused = nearbyModel.isUpvoted;
+    
+    kWeakSelf;
+    userVC.onExit = ^(BOOL hasFocused){//获取页面退出时的点赞状态并赋值给model
+        nearbyModel.isUpvoted = hasFocused;
+        [weakSelf.tableview reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    };
+    
     userVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:userVC animated:YES];
     userVC.uid = nearbyModel.userId;

@@ -102,7 +102,13 @@ typedef void(^ApiUtilsSuccessWithResponseList)(NSArray *responseList);
 + (void)queryNearbyUserWithUserGender:(NSString *)gender longitude:(CGFloat)longitude latitude:(CGFloat)latitude startIndex:(NSInteger)startIndex onResponse:(void(^)(NSArray <NearbyUserListModel *>*nearby))completeHandler errorHandler:(ApiUtilsResponseError)errorHandler;
 
 
-+ (void)sendAskingFor:(NSString *)uid tripId:(NSString *)tripId askingName:(NSString *)targetName askingHeaderImage:(NSString *)targetImage withCompleteHandler:(ApiUtilsSuccessWithVoidResponse)completeHandler errorHandler:(ApiUtilsResponseError)errorHandler;
++ (void)sendAskingFor:(NSString *)uid tripId:(NSString *)tripId withCompleteHandler:(ApiUtilsSuccessWithVoidResponse)completeHandler errorHandler:(ApiUtilsResponseError)errorHandler;
+
+///配置邀约内容信息
++ (NSDictionary *)askingInfoWithTargetUserId:(NSString *)uid tripId:(NSString *)tripId askingName:(NSString *)askingName askingImage:(NSString *)askingImage askingDate:(long long)askingDate askingDestination:(NSString *)askingDestination startPlace:(NSString *)startPlace askingNote:(NSString *)askingNote;
+
+
++ (void)sendAskingWithAskingInfo:(NSDictionary *)askingInfo onComplete:(ApiUtilsSuccessWithVoidResponse)completeHandler errorHandler:(ApiUtilsResponseError)errorHandler;
 
 + (void)queryMyAskingListWithCompleteHandler:(void(^)(NSArray <NSObject *>* dataList))completeHandler errorHandler:(ApiUtilsResponseError)errorHandler;
 

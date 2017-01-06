@@ -7,6 +7,27 @@
 //
 
 #import "HeChatTableCell.h"
+#import "Masonry.h"
+
+@interface HeChatTableCell ()
+/**
+ *  未读消息数目显示Label
+ */
+@property(nonatomic,strong)UILabel *unReadMessageLabel;
+
+@end
+@interface UILabel (Utils)
+
+@end
+
+@implementation UILabel (Utils)
+
+- (CGSize)intrinsicContentSize {//重写此方法用于增大UILabel的默认大小,达到html中margin的效果
+    CGSize defaultSize = [super intrinsicContentSize];
+    return CGSizeMake(defaultSize.width + 8, defaultSize.height + 4);
+}
+
+@end
 
 @implementation HeChatTableCell
 @synthesize headImage;
@@ -61,8 +82,32 @@
         contentLabel.font = [UIFont systemFontOfSize:15.0];
         contentLabel.text = @"晚上一起去吃饭吧";
         [self addSubview:contentLabel];
+        
+        
+        self.unReadMessageLabel = [[UILabel alloc]init];
+        self.unReadMessageLabel.font = [UIFont systemFontOfSize:12];
+        self.unReadMessageLabel.textColor = [UIColor whiteColor];
+        self.unReadMessageLabel.layer.cornerRadius = 2;
+        self.unReadMessageLabel.clipsToBounds = YES;
+        self.unReadMessageLabel.hidden = YES;
+        self.unReadMessageLabel.backgroundColor = [UIColor colorWithRed:72 / 255.0 green:215 / 255.0 blue:190 / 255.0 alpha:0.6];
+        [self.contentView addSubview:self.unReadMessageLabel];
+        [self.unReadMessageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self.headImage);
+            make.right.equalTo(self.contentView).offset(-10);
+        }];
     }
     return self;
 }
 
+
+- (void)setUnReadMessageCount:(NSUInteger)unReadMessageCount {
+    _unReadMessageCount = unReadMessageCount;
+    if (unReadMessageCount <= 0) {
+        self.unReadMessageLabel.hidden = YES;
+    } else {
+        self.unReadMessageLabel.hidden = NO;
+        self.unReadMessageLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)unReadMessageCount];
+    }
+}
 @end

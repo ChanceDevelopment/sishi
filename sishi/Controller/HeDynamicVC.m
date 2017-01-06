@@ -145,14 +145,14 @@
     [sectionHeaderView addSubview:moodButton];
     
     UIView *verticalLineView = [[UIView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(activityButton.frame), 0, 1, CGRectGetHeight(activityButton.frame) * 0.5)];
-    verticalLineView.backgroundColor = [UIColor lightGrayColor];
+    verticalLineView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     CGPoint center = verticalLineView.center;
     center.y = sectionHeaderView.frame.size.height * 0.5;
     verticalLineView.center = center;
     [sectionHeaderView addSubview:verticalLineView];
     
     UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(sectionHeaderView.frame) - 1, CGRectGetWidth(sectionHeaderView.frame), 1)];
-    lineView.backgroundColor = [UIColor lightGrayColor];
+    lineView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     [sectionHeaderView addSubview:lineView];
     
     

@@ -44,23 +44,13 @@
         CGFloat nameW = SCREENWIDTH - 2 * nameX;
         CGFloat nameH = 30;
         
+        CGFloat bgX = 10;
+        CGFloat bgY = 5;
+        CGFloat bgW = SCREENWIDTH - 20;
+        CGFloat bgH = 165;
         
-        
-//        UILabel *nearbyLabel = [[UILabel alloc]initWithFrame:CGRectZero];
-//        nearbyLabel.frame = CGRectMake(10, 10, 80, 20);
-//        nearbyLabel.text = [NSString stringWithFormat:@"附近%@",isUser];
-//        nearbyLabel.font = [UIFont systemFontOfSize:13];
-//        nearbyLabel.textColor = [UIColor colorWithWhite:0.7 alpha:1];
-//        [self addSubview:nearbyLabel];
-        
-        CGFloat bgX = nameX;
-//        CGFloat bgY = CGRectGetMaxY(nearbyLabel.frame) + 10;
-        CGFloat bgY = 35;
-        CGFloat bgW = nameW;
-        CGFloat bgH = 120;
-        
-        self.bgImage = [[ImageBannerView alloc]initWithFrame:CGRectMake(bgX, bgY, bgW, bgH)];
-        self.bgImage.padding = 25;
+        self.bgImage = [[ImageBannerView alloc]initWithFrame:CGRectMake(0, bgY, SCREENWIDTH, bgH)];
+        self.bgImage.horizontalPadding = 15;
         self.bgImage.backgroundColor = [UIColor whiteColor];
 //        self.bgImage.imageLinkGroup = @[@"",@"",@""];
         [self addSubview:self.bgImage];
@@ -83,7 +73,7 @@
         CGFloat headY = bgY + bgH - headH / 2.0;
         
         headImage = [[UIImageView alloc] initWithFrame:CGRectMake(headX, headY, headW, headH)];
-        headImage.image = [UIImage imageNamed:@"demo_nearBgImage.jpg"];
+        headImage.image = [UIImage imageNamed:DEFAULTERRORIMAGE];
         headImage.userInteractionEnabled = YES;
         headImage.layer.masksToBounds = YES;
         headImage.layer.borderWidth = 1.0;
@@ -97,7 +87,7 @@
         nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(nameX, nameY, nameW, nameH)];
         nameLabel.backgroundColor = [UIColor clearColor];
         nameLabel.textColor = [UIColor blackColor];
-        nameLabel.font = [UIFont fontWithName:@"Helvetica" size:16.0];
+        nameLabel.font = [UIFont fontWithName:@"Helvetica" size:12];
         nameLabel.text = @"我叫小沈阳";
         [self addSubview:nameLabel];
         [nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -105,10 +95,10 @@
             make.top.equalTo(bgImage.mas_bottom).offset(10);
         }];
         
-        CGFloat addressX = nameX;
-        CGFloat addressY = CGRectGetMaxY(bgImage.frame);
-        CGFloat addressW = SCREENWIDTH - 2 * addressX;
-        CGFloat addressH = 25;
+//        CGFloat addressX = nameX;
+//        CGFloat addressY = CGRectGetMaxY(bgImage.frame);
+//        CGFloat addressW = SCREENWIDTH - 2 * addressX;
+//        CGFloat addressH = 25;
         
         distanceLabel = [[UILabel alloc] initWithFrame:CGRectZero];//CGRectMake(addressX, addressY, addressW, addressH)
         distanceLabel.backgroundColor = [UIColor clearColor];
@@ -133,26 +123,27 @@
         [self addSubview:self.contactButton];
         [self.contactButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.distanceLabel);
-            make.left.equalTo(self.distanceLabel.mas_right).offset(10);
-            make.width.equalTo(@(45));
+            make.right.lessThanOrEqualTo(self.nameLabel.mas_left).offset(5);
+            make.left.equalTo(self.distanceLabel.mas_right).offset(5);
+            make.width.equalTo(@(40));
             make.height.equalTo(@(25));
         }];
         
-        CGFloat markX = 10;
-        CGFloat markY = CGRectGetMaxY(distanceLabel.frame);
-        CGFloat markW = SCREENWIDTH - 2 * markX;
-        CGFloat markH = 25;
+//        CGFloat markX = 10;
+//        CGFloat markY = CGRectGetMaxY(distanceLabel.frame);
+//        CGFloat markW = SCREENWIDTH - 2 * markX;
+//        CGFloat markH = 25;
         
-        tipLabel = [[UILabel alloc] initWithFrame:CGRectZero];//CGRectMake(markX, markY, markW, markH)
-        tipLabel.backgroundColor = [UIColor clearColor];
-        tipLabel.textColor = [UIColor blackColor];
-        tipLabel.font = [UIFont systemFontOfSize:15.0];
-        tipLabel.text = @"自由、爱情、生活、美食";
-        [self addSubview:tipLabel];
-        [tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(distanceLabel);
-            make.top.equalTo(distanceLabel.mas_bottom).offset(10);
-        }];
+//        tipLabel = [[UILabel alloc] initWithFrame:CGRectZero];//CGRectMake(markX, markY, markW, markH)
+//        tipLabel.backgroundColor = [UIColor clearColor];
+//        tipLabel.textColor = [UIColor blackColor];
+//        tipLabel.font = [UIFont systemFontOfSize:15.0];
+//        tipLabel.text = @"自由、爱情、生活、美食";
+//        [self addSubview:tipLabel];
+//        [tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.equalTo(distanceLabel);
+//            make.top.equalTo(distanceLabel.mas_bottom).offset(10);
+//        }];
         
     }
     return self;
@@ -166,7 +157,8 @@
         [imageLinkArray addObject:[NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],imageName]];
     }
     self.bgImage.imageLinkGroup = [NSArray arrayWithArray:imageLinkArray];
-    NSString *distance = [NSString stringWithFormat:@"距离您%.2fkm",model.distance];
+    
+    NSString *distance = [NSString stringWithFormat:@"距离您 %@",[Tool distanceFormatWithDistance:model.distance]];
     self.distanceLabel.text = distance;
     self.nameLabel.text = model.userNick;
     [self.headImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],model.userHeader]] placeholderImage:[UIImage imageNamed:DEFAULTERRORIMAGE]];
@@ -179,7 +171,9 @@
 }
 
 - (void)onTapUserHead:(UITapGestureRecognizer *)tap {
-    
+    if (self.onTapUserHeader) {
+        self.onTapUserHeader(self.model);
+    }
 }
 
 - (void)onContact:(UIButton *)btn {
@@ -187,6 +181,19 @@
         self.onContactAction(self);
     }
 }
+
+//- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+//    if (CGRectContainsPoint(self.contactButton.frame, point)) {// 约 Ta 按钮被点击
+//        return self.contactButton;
+//    } else if (CGRectContainsPoint(self.upvoteButton.frame, point)){//点赞 按钮被点击
+//        return self.upvoteButton;
+//    } else if (CGRectContainsPoint(self.headImage.frame, point)) {
+//        return self;
+//    } else if (CGRectContainsPoint(self.bgImage.frame, point)) {
+//        return self.bgImage;
+//    }
+//    return self;
+//}
 
 - (void)onUpvote:(UIButton *)btn {
     if (!self.model.isUpvoted) {//点赞

@@ -134,6 +134,27 @@ shouldSendHasReadAckForMessage:(EMMessage *)message
 
 @interface EaseMessageViewController : EaseRefreshTableViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, EMChatManagerDelegate, EMCDDeviceManagerDelegate, EMChatToolbarDelegate, EaseChatBarMoreViewDelegate, EMLocationViewDelegate,EMChatroomManagerDelegate, EaseMessageCellDelegate>
 
+/**
+ *  会话对象的昵称
+ */
+@property(nonatomic,strong)NSString *chatterName;
+
+/**
+ *  行程Id
+ */
+@property(nonatomic,strong)NSString *tripId;
+
+/**
+ *  会话 对象 的 id
+ */
+@property(nonatomic,strong)NSString *chatterUserId;
+
+/**
+ *  会话 对象 用户头像
+ */
+@property(nonatomic,strong)NSString *chatterHeaderImage;
+
+
 @property (weak, nonatomic) id<EaseMessageViewControllerDelegate> delegate;
 
 @property (weak, nonatomic) id<EaseMessageViewControllerDataSource> dataSource;

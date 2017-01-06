@@ -30,6 +30,12 @@
 @property(strong,nonatomic)EGORefreshTableHeaderView *refreshHeaderView;
 @property(strong,nonatomic)EGORefreshTableFootView *refreshFooterView;
 @property(assign,nonatomic)NSInteger pageNo;
+
+/**
+ *  是否查询最新的用户信息
+ */
+@property(nonatomic,assign)BOOL queryNewest;
+
 /**
  *  占位Label
  */
@@ -135,10 +141,11 @@
     [super initView];
     tableview.backgroundView = nil;
     tableview.backgroundColor = [UIColor whiteColor];
-//    tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(onHeaderRefresh:)];
     [tableview.mj_header beginRefreshing];
+    
+//    tableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(onFooterLoadMore:)];
     
     [Tool setExtraCellLineHidden:tableview];
     [self pullUpUpdate];
@@ -154,20 +161,20 @@
 //    sectionHeaderView.backgroundColor = [UIColor colorWithWhite:237.0 / 255.0 alpha:1.0];
 //    sectionHeaderView.userInteractionEnabled = YES;
     
-    NSArray *buttonArray = @[@"我的男神",@"我的女神"];
-    for (NSInteger index = 0; index < [buttonArray count]; index++) {
-        CGFloat buttonW = SCREENWIDTH / [buttonArray count];
-        CGFloat buttonH = sectionHeaderView.frame.size.height;
-        CGFloat buttonX = index * buttonW;
-        CGFloat buttonY = 0;
-        CGRect buttonFrame = CGRectMake(buttonX , buttonY, buttonW, buttonH);
-        UIButton *button = [self buttonWithTitle:buttonArray[index] frame:buttonFrame];
-        button.tag = index + 100;
-        if (index == 0) {
-            button.selected = YES;
-        }
-        [sectionHeaderView addSubview:button];
-    }
+//    NSArray *buttonArray = @[@"我的男神",@"我的女神"];
+//    for (NSInteger index = 0; index < [buttonArray count]; index++) {
+//        CGFloat buttonW = SCREENWIDTH / [buttonArray count];
+//        CGFloat buttonH = sectionHeaderView.frame.size.height;
+//        CGFloat buttonX = index * buttonW;
+//        CGFloat buttonY = 0;
+//        CGRect buttonFrame = CGRectMake(buttonX , buttonY, buttonW, buttonH);
+//        UIButton *button = [self buttonWithTitle:buttonArray[index] frame:buttonFrame];
+//        button.tag = index + 100;
+//        if (index == 0) {
+//            button.selected = YES;
+//        }
+//        [sectionHeaderView addSubview:button];
+//    }
     
 }
 
@@ -183,12 +190,9 @@
     [ApiUtils queryRealtimeTripInfoWithCompleteHandler:^(NSArray<TripListModel *> *tripList) {
         [self.dataSource removeAllObjects];
         [self.dataSource addObjectsFromArray:tripList];
-//        [tableview reloadData];
-//        [header endRefreshing];
-        [ApiUtils queryAllTripCanTakeWithFilterType:@"0"//当请求完成已经邀约的数据之后再开始请求可邀约的数据
+        [ApiUtils queryAllTripCanTakeWithFilterType:self.queryNewest ? @"0" : @"1"//当请求完成已经邀约的数据之后再开始请求可邀约的数据
                                            identity:[Tool judge]
                                      onResponseInfo:^(NSArray<TripListModel *> *tripListModel) {
-                                         //                                     [self.dataSource removeAllObjects];
                                          [self.dataSource addObjectsFromArray:tripListModel];
                                          [self reloadDataList];
                                          [header endRefreshing];
@@ -201,8 +205,37 @@
         [self showHint:responseErrorInfo];
         [header endRefreshing];
     }];
+}
+
+- (void)onFooterLoadMore:(MJRefreshAutoNormalFooter *)footer {
     
-   
+}
+
+- (void)filterAllTripInfoWhichCanTake {
+    [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    [ApiUtils queryAllTripCanTakeWithFilterType:self.queryNewest ? @"0" : @"1"//重新获取可接取的数据
+                                       identity:[Tool judge]
+                                 onResponseInfo:^(NSArray<TripListModel *> *tripListModel) {
+                                     [self.dataSource addObjectsFromArray:tripListModel];
+                                     [self reloadDataList];
+                                     [MBProgressHUD hideHUDForView:self.view.window animated:YES];
+                                 } errorHandler:^(NSString *responseErrorInfo) {
+                                     [self showHint:responseErrorInfo];
+                                     [MBProgressHUD hideHUDForView:self.view.window animated:YES];
+                                 }];
+}
+
+///删除所有可接取的行程Model
+- (void)removeAllTripWhichCanTake {
+    NSMutableArray <NSNumber *>*indexList = [NSMutableArray array];
+    for (TripListModel *tripModel in self.dataSource) {
+        if (tripModel.isWaitOtherTake) {//如果是待接取的状态,记录其下标
+            [indexList addObject:[NSNumber numberWithInteger:[self.dataSource indexOfObject:tripModel]]];
+        }
+    }
+    for (NSNumber *index in indexList) {
+        [self.dataSource removeObjectAtIndex:index.integerValue];
+    }
 }
 
 - (UIButton *)buttonWithTitle:(NSString *)buttonTitle frame:(CGRect)buttonFrame
@@ -271,7 +304,8 @@
     [self.navigationController pushViewController:releasePage animated:YES];
 }
 - (IBAction)onFilterAction:(UIButton *)sender {
-    
+    self.queryNewest = !self.queryNewest;
+    [self filterAllTripInfoWhichCanTake];
 }
 
 #pragma mark -
@@ -491,7 +525,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSInteger row = indexPath.row;
-    NSInteger section = indexPath.section;
+//    NSInteger section = indexPath.section;
     
     TripListModel *tripModel = self.dataSource[row];
         HeRealTimeDetailController *detailController = [[HeRealTimeDetailController alloc] initWithNibName:@"HeRealTimeDetailController" bundle:[NSBundle mainBundle]];
@@ -499,10 +533,6 @@
     detailController.tripId = tripModel.carOwnerId;
         detailController.title = @"详情内容";
         [self.navigationController pushViewController:detailController animated:YES];
-    
-    //测试内容
-//    TripOnGoingController *onGoingController = [[TripOnGoingController alloc]initWithNibName:@"TripOnGoingController" bundle:[NSBundle mainBundle]];
-//    [self.navigationController pushViewController:onGoingController animated:YES];
 }
 
 

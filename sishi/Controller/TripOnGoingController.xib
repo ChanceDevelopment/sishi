@@ -12,6 +12,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TripOnGoingController">
             <connections>
                 <outlet property="addBtn" destination="kzx-lF-UHv" id="FTT-2h-VZx"/>
+                <outlet property="backBtn" destination="hcp-bc-xii" id="3yt-xt-h0q"/>
+                <outlet property="exitBtn" destination="AnT-Ru-bAu" id="TSc-g3-HXR"/>
                 <outlet property="leftBtn" destination="Ivv-gO-O91" id="c3P-iB-xJO"/>
                 <outlet property="mapView" destination="AAm-Xj-fet" id="ou1-0u-28h"/>
                 <outlet property="rightBtn" destination="9du-hh-GgH" id="I0j-Uj-3po"/>
@@ -38,6 +40,17 @@
                         <action selector="onPostMood:" destination="-1" eventType="touchUpInside" id="HNj-Rq-Iu3"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xit-Io-wvK">
+                    <rect key="frame" x="15" y="617" width="35" height="35"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="AOg-hb-4gf"/>
+                        <constraint firstAttribute="width" constant="35" id="IBU-7H-vs7"/>
+                    </constraints>
+                    <connections>
+                        <action selector="onGetMyLocation:" destination="-1" eventType="touchUpInside" id="Xsi-4M-He0"/>
+                    </connections>
+                </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5m-FD-yPT">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
                     <subviews>
@@ -61,30 +74,42 @@
                                 <constraint firstAttribute="height" constant="60" id="6mC-VY-YU5"/>
                                 <constraint firstAttribute="width" constant="60" id="juV-Rr-WHT"/>
                             </constraints>
-                            <state key="normal" image="icon_002.gif"/>
+                            <state key="normal" image="errorImage.png"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AnT-Ru-bAu">
-                            <rect key="frame" x="10" y="10" width="35" height="35"/>
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AnT-Ru-bAu">
+                            <rect key="frame" x="10" y="25" width="40" height="40"/>
+                            <color key="backgroundColor" red="0.29016065600000002" green="0.29021644590000001" blue="0.29015710950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="35" id="0sc-zX-Ua4"/>
-                                <constraint firstAttribute="width" constant="35" id="zVY-Gn-ggs"/>
+                                <constraint firstAttribute="height" constant="40" id="0sc-zX-Ua4"/>
+                                <constraint firstAttribute="width" constant="40" id="zVY-Gn-ggs"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" title="结束">
+                            <state key="normal" image="icon_stop_trip.png">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="onExit:" destination="-1" eventType="touchUpInside" id="OUt-Rm-HT6"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcp-bc-xii">
-                            <rect key="frame" x="330" y="10" width="35" height="35"/>
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcp-bc-xii">
+                            <rect key="frame" x="325" y="25" width="40" height="40"/>
+                            <color key="backgroundColor" red="0.29016065600000002" green="0.29021644590000001" blue="0.29015710950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="35" id="RZA-Gp-Oii"/>
-                                <constraint firstAttribute="width" constant="35" id="pYc-JF-bB5"/>
+                                <constraint firstAttribute="height" constant="40" id="RZA-Gp-Oii"/>
+                                <constraint firstAttribute="width" constant="40" id="pYc-JF-bB5"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <state key="normal" title="返回"/>
+                            <state key="normal" image="icon_share.png"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="onBack:" destination="-1" eventType="touchUpInside" id="sOy-12-m0j"/>
                             </connections>
@@ -96,7 +121,7 @@
                                 <constraint firstAttribute="width" constant="60" id="7Ha-1J-NVE"/>
                                 <constraint firstAttribute="height" constant="60" id="d5e-M0-CzK"/>
                             </constraints>
-                            <state key="normal" image="icon_002.gif"/>
+                            <state key="normal" image="errorImage.png"/>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.40387445690000001" green="0.40394866470000002" blue="0.4038697779" alpha="0.69501294095092025" colorSpace="custom" customColorSpace="sRGB"/>
@@ -109,17 +134,18 @@
                         <constraint firstItem="Ivv-gO-O91" firstAttribute="centerY" secondItem="ahb-Ba-r6M" secondAttribute="centerY" id="eGb-Q7-ybQ"/>
                         <constraint firstItem="ahb-Ba-r6M" firstAttribute="top" secondItem="a5m-FD-yPT" secondAttribute="top" id="eYp-S3-FpJ"/>
                         <constraint firstItem="9du-hh-GgH" firstAttribute="centerY" secondItem="Ivv-gO-O91" secondAttribute="centerY" id="o1m-mU-O1v"/>
-                        <constraint firstItem="AnT-Ru-bAu" firstAttribute="top" secondItem="a5m-FD-yPT" secondAttribute="top" constant="10" id="tba-i2-rMH"/>
+                        <constraint firstItem="AnT-Ru-bAu" firstAttribute="top" secondItem="a5m-FD-yPT" secondAttribute="top" constant="25" id="tba-i2-rMH"/>
                         <constraint firstItem="ahb-Ba-r6M" firstAttribute="centerX" secondItem="a5m-FD-yPT" secondAttribute="centerX" id="y5i-oT-eDp"/>
                         <constraint firstAttribute="trailing" secondItem="hcp-bc-xii" secondAttribute="trailing" constant="10" id="yI6-lk-ROb"/>
                         <constraint firstItem="fAK-zG-gSf" firstAttribute="top" secondItem="ahb-Ba-r6M" secondAttribute="bottom" id="yLd-ZS-vv0"/>
-                        <constraint firstItem="hcp-bc-xii" firstAttribute="top" secondItem="a5m-FD-yPT" secondAttribute="top" constant="10" id="yPH-Lf-KYU"/>
+                        <constraint firstItem="hcp-bc-xii" firstAttribute="top" secondItem="a5m-FD-yPT" secondAttribute="top" constant="25" id="yPH-Lf-KYU"/>
                         <constraint firstAttribute="bottom" secondItem="fAK-zG-gSf" secondAttribute="bottom" constant="10" id="zzN-qi-1vq"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="Xit-Io-wvK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="7Uw-AT-3MB"/>
                 <constraint firstAttribute="trailing" secondItem="a5m-FD-yPT" secondAttribute="trailing" id="8ht-51-auJ"/>
                 <constraint firstAttribute="bottom" secondItem="kzx-lF-UHv" secondAttribute="bottom" constant="25" id="C2o-bM-OWc"/>
                 <constraint firstItem="a5m-FD-yPT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="KZ9-tu-koX"/>
@@ -129,12 +155,15 @@
                 <constraint firstItem="a5m-FD-yPT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="oGB-Pe-sfT"/>
                 <constraint firstAttribute="bottom" secondItem="AAm-Xj-fet" secondAttribute="bottom" id="rpe-BT-Gtj"/>
                 <constraint firstItem="AAm-Xj-fet" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="xHi-lo-FNn"/>
+                <constraint firstAttribute="bottom" secondItem="Xit-Io-wvK" secondAttribute="bottom" constant="15" id="xLN-7e-pwS"/>
             </constraints>
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>
     </objects>
     <resources>
-        <image name="icon_002.gif" width="150" height="150"/>
+        <image name="errorImage.png" width="244" height="188"/>
         <image name="icon_add.png" width="192" height="192"/>
+        <image name="icon_share.png" width="32" height="36"/>
+        <image name="icon_stop_trip.png" width="29" height="32"/>
     </resources>
 </document>

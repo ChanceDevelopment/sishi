@@ -75,13 +75,15 @@
         
         self.labelView.labelList = [NSArray arrayWithArray:titleList];
     } errorHandler:^(NSString *responseErrorInfo) {
-        [self showHint:@"获取评价信息出错"];
+//        [self showHint:@"获取评价信息出错"];
+        NSLog(@"获取评价信息出错%@",responseErrorInfo);
     }];
     
     [ApiUtils getMyWallPicsWithCompleteHandler:^(NSArray<NSString *> *responseImages) {//查询照片墙
         self.imageBanner.imageURLStringsGroup = responseImages;
     } errorHandler:^(NSString *responseErrorInfo) {
-        [self showHint:responseErrorInfo];
+//        [self showHint:responseErrorInfo];
+        NSLog(@"获取照片墙图片出错%@",responseErrorInfo);
     }];
     
     ///查询用户个人信息

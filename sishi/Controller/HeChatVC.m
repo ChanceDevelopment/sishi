@@ -16,6 +16,9 @@
 #import "InvitationSentCell.h"
 #import "InvitationReceivedCell.h"
 #import "RDVTabBarItem.h"
+#import "NSDictionary+Utils.h"
+#import "NSDictionary+Utils.h"
+#import "ApiUtils.h"
 
 @interface HeChatVC ()<UITableViewDelegate,UITableViewDataSource,EMChatManagerDelegate,EaseMessageViewControllerDelegate,EaseMessageViewControllerDataSource>
 @property(strong,nonatomic) UITableView *tableview;
@@ -165,15 +168,7 @@
     self.systemMessageTableView.tableFooterView = [UIView new];
     self.systemMessageTableView.backgroundColor = [UIColor whiteColor];
     [self.tableContainerView addSubview:self.systemMessageTableView];
-//    [self.tableview mas_makeConstraints:^(MASConstraintMaker *make) {
-////        make.right.bottom.top.equalTo(self.tableContainerView);
-//        make.left.equalTo(self.tableview.mas_right);
-////        make.top.equalTo(self.tableview);
-//        make.width.mas_equalTo(SCREENWIDTH);
-//        make.top.equalTo(self.tableContainerView);
-//        make.bottom.equalTo(self.tableContainerView);
-//        
-//    }];
+    self.systemMessageTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(onSystemMessageHeaderRefresh:)];
 }
 
 - (void)onHeaderRefresh:(MJRefreshNormalHeader *)header {
@@ -182,6 +177,14 @@
     [header endRefreshing];
 }
 
+///邀约消息获取
+- (void)onSystemMessageHeaderRefresh:(MJRefreshNormalHeader *)header {
+    [ApiUtils queryMyAskingListWithCompleteHandler:^(NSArray<NSObject *> *dataList) {
+        
+    } errorHandler:^(NSString *responseErrorInfo) {
+        
+    }];
+}
 
 - (void)reloadDataList {
     [self.tableview reloadData];
@@ -314,17 +317,15 @@
 //    NSInteger section = indexPath.section;
     if (tableView == self.tableview) {
         EMConversation *conversation = self.chatArray[indexPath.row];
+        EMMessage *message = conversation.latestMessage;
         
         ChatViewController *chatView = [[ChatViewController alloc] initWithConversationChatter:conversation.conversationId conversationType:EMConversationTypeChat];
         chatView.delegate = self;
         chatView.dataSource = self;
-        NSString *chatterName = @"";
+        chatView.chatterName = [message.ext objectForKey:kEaseMobExtMessageGetterUserNick ifNil:@""];
+        chatView.chatterUserId = [message.ext objectForKey:kEaseMobExtMessageGetterUserId ifNil:@""];
+        chatView.chatterHeaderImage = [message.ext objectForKey:kEaseMobExtMessageGetterUserImage ifNil:@""];
         chatView.delegate = self;
-//        if (conversation.latestMessage.direction == EMMessageDirectionSend) {
-//            chatterName = conversation.latestMessage.to;
-//        } else {
-//            chatterName = conversation.latestMessage.from;
-//        }
         chatView.title = chatCell.titleLabel.text;
         chatView.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:chatView animated:YES];
@@ -338,12 +339,46 @@
         EMMessageBody *messageBody = lastestMessage.body;
         EMMessageDirection direction = lastestMessage.direction;
         NSString *otherPeopleName = nil;
-        
-        if (direction == EMMessageDirectionSend) {
-            otherPeopleName = lastestMessage.ext[kEaseMobExtMessageGetterUserNick];
+        NSString *otherPeopleImage = nil;
+        NSDictionary *ext = lastestMessage.ext;
+        NSString *setterUserId = [ext objectForKey:kEaseMobExtMessageSetterUserId ifNil:@""];
+        if ([setterUserId isEqualToString:[Tool uid]]) {//消息是我发送的
+            otherPeopleName  = [ext objectForKey:kEaseMobExtMessageGetterUserNick ifNil:@""];
+            otherPeopleImage = [ext objectForKey:kEaseMobExtMessageGetterUserImage ifNil:@""];
         } else {
-            otherPeopleName = lastestMessage.ext[kEaseMobExtMessageSetterUserNick];
+            otherPeopleName  = [ext objectForKey:kEaseMobExtMessageSetterUserNick ifNil:@""];
+            otherPeopleImage = [ext objectForKey:kEaseMobExtMessageSetterUserImage ifNil:@""];
         }
+        [cell.headImage sd_setImageWithURL:
+                                    [NSURL URLWithString:
+                                     [NSString stringWithFormat:@"%@%@",
+                                                                                [ApiUtils baseUrl],otherPeopleImage]]
+                          placeholderImage:[UIImage imageNamed:@"user"]];
+        if (!ext || ![ext.allKeys containsObject:kEaseMobExtMessageTripId]) {//如果不包含行程Id则视为没有邀约消息
+            if (direction == EMMessageDirectionSend) {
+                otherPeopleName = lastestMessage.to;
+            } else {
+                otherPeopleName = lastestMessage.from;
+            }
+        }
+        cell.unReadMessageCount = [conversation unreadMessagesCount];
+        
+//        if (direction == EMMessageDirectionSend) {//如果是我发送的消息则获取setterUserNick
+//            
+//            if (ext && [ext objectForKey:kEaseMobExtMessageTripId]) {//是邀约内容
+//                    otherPeopleName = lastestMessage.ext[kEaseMobExtMessageGetterUserNick];
+//            } else {
+//                otherPeopleName = lastestMessage.to;
+//            }
+//        } else {//
+//            if (ext && [ext objectForKey:kEaseMobExtMessageTripId]) {//
+//                otherPeopleName = lastestMessage.ext[kEaseMobExtMessageSetterUserNick];
+//            } else {
+//                otherPeopleName = lastestMessage.from;
+//            }
+//            
+//        }
+       
         if ([messageBody isKindOfClass:[EMImageMessageBody class]]) {
             cell.contentLabel.text = @"[图片]";
         } else if ([messageBody isKindOfClass:[EMTextMessageBody class]]) {

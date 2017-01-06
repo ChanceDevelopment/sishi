@@ -88,6 +88,10 @@
 //判断当前系统版本是否高于或等于传入的版本号
 + (BOOL)isSystemAvailableOnVersion:(CGFloat)version;
 
+///传入距离米数,比如 1000,返回 一公里
++ (NSString *)distanceFormatWithDistance:(long)distance;
+
+
 
 #pragma mark :- User Login State Utils
 /**

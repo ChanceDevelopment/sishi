@@ -255,7 +255,16 @@ static AFHTTPSessionManager *sessionManager = nil;
 }
 
 + (void)updateUserPositionWithLongitude:(CGFloat)longitude latitude:(CGFloat)latitude onUpdateComplete:(ApiUtilsSuccessWithVoidResponse)completeHandler errorHandler:(ApiUtilsResponseError)errorHandler {
-    
+    NSString *api = [NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],@"Sexton/user/UpdatePosition.action"];
+    [ApiUtils POST:api parameters:@{@"userId":[Tool uid],@"longitude":@(longitude),@"latitude":@(latitude)} onResponseSuccess:^(NSDictionary<NSString *,id> *responseInfo) {
+        if (completeHandler) {
+            completeHandler();
+        }
+    } onResponseError:^(NSString *errorInfo) {
+        if (errorHandler) {
+            errorHandler(errorInfo);
+        }
+    }];
 }
 
 + (void)queryNearbyUserWithUserGender:(NSString *)gender longitude:(CGFloat)longitude latitude:(CGFloat)latitude startIndex:(NSInteger)startIndex onResponse:(void(^)(NSArray <NearbyUserListModel *>*nearby))completeHandler errorHandler:(ApiUtilsResponseError)errorHandler {
@@ -284,7 +293,7 @@ static AFHTTPSessionManager *sessionManager = nil;
     }];
 }
 
-+ (void)sendAskingFor:(NSString *)uid tripId:(NSString *)tripId askingName:(NSString *)targetName askingHeaderImage:(NSString *)targetImage withCompleteHandler:(ApiUtilsSuccessWithVoidResponse)completeHandler errorHandler:(ApiUtilsResponseError)errorHandler {
++ (void)sendAskingFor:(NSString *)uid tripId:(NSString *)tripId withCompleteHandler:(ApiUtilsSuccessWithVoidResponse)completeHandler errorHandler:(ApiUtilsResponseError)errorHandler {
     //发送邀约
     NSString *api = [NSString stringWithFormat:@"%@Sexton/ask/setAskingforPeople.action",[ApiUtils baseUrl]];
     NSDictionary *parameters = @{@"userId":[Tool uid],@"askingUserId":uid,@"asktripId":tripId};
@@ -292,21 +301,21 @@ static AFHTTPSessionManager *sessionManager = nil;
                 parameters:parameters
                 onResponseSuccess:^(NSDictionary<NSString *,id> *responseInfo) {
                     //发送环信消息
-                    EMTextMessageBody *messageBody = [[EMTextMessageBody alloc]initWithText:@""];
-                    NSString *from = [[EMClient sharedClient] currentUsername];
-                    
-                    NSDictionary *ext = @{@"puter_id":[Tool uid],
-                                                        @"ureceiver_id":uid,
-                                                        @"tripId":tripId,
-                                                        @"puter_nick":[Tool defaultsForKey:kDefaultsUserNick],
-                                                        @"puter_header":[Tool defaultsForKey:kDefaultsUserHeaderImage],
-                                                          kEaseMobExtMessageGetterUserNick:targetName,
-                                                            kEaseMobExtMessageGetterUserImage:targetImage};
-                    
-                    EMMessage *message = [[EMMessage alloc]initWithConversationID:nil from:from to:uid body:messageBody ext:ext];
-                    [[EMClient sharedClient].chatManager asyncSendMessage:message progress:nil completion:^(EMMessage *message, EMError *error) {
-                        NSLog(@"send asking message with complete error %@",error);
-                    }];
+//                    EMTextMessageBody *messageBody = [[EMTextMessageBody alloc]initWithText:@""];
+//                    NSString *from = [[EMClient sharedClient] currentUsername];
+//                    
+//                    NSDictionary *ext = @{@"puter_id":[Tool uid],
+//                                                        @"ureceiver_id":uid,
+//                                                        @"tripId":tripId,
+//                                                        @"puter_nick":[Tool defaultsForKey:kDefaultsUserNick],
+//                                                        @"puter_header":[Tool defaultsForKey:kDefaultsUserHeaderImage],
+//                                                          kEaseMobExtMessageGetterUserNick:targetName,
+//                                                            kEaseMobExtMessageGetterUserImage:targetImage};
+//                    
+//                    EMMessage *message = [[EMMessage alloc]initWithConversationID:nil from:from to:uid body:messageBody ext:ext];
+//                    [[EMClient sharedClient].chatManager asyncSendMessage:message progress:nil completion:^(EMMessage *message, EMError *error) {
+//                        NSLog(@"send asking message with complete error %@",error);
+//                    }];
                     if (completeHandler) {
                         completeHandler();
                     }
@@ -316,6 +325,15 @@ static AFHTTPSessionManager *sessionManager = nil;
         }
     }];
 }
+//+ (NSDictionary *)askingInfoWithTargetUserId:(NSString *)uid tripId:(NSString *)tripId askingName:(NSString *)askingName askingImage:(NSString *)askingImage askingDate:(long long)askingDate askingDestination:(NSString *)askingDestination startPlace:(NSString *)startPlace askingNote:(NSString *)askingNote {
+//    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+//    [dictionary setObject:uid forKey:@""];
+//    
+//    return [NSDictionary dictionaryWithDictionary:dictionary];
+//}
+//
+
+
 
 + (void)queryTripListWithUser:(NSString *)uid carOwnerIsend:(NSString *)carOwnerIsend onComplete:(void (^)(NSArray <TripListModel *>*))completeHandler errorHandler:(ApiUtilsResponseError)errorHandler {
     NSString *api = [NSString stringWithFormat:@"%@%@",[ApiUtils baseUrl],@"Sexton/view.action"];
@@ -577,7 +595,7 @@ static AFHTTPSessionManager *sessionManager = nil;
 
 + (void)viewTripInfoWithTripId:(NSString *)tripId completeHandler:(void(^)(TripDetailModel *detailModel))completeHandler errorHandler:(ApiUtilsResponseError)errorHandler {
     NSString *api = [NSString stringWithFormat:@"%@Sexton/CaruserInfoByUser.action",[ApiUtils baseUrl]];
-    [ApiUtils POST:api parameters:@{@"carOwnerId":tripId} onResponseSuccess:^(NSDictionary<NSString *,id> *responseInfo) {
+    [ApiUtils POST:api parameters:@{@"carOwnerId":tripId ? tripId : @""} onResponseSuccess:^(NSDictionary<NSString *,id> *responseInfo) {
         NSDictionary *responseJSON = responseInfo[@"json"];
         TripDetailModel *tripDetailModel = [TripDetailModel modelObjectWithDictionary:responseJSON];
         if (completeHandler) {

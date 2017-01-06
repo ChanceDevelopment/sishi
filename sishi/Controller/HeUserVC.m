@@ -92,7 +92,8 @@
  *  签名Label
  */
 @property(nonatomic,strong)UILabel *signLabel;
-
+@property (weak, nonatomic) IBOutlet UIButton *focusBtn;
+@property (weak, nonatomic) IBOutlet UIButton *contactBtn;
 
 @end
 
@@ -149,6 +150,9 @@
     [self initializaiton];
     self.labelViewCellHeight = 95;
     [self initView];
+    if (self.hasFocused) {
+        [self.focusBtn setTitle:@"    取消关注" forState:UIControlStateNormal];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -166,6 +170,10 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    if (self.onExit) {
+        self.onExit(self.hasFocused);
+    }
+    
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     self.navigationController.navigationBar.titleTextAttributes = self.titleAttributes;
     [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
@@ -595,7 +603,7 @@
                         }
                         self.labelView.labelList = [NSArray arrayWithArray:labelList];
     } errorHandler:^(NSString *responseErrorInfo) {
-        [self showHint:responseErrorInfo];
+        NSLog(@"暂无评价信息");
     }];
         
     [ApiUtils queryUserInfoBy:self.uid onCompleteHandler:^(UserFollowListModel *userModel) {
@@ -612,11 +620,9 @@
         self.genderLabel.text = [NSString stringWithFormat:@"%@   %@",gender,age];
         self.addressLabel.text = [NSString stringWithFormat:@"%@     %@",userModel.userCity,userModel.userProvince];
         self.signLabel.text = userModel.userSign;
-
+        
         NSString *imageName = userModel.userHeader ? userModel.userHeader : @"";
         self.imageBannerView.imageURLStringsGroup = @[imageName];
-//        self.labelView.labelList = @[@"标签1",@"标签1",@"标签1",@"标签1",@"标签1",@"标签1",@"标签1",@"标签1",@"标签1",@"标签1"];
-        
         self.trustValueLabel.text = [NSString stringWithFormat:@"信任值%@分",userModel.userCredit];
     } errorHandler:^(NSString *responseErrorInfo) {
         [self showHint:responseErrorInfo];
@@ -629,17 +635,27 @@
 }
 - (IBAction)onFocus:(UIButton *)sender {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [ApiUtils userFocusWithUserId:self.uid onComplete:^{
-        [self showHint:@"已关注"];
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-    } onError:^(NSString *responseErrorInfo) {
-        [self showHint:responseErrorInfo];
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-    }];
+    if (!self.hasFocused) {
+        [ApiUtils userFocusWithUserId:self.uid onComplete:^{
+            [sender setTitle:@"    取消关注" forState:UIControlStateNormal];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        } onError:^(NSString *responseErrorInfo) {
+            [self showHint:responseErrorInfo];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        }];
+    } else {
+        [ApiUtils removeFocusOnUser:self.uid onComplete:^{
+            [MBProgressHUD hideHUDForView:self.view.window animated:YES];
+            [sender setTitle:@"    关注" forState:UIControlStateNormal];
+        } errorHandler:^(NSString *responseErrorInfo) {
+            [self showHint:responseErrorInfo];
+            [MBProgressHUD hideHUDForView:self.view.window animated:YES];
+        }];
+    }
 }
 - (IBAction)onContact:(UIButton *)sender {
     [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
-    [ApiUtils sendAskingFor:self.uid tripId:@" " askingName:self.nameLabel.text askingHeaderImage:self.userModel.userHeader withCompleteHandler:^{
+    [ApiUtils sendAskingFor:self.uid tripId:@" " withCompleteHandler:^{
         [MBProgressHUD hideHUDForView:self.view.window animated:YES];
         [self showHint:@"邀约成功"];
     } errorHandler:^(NSString *responseErrorInfo) {
@@ -723,8 +739,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSInteger row = indexPath.row;
-    NSInteger section = indexPath.section;
+//    NSInteger row = indexPath.row;
+//    NSInteger section = indexPath.section;
     
     
 }

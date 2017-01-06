@@ -19,6 +19,7 @@
 #import "DEMOHomeViewController.h"
 #import "HeLoginVC.h"
 #import "EMClient.h"
+#import "TripOnGoingController.h"
 
 @interface HeTabBarVC ()
 
@@ -131,6 +132,7 @@
 //    menuVC.leftViewController = leftController;
     
     dynamicVC = [[HeDynamicVC alloc] init];
+//    dynamicVC = [[TripOnGoingController alloc]initWithNibName:@"TripOnGoingController" bundle:nil];
     CustomNavigationController *dynamicNav = [[CustomNavigationController alloc] initWithRootViewController:dynamicVC];
     
 //    logVC = [[HeLogTableVC alloc] init];
@@ -160,6 +162,10 @@
 }
 
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+
 - (void)checkUnReadMessage {
     BOOL hasUnReadMessage = NO;
     NSArray <EMConversation *>* conversations = [[EMClient sharedClient].chatManager loadAllConversationsFromDB];
@@ -169,9 +175,10 @@
             break;
         }
     }
-   ((RDVTabBarItem *) [[self.tabBar items] objectAtIndex:1]).badgeValue = @" ";
-    ((RDVTabBarItem *) [[self.tabBar items] objectAtIndex:1]).badgeTextFont = [UIFont systemFontOfSize:2];
-    
+    if (hasUnReadMessage) {
+        ((RDVTabBarItem *) [[self.tabBar items] objectAtIndex:1]).badgeValue = @" ";
+        ((RDVTabBarItem *) [[self.tabBar items] objectAtIndex:1]).badgeTextFont = [UIFont systemFontOfSize:2];
+    }
 }
 
 //设置底部的tabbar
