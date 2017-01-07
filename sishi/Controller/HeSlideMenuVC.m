@@ -60,7 +60,8 @@
     [self initializaiton];
     [self initView];
     [self loadDataFromLocal];
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
+//    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated

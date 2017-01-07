@@ -46,7 +46,8 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:editItem];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
+self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
+//     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"返回"] style:UIBarButtonItemStylePlain target:nil action:nil];
     self.nameLabel.text = [Tool defaultsForKey:kDefaultsUserNick];
     self.imageBanner.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
     [self configPageInfo];

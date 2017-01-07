@@ -59,6 +59,7 @@
     // self.clearsSelectionOnViewWillAppear = NO;
     self.navigationItem.title = @"我关注的";
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
+     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"返回"] style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.tableView registerNib:[UINib nibWithNibName:@"FocusTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"FocusTableViewCell"];
     self.tableView.tableFooterView = [UIView new];
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(onHeaderRefresh:)];

@@ -35,7 +35,8 @@
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.title = @"手机注册";
     
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
+self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
+//     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"返回"] style:UIBarButtonItemStylePlain target:nil action:nil];
     self.wait_timeout = 60.0;
     self.inputFieldContainerView.layer.cornerRadius = 7;
     self.inputFieldContainerView.clipsToBounds = YES;

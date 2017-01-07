@@ -109,6 +109,7 @@
     
     [self initializaiton];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
+//     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"返回"] style:UIBarButtonItemStylePlain target:nil action:nil];
     [self initView];
     
     self.filterBtn.layer.cornerRadius = 30;
@@ -125,6 +126,7 @@
 //    self.releaseBtn.clipsToBounds = YES;
 //    self.releaseBtn.imageEdgeInsets = UIEdgeInsetsMake(30, 30, 30, 30);
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
+//     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"返回"] style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.tableview addSubview:self.placeholderLabel];
     [self.placeholderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.tableview);

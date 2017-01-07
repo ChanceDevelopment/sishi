@@ -56,7 +56,8 @@
 //    [self.tableView registerClass:[HeRealTrendTableCell class] forCellReuseIdentifier:@"HeRealTrendTableCell"];
     self.tableView.tableFooterView = [[UIView alloc]init];
     self.navigationItem.title = @"我的行程列表";
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
+self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
+//     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"返回"] style:UIBarButtonItemStylePlain target:nil action:nil];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.

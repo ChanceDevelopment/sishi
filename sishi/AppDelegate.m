@@ -121,6 +121,11 @@ BMKMapManager* _mapManager;
     queue = [[NSOperationQueue alloc]init];
     [queue addOperation:operation];
     [queue setMaxConcurrentOperationCount:1];
+    
+    [[UINavigationBar appearance] setBackIndicatorImage:[UIImage new]];
+    [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[UIImage new]];
+    
+    
     //配置根控制器
     [self loginStateChange:nil];
     [self.window makeKeyAndVisible];

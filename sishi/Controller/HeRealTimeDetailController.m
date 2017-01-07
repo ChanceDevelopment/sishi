@@ -37,6 +37,7 @@
 - (void)setupView {
     self.navigationItem.title = @"";
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
+//     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"返回"] style:UIBarButtonItemStylePlain target:nil action:nil];
     self.imageBanner.autoScroll = NO;
     self.imageBanner.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
     [self queryTripInfo];

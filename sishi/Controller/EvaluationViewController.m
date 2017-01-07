@@ -86,6 +86,7 @@
 - (void)setupView {
     self.maximumLabelCount = 2;
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
+//    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"返回"] style:UIBarButtonItemStylePlain target:nil action:nil];
     
     self.labelSelectView.labelViewDelegate = self;
     self.labelSelectView.labelFont = [UIFont systemFontOfSize:13];

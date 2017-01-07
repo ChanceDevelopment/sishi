@@ -100,7 +100,13 @@
     [super viewDidLoad];
     [self initializaiton];
     [self initView];
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
+self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
+////     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"返回"] style:UIBarButtonItemStylePlain target:nil action:nil];
+//    UIImageView *backimage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"返回"]];
+//    backimage.frame = CGRectMake(0, 0, 30, 30);
+//    backimage.backgroundColor = [UIColor blackColor];
+////    backimage.conte
+//    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backimage];
     [[NSNotificationCenter defaultCenter]addObserverForName:kNotificationUserChangeState object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         [self reloadDataList];
         NSString *judge = [[Tool judge] isEqualToString:@"0"] ? @"车主" : @"用户";

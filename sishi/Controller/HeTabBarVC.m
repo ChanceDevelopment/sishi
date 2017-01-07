@@ -103,10 +103,12 @@
     
     DEMONavigationController *navigationController = [[DEMONavigationController alloc] initWithRootViewController:[[HeHomePageVC alloc] init]];
     DEMOMenuViewController *mymenuController = [[DEMOMenuViewController alloc] initWithStyle:UITableViewStylePlain];
-    
+//    self.navigationItem.backBarButtonItem = [UIBarButtonItem alloc]initWithImage:<#(nullable UIImage *)#> style:<#(UIBarButtonItemStyle)#> target:<#(nullable id)#> action:<#(nullable SEL)#>
     // Create frosted view controller
     //
-    
+   
+//    [UINavigationBar appearance]
+//    [UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:<#(UIOffset)#> forBarMetrics:<#(UIBarMetrics)#>
     
     homePageVC = [[HeHomePageVC alloc] init];
     homePageVC.view.userInteractionEnabled = YES;

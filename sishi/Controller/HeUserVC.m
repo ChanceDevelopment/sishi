@@ -637,8 +637,9 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     if (!self.hasFocused) {
         [ApiUtils userFocusWithUserId:self.uid onComplete:^{
-            [sender setTitle:@"    取消关注" forState:UIControlStateNormal];
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [sender setTitle:@"    取消关注" forState:UIControlStateNormal];
+            self.hasFocused = !self.hasFocused;
         } onError:^(NSString *responseErrorInfo) {
             [self showHint:responseErrorInfo];
             [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -647,6 +648,7 @@
         [ApiUtils removeFocusOnUser:self.uid onComplete:^{
             [MBProgressHUD hideHUDForView:self.view.window animated:YES];
             [sender setTitle:@"    关注" forState:UIControlStateNormal];
+            self.hasFocused = !self.hasFocused;
         } errorHandler:^(NSString *responseErrorInfo) {
             [self showHint:responseErrorInfo];
             [MBProgressHUD hideHUDForView:self.view.window animated:YES];
