@@ -122,8 +122,8 @@ BMKMapManager* _mapManager;
     [queue addOperation:operation];
     [queue setMaxConcurrentOperationCount:1];
     
-    [[UINavigationBar appearance] setBackIndicatorImage:[UIImage new]];
-    [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[UIImage new]];
+//    [[UINavigationBar appearance] setBackIndicatorImage:[UIImage new]];
+//    [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[UIImage new]];
     
     
     //配置根控制器
@@ -249,6 +249,10 @@ BMKMapManager* _mapManager;
 
 - (void)loginStateChange:(NSNotification *)notification
 {
+    
+    [[UINavigationBar appearance] setShadowImage:[UIImage new]];
+    [[UINavigationBar appearance] setBackgroundImage:[Tool buttonImageFromColor:[UIColor whiteColor] withImageSize:CGSizeZero] forBarMetrics:UIBarMetricsDefault];
+    
     NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
     BOOL haveLogin = (userToken == nil) ? NO : YES;
     
