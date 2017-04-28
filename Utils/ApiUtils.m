@@ -20,7 +20,11 @@ static AFHTTPSessionManager *sessionManager = nil;
 @implementation ApiUtils
 
 + (NSString *)baseUrl {
+<<<<<<< HEAD
     return @"http://118.178.131.215:8088/";
+=======
+    return @"http://211.149.172.157:8088/";
+>>>>>>> origin/master
 //    return @"http://192.168.0.119:8080/";
 }
 
